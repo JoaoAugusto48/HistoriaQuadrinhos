@@ -15,9 +15,12 @@ class CreateProblematizarTable extends Migration
     {
         Schema::create('problematizars', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('situar_id');
-            
+            $table->unsignedBigInteger('hq_id');
+            $table->unsignedBigInteger('quadrinho_id');            
             $table->timestamps();
+
+            $table->foreign('hq_id')->references('id')->on('hqs');
+            $table->foreign('quadrinho_id')->references('id')->on('quadrinhos');
         });
     }
 

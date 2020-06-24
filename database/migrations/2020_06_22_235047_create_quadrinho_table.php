@@ -13,8 +13,10 @@ class CreateQuadrinhoTable extends Migration
      */
     public function up()
     {
-        Schema::create('quadrinho', function (Blueprint $table) {
+        Schema::create('quadrinhos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('titulo')->nullable();
+            $table->float('pagina', 2, 0);
             $table->timestamps();
         });
     }

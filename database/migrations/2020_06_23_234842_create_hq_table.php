@@ -15,14 +15,16 @@ class CreateHqTable extends Migration
     {
         Schema::create('hqs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('situar_id');
-            $table->unsignedBigInteger('problematizar_id');
-            $table->unsignedBigInteger('solucionar_id');
+            $table->string('tema', 100);
+            $table->string('local', 70);
+            $table->unsignedBigInteger('personagem1_id');
+            $table->unsignedBigInteger('personagem2_id');
+            $table->unsignedBigInteger('ambiente_id');
             $table->timestamps();
 
-            $table->foreign('situar_id')->references('id')->on('situars');
-            $table->foreign('problematizars_id')->references('id')->on('problematizars');
-            $table->foreign('solucionars_id')->references('id')->on('solucionars');
+            $table->foreign('personagem1_id')->references('id')->on('personagems');
+            $table->foreign('personagem2_id')->references('id')->on('personagems');
+            $table->foreign('ambiente_id')->references('id')->on('ambientes');
         });
     }
 
