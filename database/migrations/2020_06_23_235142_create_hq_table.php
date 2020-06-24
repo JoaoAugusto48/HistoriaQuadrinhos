@@ -14,8 +14,15 @@ class CreateHqTable extends Migration
     public function up()
     {
         Schema::create('hqs', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('situar_id');
+            $table->unsignedBigInteger('problematizar_id');
+            $table->unsignedBigInteger('solucionar_id');
             $table->timestamps();
+
+            $table->foreign('situar_id')->references('id')->on('situars');
+            $table->foreign('problematizars_id')->references('id')->on('problematizars');
+            $table->foreign('solucionars_id')->references('id')->on('solucionars');
         });
     }
 

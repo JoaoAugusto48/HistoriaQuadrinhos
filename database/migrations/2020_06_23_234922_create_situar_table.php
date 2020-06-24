@@ -16,14 +16,14 @@ class CreateSituarTable extends Migration
         Schema::create('situars', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tema', 100);
-            $table->string('local');
+            $table->string('local', 70);
             $table->unsignedBigInteger('personagem1');
             $table->unsignedBigInteger('personagem2');
             $table->unsignedBigInteger('ambiente');
             $table->timestamps();
 
-            $table->foreign('personagem1_id')->references('id')->on('personagems');
-            $table->foreign('personagem2_id')->references('id')->on('personagems');
+            $table->foreign('personagem1')->references('id')->on('personagems');
+            $table->foreign('personagem2')->references('id')->on('personagems');
             $table->foreign('ambiente_id')->references('id')->on('ambientes');
         });
     }

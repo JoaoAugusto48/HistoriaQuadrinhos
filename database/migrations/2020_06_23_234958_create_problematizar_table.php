@@ -14,7 +14,9 @@ class CreateProblematizarTable extends Migration
     public function up()
     {
         Schema::create('problematizars', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('situar_id');
+            
             $table->timestamps();
         });
     }
