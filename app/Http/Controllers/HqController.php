@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Ambiente;
 use App\Hq;
+use App\Personagem;
 use Illuminate\Http\Request;
 
 class HqController extends Controller
@@ -14,7 +16,7 @@ class HqController extends Controller
      */
     public function index()
     {
-        //
+        return view('home');
     }
 
     /**
@@ -24,7 +26,11 @@ class HqController extends Controller
      */
     public function create()
     {
-        //
+        $personagems = Personagem::get();
+        $ambientes = Ambiente::get();
+        // dd($personagems);
+
+        return view('hq.create', compact('personagems', 'ambientes'));
     }
 
     /**
@@ -35,7 +41,23 @@ class HqController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tema' => 'required|max:100',
+            'local' => 'required|max:70',
+            'personagem1' => 'required',
+            'personagem2' => 'required',
+            'ambiente' => 'required'
+        ]);
+        
+        $hq = new Hq();
+        $hq->tema = $request->get('tema');
+        $hq->local = $request->get('local');
+        $hq->personagem1 = $request->get('personagem1');
+        $hq->personagem2 = $request->get('personagem2');
+        $hq->ambiente = $request->get('ambiente');
+        
+        // $hq->save();
+
     }
 
     /**
