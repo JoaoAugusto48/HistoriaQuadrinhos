@@ -28,7 +28,6 @@ class HqController extends Controller
     {
         $personagems = Personagem::get();
         $ambientes = Ambiente::get();
-        // dd($personagems);
 
         return view('hq.create', compact('personagems', 'ambientes'));
     }
@@ -44,20 +43,21 @@ class HqController extends Controller
         $request->validate([
             'tema' => 'required|max:100',
             'local' => 'required|max:70',
-            'personagem1' => 'required',
-            'personagem2' => 'required',
-            'ambiente' => 'required'
+            'personagem1_id' => 'required',
+            'personagem2_id' => 'required',
+            'ambiente_id' => 'required'
         ]);
         
         $hq = new Hq();
         $hq->tema = $request->get('tema');
         $hq->local = $request->get('local');
-        $hq->personagem1 = $request->get('personagem1');
-        $hq->personagem2 = $request->get('personagem2');
-        $hq->ambiente = $request->get('ambiente');
+        $hq->personagem1_id = $request->get('personagem1_id');
+        $hq->personagem2_id = $request->get('personagem2_id');
+        $hq->ambiente_id = $request->get('ambiente_id');
         
-        // $hq->save();
+        $hq->save();
 
+        return redirect()->route('hq.index');
     }
 
     /**
