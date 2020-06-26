@@ -39,11 +39,13 @@
 
         <!-- Button trigger modal -->
         <div class="form-group row">
-            <label for="nome" class="col-sm-2 col-form-label text-right">Personagem 1:</label>
+            <label for="nome" id="inputModal" class="col-sm-2 col-form-label text-right">Personagem 1:</label>
             <div class="col-sm-8">
                 <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#staticBackdrop">
-                    Selecionar
+                    Personagem 1
                 </button>
+
+                <div id="result"></div>
             </div>
         </div>
 
@@ -71,39 +73,59 @@
         <div class="col-md-8 offset-md-2 pl-1 text-left">
             <button type="submit" class="btn btn-outline-primary">Enviar</button>
         </div>
-    </form>
 
-<!-- Modal -->
+        
+<!-- Modal Personagem -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                @foreach ($personagems as $personagem)
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Personagem 1</h5>
+                <button type="button" class="btn btn-success ml-3" data-dismiss="modal">Confirmar</button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    @foreach ($personagems as $personagem)
                     <div class="col-md-4">
-                        <div class="card-group">
-                            <div class="card" style="width: 18rem;">
-                                <img src="{{ env('APP_URL') }}/storage/{{ $personagem->personagem }}" class="card-img-top">
-                                <div class="card-footer text-muted">
-                                <h5 class="card-title">{{ $personagem->descricao }}</h5>
+                        <input type="radio" id="{{ $personagem->id }}" name="personagem1_id" value="{{ $personagem->id }}">
+                        <label for="{{ $personagem->id }}">
+                            <div class="card-group">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="{{ env('APP_URL') }}/storage/{{ $personagem->personagem }}" class="card-img-top">
+                                    <div class="card-footer text-muted">
+                                        <h5 class="card-title">{{ $personagem->descricao }}</h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </label>
                     </div>
-                @endforeach
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="buttonCloseModal" data-dismiss="modal">Confirmar</button>
+                {{-- <button type="button" class="btn btn-primary">Understood</button> --}}
             </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
+<!-- Fim Modal Personagem -->
+    </form>
+
+
+<script>
+    $(document).ready(function(){
+        $('#buttonCloseModal').click(function(){
+            var databack = $("#staticBackdrop #"+)
+            $('#result').html();
+        });
+    });
+</script>
+
 @endsection
