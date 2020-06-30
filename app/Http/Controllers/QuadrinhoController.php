@@ -14,7 +14,7 @@ class QuadrinhoController extends Controller
      */
     public function index()
     {
-        //
+        return view('testeQuadrinho');
     }
 
     /**

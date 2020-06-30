@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('hq', 'HqController');
+Route::resource('quadrinho', 'QuadrinhoController');

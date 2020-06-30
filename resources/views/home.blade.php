@@ -7,6 +7,9 @@
         <a href="{{ route('hq.create') }}" target="_parent">
             <button class="btn btn-outline-dark ml-3">Criar HQ</button>
         </a>
+        <a href="{{ route('quadrinho.index') }}" target="_parent">
+            <button class="btn btn-outline-dark ml-3">Teste com Quadrinho</button>
+        </a>
     </div>
     <hr class="bg-dark"/>
 
