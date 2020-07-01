@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HqController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
+Route::get('/', 'HqController@index');
 
-Route::view('testeQuadrinho', 'john/index')->name('testHq'); //view de quadrinho
+Route::view('quadrinhos', 'quadrinhos/index')->name('quadrinhos'); //view de quadrinho
 
 Route::resource('hq', 'HqController');
 Route::resource('quadrinho', 'QuadrinhoController');

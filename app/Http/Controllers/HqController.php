@@ -16,7 +16,9 @@ class HqController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $hqs = Hq::get();
+
+        return view('home', compact('hqs'));
     }
 
     /**

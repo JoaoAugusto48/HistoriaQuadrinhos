@@ -14,7 +14,7 @@ class QuadrinhoController extends Controller
      */
     public function index()
     {
-        return view('testeQuadrinho');
+        return view('quadrinhos.index');
     }
 
     /**
@@ -44,9 +44,11 @@ class QuadrinhoController extends Controller
      * @param  \App\Quadrinho  $quadrinho
      * @return \Illuminate\Http\Response
      */
-    public function show(Quadrinho $quadrinho)
+    public function show(Request $request)
     {
-        //
+        $quadrinho = Quadrinho::findOrFail($request->hq);
+
+        return route('quadrinho.index');
     }
 
     /**
