@@ -1,0 +1,24 @@
+.container{
+    border: 3px solid black;
+    height: 100%;
+}
+
+.arrastavel{
+    width: 150px; 
+    height: 150px;
+    border: 2px solid black;
+    background-size: 100% 100%;
+}
+
+.burro{
+    background-image: url('./img/burro.png');
+}
+
+.shrek{
+    background-image: url('./img/shrek.png');
+}
+
+.arrastavel img{
+    width: 100%;
+    height: 100%;
+}

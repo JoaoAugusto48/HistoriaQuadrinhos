@@ -17,5 +17,7 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::view('testeQuadrinho', 'john/index')->name('testHq'); //view de quadrinho
+
 Route::resource('hq', 'HqController');
 Route::resource('quadrinho', 'QuadrinhoController');
