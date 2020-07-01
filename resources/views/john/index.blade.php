@@ -12,25 +12,39 @@
 </head>
 <body class="p-5">
  
-<div class="container">
+<div class="container containerCustomizado" id="fundo">
     <div class="row">
-        <div class="col-12" style="border-bottom: 3px solid black;">
+        <div class="col-12" style="border-bottom: 3px solid black; background-color: white">
             <h3 class="text-center">Arraste os itens abaixo!</h3>
         </div>
-        <div class="col-12 acopla-imagens" id="acopla-imagens" style="display: flex; align-items: stretch;">
-                <div class="shrek arrastavel"></div>
-                <div class="burro arrastavel"></div>
+        {{-- < class="container fundo" style="height: 1000px; background-image: url('{{ asset('images/ambiente/ambiente1.png') }}');"> --}}
+            {{-- <img class="img-fundo" src="{{ asset('images/ambiente/ambiente1.png') }}"> --}}
+            <div class="col-9 acopla-imagens" id="acopla-imagens" style="display: flex; align-items: stretch; z-index:2">
+                    {{-- <div class="shrek arrastavel"></div>
+                    <div class="burro arrastavel"></div> --}}
+                    <div class="arrastavel" style="background-image: url('{{ asset('css/img/shrek.png') }}')"></div>
+                    <div class="arrastavel" style="background-image: url('{{ asset('css/img/burro.png') }}')"></div>
+                    <div class="arrastavel" style="background-image: url('{{ asset('images/personagem/personagem1.png') }}')"></div>
+                    <div class="arrastavel" style="background-image: url('{{ asset('images/personagem/personagem2.png') }}')"></div>
+                    <div class="arrastavel" style="background-image: url('{{ asset('images/personagem/personagem3.png') }}')"></div>
+                    <div class="arrastavel" style="background-image: url('{{ asset('images/personagem/personagem4.png') }}')"></div>
 
-        </div>
-        <div class="col-12">
+            </div>
+        
+    </div>
+</div>
+<br>
+<div class="container" id="semEstilo">
+    <div class="row">
+        <div class="col-12 mb-3">
             <button class="btn btn-success" onclick="baixaQuadrinho()">Baixar Quadrinho</button>
         </div>
     </div>
 </div>
- 
+{{--  
 <div id="output-quadrinho">
 oi
-</div>
+</div> --}}
  
 
 <script src="{{ asset('js/index.js') }}"></script>

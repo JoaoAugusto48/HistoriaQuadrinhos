@@ -78,17 +78,17 @@
                     <div class="card-group">
                         @foreach ($personagems as $personagem)
                         <div class="col-md-4">
-                            <div class="card hiddenradio" style="width: 12rem;">
-                                <div class="card-content">
-                                    <div class="card-header card-title">{{ $personagem->descricao }}</div>
-                                    <div class="card-body align-center">
-                                        <label>
-                                            <input type="radio" id="{{ $personagem->id }}" name="personagem1_id" value="{{ $personagem->id }}" data-descricao="{{ $personagem->descricao }}" data-img="{{ $personagem->personagem }}">
+                            <label class="hiddenradio">
+                                <div class="card mb-5 text-center" style="width: 12rem;">
+                                    <div class="card-content">
+                                        <div class="card-header card-title">{{ $personagem->descricao }}</div>
+                                        <div class="card-body align-center">
+                                            <input type="radio" id="{{ $personagem->id }}" name="personagem1_id" value="{{ $personagem->id }}" data-descricao="{{ $personagem->descricao }}" data-img="{{ $personagem->personagem }}" onclick="checked_radio()">
                                             <img src="{{ env('APP_URL') }}/storage/{{ $personagem->personagem }}" class="card-img-top">
-                                        </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </label>
                         </div>
                         @endforeach
                     </div>
@@ -160,17 +160,17 @@
                     <div class="card-group">
                         @foreach ($personagems as $personagem)
                         <div class="col-md-4">
-                            <div class="card hiddenradio" style="width: 12rem;">
-                                <div class="card-content">
-                                    <div class="card-header card-title">{{ $personagem->descricao }}</div>
-                                    <div class="card-body align-center">
-                                        <label>
-                                            <input type="radio" id="{{ $personagem->id }}" name="personagem2_id" value="{{ $personagem->id }}" data-descricao="{{ $personagem->descricao }}" data-img="{{ $personagem->personagem }}">
+                            <label class="hiddenradio">
+                                <div class="card mb-5 text-center" style="width: 12rem;">
+                                    <div class="card-content">
+                                        <div class="card-header card-title">{{ $personagem->descricao }}</div>
+                                        <div class="card-body align-center">
+                                            <input type="radio" id="{{ $personagem->id }}" name="personagem2_id" value="{{ $personagem->id }}" data-descricao="{{ $personagem->descricao }}" data-img="{{ $personagem->personagem }}" onclick="checked_radio()">
                                             <img src="{{ env('APP_URL') }}/storage/{{ $personagem->personagem }}" class="card-img-top">
-                                        </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </label>
                         </div>
                         @endforeach
                     </div>
@@ -233,17 +233,17 @@
                     <div class="card-group">
                         @foreach ($ambientes as $ambiente)
                         <div class="col-md-4">
-                            <div class="card hiddenradio" style="width: 12rem;">
-                                <div class="card-content">
-                                    <div class="card-header card-title">{{ $ambiente->descricao }}</div>
-                                    <div class="card-body align-center">
-                                        <label>
-                                            <input type="radio" id="{{ $ambiente->id }}" name="ambiente_id" value="{{ $ambiente->id }}" data-descricao="{{ $ambiente->descricao }}" data-img="{{ $ambiente->fundo }}">
+                            <label class="hiddenradio">
+                                <div class="card mb-5 text-center" style="width: 12rem;">
+                                    <div class="card-content">
+                                        <div class="card-header card-title">{{ $ambiente->descricao }}</div>
+                                        <div class="card-body align-center">
+                                            <input type="radio" id="{{ $ambiente->id }}" name="ambiente_id" value="{{ $ambiente->id }}" data-descricao="{{ $ambiente->descricao }}" data-img="{{ $ambiente->fundo }}" onclick="checked_radio()">
                                             <img src="{{ env('APP_URL') }}/storage/{{ $ambiente->fundo }}" class="card-img-top">
-                                        </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </label>
                         </div>
                         @endforeach
                     </div>
@@ -287,9 +287,22 @@
 </script>
 <!-- Fim Javascript de Confirmação de seleção ambiente -->
 
-
-
-
     </form>
+
+<script>
+    function checked_radio() {
+        let radioButtons = document.querySelectorAll("input[type='radio']");
+
+        for (let i = 0; i < radioButtons.length; i++) {
+            const el = radioButtons[i];
+
+            if (el.checked) {
+                el.closest(".card").classList.add("card-checked");
+            } else {
+                el.closest(".card").classList.remove("card-checked");
+            }      
+        }
+    }
+</script>
 
 @endsection
