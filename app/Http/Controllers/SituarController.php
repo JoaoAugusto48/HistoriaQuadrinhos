@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Hq;
-use App\Quadrinho;
 use Illuminate\Http\Request;
 
-class QuadrinhoController extends Controller
+class SituarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,7 @@ class QuadrinhoController extends Controller
      */
     public function index()
     {
-        return view('quadrinhos.index');
+        //
     }
 
     /**
@@ -25,7 +23,7 @@ class QuadrinhoController extends Controller
      */
     public function create()
     {
-        return view('quadrinho.index', compact('hq'));
+        //
     }
 
     /**
@@ -42,23 +40,21 @@ class QuadrinhoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Quadrinho  $quadrinho
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request)
     {
-        $hq = Hq::findOrFail($request->hq);
-
-        return view('quadrinho.index', compact('hq'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Quadrinho  $quadrinho
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Quadrinho $quadrinho)
+    public function edit(Request $request)
     {
         //
     }
@@ -67,10 +63,10 @@ class QuadrinhoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Quadrinho  $quadrinho
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quadrinho $quadrinho)
+    public function update(Request $request)
     {
         //
     }
@@ -78,10 +74,10 @@ class QuadrinhoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Quadrinho  $quadrinho
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Quadrinho $quadrinho)
+    public function destroy(Request $request)
     {
         //
     }

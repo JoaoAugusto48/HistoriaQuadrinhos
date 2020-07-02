@@ -29,14 +29,14 @@
         <tbody>
         @foreach ($hqs as $hq)
             <tr style="border-bottom: 2px solid #555;">
-                <th scope="row">{{ $hq->id }}</th>
-                <td>{{ $hq->personagem1->descricao }} <img src="{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}" }}" class="img-btn ml-2"></td>
-                <td>{{ $hq->personagem2->descricao }} <img src="{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}" }}" class="img-btn ml-2"></td>
-                <td>{{ $hq->ambiente->descricao }} <img src="{{ env('APP_URL') }}/storage/{{ $hq->ambiente->fundo }}" }}" class="img-btn ml-2"></td>
-                <td>
+                <th class="align-middle" scope="row">{{ $hq->id }}</th>
+                <td class="align-middle">{{ $hq->personagem1->descricao }} <img src="{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}" class="img-btn ml-2"></td>
+                <td class="align-middle">{{ $hq->personagem2->descricao }} <img src="{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}" class="img-btn ml-2"></td>
+                <td class="align-middle">{{ $hq->ambiente->descricao }} <img src="{{ env('APP_URL') }}/storage/{{ $hq->ambiente->fundo }}" class="img-btn ml-2"></td>
+                <td class="align-middle">
                     <div class="btn-group" role="group">
-                        <a href="{{ route('quadrinho.show', $hq->id) }}" class="btn btn-outline-info btn-sm border border-dark" role="button" data-toggle="tooltip" data-placement="top" title="ObservarHQ">
-                            <i>Observar HQ</i>
+                        <a href="" class="btn btn-outline-info btn-sm border border-dark" role="button" data-toggle="tooltip" data-placement="top">
+                            <i>Criar HQ</i>
                         </a>
                     </div>
                 </td>

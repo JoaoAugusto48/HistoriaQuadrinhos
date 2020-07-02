@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Ambiente;
 use App\Hq;
 use App\Personagem;
+use App\Quadrinho;
+use App\Situar;
 use Illuminate\Http\Request;
 
 class HqController extends Controller
@@ -59,6 +61,18 @@ class HqController extends Controller
         
         $hq->save();
 
+        $quadrinho = new Quadrinho();
+        $quadrinho->titulo = null;
+        $quadrinho->pagina = 1;
+
+        $quadrinho->save();
+
+        $situar = new Situar();
+        $situar->hq_id = Hq::latest()->first()->id;
+        $situar->quadrinho_id = Quadrinho::latest()->first()->id;
+
+        $situar->save();
+
         return redirect()->route('hq.index');
     }
 
@@ -68,7 +82,7 @@ class HqController extends Controller
      * @param  \App\Hq  $hq
      * @return \Illuminate\Http\Response
      */
-    public function show(Hq $hq)
+    public function show(Request $request)
     {
         //
     }
