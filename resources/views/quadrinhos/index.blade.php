@@ -17,20 +17,10 @@
         <div class="col-12" style="border-bottom: 3px solid black; background-color: white">
             <h3 class="text-center">Arraste os itens abaixo!</h3>
         </div>
-        {{-- < class="container fundo" style="height: 1000px; background-image: url('{{ asset('images/ambiente/ambiente1.png') }}');"> --}}
-            {{-- <img class="img-fundo" src="{{ asset('images/ambiente/ambiente1.png') }}"> --}}
             <div class="col-9 acopla-imagens" id="acopla-imagens" style="display: flex; align-items: stretch; z-index:2">
-                    {{-- <div class="shrek arrastavel"></div>
-                    <div class="burro arrastavel"></div> --}}
                     <div class="arrastavel" style="background-image: url('{{ asset('css/img/shrek.png') }}')"></div>
-                    <div class="arrastavel" style="background-image: url('{{ asset('css/img/burro.png') }}')"></div>
-                    <div class="arrastavel" style="background-image: url('{{ asset('images/personagem/personagem1.png') }}')"></div>
-                    <div class="arrastavel" style="background-image: url('{{ asset('images/personagem/personagem2.png') }}')"></div>
-                    <div class="arrastavel" style="background-image: url('{{ asset('images/personagem/personagem3.png') }}')"></div>
                     <div class="arrastavel" style="background-image: url('{{ asset('images/personagem/personagem4.png') }}')"></div>
-
             </div>
-        
     </div>
 </div>
 <br>
