@@ -31,7 +31,7 @@
             <label for="nome" class="col-sm-2 col-form-label text-right">Personagem 1:</label>
             <div class="col-sm-8">
                 <button id="btn-personagem1" type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#personagem1">
-                    Personagem 1 <!-- <span class="btnPersonagem1"></span> -->
+                    Personagem 1
                 </button>
             </div>
         </div>
