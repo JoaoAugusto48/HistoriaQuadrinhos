@@ -38,3 +38,13 @@
   transition: transform 0.3s 0s ease;
   box-shadow: 1px 1px 1px grey;
 }
+
+.card-img-personagens {
+  width: auto;
+  height: 212px;
+}
+
+.card-img-ambiente {
+  width: 425px;
+  height: auto !important;
+}
