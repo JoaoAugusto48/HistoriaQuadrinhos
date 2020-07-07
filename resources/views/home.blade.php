@@ -38,6 +38,9 @@
                         <a href="" class="btn btn-outline-info btn-sm border border-dark" role="button" data-toggle="tooltip" data-placement="top">
                             <i>Criar HQ</i>
                         </a>
+                        <a href="{{ route('hq.show', $hq->id) }}" class="btn btn-outline-info btn-sm border border-dark" role="button" data-toggle="tooltip" data-placement="top">
+                            <i>Quadrinhos</i>
+                        </a>
                     </div>
                 </td>
             </tr>

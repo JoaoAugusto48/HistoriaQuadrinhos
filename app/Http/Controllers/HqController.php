@@ -8,7 +8,9 @@ use App\Personagem;
 use App\Problematizar;
 use App\Quadrinho;
 use App\Situar;
+use App\Solucionar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HqController extends Controller
 {
@@ -84,7 +86,7 @@ class HqController extends Controller
 
         $problematizar = new Problematizar();
         $problematizar->hq_id = Hq::latest()->first()->id;
-        $problematizar->quadrinho_id = Quadrinho::latest()->first()->id;
+        $problematizar->quadrinho_id = $quadrinho->id;
 
         $problematizar->save();
 
@@ -99,7 +101,13 @@ class HqController extends Controller
      */
     public function show(Request $request)
     {
-        //
+        $hq = Hq::FindOrFail($request->hq);
+        
+        $situars = Situar::where('hq_id', '=', $hq->id)->get();
+        $problematizars = Problematizar::where('hq_id', '=', $hq->id)->get();
+        $solucionars = Solucionar::where('hq_id', '=', $hq->id)->get();
+        
+        return view('hq.show', compact('hq', 'situars', 'problematizars', 'solucionars'));
     }
 
     /**
@@ -136,45 +144,50 @@ class HqController extends Controller
         //
     }
 
-
+    /*
+    *  Adicionando todos os quadrinhos da primeira fase, os que já possuem padrão
+    */
     public function adicionarQuadrinhos(Hq $hq){
-        $quadrinho = new Quadrinho();
-        $quadrinho->titulo = $hq->tema;
-        $quadrinho->pagina = 1;
+        $quadrinho1 = new Quadrinho();
+        $quadrinho1->titulo = $hq->tema;
+        $quadrinho1->pagina = 1;
 
-        $quadrinho->save();
+        $quadrinho1->save();
 
-        $this->adicionarSituar();
+        $this->adicionarSituar($quadrinho1);
 
-        $quadrinho = new Quadrinho();
-        $quadrinho->titulo = "Personagens";
-        $quadrinho->pagina = 2;
+        $quadrinho2 = new Quadrinho();
+        $quadrinho2->titulo = "Personagens";
+        $quadrinho2->pagina = 2;
 
-        $quadrinho->save();
+        $quadrinho2->save();
 
-        $this->adicionarSituar();
+        $this->adicionarSituar($quadrinho2);
 
-        $quadrinho = new Quadrinho();
-        $quadrinho->titulo = "Ambiente de Trabalho";
-        $quadrinho->pagina = 3;
+        $quadrinho3 = new Quadrinho();
+        $quadrinho3->titulo = "Ambiente de Trabalho";
+        $quadrinho3->pagina = 3;
 
-        $quadrinho->save();
+        $quadrinho3->save();
 
-        $this->adicionarSituar();
+        $this->adicionarSituar($quadrinho3);
 
-        $quadrinho = new Quadrinho();
-        $quadrinho->titulo = null;
-        $quadrinho->pagina = 4;
+        $quadrinho4 = new Quadrinho();
+        $quadrinho4->titulo = null;
+        $quadrinho4->pagina = 4;
 
-        $quadrinho->save();
+        $quadrinho4->save();
 
-        $this->adicionarSituar();
+        $this->adicionarSituar($quadrinho4);
     }
 
-    public function adicionarSituar(){
+    /*
+    * Adicionar a cada quadrinho a relação com a Hq principal
+    */
+    public function adicionarSituar(Quadrinho $quadrinho){
         $situar = new Situar();
         $situar->hq_id = Hq::latest()->first()->id;
-        $situar->quadrinho_id = Quadrinho::latest()->first()->id;
+        $situar->quadrinho_id = $quadrinho->id;
 
         $situar->save();
     }
