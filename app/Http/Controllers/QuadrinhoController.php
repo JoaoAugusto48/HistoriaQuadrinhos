@@ -45,11 +45,12 @@ class QuadrinhoController extends Controller
      * @param  \App\Quadrinho  $quadrinho
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        $hq = Hq::findOrFail($request->hq);
+        // dd($id);
+        $hq = Hq::findOrFail($id);
 
-        return view('quadrinho.index', compact('hq'));
+        return view('quadrinhos.index', compact('hq'));
     }
 
     /**

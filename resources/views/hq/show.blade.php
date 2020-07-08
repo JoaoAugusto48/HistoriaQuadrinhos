@@ -42,16 +42,13 @@
         </tbody>
     </table>
 
-    @php
-        
-    @endphp
 
     <div class="card-group">
         <div class="card bg-dark text-white">
             <div class="card-body d-flex">
                 <h2 class="card-title m-auto text-center">{{ $hq->tema }}</h2>
             </div>
-            <div class="card-footer bg-transparent  border-top-0">1</div>
+            <div class="card-footer bg-transparent border-top-0">1</div>
         </div>
         <div class="card text-center bg-dark text-white">
             <div class="card-header">Personagens</div>
@@ -75,4 +72,12 @@
             <div class="card-footer text-left bg-white text-dark border-top-0">3</div>
         </div>
     </div>
+
+    {{-- <div class="card-group">
+        <div class="card">
+            <div class="card-header">
+                
+            </div>
+        </div>
+    </div> --}}
 @endsection

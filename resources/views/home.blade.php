@@ -7,8 +7,8 @@
         <a href="{{ route('hq.create') }}" target="_parent">
             <button class="btn btn-outline-dark ml-3">Criar HQ</button>
         </a>
-        <a href="{{ route('quadrinho.index') }}" target="_parent">
-            <button class="btn btn-outline-dark ml-3">Teste com Quadrinho</button>
+        {{-- <a href="{{ route('quadrinho.index') }}" target="_parent">
+            <button class="btn btn-outline-dark ml-3">Teste com Quadrinho</button> --}}
         </a>
         <a href="{{ route('quadrinhos') }}" target="_parent">
             <button class="btn btn-outline-dark ml-3">Teste de Imagem HQ</button>
@@ -40,6 +40,9 @@
                         </a>
                         <a href="{{ route('hq.show', $hq->id) }}" class="btn btn-outline-info btn-sm border border-dark" role="button" data-toggle="tooltip" data-placement="top">
                             <i>Quadrinhos</i>
+                        </a>
+                        <a href="{{ route('mostrarQuadrinho', $hq->id) }}" class="btn btn-outline-info btn-sm border border-dark" role="button" data-toggle="tooltip" data-placement="top">
+                            <i>Teste com Quadrinho</i>
                         </a>
                     </div>
                 </td>

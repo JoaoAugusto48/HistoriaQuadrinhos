@@ -11,15 +11,15 @@
 
 </head>
 <body class="p-5">
- 
+ {{-- {{ $hq->id }} --}}
 <div class="container containerCustomizado" id="fundo">
     <div class="row">
         <div class="col-12" style="border-bottom: 3px solid black; background-color: white">
             <h3 class="text-center">Arraste os itens abaixo!</h3>
         </div>
             <div class="col-9 acopla-imagens" id="acopla-imagens" style="display: flex; align-items: stretch; z-index:2">
-                    <div class="arrastavel" style="background-image: url('{{ asset('css/img/shrek.png') }}')"></div>
-                    <div class="arrastavel" style="background-image: url('{{ asset('images/personagem/personagem4.png') }}')"></div>
+                    <div class="arrastavel" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}"></div>
+                    <div class="arrastavel" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}')"></div>
             </div>
     </div>
 </div>
