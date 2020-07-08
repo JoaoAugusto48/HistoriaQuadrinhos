@@ -33,12 +33,13 @@ function imprimeDiv(div){
     html2canvas(div, {
         onrendered: function(canvas) {
             let div = document.createElement("div");
-            div.classList.add("container");
+            div.classList.add("container");;
             div.appendChild(canvas);
 
             document.body.appendChild(div);
             $("#output-quadrinho").append('<h4> clique com o botao direito na imagem abaixo para salva-la!</h4>');
             $("#output-quadrinho").append(canvas);
+            
         }
     });
 }
