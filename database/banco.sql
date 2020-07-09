@@ -9,4 +9,3 @@ INSERT INTO `personagems` (`id`, `personagem`, `descricao`, `created_at`, `updat
 (5, 'personagem/personagem3.png', 'personagem3', NULL, NULL),
 (6, 'personagem/personagem4.png', 'personagem4', NULL, NULL),
 (7, 'personagem/personagem5.png', 'personagem5', NULL, NULL);
-
