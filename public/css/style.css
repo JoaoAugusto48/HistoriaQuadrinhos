@@ -48,3 +48,10 @@
   width: 425px;
   height: auto !important;
 }
+
+.numeroPagina {
+  -webkit-text-stroke: 1px #cecece; /* width and color */
+  font-weight: bold;
+  color: black;
+  font-size: 20px;
+}

@@ -48,7 +48,7 @@
             <div class="card-body d-flex">
                 <h2 class="card-title m-auto text-center">{{ $hq->tema }}</h2>
             </div>
-            <div class="card-footer bg-transparent border-top-0">1</div>
+            <div class="card-footer bg-transparent border-top-0 numeroPagina">1</div>
         </div>
         <div class="card text-center bg-dark text-white">
             <div class="card-header">Personagens</div>
@@ -62,14 +62,14 @@
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer text-left bg-white text-dark border-top-0">2</div>
+            <div class="card-footer text-left bg-white border-top-0 numeroPagina">2</div>
         </div>
         <div class="card text-center bg-dark text-white">
             <div class="card-header">Ambiente de Trabalho</div>
             <div class="card-body p-0 d-flex bg-white">
                 <img src="{{ env('APP_URL') }}/storage/{{ $hq->ambiente->fundo }}" class="card-img-ambiente my-auto">
             </div>
-            <div class="card-footer text-left bg-white text-dark border-top-0">3</div>
+            <div class="card-footer text-left bg-white border-top-0 numeroPagina">3</div>
         </div>
     </div>
 
