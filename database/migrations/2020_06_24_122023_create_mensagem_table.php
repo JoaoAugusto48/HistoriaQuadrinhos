@@ -18,10 +18,12 @@ class CreateMensagemTable extends Migration
             $table->string('texto', 256);
             $table->unsignedBigInteger('quadrinho_id');
             $table->unsignedBigInteger('personagem_id');
+            $table->unsignedBigInteger('balao_id');
             $table->timestamps();
 
             $table->foreign('quadrinho_id')->references('id')->on('quadrinhos');
             $table->foreign('personagem_id')->references('id')->on('personagems');
+            $table->foreign('balao_id')->references('id')->on('balaos');
         });
     }
 

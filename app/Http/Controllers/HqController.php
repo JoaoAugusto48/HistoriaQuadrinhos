@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ambiente;
+use App\Balao;
 use App\Hq;
 use App\Personagem;
 use App\Problematizar;
@@ -107,7 +108,7 @@ class HqController extends Controller
         $problematizars = Problematizar::where('hq_id', '=', $hq->id)->get();
         $solucionars = Solucionar::where('hq_id', '=', $hq->id)->get();
         
-        return view('hq.show', compact('hq', 'situars', 'problematizars', 'solucionars'));
+        return view('hq.show', compact('hq', 'situars', 'problematizars', 'solucionars', 'balaos'));
     }
 
     /**

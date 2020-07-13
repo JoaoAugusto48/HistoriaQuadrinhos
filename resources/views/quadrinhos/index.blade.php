@@ -26,6 +26,12 @@
                     <div class="arrastavel" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}')"></div>
                     <div class="arrastavel" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}')"></div>
                 </div>
+                <div class="col-9 acopla-imagens" id="acopla-imagens" style="display: flex; align-items: stretch; z-index:2">
+                    @foreach ($balaos as $balao)
+                        <div class="arrastavel" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $balao->caminho }}')"></div>
+                    @endforeach
+                </div>
+
             </div>
             {{-- <div class="col-12 border-top bg-info h-100" id="fundo" >
                 asd

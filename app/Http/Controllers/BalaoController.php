@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Balao;
-use App\Hq;
-use App\Quadrinho;
 use Illuminate\Http\Request;
 
-class QuadrinhoController extends Controller
+class BalaoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,7 @@ class QuadrinhoController extends Controller
      */
     public function index()
     {
-        return view('quadrinhos.index');
+        //
     }
 
     /**
@@ -26,7 +24,7 @@ class QuadrinhoController extends Controller
      */
     public function create()
     {
-        return view('quadrinho.index', compact('hq'));
+        //
     }
 
     /**
@@ -43,26 +41,21 @@ class QuadrinhoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Quadrinho  $quadrinho
+     * @param  \App\Balao  $balao
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Balao $balao)
     {
-        // dd($id);
-        $hq = Hq::findOrFail($id);
-
-        $balaos = Balao::get();
-
-        return view('quadrinhos.index', compact('hq', 'balaos'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Quadrinho  $quadrinho
+     * @param  \App\Balao  $balao
      * @return \Illuminate\Http\Response
      */
-    public function edit(Quadrinho $quadrinho)
+    public function edit(Balao $balao)
     {
         //
     }
@@ -71,10 +64,10 @@ class QuadrinhoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Quadrinho  $quadrinho
+     * @param  \App\Balao  $balao
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quadrinho $quadrinho)
+    public function update(Request $request, Balao $balao)
     {
         //
     }
@@ -82,10 +75,10 @@ class QuadrinhoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Quadrinho  $quadrinho
+     * @param  \App\Balao  $balao
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Quadrinho $quadrinho)
+    public function destroy(Balao $balao)
     {
         //
     }
