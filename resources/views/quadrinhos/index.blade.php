@@ -34,12 +34,10 @@
                 <div id="baloes" style="display: none;">
                     {{-- https://www.youtube.com/watch?v=w88U9JA70wQ --}}
                     @foreach ($balaos as $balao)
-
-
                         {{-- <textarea rows="3" cols="3" class="arrastavel text-center balaoContent" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $balao->caminho }}'); border:none; outline:none; padding:5px"></textarea> --}}
 
                         <div class="arrastavel balao p-1" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $balao->caminho }}')">
-                            <textarea rows="3" cols="13" class="text-center balaoContent" style="height:50px; border:none; outline:none; padding:5px; margin: 25px 0px 0px 13px; resize: none; width:80%; height:40%"></textarea>
+                            <textarea rows="3" cols="13" class="text-center balaoContent" style="height:50px; border:none; outline:none; padding:5px; margin: 25px 0px 0px 13px; resize: none; width:80%; height:40%; overflow-y: hidden; line-height:15px;"></textarea>
                         </div>
                     @endforeach
                 </div>
