@@ -12,6 +12,6 @@ INSERT INTO `personagems` (`id`, `personagem`, `descricao`, `created_at`, `updat
 
 INSERT INTO `balaos` (`id`, `caminho`, `descricao`, `created_at`, `updated_at`) VALUES
 (1, 'balao/balaoDireita1.png', 'balao1', '2020-07-13 17:09:45', '2020-07-13 17:09:45'),
-(2, 'balao/balaoDireita2', 'balao2', '2020-07-13 17:09:45', '2020-07-13 17:09:45'),
+(2, 'balao/balaoDireita2.png', 'balao2', '2020-07-13 17:09:45', '2020-07-13 17:09:45'),
 (3, 'balao/balaoEsquerda1.png', 'balao3', '2020-07-13 17:09:45', '2020-07-13 17:09:45'),
 (4, 'balao/balaoEsquerda2.png', 'balao4', '2020-07-13 17:09:45', '2020-07-13 17:09:45');
