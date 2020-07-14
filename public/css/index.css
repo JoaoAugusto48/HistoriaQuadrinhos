@@ -9,7 +9,7 @@
 
 
 .arrastavel{
-    width: 150px; 
+    width: 75px; 
     height: 150px;
     /* border: 2px solid black; */
     background-size: 100% 100%;
@@ -41,4 +41,9 @@
 .img-fundo {
     position: absolute;
     z-index: 1;
+}
+
+.balao {
+    width: 150px; 
+    height: 150px;
 }
