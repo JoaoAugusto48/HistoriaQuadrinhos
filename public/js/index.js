@@ -36,9 +36,17 @@ function inicializarAplicacao(){
 
     $( ".arrastavel" ).resizable({
         containment: "#fundo",
-        maxHeight: 300,
+        maxHeight: 260,
+        maxWidth: 180,
+        minHeight: 100,
+        minWidth: 50
+    });
+
+    $( ".balao" ).resizable({
+        containment: "#fundo",
+        maxHeight: 200,
         maxWidth: 200,
-        minHeight: 150,
+        minHeight: 75,
         minWidth: 75
     });
 
