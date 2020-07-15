@@ -66,3 +66,30 @@ function imprimeDiv(div){
         }
     });
 }
+
+function show_hide() {
+    var img = document.getElementById('personagem');
+    // console.log(img);
+    // var button = document.createElement('button');
+    // button.type = "button";
+    // button.classList.add("btn");
+    // button.classList.add("btn-primary");
+    // button.classList.add("marginDoTopo");
+
+    // var i = document.createElement('i');
+    // i.classList.add("fas");
+    // i.classList.add("fa-plus");
+
+    // button.appendChild(i);
+
+    // img.appendChild(button);
+    // console.log(img);
+
+    var baloes = document.getElementById("baloes");
+
+    if(baloes.style.display === "none") {
+        baloes.style.display = "block";
+    } else {
+        baloes.style.display = "none";
+    }
+}

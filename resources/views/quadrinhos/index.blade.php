@@ -13,7 +13,13 @@
 
 </head>
 <body style="background-color: rgba(220, 220, 226, 0.781)">
- {{-- {{ $hq->id }} --}}
+{{-- {{ $hq->id }} --}}
+
+<div class="container pt-3">
+    <button class="btn btn-outline-dark" onclick="javascript:history.back()">Voltar</button>
+    <button class="btn btn-outline-dark ml-2" onclick="javascript:location.reload()">Recarregar</button>
+</div>
+
 <div class="p-3">
     <h3 class="text-center">Arraste os itens abaixo!</h3>
     
@@ -35,14 +41,13 @@
                     {{-- https://www.youtube.com/watch?v=w88U9JA70wQ --}}
                     @foreach ($balaos as $balao)
                         {{-- <textarea rows="3" cols="3" class="arrastavel text-center balaoContent" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $balao->caminho }}'); border:none; outline:none; padding:5px"></textarea> --}}
-
+                        {{-- background:transparent --}}
                         <div class="arrastavel balao p-1" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $balao->caminho }}')">
-                            <textarea rows="3" cols="13" class="text-center balaoContent" style="height:50px; border:none; outline:none; padding:5px; margin: 25px 0px 0px 13px; resize: none; width:80%; height:40%; overflow-y: hidden; line-height:15px;"></textarea>
+                            <textarea rows="3" cols="13" class="text-center balaoContent" style="background:transparent;height:50px; border:none; outline:none; padding:5px; margin: 15px 0px 0px 13px; resize: none; width:80%; height:50%; overflow-y: hidden; line-height:15px; font-size:14px;"></textarea>
                         </div>
                     @endforeach
                 </div>
                 
-
             </div>
             {{-- <div class="col-12 border-top bg-info h-100" id="fundo" >
                 asd
@@ -85,7 +90,7 @@
 </div>   
 
 
-<script>
+{{-- <script>
     function show_hide() {
         var img = document.getElementById('personagem');
         // console.log(img);
@@ -112,7 +117,7 @@
             baloes.style.display = "none";
         }
     }
-</script>
+</script> --}}
 
 <script src="{{ asset('js/index.js') }}"></script>
 </body>
