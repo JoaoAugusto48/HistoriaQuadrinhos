@@ -36,6 +36,8 @@
             </div>
         </div>
 
+        <p>Fazer saudação para o personagem 1</p>
+        
         <!-- Button trigger modal personagem 2 -->
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right">Personagem 2:</label>
@@ -45,6 +47,8 @@
                 </button>
             </div>
         </div>
+
+        <p>Fazer saudação para o personagem 2</p>
 
         <!-- Button trigger modal ambiente -->
         <div class="form-group row">
