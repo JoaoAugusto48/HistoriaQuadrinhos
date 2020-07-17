@@ -9,7 +9,7 @@ class Hq extends Model
     protected $table = 'hqs';
 
     protected $fillable = [
-        'id', 'tema', 'local', 'personagem1_id', 'personagem2_id', 'ambiente_id'
+        'id', 'tema', 'local', 'saudacao1', 'saudacao2', 'personagem1_id', 'personagem2_id', 'ambiente_id'
     ];
 
     public function personagem1(){

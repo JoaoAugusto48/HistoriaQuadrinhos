@@ -36,7 +36,12 @@
             </div>
         </div>
 
-        <p>Fazer saudação para o personagem 1</p>
+        <div class="form-group row">
+            <label for="nome" class="col-sm-2 col-form-label text-right">Saudação 1:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="saudacao1" placeholder="ex: Oi, sou gerente administrativo." autocomplete="off" data-toggle="tooltip" data-placement="top" title="Faça uma saudação com Personagem 1." required>
+            </div>
+        </div>
         
         <!-- Button trigger modal personagem 2 -->
         <div class="form-group row">
@@ -48,7 +53,12 @@
             </div>
         </div>
 
-        <p>Fazer saudação para o personagem 2</p>
+        <div class="form-group row">
+            <label for="nome" class="col-sm-2 col-form-label text-right">Saudação 2:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="saudacao2" placeholder="ex: Olá, sou especialista em negócios." autocomplete="off" data-toggle="tooltip" data-placement="top" title="Faça uma saudação com Personagem 2." required>
+            </div>
+        </div>
 
         <!-- Button trigger modal ambiente -->
         <div class="form-group row">

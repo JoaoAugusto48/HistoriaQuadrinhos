@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ambiente;
 use App\Hq;
+use App\Mensagem;
 use App\Personagem;
 use App\Problematizar;
 use App\Quadrinho;
@@ -52,17 +53,23 @@ class HqController extends Controller
             'local' => 'required|max:70',
             'personagem1_id' => 'required',
             'personagem2_id' => 'required',
-            'ambiente_id' => 'required'
+            'ambiente_id' => 'required',
+            'saudacao1' => 'required',
+            'saudacao2' => 'required'
         ]);
         
         $hq = new Hq();
         $hq->tema = $request->get('tema');
         $hq->local = $request->get('local');
+        $hq->saudacao1 = $request->get('saudacao1');
+        $hq->saudacao2 = $request->get('saudacao2');
         $hq->personagem1_id = $request->get('personagem1_id');
         $hq->personagem2_id = $request->get('personagem2_id');
         $hq->ambiente_id = $request->get('ambiente_id');
         
         $hq->save();
+
+        // dd((Quadrinho::latest()->first()->id)-3);
 
         // $quadrinho = new Quadrinho();
         // $quadrinho->titulo = null;
@@ -71,6 +78,15 @@ class HqController extends Controller
         // $quadrinho->save();
 
         $this->adicionarQuadrinhos($hq);
+
+        // $mensagem = new Mensagem();
+        // $mensagem->texto = $request->get('saudacao1');
+        // $mensagem->quadrinho_id = (Quadrinho::latest()->first()->id - 1); // para adicionar as mensagens a página 2 da Hq
+        // $mensagem->personagem_id = $hq->personagem1_id;
+        // $mensagem->balao_id = 4;
+        // // $mensagem->hq_id = $hq->id;
+
+        // $mensagem->save();
 
         // $situar = new Situar();
         // $situar->hq_id = Hq::latest()->first()->id;

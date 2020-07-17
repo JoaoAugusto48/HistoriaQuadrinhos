@@ -56,6 +56,14 @@
                 <table class="table table-borderless">
                     <tbody>
                         <tr>
+                            <th scope="col" class="balaoQuadrinho py-4" style="background-image: url('{{ env('APP_URL') }}/storage/balao/balaoEsquerda2.png')">
+                                <textarea rows="3" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao1 }}</textarea>
+                            </th>
+                            <th scope="col" class="balaoQuadrinho py-4" style="background-image: url('{{ env('APP_URL') }}/storage/balao/balaoDireita1.png')">
+                                <textarea rows="3" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao2 }}</textarea>
+                            </th>
+                        </tr>
+                        <tr>
                             <th scope="col"><img src="{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}" class="card-img-personagens text-left"></th>
                             <th scope="col"><img src="{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}" class="card-img-personagens text-right"></th>
                         </tr>

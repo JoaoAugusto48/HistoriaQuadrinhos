@@ -17,6 +17,8 @@ class CreateHqTable extends Migration
             $table->bigIncrements('id');
             $table->string('tema', 100);
             $table->string('local', 70);
+            $table->string('saudacao1', 70);
+            $table->string('saudacao2', 70);
             $table->unsignedBigInteger('personagem1_id');
             $table->unsignedBigInteger('personagem2_id');
             $table->unsignedBigInteger('ambiente_id');
