@@ -71,6 +71,15 @@ function imprimeDiv(div){
             $("#output-quadrinho").append('<h4> clique com o botao direito na imagem abaixo para salva-la!</h4>');
             $("#output-quadrinho").append(canvas);
             
+            // ("#output-quadrinho").append('<form action=""></form>');$
+            $("#output-quadrinho").append('<button class="btn btn-success m-3">Salvar</button>');
+
+            //convertendo canvas para imagem
+            var image = new Image();
+            image.src = canvas.toDataURL("image/png");
+            image.name = "imgQuadrinho";
+            div.appendChild(image);
+            
         }
     });
 }

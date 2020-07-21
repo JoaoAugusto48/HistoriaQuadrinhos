@@ -16,6 +16,7 @@ class CreateQuadrinhoTable extends Migration
         Schema::create('quadrinhos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('titulo')->nullable();
+            $table->string('pathImg')->nullable();
             $table->float('pagina', 2, 0);
             $table->timestamps();
         });

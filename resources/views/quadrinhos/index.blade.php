@@ -81,9 +81,12 @@
     <div class="container ml-4" id="semEstilo">
         <div class="row">
             <div class="col-12 ml-4">
-                <div class="col-9" id="output-quadrinho">
+                <form action="{{ route('hq.index') }}">
+                    <div class="col-9" id="output-quadrinho">
                     {{-- onde Fica o quadro para baixar --}}
-                </div>
+                    
+                    </div>
+                </form>
             </div>
         </div>
     </div>

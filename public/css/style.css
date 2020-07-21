@@ -90,3 +90,8 @@
   line-height:15px; 
   font-size:14px;
 }
+
+.rounded-top-0 {
+  border-top-left-radius: 0!important;
+  border-top-right-radius: 0!important;
+}

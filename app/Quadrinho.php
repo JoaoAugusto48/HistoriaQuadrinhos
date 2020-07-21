@@ -9,6 +9,6 @@ class Quadrinho extends Model
     protected $table = 'quadrinhos';
 
     protected $fillable = [
-        'id', 'titulo', 'pagina'
+        'id', 'titulo', 'pathImg', 'pagina'
     ];
 }
