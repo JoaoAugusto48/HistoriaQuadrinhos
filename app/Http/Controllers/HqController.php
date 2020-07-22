@@ -59,10 +59,10 @@ class HqController extends Controller
         ]);
         
         $hq = new Hq();
-        $hq->tema = $request->get('tema');
-        $hq->local = $request->get('local');
-        $hq->saudacao1 = $request->get('saudacao1');
-        $hq->saudacao2 = $request->get('saudacao2');
+        $hq->tema = trim($request->get('tema'));
+        $hq->local = trim($request->get('local'));
+        $hq->saudacao1 = trim($request->get('saudacao1'));
+        $hq->saudacao2 = trim($request->get('saudacao2'));
         $hq->personagem1_id = $request->get('personagem1_id');
         $hq->personagem2_id = $request->get('personagem2_id');
         $hq->ambiente_id = $request->get('ambiente_id');

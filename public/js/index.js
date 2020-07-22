@@ -72,7 +72,7 @@ function imprimeDiv(div){
             $("#output-quadrinho").append(canvas);
             
             // ("#output-quadrinho").append('<form action=""></form>');$
-            $("#output-quadrinho").append('<button class="btn btn-success m-3">Salvar</button>');
+            $("#output-quadrinho").append('<button type="submit" class="btn btn-success m-3">Salvar</button>');
 
             //convertendo canvas para imagem
             var image = new Image();
