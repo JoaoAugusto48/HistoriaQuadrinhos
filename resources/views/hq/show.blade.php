@@ -9,20 +9,30 @@
     </div>
     <hr class="bg-dark"/>
 
-    <table class="table table-striped text-center" style="border: 3px solid black;">
+    <table class="table table-sm table-hover table-striped text-center" style="border: 3px solid black;">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">tipo</th>
-            <th scope="col">titulo</th>
-            <th scope="col">pagina</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Título</th>
+            <th scope="col">Página</th>
+            <th scope="col">Operações</th>
           </tr>
         </thead>
         <tbody>
-            @foreach ($situars as $situar)
+            @foreach ($situars as $indice => $situar)
                 <tr style="border-bottom: 2px solid #555;">
                     <th class="align-middle" scope="row">Situar</th>
                     <td class="align-middle">{{ $situar->quadrinho->titulo }}</td>
                     <td class="align-middle">{{ $situar->quadrinho->pagina }}</td>
+                    <td class="align-middle">
+                        @if ($indice < 3) {{-- 3 é o valor correspondente as Hqs que não podem ser alteradas --}}
+                            <button disabled="disabled" class="btn btn-sm btn-info">Quadrinho estático</button>
+                        @elseif($situar->quadrinho->pathImg)
+                            <button class="btn btn-sm btn-info">Editar</button>
+                        @else
+                            <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $situar->quadrinho->id]) }}" class="btn btn-sm btn-info">Adicionar</a>
+                        @endif
+                    </td>
                 </tr>
             @endforeach
             @foreach ($problematizars as $problematizar)
@@ -30,6 +40,9 @@
                     <th class="align-middle" scope="row">Problematizar</th>
                     <td class="align-middle">{{ $problematizar->quadrinho->titulo }}</td>
                     <td class="align-middle">{{ $problematizar->quadrinho->pagina }}</td>
+                    <td class="align-middle">
+                            
+                    </td>
                 </tr>
             @endforeach
             @foreach ($solucionars as $solucionar)
@@ -37,6 +50,9 @@
                     <th class="align-middle" scope="row">Solucionar</th>
                     <td class="align-middle">{{ $solucionar->quadrinho->titulo }}</td>
                     <td class="align-middle">{{ $solucionar->quadrinho->pagina }}</td>
+                    <td class="align-middle">
+                            
+                    </td>
                 </tr>
             @endforeach
         </tbody>

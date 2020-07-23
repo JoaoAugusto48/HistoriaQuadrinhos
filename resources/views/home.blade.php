@@ -36,13 +36,16 @@
                 <td class="align-middle">
                     <div class="btn-group" role="group">
                         <a href="" class="btn btn-outline-info btn-sm border border-dark" role="button" data-toggle="tooltip" data-placement="top">
-                            <i>Criar HQ</i>
+                            <em>Criar HQ</em>
                         </a>
                         <a href="{{ route('hq.show', $hq->id) }}" class="btn btn-outline-info btn-sm border border-dark" role="button" data-toggle="tooltip" data-placement="top">
-                            <i>Quadrinhos</i>
+                            <em>Quadrinhos</em>
                         </a>
-                        <a href="{{ route('mostrarQuadrinho', $hq->id) }}" class="btn btn-outline-info btn-sm border border-dark" role="button" data-toggle="tooltip" data-placement="top">
-                            <i>Teste com Quadrinho</i>
+                        {{-- <a href="{{ route('mostrarQuadrinho', $hq->id) }}" class="btn btn-outline-info btn-sm border border-dark" role="button" data-toggle="tooltip" data-placement="top">
+                            <em>Teste com Quadrinho</em>
+                        </a> --}}
+                        <a href="#" class="btn btn-outline-info btn-sm border border-dark" role="button" data-toggle="tooltip" data-placement="top">
+                            <em>Teste com Quadrinho</em>
                         </a>
                     </div>
                 </td>
