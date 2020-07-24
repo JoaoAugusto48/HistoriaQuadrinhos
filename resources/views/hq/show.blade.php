@@ -41,7 +41,11 @@
                     <td class="align-middle">{{ $problematizar->quadrinho->titulo }}</td>
                     <td class="align-middle">{{ $problematizar->quadrinho->pagina }}</td>
                     <td class="align-middle">
-                            
+                        @if($problematizar->quadrinho->pathImg)
+                            <button class="btn btn-sm btn-info">Editar</button>
+                        @else
+                            <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $problematizar->quadrinho->id]) }}" class="btn btn-sm btn-info">Adicionar</a>
+                        @endif
                     </td>
                 </tr>
             @endforeach
@@ -51,7 +55,11 @@
                     <td class="align-middle">{{ $solucionar->quadrinho->titulo }}</td>
                     <td class="align-middle">{{ $solucionar->quadrinho->pagina }}</td>
                     <td class="align-middle">
-                            
+                        @if($solucionar->quadrinho->pathImg)
+                        <button class="btn btn-sm btn-info">Editar</button>
+                        @else
+                            <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $solucionar->quadrinho->id]) }}" class="btn btn-sm btn-info">Adicionar</a>
+                        @endif
                     </td>
                 </tr>
             @endforeach
@@ -103,7 +111,7 @@
                     <div class="card-header">{{ $situars[3]->quadrinho->titulo }}</div>
                 @endif
                 <div class="card-body p-0 d-flex bg-white">
-                    {{-- <img src="{{ env('APP_URL') }}/storage/{{ $hq->ambiente->fundo }}" class="card-img-ambiente my-auto"> --}}
+                    <img src="{{ env('APP_URL') }}/storage/{{ $situars[3]->quadrinho->pathImg }}" class="card-img-ambiente my-auto">
                 </div>
                 <div class="card-footer text-left bg-white border-top-0 numeroPagina">{{ $situars[3]->quadrinho->pagina }}</div>
             </div>
@@ -128,7 +136,7 @@
         </div>
     @endif
 
-    @if ($solucionars->count())
+    @if ($solucionars->count() && $solucionars[0]->quadrinho->pathImg)
         <h4 class="text-center border border-dark mt-3 mb-0 rounded-top font-weight-bold">Solucionar</h4>
         <div class="card-group">
             @foreach ($solucionars as $solucionar)

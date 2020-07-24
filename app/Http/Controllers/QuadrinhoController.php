@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Balao;
 use App\Hq;
 use App\Quadrinho;
+use App\Situar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class QuadrinhoController extends Controller
@@ -83,17 +85,47 @@ class QuadrinhoController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'id' => 'required',
+            'hqId' => 'required',
+            'quadrinhoId' => 'required',
             'imgQuadrinho' => 'required'
         ]);
 
-        $base64_image = $request->get("imgQuadrinho"); // your base64 encoded     
+        $hqId = $request->get('hqId');
+        $quadrinhoId = $request->get('quadrinhoId');
+        $imgQuadrinho = $request->get('imgQuadrinho');
+
+        // consulta ao banco do quadrinho apresentado
+        $quadrinho = Quadrinho::where('id','=',$quadrinhoId)->get()->first();
+
+        //Passando a codificação de Base64 para imagem 
+        $base64_image = $imgQuadrinho; // your base64 encoded     
         @list($type, $file_data) = explode(';', $base64_image);
         @list(, $file_data) = explode(',', $file_data);
+        
+        // $exists = Storage::disk('public')->exists('users/user/'.$hqId);
+        
+        // Teste de existencia do Diretório
+        $folder_path = 'users/user/hq_'.$hqId;
+        if(!Storage::disk('public')->exists($folder_path)){ // se o diretório não existe
+            Storage::disk('public')->makeDirectory($folder_path);
+        }
 
-        Storage::disk('public')->put('Teste.png', base64_decode($file_data));
+        // Storage::disk('public')->makeDirectory('users/user/'.$hqId);
+        $file_name = $folder_path.'/pag_'.$quadrinho->pagina.'.png';
+        Storage::disk('public')->put($file_name, base64_decode($file_data));
 
-        dd($request->all());
+        // Relações entre Hq e Quadrinhos
+        // como testar se um valor vindo do banco de dados existe ou não
+        // $situar = Situar::where('hq_id','=',$hqId)->where('quadrinho_id','=',$quadrinhoId);
+        // var_dump($situar);
+        // dd($situar);
+
+        DB::table('quadrinhos')->where('id','=',$quadrinhoId)
+            ->update([
+                'pathImg' => $file_name
+            ]);
+
+        return redirect()->route('hq.show', $hqId);
     }
 
     /**

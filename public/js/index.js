@@ -53,16 +53,16 @@ function inicializarAplicacao(){
 }
 
 
-function baixaQuadrinho(id){
+function baixaQuadrinho(hqId, quadrinhoId){
     $("#output-quadrinho").html('');
-    imprimeDiv($('#fundo'),id);
+    imprimeDiv($('#fundo'),hqId, quadrinhoId);
 
     $('html, body').animate({
         scrollTop: $("#output-quadrinho").offset().top
         }, 500);
 }
 
-function imprimeDiv(div,id){
+function imprimeDiv(div, hqId, quadrinhoId){
     html2canvas(div, {
         onrendered: function(canvas) {
             let div = document.createElement("div");
@@ -71,25 +71,32 @@ function imprimeDiv(div,id){
             div.appendChild(canvas);
 
             
-            
-            
             document.body.appendChild(div);
             $("#output-quadrinho").append('<h4>Clique em salvar para guardar a imagem!</h4>');
             // $("#output-quadrinho").append('<h4>clique com o botao direito na imagem abaixo para salva-la!</h4>');
             $("#output-quadrinho").append(canvas);
 
-            var codigo = id;
+            // Código referente a Hq
+            var hq = hqId;
+            var inputHqId = document.createElement("input");
+            inputHqId.type = "hidden";
+            inputHqId.value = hq;
+            inputHqId.name = "hqId";
+            $("#output-quadrinho").append(inputHqId);
+
+            // Código referente ao Quadrinho
+            var codigo = quadrinhoId;
             var inputId = document.createElement("input");
             inputId.type = "hidden";
             inputId.value = codigo;
-            inputId.name = "id";
+            inputId.name = "quadrinhoId";
             $("#output-quadrinho").append(inputId);
             
             //convertendo canvas para imagem
             var image = new Image();
             image.src = canvas.toDataURL("image/png");
             image.name = "imgQuadrinho";
-            $("#output-quadrinho").append(image);
+            // $("#output-quadrinho").append(image);
 
             var input = document.createElement("input");
             input.type = "text";

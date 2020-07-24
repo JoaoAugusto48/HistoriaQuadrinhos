@@ -47,7 +47,7 @@
     <div class="container" id="semEstilo">
         <div class="row">
             <div class="col-12 mb-3">
-                <button class="btn btn-success" onclick="baixaQuadrinho({{ $quadrinho->id }})">Baixar Quadrinho</button>
+                <button class="btn btn-success" onclick="baixaQuadrinho({{ $hq->id }}, {{ $quadrinho->id }})">Baixar Quadrinho</button>
             </div>
         </div>
     </div>
