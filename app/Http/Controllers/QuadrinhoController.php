@@ -6,6 +6,7 @@ use App\Balao;
 use App\Hq;
 use App\Quadrinho;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class QuadrinhoController extends Controller
 {
@@ -46,15 +47,14 @@ class QuadrinhoController extends Controller
      * @param  \App\Quadrinho  $quadrinho
      * @return \Illuminate\Http\Response
      */
-    public function show($hqId, $quadrinhoId)
+    public function show(Quadrinho $quadrinho)
     {
-        // dd($id);
-        $hq = Hq::findOrFail($hqId);
-        $quadrinho = Quadrinho::findOrFail($quadrinhoId);
+        // $hq = Hq::findOrFail($hqId);
+        // $quadrinho = Quadrinho::findOrFail($quadrinhoId);
 
-        $balaos = Balao::get();
+        // $balaos = Balao::get();
 
-        return view('quadrinhos.index', compact('hq', 'balaos'));
+        // return view('quadrinhos.index', compact('hq', 'quadrinho', 'balaos'));
     }
 
     /**
@@ -63,9 +63,14 @@ class QuadrinhoController extends Controller
      * @param  \App\Quadrinho  $quadrinho
      * @return \Illuminate\Http\Response
      */
-    public function edit(Quadrinho $quadrinho)
+    public function edit($hqId, $quadrinhoId)
     {
-        //
+        $hq = Hq::findOrFail($hqId);
+        $quadrinho = Quadrinho::findOrFail($quadrinhoId);
+
+        $balaos = Balao::get();
+
+        return view('quadrinhos.index', compact('hq', 'quadrinho', 'balaos'));
     }
 
     /**
@@ -75,9 +80,20 @@ class QuadrinhoController extends Controller
      * @param  \App\Quadrinho  $quadrinho
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quadrinho $quadrinho)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'id' => 'required',
+            'imgQuadrinho' => 'required'
+        ]);
+
+        $base64_image = $request->get("imgQuadrinho"); // your base64 encoded     
+        @list($type, $file_data) = explode(';', $base64_image);
+        @list(, $file_data) = explode(',', $file_data);
+
+        Storage::disk('public')->put('Teste.png', base64_decode($file_data));
+
+        dd($request->all());
     }
 
     /**

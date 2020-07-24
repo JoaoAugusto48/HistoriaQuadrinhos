@@ -25,4 +25,4 @@ Route::view('personagem1', 'hq/modal/personagem')->name('personagem1');
 Route::resource('hq', 'HqController');
 Route::resource('quadrinho', 'QuadrinhoController');
 
-Route::get('mostrarQuadrinho/{hqId}/{quadrinhoId}', 'QuadrinhoController@show')->name('mostrarQuadrinho');
+Route::get('mostrarQuadrinho/{hqId}/{quadrinhoId}', 'QuadrinhoController@edit')->name('mostrarQuadrinho');

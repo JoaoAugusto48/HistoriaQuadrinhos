@@ -53,32 +53,54 @@ function inicializarAplicacao(){
 }
 
 
-function baixaQuadrinho(){
+function baixaQuadrinho(id){
     $("#output-quadrinho").html('');
-    imprimeDiv($('#fundo'));
+    imprimeDiv($('#fundo'),id);
+
+    $('html, body').animate({
+        scrollTop: $("#output-quadrinho").offset().top
+        }, 500);
 }
 
-function imprimeDiv(div){
+function imprimeDiv(div,id){
     html2canvas(div, {
         onrendered: function(canvas) {
             let div = document.createElement("div");
             div.classList.add("container");
+            
             div.appendChild(canvas);
 
-            console.log(div)
-
-            document.body.appendChild(div);
-            $("#output-quadrinho").append('<h4> clique com o botao direito na imagem abaixo para salva-la!</h4>');
-            $("#output-quadrinho").append(canvas);
             
-            // ("#output-quadrinho").append('<form action=""></form>');$
-            $("#output-quadrinho").append('<button type="submit" class="btn btn-success m-3">Salvar</button>');
+            
+            
+            document.body.appendChild(div);
+            $("#output-quadrinho").append('<h4>Clique em salvar para guardar a imagem!</h4>');
+            // $("#output-quadrinho").append('<h4>clique com o botao direito na imagem abaixo para salva-la!</h4>');
+            $("#output-quadrinho").append(canvas);
 
+            var codigo = id;
+            var inputId = document.createElement("input");
+            inputId.type = "hidden";
+            inputId.value = codigo;
+            inputId.name = "id";
+            $("#output-quadrinho").append(inputId);
+            
             //convertendo canvas para imagem
             var image = new Image();
             image.src = canvas.toDataURL("image/png");
             image.name = "imgQuadrinho";
-            div.appendChild(image);
+            $("#output-quadrinho").append(image);
+
+            var input = document.createElement("input");
+            input.type = "text";
+            input.value = image.src;
+            input.name = "imgQuadrinho";
+            input.style.display = "none";
+            $("#output-quadrinho").append(input);
+
+            // ("#output-quadrinho").append('<form action=""></form>');$
+            $("#output-quadrinho").append('<button type="submit" class="btn btn-success m-3">Salvar</button>');
+            
             
         }
     });

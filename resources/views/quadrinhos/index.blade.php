@@ -1,14 +1,17 @@
-@php
-    $titulo = $hq->tema;
-@endphp
 @extends('criarQuadrinho')
+@section('title', $hq->tema)
 
 @section('content')
     
-<div class="container pt-3">
+<div class="container pt-1">
+    <div class="row">
+        <h1>Criar - {{ $hq->tema }}, pág. {{ $quadrinho->pagina }}</h1>
+    </div>
     <button class="btn btn-outline-dark" onclick="javascript:history.back()">Voltar</button>
     <button class="btn btn-outline-dark ml-2" onclick="javascript:location.reload()">Recarregar</button>
 </div>
+<hr class="bg-dark"/>
+
 
 <div class="p-3">
     <h3 class="text-center">Arraste os itens abaixo!</h3>
@@ -37,79 +40,32 @@
                         </div>
                     @endforeach
                 </div>
-                
             </div>
-            {{-- <div class="col-12 border-top bg-info h-100" id="fundo" >
-                asd
-            </div> --}}
-            {{-- <div class="col-9 acopla-imagens" id="acopla-imagens" style="display: flex; align-items: stretch; z-index:2; background-color: black">
-                <div id="fundo">
-                    
-                </div>    
-                <div class="arrastavel" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}')"></div>
-                <div class="arrastavel" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}')"></div>
-            </div> --}}
         </div>
-        {{-- <div class="row"  style="background-color: yellow" id="fundo">
-            <div class="col-12">
-                <h1>teste</h1>
-            </div>
-        </div> --}}
-        {{-- <div class="container containerCustomizado" id="fundo" style="background-color: blue">
-            teste
-        </div> --}}
     </div>
     <br>
     <div class="container" id="semEstilo">
         <div class="row">
             <div class="col-12 mb-3">
-                <button class="btn btn-success" onclick="baixaQuadrinho()">Baixar Quadrinho</button>
+                <button class="btn btn-success" onclick="baixaQuadrinho({{ $quadrinho->id }})">Baixar Quadrinho</button>
             </div>
         </div>
     </div>
 
     <div class="container ml-4" id="semEstilo">
         <div class="row">
-            <div class="col-12 ml-4">
-                <form action="{{ route('hq.index') }}">
+            <div class="col-12">
+                <form action="{{ route('quadrinho.update', $quadrinho->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
                     <div class="col-9" id="output-quadrinho">
                     {{-- onde Fica o quadro para baixar --}}
-                    
+                        {{-- <input type="hidden" name="id" value="{{ $quadrinho->id }}"> --}}
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>   
-
-
-{{-- <script>
-    function show_hide() {
-        var img = document.getElementById('personagem');
-        // console.log(img);
-        // var button = document.createElement('button');
-        // button.type = "button";
-        // button.classList.add("btn");
-        // button.classList.add("btn-primary");
-        // button.classList.add("marginDoTopo");
-
-        // var i = document.createElement('i');
-        // i.classList.add("fas");
-        // i.classList.add("fa-plus");
-
-        // button.appendChild(i);
-
-        // img.appendChild(button);
-        // console.log(img);
-
-        var baloes = document.getElementById("baloes");
-
-        if(baloes.style.display === "none") {
-            baloes.style.display = "block";
-        } else {
-            baloes.style.display = "none";
-        }
-    }
-</script> --}}
 
 @endsection
