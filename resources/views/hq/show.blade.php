@@ -26,9 +26,9 @@
                     <td class="align-middle">{{ $situar->quadrinho->pagina }}</td>
                     <td class="align-middle">
                         @if ($indice < 3) {{-- 3 é o valor correspondente as Hqs que não podem ser alteradas --}}
-                            <button disabled="disabled" class="btn btn-sm btn-info">Quadrinho estático</button>
+                            <button disabled="disabled" class="btn btn-sm btn-secondary">Quadrinho estático</button>
                         @elseif($situar->quadrinho->pathImg)
-                            <button class="btn btn-sm btn-info">Editar</button>
+                            <button class="btn btn-sm btn-info"><i class="fas fa-edit"></i> Editar</button>
                         @else
                             <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $situar->quadrinho->id]) }}" class="btn btn-sm btn-info">Adicionar</a>
                         @endif
@@ -42,17 +42,25 @@
                     <td class="align-middle">{{ $problematizar->quadrinho->pagina }}</td>
                     <td class="align-middle">
                         @if($problematizar->quadrinho->pathImg) 
-                            <button class="btn btn-sm btn-info">Editar</button>
+                            <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</button>
                         @else
-                            <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $problematizar->quadrinho->id]) }}" class="btn btn-sm btn-info">Adicionar</a>
+                            <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $problematizar->quadrinho->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-plus    "></i> Adicionar</a>
                         @endif
 
                         @if ($indice >= 1) {{-- Evento ocorrente para os valores de a partir do 2º Indice--}} 
-                            <button class="btn btn-sm btn-danger">Remover</button>
+                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash    "></i> Remover</button>
                         @endif
                     </td>
                 </tr>
             @endforeach
+                <tr class="bg-secondary">
+                    
+                    {{-- <td colspan="3"></td> --}}
+                    <td colspan="4" class="text-center">
+                        <a name="" id="" class="btn btn-sm btn-dark" href="#" role="button"><i class="fa fa-plus"></i> Adicionar Problematizar</a>
+                        <a name="" id="" class="btn btn-sm btn-dark" href="#" role="button"><i class="fa fa-plus"></i> Criar Solucionar</a>
+                    </td>
+                </tr>
             @foreach ($solucionars as $solucionar)
                 <tr style="border-bottom: 2px solid #555;">
                     <th class="align-middle" scope="row">Solucionar</th>
@@ -60,15 +68,27 @@
                     <td class="align-middle">{{ $solucionar->quadrinho->pagina }}</td>
                     <td class="align-middle">
                         @if($solucionar->quadrinho->pathImg)
-                        <button class="btn btn-sm btn-info">Editar</button>
+                        <button class="btn btn-sm btn-info"><i class="fas fa-edit"></i> Editar</button>
                         @else
                             <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $solucionar->quadrinho->id]) }}" class="btn btn-sm btn-info">Adicionar</a>
                         @endif
                     </td>
                 </tr>
             @endforeach
+                <tr class="bg-secondary">
+                    {{-- <td colspan="3"></td> --}}
+                    <td colspan="4" class="text-center">
+                        <a name="" id="" class="btn btn-sm btn-primary" href="#" role="button"><i class="fa fa-plus"></i> Adicionar Solucionar</a>
+                    </td>
+                </tr>
         </tbody>
     </table>
+
+    {{-- <div class="row">
+        <div class="col-md-12">
+            <a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fa fa-plus"></i> Adicionar Problematizar</a>
+        </div>
+    </div> --}}
 
     <h4 class="text-center border border-dark mb-0 rounded-top font-weight-bold">Situar</h4>
     <div class="card-group">
@@ -108,19 +128,20 @@
             </div>
             <div class="card-footer text-left bg-white border-top-0 numeroPagina">{{ $situars[2]->quadrinho->pagina }}</div>
         </div>
+    </div>
 
-        @if ($situars[3]->quadrinho->pathImg)    
+    <div class="card-group">
+        @if ($situars[3]->quadrinho->pathImg)  
             <div class="card text-center bg-dark text-white rounded-top-0">
                 @if ($situars[3]->quadrinho->titulo)
                     <div class="card-header">{{ $situars[3]->quadrinho->titulo }}</div>
                 @endif
-                <div class="card-body p-0 d-flex bg-white">
-                    <img src="{{ env('APP_URL') }}/storage/{{ $situars[3]->quadrinho->pathImg }}" class="card-img-ambiente my-auto">
+                <div class="card-body p-0 bg-white pt-3">
+                    <img src="{{ env('APP_URL') }}/storage/{{ $situars[3]->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-50">
                 </div>
                 <div class="card-footer text-left bg-white border-top-0 numeroPagina">{{ $situars[3]->quadrinho->pagina }}</div>
             </div>
         @endif
-        
     </div>
 
     @if ($problematizars[0]->quadrinho->pathImg)
@@ -131,8 +152,8 @@
                     @if ($problematizar->quadrinho->titulo)
                         <div class="card-header">{{ $problematizar->quadrinho->titulo }}</div>
                     @endif
-                    <div class="card-body p-0 d-flex bg-white">
-                        <img src="{{ env('APP_URL') }}/storage/{{ $problematizar->quadrinho->pathImg }}" class="card-img-ambiente my-auto">
+                    <div class="card-body p-0 bg-white pt-3">
+                        <img src="{{ env('APP_URL') }}/storage/{{ $problematizar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-50">
                     </div>
                     <div class="card-footer text-left bg-white border-top-0 numeroPagina">{{ $problematizar->quadrinho->pagina }}</div>
                 </div>
