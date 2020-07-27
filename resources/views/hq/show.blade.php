@@ -35,16 +35,20 @@
                     </td>
                 </tr>
             @endforeach
-            @foreach ($problematizars as $problematizar)
+            @foreach ($problematizars as $indice => $problematizar)
                 <tr style="border-bottom: 2px solid #555;">
                     <th class="align-middle" scope="row">Problematizar</th>
                     <td class="align-middle">{{ $problematizar->quadrinho->titulo }}</td>
                     <td class="align-middle">{{ $problematizar->quadrinho->pagina }}</td>
                     <td class="align-middle">
-                        @if($problematizar->quadrinho->pathImg)
+                        @if($problematizar->quadrinho->pathImg) 
                             <button class="btn btn-sm btn-info">Editar</button>
                         @else
                             <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $problematizar->quadrinho->id]) }}" class="btn btn-sm btn-info">Adicionar</a>
+                        @endif
+
+                        @if ($indice >= 1) {{-- Evento ocorrente para os valores de a partir do 2º Indice--}} 
+                            <button class="btn btn-sm btn-danger">Remover</button>
                         @endif
                     </td>
                 </tr>
