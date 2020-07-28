@@ -37,10 +37,10 @@
             @endforeach
             @foreach ($problematizars as $indice => $problematizar)
                 <tr style="border-bottom: 2px solid #555;">
-                    <th class="align-middle" scope="row">Problematizar</th>
+                    <th class="align-middle" scope="row">Problematizar{{ $problematizar->quadrinho->id }}</th>
                     <td class="align-middle">{{ $problematizar->quadrinho->titulo }}</td>
                     <td class="align-middle">{{ $problematizar->quadrinho->pagina }}</td>
-                    <td class="align-middle">
+                    <td class="align-middle d-inline-flex">
                         @if($problematizar->quadrinho->pathImg) 
                             <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $problematizar->quadrinho->id]) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
                         @else
@@ -48,7 +48,16 @@
                         @endif
 
                         @if ($indice >= 1) {{-- Evento ocorrente para os valores de a partir do 2º Indice--}} 
-                            <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Remover</button>
+                            <form class="ml-1" action="{{ route('problematizar.destroy', $problematizar->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                @php
+                                    $mensagem = $problematizar->quadrinho->titulo ? 'de titulo ' . $problematizar->quadrinho->titulo . ', ' : '';
+                                    $mensagem .= 'da página ' . $problematizar->quadrinho->pagina;
+                                @endphp
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }} ?')">
+                                    <i class="fas fa-trash"></i> Remover</button>
+                            </form>
                         @endif
                     </td>
                 </tr>
@@ -56,15 +65,17 @@
 
             <tr class="bg-secondary">  
                 <td colspan="4" class="text-center">
-                    <form action="{{ route('problematizar.store') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="hqId" value="{{$hq->id}}">
-                        <button type="submit" class="btn btn-sm btn-dark" role="button"><i class="fa fa-plus"></i> Adicionar Problematizar</button>
-                    </form>
+                    <div class="d-inline-flex">
+                        <form action="{{ route('problematizar.store') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="hqId" value="{{$hq->id}}">
+                            <button type="submit" class="btn btn-sm btn-dark" role="button"><i class="fa fa-plus"></i> Adicionar Problematizar</button>
+                        </form>
 
-                    @if ($solucionars->count() == 0) 
-                        <a class="btn btn-sm btn-dark" href="#" role="button"><i class="fa fa-plus"></i> Criar Solucionar</a>
-                    @endif
+                        @if ($solucionars->count() == 0) 
+                            <a class="btn btn-sm btn-dark ml-1" href="#" role="button"><i class="fa fa-plus"></i> Criar Solucionar</a>
+                        @endif
+                    </div>
                 </td>
             </tr>
             
@@ -149,7 +160,7 @@
                     <div class="card-header">{{ $situars[3]->quadrinho->titulo }}</div>
                 @endif
                 <div class="card-body p-0 bg-white pt-3">
-                    <img src="{{ $caminho_imagem.$situars[3]->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-50">
+                    <img src="{{ $caminho_imagem.$situars[3]->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-50" style="pointer-events: none;">
                 </div>
                 <div class="card-footer text-left bg-white border-top-0 numeroPagina">{{ $situars[3]->quadrinho->pagina }}</div>
             </div>
@@ -161,17 +172,19 @@
         <div class="row">
             <div class="card-group">
                 @foreach ($problematizars as $problematizar)
-                    <div class="col-md-6">
-                        <div class="card text-center bg-dark text-white rounded-top-0">
-                            @if ($problematizar->quadrinho->titulo)
-                                <div class="card-header">{{ $problematizar->quadrinho->titulo }}</div>
-                            @endif
-                            <div class="card-body p-0 bg-white pt-3">
-                                <img src="{{ $caminho_imagem.$problematizar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-100">
+                    @if ($problematizar->quadrinho->pathImg)
+                        <div class="col-md-6">
+                            <div class="card text-center bg-dark text-white rounded-top-0">
+                                @if ($problematizar->quadrinho->titulo)
+                                    <div class="card-header">{{ $problematizar->quadrinho->titulo }}</div>
+                                @endif
+                                <div class="card-body p-0 bg-white pt-3">
+                                    <img src="{{ $caminho_imagem.$problematizar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-100">
+                                </div>
+                                <div class="card-footer text-left bg-white border-top-0 numeroPagina">{{ $problematizar->quadrinho->pagina }}</div>
                             </div>
-                            <div class="card-footer text-left bg-white border-top-0 numeroPagina">{{ $problematizar->quadrinho->pagina }}</div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -182,17 +195,19 @@
         <div class="row">
             <div class="card-group">
                 @foreach ($solucionars as $solucionar)
-                    <div class="col-md-6">
-                        <div class="card text-center bg-dark text-white rounded-top-0">
-                            @if ($solucionar->quadrinho->titulo)
-                                <div class="card-header">{{ $solucionar->quadrinho->titulo }}</div>
-                            @endif
-                            <div class="card-body p-0 bg-white pt-3">
-                                <img src="{{ $caminho_imagem.$solucionar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-100">
+                    @if ($solucionar->quadrinho->pathImg)
+                        <div class="col-md-6">
+                            <div class="card text-center bg-dark text-white rounded-top-0">
+                                @if ($solucionar->quadrinho->titulo)
+                                    <div class="card-header">{{ $solucionar->quadrinho->titulo }}</div>
+                                @endif
+                                <div class="card-body p-0 bg-white pt-3">
+                                    <img src="{{ $caminho_imagem.$solucionar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-100">
+                                </div>
+                                <div class="card-footer text-left bg-white border-top-0 numeroPagina">{{ $solucionar->quadrinho->pagina }}</div>
                             </div>
-                            <div class="card-footer text-left bg-white border-top-0 numeroPagina">{{ $solucionar->quadrinho->pagina }}</div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
         </div>
