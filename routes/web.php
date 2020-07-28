@@ -26,3 +26,7 @@ Route::resource('hq', 'HqController');
 Route::resource('quadrinho', 'QuadrinhoController');
 
 Route::get('mostrarQuadrinho/{hqId}/{quadrinhoId}', 'QuadrinhoController@edit')->name('mostrarQuadrinho');
+
+Route::resource('situar', 'SituarController');
+Route::resource('problematizar', 'ProblematizarController');
+Route::resource('solucionar', 'SolucionarController');

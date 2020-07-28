@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Situar;
 use Illuminate\Http\Request;
 
 class SituarController extends Controller
@@ -34,7 +35,7 @@ class SituarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 
     }
 
     /**

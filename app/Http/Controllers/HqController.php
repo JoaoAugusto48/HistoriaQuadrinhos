@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ambiente;
+use App\Balao;
 use App\Hq;
 use App\Mensagem;
 use App\Personagem;
@@ -122,8 +123,10 @@ class HqController extends Controller
         $situars = Situar::where('hq_id', '=', $hq->id)->get();
         $problematizars = Problematizar::where('hq_id', '=', $hq->id)->get();
         $solucionars = Solucionar::where('hq_id', '=', $hq->id)->get();
+
+        $caminho_imagem = env('APP_URL').'/storage/'; //endereço do projeto, local: pasta storage
         
-        return view('hq.show', compact('hq', 'situars', 'problematizars', 'solucionars'));
+        return view('hq.show', compact('hq', 'situars', 'problematizars', 'solucionars', 'caminho_imagem'));
     }
 
     /**

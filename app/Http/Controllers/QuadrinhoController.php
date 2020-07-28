@@ -29,7 +29,7 @@ class QuadrinhoController extends Controller
      */
     public function create()
     {
-        return view('quadrinho.index', compact('hq'));
+        // return view('quadrinho.index', compact('hq'));
     }
 
     /**
@@ -40,7 +40,12 @@ class QuadrinhoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $quadrinho = new Quadrinho();
+        // $quadrinho->titulo = null;
+        // $quadrinho->pathImg = null;
+        // $quadrinho->pagina = 1; //algum valor
+
+
     }
 
     /**

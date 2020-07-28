@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Hq;
+use App\Problematizar;
+use App\Quadrinho;
 use Illuminate\Http\Request;
 
 class ProblematizarController extends Controller
@@ -35,7 +37,27 @@ class ProblematizarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+
+        $request->validate([
+            'hqId' => 'required'
+        ]);
+
+        $hq = $request->get('hqId');
+        
+        $problematizars = Problematizar::where('hq_id','=', $hq);
+        dd($problematizars);
+        
+        $maior = 0;
+        foreach($problematizars as $problematizar){
+            $maior_pagina = Quadrinho::where('id','=',$problematizar)->get('pagina');
+            // var_dump($maior_pagina);
+            // if($maior_pagina > $maior){
+            //     $maior = $maior_pagina;
+            // }
+        }
+
+        dd($maior);
     }
 
     /**
