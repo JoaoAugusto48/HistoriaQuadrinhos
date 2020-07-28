@@ -39,8 +39,6 @@ class ProblematizarController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-
         $request->validate([
             'hqId' => 'required'
         ]);
@@ -119,7 +117,7 @@ class ProblematizarController extends Controller
         $problematizar->delete();
         // dd($problematizar->id);
 
-        $quadrinho = Quadrinho::where('id','=',$problematizar->quadrinho_id)->delete();
+        Quadrinho::where('id','=',$problematizar->quadrinho_id)->delete();
         // $quadrinho->delete();
 
         $this->atualizarPaginaProblematizar($problematizar);
