@@ -8,6 +8,7 @@ use App\Quadrinho;
 use App\Solucionar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProblematizarController extends Controller
 {
@@ -115,7 +116,9 @@ class ProblematizarController extends Controller
         $problematizar = Problematizar::findOrFail($request->problematizar);
         
         $problematizar->delete();
-        // dd($problematizar->id);
+
+        $file_name = QuadrinhoController::file_name($problematizar->hq_id, $problematizar->quadrinho->pagina);
+        Storage::delete([$file_name]);
 
         Quadrinho::where('id','=',$problematizar->quadrinho_id)->delete();
         // $quadrinho->delete();

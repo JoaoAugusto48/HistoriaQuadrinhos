@@ -14,6 +14,14 @@
 
 
 <div class="p-3">
+
+    <div class="form-group row">
+        <label for="nome" class="col-sm-2 col-form-label text-right">Fala do autor:</label>
+        <div class="col-sm-8">
+            <input id="txt-titulo" type="text" class="form-control" name="titulo" maxlength="255" value="{{ $quadrinho->titulo }}" placeholder="Se o autor houver fala. Adicione-a aqui.">
+        </div>
+    </div>
+
     <h3 class="text-center">Arraste os itens abaixo!</h3>
     
     
@@ -61,6 +69,9 @@
                     <div class="col-9" id="output-quadrinho">
                     {{-- onde Fica o quadro para baixar --}}
                         {{-- <input type="hidden" name="id" value="{{ $quadrinho->id }}"> --}}
+                    </div>
+                    <div id="titulo-escondido">
+
                     </div>
                 </form>
             </div>

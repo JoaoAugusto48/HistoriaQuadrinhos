@@ -3,8 +3,10 @@
 @section('content')
 
     <div class="row">
-        <h1>Editar HQ - {{ $hq->tema }}</h1>
-        <button class="btn btn-outline-dark ml-3" onclick="javascript:history.back()">Voltar</button>
+        <h1>
+            Editar HQ - {{ $hq->tema }}
+            <button class="btn btn-outline-dark ml-1" onclick="javascript:history.back()">Voltar</button>
+        </h1>
     </div>
     <hr class="bg-dark"/>
 

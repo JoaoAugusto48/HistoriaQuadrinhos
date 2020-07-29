@@ -92,12 +92,14 @@ class QuadrinhoController extends Controller
         $request->validate([
             'hqId' => 'required',
             'quadrinhoId' => 'required',
-            'imgQuadrinho' => 'required'
+            'imgQuadrinho' => 'required',
+            'titulo' => 'max:255'
         ]);
 
         $hqId = $request->get('hqId');
         $quadrinhoId = $request->get('quadrinhoId');
         $imgQuadrinho = $request->get('imgQuadrinho');
+        $titulo = trim($request->get('titulo'));
 
         // consulta ao banco do quadrinho apresentado
         $quadrinho = Quadrinho::where('id','=',$quadrinhoId)->get()->first();
@@ -108,15 +110,11 @@ class QuadrinhoController extends Controller
         @list(, $file_data) = explode(',', $file_data);
         
         // $exists = Storage::disk('public')->exists('users/user/'.$hqId);
-        
-        // Teste de existencia do Diretório
-        $folder_path = 'users/user/hq_'.$hqId;
-        if(!Storage::disk('public')->exists($folder_path)){ // se o diretório não existe
-            Storage::disk('public')->makeDirectory($folder_path);
-        }
+
+        // $folder_path = $this->folder_path($hqId);
 
         // Storage::disk('public')->makeDirectory('users/user/'.$hqId);
-        $file_name = $folder_path.'/pag_'.$quadrinho->pagina.'.png';
+        $file_name = $this->file_name($hqId, $quadrinho->pagina);
         Storage::disk('public')->put($file_name, base64_decode($file_data));
 
         // Relações entre Hq e Quadrinhos
@@ -127,7 +125,8 @@ class QuadrinhoController extends Controller
 
         DB::table('quadrinhos')->where('id','=',$quadrinhoId)
             ->update([
-                'pathImg' => $file_name
+                'pathImg' => $file_name,
+                'titulo' => $titulo
             ]);
 
         return redirect()->route('hq.show', $hqId);
@@ -143,4 +142,26 @@ class QuadrinhoController extends Controller
     {
         //
     }
+
+    // para recuperar o nome do folder
+    public static function folder_name($hqId, $user = 'user'){
+        return 'users/'.$user.'/hq_'.$hqId;
+    }
+
+    // para recuperar o caminho do falder e o criar
+    public static function folder_path($hqId){
+        // Teste de existencia do Diretório
+        $folder_path = QuadrinhoController::folder_name($hqId);
+        if(!Storage::disk('public')->exists($folder_path)){ // se o diretório não existe
+            Storage::disk('public')->makeDirectory($folder_path);
+        }
+        return $folder_path;
+    }
+
+    // para recuperar o nome do arquivo
+    public static function file_name($hqId, $pagina){
+        $folder_path = QuadrinhoController::folder_path($hqId);
+        return $folder_path.'/pag_'. $pagina.'.png';
+    }
+    
 }

@@ -2,6 +2,21 @@ $(document).ready(() => {
 
     inicializarAplicacao();
 
+
+
+    var titulo = document.getElementById("txt-titulo");
+    var inputTitulo = document.createElement("input");
+    inputTitulo.type = "hidden";
+    inputTitulo.name = titulo.name;
+
+    titulo.addEventListener("input",function(){
+        inputTitulo.value = titulo.value;
+    })
+    
+    $("#titulo-escondido").append(inputTitulo);
+
+
+
 });
 
 // function mostrarBalao(){

@@ -3,10 +3,12 @@
 @section('content')
         
     <div class="row">
-        <h1>Criar História em Quadrinho</h1>
-        <a href="{{ route('hq.store') }}" target="_parent">
-            <button class="btn btn-outline-dark ml-3">Inicio</button>
-        </a>
+        <h1>
+            Criar História em Quadrinho
+            <a href="{{ route('hq.store') }}" target="_parent">
+                <button class="btn btn-outline-dark ml-1">Inicio</button>
+            </a>
+        </h1>
     </div>
     <hr class="bg-dark"/>
 
