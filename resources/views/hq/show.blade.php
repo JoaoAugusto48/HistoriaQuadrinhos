@@ -2,10 +2,11 @@
 
 @section('content')
     <div class="row">
-        <h3>Quadrinho - {{ $hq->tema }}</h3>
-        <a href="{{ route('hq.index') }}" target="_parent">
-            <button class="btn btn-outline-dark ml-3">Inicio</button>
-        </a>
+        <h1>Quadrinho - {{ $hq->tema }}</h1>
+        <a href="{{ route('hq.index') }}" class="btn btn-outline-dark ml-3" target="_parent">Inicio</a>
+    </div>
+    <div class="row">
+        <a href="{{ route('hq.edit', $hq->id) }}" class="btn btn-outline-dark ml-3" target="_parent">Atualizar HQ</a>
     </div>
     <hr class="bg-dark"/>
 

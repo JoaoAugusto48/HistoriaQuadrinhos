@@ -55,8 +55,8 @@ class HqController extends Controller
             'personagem1_id' => 'required',
             'personagem2_id' => 'required',
             'ambiente_id' => 'required',
-            'saudacao1' => 'required',
-            'saudacao2' => 'required'
+            'saudacao1' => 'required|max:70',
+            'saudacao2' => 'required|max:70'
         ]);
         
         $hq = new Hq();
@@ -135,9 +135,11 @@ class HqController extends Controller
      * @param  \App\Hq  $hq
      * @return \Illuminate\Http\Response
      */
-    public function edit(Hq $hq)
+    public function edit(Request $request)
     {
-        //
+        $hq = Hq::findOrFail($request->hq);
+
+        return view('hq.edit', compact('hq'));
     }
 
     /**
@@ -147,9 +149,31 @@ class HqController extends Controller
      * @param  \App\Hq  $hq
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hq $hq)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'id' => 'required',
+            'tema' => 'required|max:100',
+            'local' => 'required|max:70',
+            'saudacao1' => 'required|max:70',
+            'saudacao2' => 'required|max:70'
+        ]);
+
+        $hq = Hq::findOrFail($request->hq);
+        $hq->id = $request->get('id');
+        $hq->tema = $request->get('tema');
+        $hq->local = $request->get('local');
+        $hq->saudacao1 = $request->get('saudacao1');
+        $hq->saudacao2 = $request->get('saudacao2');
+
+        $hq->update();
+
+        $situar = Situar::where('hq_id','=',$hq->id)->orderBy('id', 'asc')->first();
+
+        DB::table('quadrinhos')->where('id','=',$situar->quadrinho_id)
+            ->update(['titulo' => $hq->tema]);
+
+        return redirect()->route('hq.show', $hq->id);
     }
 
     /**
