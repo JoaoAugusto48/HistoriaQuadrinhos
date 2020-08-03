@@ -132,7 +132,7 @@
     {{-- Fim da Tabela - inicio do pre view --}}
 
     {{-- Botão para Baixar os quadrinhos --}}
-    @if ($solucionars->count() && $solucionars[0]->quadrinho->pathImg)
+    @if ($situarQuadrinho && $problematizarQuadrinho && $solucionarQuadrinho)
         <button class="btn btn-outline-primary mb-3"><i class="fas fa-download"></i> Baixar Quadrinho</button>
     @endif
 

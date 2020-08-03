@@ -124,9 +124,27 @@ class HqController extends Controller
         $problematizars = Problematizar::where('hq_id', '=', $hq->id)->get();
         $solucionars = Solucionar::where('hq_id', '=', $hq->id)->get();
 
+
+        $situarQuadrinho = $situars[3]->quadrinho->pathImg ? true : false;
+
+        $problematizarQuadrinho = true;
+        foreach($problematizars as $problematizar){
+            if(!$problematizar->quadrinho->pathImg){
+                $problematizarQuadrinho = false;
+            }
+        }
+
+        $solucionarQuadrinho = true;
+        foreach($solucionars as $solucionar){
+            if(!$solucionar->quadrinho->pathImg){
+                $solucionarQuadrinho = false;
+            }
+        }
+
         $caminho_imagem = env('APP_URL').'/storage/'; //endereço do projeto, local: pasta storage
         
-        return view('hq.show', compact('hq', 'situars', 'problematizars', 'solucionars', 'caminho_imagem'));
+        return view('hq.show', compact('hq', 'situars', 'problematizars', 'solucionars', 'caminho_imagem',
+            'situarQuadrinho', 'problematizarQuadrinho', 'solucionarQuadrinho'));
     }
 
     /**

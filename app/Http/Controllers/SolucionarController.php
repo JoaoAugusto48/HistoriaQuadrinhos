@@ -123,7 +123,7 @@ class SolucionarController extends Controller
         $file_name = QuadrinhoController::file_name($solucionar->hq_id, $solucionar->quadrinho->pagina);
         Storage::delete([$file_name]);
 
-        Quadrinho::where('id','=',$solucionar->quadrinho_id)->delete();
+        Quadrinho::destroy($solucionar->quadrinho_id);
 
         $this->atualizarPaginaSolucionar($solucionar);
 

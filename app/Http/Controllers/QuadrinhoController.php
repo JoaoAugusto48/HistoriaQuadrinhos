@@ -114,8 +114,11 @@ class QuadrinhoController extends Controller
         // $folder_path = $this->folder_path($hqId);
 
         // Storage::disk('public')->makeDirectory('users/user/'.$hqId);
-        $file_name = $this->file_name($hqId, $quadrinho->pagina);
-        Storage::disk('public')->put($file_name, base64_decode($file_data));
+        $file_name = $quadrinho->pathImg;
+        if(!$quadrinho->pathImg){
+            $file_name = $this->file_name($hqId);
+            Storage::disk('public')->put($file_name, base64_decode($file_data));
+        }
 
         // Relações entre Hq e Quadrinhos
         // como testar se um valor vindo do banco de dados existe ou não
@@ -138,18 +141,14 @@ class QuadrinhoController extends Controller
      * @param  \App\Quadrinho  $quadrinho
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Quadrinho $quadrinho)
+    public static function destroy(Quadrinho $quadrinho)
     {
-        //
+        $quadrinho->delete();
     }
 
     // para recuperar o nome do folder
     public static function folder_name($hqId, $user = 'user'){
-        $hash = hash('sha512',uniqid((time())));
-        dd($hash);
-        // Mudar o modo que é realizada a criação de arquivos
         return 'users/'.$user.'/hq_'.$hqId;
-
     }
 
     // para recuperar o caminho do falder e o criar
@@ -163,9 +162,11 @@ class QuadrinhoController extends Controller
     }
 
     // para recuperar o nome do arquivo
-    public static function file_name($hqId, $pagina){
+    public static function file_name($hqId){
         $folder_path = QuadrinhoController::folder_path($hqId);
-        return $folder_path.'/pag_'. $pagina.'.png';
+        // para gerar o arquivo de nome unico
+        $file_hash = hash('sha512',uniqid((time())));
+        return $folder_path.'/'. $file_hash.'.png';
     }
     
 }

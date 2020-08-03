@@ -117,23 +117,15 @@ class ProblematizarController extends Controller
         
         $problematizar->delete();
 
-        $file_name = QuadrinhoController::file_name($problematizar->hq_id, $problematizar->quadrinho->pagina);
+        $file_name = $problematizar->quadrinho->pathImg;
         Storage::delete([$file_name]);
 
-        Quadrinho::where('id','=',$problematizar->quadrinho_id)->delete();
-
+        Quadrinho::destroy($problematizar->quadrinho_id);
+        
         $this->atualizarPaginaProblematizar($problematizar);
 
         $solucionars = Solucionar::where('hq_id','=',$problematizar->hq_id)->get();
         $this->alterarPaginaSolucionar($solucionars, -1);
-
-        // $quadrinhos = Problematizar::where('quadrinho_id','=',$problematizar->hq_id)->get();
-        // foreach($quadrinhos as $quadrinho){
-        //     if($problematizar->quadrinho->pagina < $quadrinho->quadrinho->pagina){
-        //         $pagina = QuadrinhoController::file_name($problematizar->hq_id,$quadrinho->quadrinho->pagina-1);
-        //         Storage::move($problematizar->quadrinho->pathImg, $pagina);
-        //     }
-        // }
 
         return redirect()->route('hq.show', $problematizar->hq_id);
     }
