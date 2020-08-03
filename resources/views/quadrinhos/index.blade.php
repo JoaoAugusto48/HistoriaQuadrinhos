@@ -3,6 +3,38 @@
 
 @section('content')
     
+
+<script>
+    function capturaPosicaoDoMouse(event){
+   // console.log(event);
+}
+
+
+
+
+function capturaPosicaoDoClick(event){
+    const posicoes = {x : event.clientX, y : event.clientY + window.scrollY};
+    console.log(posicoes);
+
+    document.querySelector("#fundo").innerHTML+=
+    `
+    <div class="balaozin" oncontextmenu="excluiQuadradin(event)" style="width: 50px; display: block; height: 50x; background-color: pink; position: absolute; left: ${posicoes.x}px; top: ${posicoes.y}px">
+    teste
+    </div>
+    
+    
+    `;
+}
+
+function excluiQuadradin(event){
+    console.log(event.path[0].style.display="none");
+    event.preventDefault();
+    return false;
+}
+</script>
+
+
+
 <div class="container pt-1">
     <div class="row">
         <h1>Criar - {{ $hq->tema }}, pág. {{ $quadrinho->pagina }}</h1>
@@ -22,10 +54,11 @@
         </div>
     </div>
 
-    <h3 class="text-center">Arraste os itens abaixo!</h3>
+   
+   <h3 class="text-center">Arraste os itens abaixo!</h3>
     
     
-    <div class="container containerCustomizado" id="fundo" style="background-color: white; background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->ambiente->fundo }}')">
+    <div class="container containerCustomizado" id="fundo"  onmousemove="capturaPosicaoDoMouse(event)" onclick="capturaPosicaoDoClick(event)" style="background-color: white; background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->ambiente->fundo }}')">
     {{-- <div class="container containerCustomizado" style="background-color: white"> --}}
         <div class="row" >
             {{-- <div class="col-12" style="border-bottom: 3px solid black"> --}}

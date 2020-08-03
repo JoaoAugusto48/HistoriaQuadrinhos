@@ -145,7 +145,11 @@ class QuadrinhoController extends Controller
 
     // para recuperar o nome do folder
     public static function folder_name($hqId, $user = 'user'){
+        $hash = hash('sha512',uniqid((time())));
+        dd($hash);
+        // Mudar o modo que é realizada a criação de arquivos
         return 'users/'.$user.'/hq_'.$hqId;
+
     }
 
     // para recuperar o caminho do falder e o criar

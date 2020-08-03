@@ -4,6 +4,7 @@ $(document).ready(() => {
 
 
 
+
     var titulo = document.getElementById("txt-titulo");
     var inputTitulo = document.createElement("input");
     inputTitulo.type = "hidden";
@@ -66,6 +67,7 @@ function inicializarAplicacao(){
     });
 
 }
+
 
 
 function baixaQuadrinho(hqId, quadrinhoId){
