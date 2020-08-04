@@ -118,7 +118,6 @@ class SolucionarController extends Controller
         $solucionar = Solucionar::findOrFail($request->solucionar);
         
         $solucionar->delete();
-        // dd($problematizar->id);
 
         $file_name = QuadrinhoController::file_name($solucionar->hq_id, $solucionar->quadrinho->pagina);
         Storage::delete([$file_name]);

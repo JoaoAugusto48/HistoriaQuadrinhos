@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Hq;
 use App\Situar;
 use Illuminate\Http\Request;
 
@@ -78,7 +79,7 @@ class SituarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public static function destroy(Hq $hqId)
     {
         //
     }

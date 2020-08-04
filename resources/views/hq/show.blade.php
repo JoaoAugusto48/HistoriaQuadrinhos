@@ -4,11 +4,11 @@
     <div class="row">
         <h1>
             Quadrinho - {{ $hq->tema }}
-            <a href="{{ route('hq.index') }}" class="btn btn-outline-dark ml-1" target="_parent">Inicio</a>
+            <a href="{{ route('hq.index') }}" class="btn btn-outline-dark ml-1" target="_parent"><i class="fas fa-home"></i> Inicio</a>
         </h1>
     </div>
     <div class="row">
-        <a href="{{ route('hq.edit', $hq->id) }}" class="btn btn-outline-dark ml-3" target="_parent">Atualizar HQ</a>
+        <a href="{{ route('hq.edit', $hq->id) }}" class="btn btn-outline-dark ml-3" target="_parent"><i class="fas fa-edit"></i> Atualizar HQ</a>
     </div>
     <hr class="bg-dark"/>
 
@@ -58,7 +58,7 @@
                                     $mensagem = $problematizar->quadrinho->titulo ? 'de titulo ' . $problematizar->quadrinho->titulo . ', ' : '';
                                     $mensagem .= 'da página ' . $problematizar->quadrinho->pagina;
                                 @endphp
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }} ?')">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }}?')">
                                     <i class="fas fa-trash"></i> Remover</button>
                             </form>
                         @endif
@@ -163,7 +163,7 @@
                             </tr>
                             <tr>
                                 <th scope="col"><img src="{{ $caminho_imagem.$hq->personagem1->personagem }}" class="card-img-personagens text-left" style="pointer-events: none;"></th>
-                                <th scope="col"><img src="{{ $caminho_imagem.$hq->personagem2->personagem }}" class="card-img-personagens text-right"></th>
+                                <th scope="col"><img src="{{ $caminho_imagem.$hq->personagem2->personagem }}" class="card-img-personagens text-right" style="pointer-events: none;"></th>
                             </tr>
                         </tbody>
                     </table>

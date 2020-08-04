@@ -39,8 +39,8 @@ function excluiQuadradin(event){
     <div class="row">
         <h1>Criar - {{ $hq->tema }}, pág. {{ $quadrinho->pagina }}</h1>
     </div>
-    <button class="btn btn-outline-dark" onclick="javascript:history.back()">Voltar</button>
-    <button class="btn btn-outline-dark ml-2" onclick="javascript:location.reload()">Recarregar</button>
+    <button class="btn btn-outline-dark" onclick="javascript:history.back()"><i class="fa fa-reply" aria-hidden="true"></i> Voltar</button>
+    <button class="btn btn-outline-dark ml-2" onclick="javascript:location.reload()"><i class="fa fa-undo" aria-hidden="true"></i> Recarregar</button>
 </div>
 <hr class="bg-dark"/>
 
@@ -88,7 +88,7 @@ function excluiQuadradin(event){
     <div class="container" id="semEstilo">
         <div class="row">
             <div class="col-12 mb-3">
-                <button class="btn btn-success" onclick="baixaQuadrinho({{ $hq->id }}, {{ $quadrinho->id }})">Baixar Quadrinho</button>
+                <button class="btn btn-success" onclick="baixaQuadrinho({{ $hq->id }}, {{ $quadrinho->id }})"><i class="fa fa-eye" aria-hidden="true"></i> Visualizar Quadrinho</button>
             </div>
         </div>
     </div>

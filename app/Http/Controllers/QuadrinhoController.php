@@ -163,10 +163,10 @@ class QuadrinhoController extends Controller
 
     // para recuperar o nome do arquivo
     public static function file_name($hqId){
-        $folder_path = QuadrinhoController::folder_path($hqId);
+        $folder_name = QuadrinhoController::folder_name($hqId);
         // para gerar o arquivo de nome unico
         $file_hash = hash('sha512',uniqid((time())));
-        return $folder_path.'/'. $file_hash.'.png';
+        return $folder_name.'/'. $file_hash.'.png';
     }
     
 }

@@ -13,6 +13,8 @@ use App\Situar;
 use App\Solucionar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class HqController extends Controller
 {
@@ -70,30 +72,9 @@ class HqController extends Controller
         
         $hq->save();
 
-        // dd((Quadrinho::latest()->first()->id)-3);
-
-        // $quadrinho = new Quadrinho();
-        // $quadrinho->titulo = null;
-        // $quadrinho->pagina = 1;
-
-        // $quadrinho->save();
+        QuadrinhoController::folder_path($hq->id);
 
         $this->adicionarQuadrinhos($hq);
-
-        // $mensagem = new Mensagem();
-        // $mensagem->texto = $request->get('saudacao1');
-        // $mensagem->quadrinho_id = (Quadrinho::latest()->first()->id - 1); // para adicionar as mensagens a página 2 da Hq
-        // $mensagem->personagem_id = $hq->personagem1_id;
-        // $mensagem->balao_id = 4;
-        // // $mensagem->hq_id = $hq->id;
-
-        // $mensagem->save();
-
-        // $situar = new Situar();
-        // $situar->hq_id = Hq::latest()->first()->id;
-        // $situar->quadrinho_id = Quadrinho::latest()->first()->id;
-
-        // $situar->save();
 
         $quadrinho = new Quadrinho();
         $quadrinho->titulo = null;
@@ -135,9 +116,13 @@ class HqController extends Controller
         }
 
         $solucionarQuadrinho = true;
-        foreach($solucionars as $solucionar){
-            if(!$solucionar->quadrinho->pathImg){
-                $solucionarQuadrinho = false;
+        if($solucionars->isEmpty()){ //verificando se esse vetor está vazio
+            $solucionarQuadrinho = false;
+        }else {
+            foreach($solucionars as $solucionar){
+                if(!$solucionar->quadrinho->pathImg){
+                    $solucionarQuadrinho = false;
+                }
             }
         }
 
@@ -200,9 +185,34 @@ class HqController extends Controller
      * @param  \App\Hq  $hq
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hq $hq)
+    public function destroy(Request $request)
     {
-        //
+        $hq = Hq::findOrFail($request->hq);
+
+        $situars = Situar::where('hq_id','=',$hq->id)->get();
+        Situar::where('hq_id','=',$hq->id)->delete();
+        foreach($situars as $situar){
+            DB::table('quadrinhos')->where('id','=',$situar->quadrinho_id)->delete();
+        }
+
+        $problematizars = Problematizar::where('hq_id','=',$hq->id)->get();
+        Problematizar::where('hq_id','=',$hq->id)->delete();
+        foreach($problematizars as $problematizar){
+            DB::table('quadrinhos')->where('id','=',$problematizar->quadrinho_id)->delete();
+        }
+
+        $solucionars = Solucionar::where('hq_id','=',$hq->id)->get();
+        Solucionar::where('hq_id','=',$hq->id)->delete();
+        foreach($solucionars as $solucionar){
+            DB::table('quadrinhos')->where('id','=',$solucionar->quadrinho_id)->delete();
+        }
+
+        $hq->delete();
+
+        $arquivo = QuadrinhoController::folder_name($hq->id);
+        Storage::deleteDirectory($arquivo);
+
+        return redirect()->route('hq.index');
     }
 
     /*

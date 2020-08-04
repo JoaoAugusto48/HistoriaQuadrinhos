@@ -123,7 +123,7 @@ function imprimeDiv(div, hqId, quadrinhoId){
             $("#output-quadrinho").append(input);
 
             // ("#output-quadrinho").append('<form action=""></form>');$
-            $("#output-quadrinho").append('<button type="submit" class="btn btn-success m-3">Salvar</button>');
+            $("#output-quadrinho").append('<button type="submit" class="btn btn-success m-3"><i class="fa fa-download" aria-hidden="true"></i> Salvar</button>');
             
             
         }
