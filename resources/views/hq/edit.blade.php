@@ -5,7 +5,7 @@
     <div class="row">
         <h1>
             Editar HQ - {{ $hq->tema }}
-            <button class="btn btn-outline-dark ml-1" onclick="javascript:history.back()">Voltar</button>
+            <button class="btn btn-outline-dark ml-1" onclick="javascript:history.back()"><i class="fa fa-reply" aria-hidden="true"></i> Voltar</button>
         </h1>
     </div>
     <hr class="bg-dark"/>

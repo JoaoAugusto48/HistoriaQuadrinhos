@@ -26,6 +26,14 @@
   box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
 }
 
+.img-tooltip {
+  width: auto;
+  height: 100px;
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+}
+
 .card-checked {
   border: 4px solid rgba(41, 142, 167, 1);
   -webkit-transition: border-color .8s linear; /* Saf3.2+, Chrome */

@@ -34,14 +34,16 @@
                 <th class="align-middle" scope="row" style="max-width: 35ch;">{{ $hq->tema }}</th>
                 <td class="align-middle" scope="row" style="max-width: 27ch;">{{ $hq->local }}</td>
                 <td class="align-middle">
-                    <img src="{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}" class="img-btn mr-2">
+
+                    {{-- <img id="teste" src="{{ $caminho_imagem.$hq->personagem1->personagem }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-placement="top" data-html="true" title="<textarea rows='3' cols='13' class='text-center textareaQuadrinho' disabled>{{ $hq->saudacao1 }}</textarea><img class='img-tooltip' src='{{ $caminho_imagem.$hq->personagem1->personagem }}'>"> --}}
+                    <img src="{{ $caminho_imagem.$hq->personagem1->personagem }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="top" title="<img class='img-tooltip' src='{{ $caminho_imagem.$hq->personagem1->personagem }}'>">
                     /
-                    <img src="{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}" class="img-btn ml-2">
+                    <img src="{{ $caminho_imagem.$hq->personagem2->personagem }}" class="img-btn ml-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="top" title="<img class='img-tooltip' src='{{ $caminho_imagem.$hq->personagem2->personagem }}'>">
                 </td>
-                <td class="align-middle"><img src="{{ env('APP_URL') }}/storage/{{ $hq->ambiente->fundo }}" class="img-btn ml-2"></td>
+                <td class="align-middle"><img src="{{ $caminho_imagem.$hq->ambiente->fundo }}" class="img-btn ml-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="top" title="<img class='img-tooltip' src='{{ $caminho_imagem.$hq->ambiente->fundo }}'>"></td>
                 <td class="align-middle">
                     <div class="btn-group" role="group">
-                        <a href="{{ route('hq.show', $hq->id) }}" class="btn btn-outline-info btn-sm border border-dark" role="button" data-toggle="tooltip" data-placement="top">
+                        <a href="{{ route('hq.show', $hq->id) }}" class="btn btn-outline-info btn-sm border border-dark" role="button">
                             <i class="fa fa-comments" aria-hidden="true"></i> <em>Quadrinhos</em>
                         </a>
                         <form  action="{{ route('hq.destroy', $hq->id) }}" method="post">
@@ -59,5 +61,7 @@
         @endforeach
         </tbody>
     </table>
+
+ 
 
 @endsection

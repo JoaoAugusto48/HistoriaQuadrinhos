@@ -27,7 +27,9 @@ class HqController extends Controller
     {
         $hqs = Hq::get();
 
-        return view('home', compact('hqs'));
+        $caminho_imagem = env('APP_URL').'/storage/';
+
+        return view('home', compact('hqs', 'caminho_imagem'));
     }
 
     /**

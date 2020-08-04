@@ -162,8 +162,8 @@
                                 </th>
                             </tr>
                             <tr>
-                                <th scope="col"><img src="{{ $caminho_imagem.$hq->personagem1->personagem }}" class="card-img-personagens text-left" style="pointer-events: none;"></th>
-                                <th scope="col"><img src="{{ $caminho_imagem.$hq->personagem2->personagem }}" class="card-img-personagens text-right" style="pointer-events: none;"></th>
+                                <th scope="col"><img src="{{ $caminho_imagem.$hq->personagem1->personagem }}" class="card-img-personagens text-left" draggable="false"></th>
+                                <th scope="col"><img src="{{ $caminho_imagem.$hq->personagem2->personagem }}" class="card-img-personagens text-right" draggable="false"></th>
                             </tr>
                         </tbody>
                     </table>
@@ -173,7 +173,7 @@
             <div class="card text-center bg-dark text-white rounded-top-0">
                 <div class="card-header">{{ $situars[2]->quadrinho->titulo }}</div>
                 <div class="card-body p-0 d-flex bg-white">
-                    <img src="{{ $caminho_imagem.$hq->ambiente->fundo }}" class="card-img-ambiente my-auto" style="pointer-events: none;">
+                    <img src="{{ $caminho_imagem.$hq->ambiente->fundo }}" class="card-img-ambiente my-auto" draggable="false">
                 </div>
                 <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $situars[2]->quadrinho->pagina }}</div>
             </div>
@@ -188,7 +188,7 @@
                         <div class="card-header">&nbsp;</div>
                     @endif
                     <div class="card-body p-0 bg-white">
-                        <img src="{{ $caminho_imagem.$situars[3]->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-50" style="pointer-events: none;">
+                        <img src="{{ $caminho_imagem.$situars[3]->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-50" draggable="false">
                     </div>
                     <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $situars[3]->quadrinho->pagina }}</div>
                 </div>
@@ -210,7 +210,7 @@
                                             <div class="card-header">&nbsp;</div>
                                         @endif
                                         <div class="card-body p-0 bg-white">
-                                            <img src="{{ $caminho_imagem.$problematizar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-100" style="pointer-events: none;">
+                                            <img src="{{ $caminho_imagem.$problematizar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-100" draggable="false">
                                         </div>
                                         <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $problematizar->quadrinho->pagina }}</div>
                                     </div>
@@ -236,7 +236,7 @@
                                         <div class="card-header">&nbsp;</div>
                                     @endif
                                     <div class="card-body p-0 bg-white">
-                                        <img src="{{ $caminho_imagem.$solucionar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-100" style="pointer-events: none;">
+                                        <img src="{{ $caminho_imagem.$solucionar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-100" draggable="false">
                                     </div>
                                     <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $solucionar->quadrinho->pagina }}</div>
                                 </div>

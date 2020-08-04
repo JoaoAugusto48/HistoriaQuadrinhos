@@ -22,7 +22,6 @@ function capturaPosicaoDoClick(event){
     teste
     </div>
     
-    
     `;
 }
 
