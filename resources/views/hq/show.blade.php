@@ -15,7 +15,7 @@
     <table class="table table-sm table-hover table-striped text-center" style="border: 3px solid black;">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Fases</th>
+            <th scope="col">Fase</th>
             <th scope="col">Título</th>
             <th scope="col">Página</th>
             <th scope="col">Operações</th>

@@ -13,7 +13,6 @@ use App\Situar;
 use App\Solucionar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class HqController extends Controller
@@ -27,7 +26,7 @@ class HqController extends Controller
     {
         $hqs = Hq::get();
 
-        $caminho_imagem = env('APP_URL').'/storage/';
+        $caminho_imagem = ArquivoController::caminho_storage();
 
         return view('home', compact('hqs', 'caminho_imagem'));
     }
@@ -74,7 +73,7 @@ class HqController extends Controller
         
         $hq->save();
 
-        QuadrinhoController::folder_path($hq->id);
+        ArquivoController::folder_path($hq->id);
 
         $this->adicionarQuadrinhos($hq);
 
@@ -128,7 +127,7 @@ class HqController extends Controller
             }
         }
 
-        $caminho_imagem = env('APP_URL').'/storage/'; //endereço do projeto, local: pasta storage
+        $caminho_imagem = ArquivoController::caminho_storage(); //endereço do projeto, local: pasta storage
         
         return view('hq.show', compact('hq', 'situars', 'problematizars', 'solucionars', 'caminho_imagem',
             'situarQuadrinho', 'problematizarQuadrinho', 'solucionarQuadrinho'));
@@ -211,7 +210,7 @@ class HqController extends Controller
 
         $hq->delete();
 
-        $arquivo = QuadrinhoController::folder_name($hq->id);
+        $arquivo = ArquivoController::folder_name($hq->id);
         Storage::deleteDirectory($arquivo);
 
         return redirect()->route('hq.index');
@@ -220,7 +219,7 @@ class HqController extends Controller
     /*
     *  Adicionando todos os quadrinhos da primeira fase, os que já possuem padrão
     */
-    public function adicionarQuadrinhos(Hq $hq){
+    private function adicionarQuadrinhos(Hq $hq){
         $quadrinho1 = new Quadrinho();
         $quadrinho1->titulo = $hq->tema;
         $quadrinho1->pagina = 1;
@@ -257,7 +256,7 @@ class HqController extends Controller
     /*
     * Adicionar a cada quadrinho a relação com a Hq principal
     */
-    public function adicionarSituar(Quadrinho $quadrinho){
+    private function adicionarSituar(Quadrinho $quadrinho){
         $situar = new Situar();
         $situar->hq_id = Hq::latest()->first()->id;
         $situar->quadrinho_id = $quadrinho->id;

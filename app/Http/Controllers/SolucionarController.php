@@ -119,7 +119,7 @@ class SolucionarController extends Controller
         
         $solucionar->delete();
 
-        $file_name = QuadrinhoController::file_name($solucionar->hq_id, $solucionar->quadrinho->pagina);
+        $file_name = ArquivoController::file_name($solucionar->hq_id, $solucionar->quadrinho->pagina);
         Storage::delete([$file_name]);
 
         Quadrinho::destroy($solucionar->quadrinho_id);
@@ -129,7 +129,7 @@ class SolucionarController extends Controller
         return redirect()->route('hq.show', $solucionar->hq_id);
     }
 
-    public function atualizarPaginaSolucionar($solucionar){ // subtrair página
+    private function atualizarPaginaSolucionar($solucionar){ // subtrair página
         $paginaSolucionars = Solucionar::where('hq_id','=',$solucionar->hq_id)->where('quadrinho_id','>',$solucionar->quadrinho_id)->get();
         
         foreach($paginaSolucionars as $paginaSolucionar){

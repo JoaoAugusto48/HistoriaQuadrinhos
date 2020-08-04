@@ -130,7 +130,7 @@ class ProblematizarController extends Controller
         return redirect()->route('hq.show', $problematizar->hq_id);
     }
 
-    public function alterarPaginaSolucionar($solucionars, $valorSomarPagina = 1){ // somar página
+    private function alterarPaginaSolucionar($solucionars, $valorSomarPagina = 1){ // somar página
         foreach($solucionars as $solucionar){
             // Atualizando as páginas em Solucionars para que possa ser inserido um quadrinho em Problematizar 
             $paginaSolucionar = $solucionar->quadrinho->pagina + $valorSomarPagina;
@@ -142,7 +142,7 @@ class ProblematizarController extends Controller
         }
     }
 
-    public function atualizarPaginaProblematizar($problematizar){ // subtrair página
+    private function atualizarPaginaProblematizar($problematizar){ // subtrair página
         $paginaProblematizars = Problematizar::where('hq_id','=',$problematizar->hq_id)->where('quadrinho_id','>',$problematizar->quadrinho_id)->get();
         
         foreach($paginaProblematizars as $paginaProblematizar){
@@ -152,7 +152,7 @@ class ProblematizarController extends Controller
             DB::table('quadrinhos')->where('id','=', $paginaProblematizar->quadrinho->id)
                 ->update([
                     'pagina' => $atualizarPagina,
-                    'pathImg' => QuadrinhoController::file_name($problematizar->hq_id, $atualizarPagina)
+                    'pathImg' => ArquivoController::file_name($problematizar->hq_id, $atualizarPagina)
                 ]);
         }
     }
