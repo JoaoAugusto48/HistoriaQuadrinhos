@@ -1,9 +1,8 @@
+// função para atualizar o titulo da pagina
+// caso o usuário o atualize o titulo após apertar o botão de visualizar
 $(document).ready(() => {
 
     inicializarAplicacao();
-
-
-
 
     var titulo = document.getElementById("txt-titulo");
     var inputTitulo = document.createElement("input");
@@ -15,9 +14,6 @@ $(document).ready(() => {
     })
     
     $("#titulo-escondido").append(inputTitulo);
-
-
-
 });
 
 // function mostrarBalao(){
@@ -29,6 +25,7 @@ $(document).ready(() => {
 //     }
 // }
 
+// Estado inicial da página
 function inicializarAplicacao(){
     
     let acopladorImagens = document.querySelector('.acopla-imagens');
@@ -36,18 +33,6 @@ function inicializarAplicacao(){
     $( ".arrastavel" ).draggable({
         containment: "#fundo", 
         scroll: false
-
-
-        // stop: function(element) {
-        //     let elemento = element.target.outerHTML;
-        //     elemento = elemento.split('style')[0];
-
-        //     console.log(acopladorImagens.childElementCount);
-        //     elemento += 'style="margin-left: -150px">';
-        //     console.log(elemento);
-        //     acopladorImagens.innerHTML+=elemento;
-        //     inicializarAplicacao();
-        //   }
     });
 
     $( ".arrastavel" ).resizable({
@@ -68,8 +53,7 @@ function inicializarAplicacao(){
 
 }
 
-
-
+// Função para baixar o quadrinho
 function baixaQuadrinho(hqId, quadrinhoId){
     $("#output-quadrinho").html('');
     imprimeDiv($('#fundo'),hqId, quadrinhoId);
@@ -79,6 +63,7 @@ function baixaQuadrinho(hqId, quadrinhoId){
         }, 500);
 }
 
+// Local onde o usuário poderá ver a imagem gerada e salvar 
 function imprimeDiv(div, hqId, quadrinhoId){
     html2canvas(div, {
         onrendered: function(canvas) {
@@ -132,21 +117,6 @@ function imprimeDiv(div, hqId, quadrinhoId){
 
 function show_hide() {
     var img = document.getElementById('personagem');
-    // console.log(img);
-    // var button = document.createElement('button');
-    // button.type = "button";
-    // button.classList.add("btn");
-    // button.classList.add("btn-primary");
-    // button.classList.add("marginDoTopo");
-
-    // var i = document.createElement('i');
-    // i.classList.add("fas");
-    // i.classList.add("fa-plus");
-
-    // button.appendChild(i);
-
-    // img.appendChild(button);
-    // console.log(img);
 
     var baloes = document.getElementById("baloes");
 

@@ -15,3 +15,8 @@ INSERT INTO `balaos` (`id`, `caminho`, `descricao`, `created_at`, `updated_at`) 
 (2, 'balao/balaoDireita2.png', 'balao2', '2020-07-13 17:09:45', '2020-07-13 17:09:45'),
 (3, 'balao/balaoEsquerda1.png', 'balao3', '2020-07-13 17:09:45', '2020-07-13 17:09:45'),
 (4, 'balao/balaoEsquerda2.png', 'balao4', '2020-07-13 17:09:45', '2020-07-13 17:09:45');
+
+INSERT INTO `utensilios` (`id`, `caminho`, `descricao`, `created_at`, `updated_at`) VALUES
+(1, 'utensilio/utensilio1.png', 'cadeira1', '2020-08-05 13:48:35', '2020-08-05 13:48:35'),
+(2, 'utensilio/utensilio2.png', 'cadeira2', '2020-08-05 13:48:35', '2020-08-05 13:48:35'),
+(3, 'utensilio/utensilio3.png', 'cadeira3', '2020-08-05 13:50:04', '2020-08-05 13:50:04');

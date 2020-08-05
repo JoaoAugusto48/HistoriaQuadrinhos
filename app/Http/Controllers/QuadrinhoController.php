@@ -6,6 +6,7 @@ use App\Balao;
 use App\Hq;
 use App\Quadrinho;
 use App\Situar;
+use App\Utensilio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -71,8 +72,9 @@ class QuadrinhoController extends Controller
         $quadrinho = Quadrinho::findOrFail($quadrinhoId);
 
         $balaos = Balao::get();
+        $utensilios = Utensilio::get();
 
-        return view('quadrinhos.gerarQuadrinho', compact('hq', 'quadrinho', 'balaos'));
+        return view('quadrinhos.gerarQuadrinho', compact('hq', 'quadrinho', 'balaos', 'utensilios'));
     }
 
     /**
@@ -109,11 +111,17 @@ class QuadrinhoController extends Controller
         @list($type, $file_data) = explode(';', $base64_image);
         @list(, $file_data) = explode(',', $file_data);
         
+        // Teste caso tenha imagem, é criado nome para o arquivo, 
+        // caso não a imagem atual é deletada para ser adicionada outra no local  
         $file_name = $quadrinho->pathImg;
         if(!$quadrinho->pathImg){
-            $file_name = $this->file_name($hqId);
-            Storage::disk('public')->put($file_name, base64_decode($file_data));
+            $file_name = ArquivoController::file_name($hqId);
         }
+        else {// Deletando a imagem atual e atualizando
+            Storage::delete([$file_name]);
+        }
+        Storage::disk('public')->put($file_name, base64_decode($file_data));
+
 
         DB::table('quadrinhos')->where('id','=',$quadrinhoId)
             ->update([
