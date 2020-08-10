@@ -1,4 +1,4 @@
-// função para atualizar o titulo da pagina
+// função para atualizar o titulo do quadrinho
 // caso o usuário o atualize o titulo após apertar o botão de visualizar
 $(document).ready(() => {
 
@@ -10,48 +10,39 @@ $(document).ready(() => {
     inputTitulo.name = titulo.name;
 
     titulo.addEventListener("input",function(){
+        // Estado inicial da página
+        function inicializarAplicacao(){
+            
+            let acopladorImagens = document.querySelector('.acopla-imagens');
+        
+            $( ".arrastavel" ).draggable({
+                containment: "#fundo", 
+                scroll: false
+            });
+        
+            $( ".arrastavel" ).resizable({
+                containment: "#fundo",
+                maxHeight: 260,
+                maxWidth: 180,
+                minHeight: 100,
+                minWidth: 50
+            });
+        
+            $( ".balao" ).resizable({
+                containment: "#fundo",
+                maxHeight: 200,
+                maxWidth: 200,
+                minHeight: 75,
+                minWidth: 75
+            });
+        
+        }
         inputTitulo.value = titulo.value;
     })
     
     $("#titulo-escondido").append(inputTitulo);
 });
 
-// function mostrarBalao(){
-//     var click = document.getElementById("drop-content");
-//     if(click.style.display === "none"){
-//         click.style.display = "block";
-//     } else {
-//         click.style.display = "nome";
-//     }
-// }
-
-// Estado inicial da página
-function inicializarAplicacao(){
-    
-    let acopladorImagens = document.querySelector('.acopla-imagens');
-
-    $( ".arrastavel" ).draggable({
-        containment: "#fundo", 
-        scroll: false
-    });
-
-    $( ".arrastavel" ).resizable({
-        containment: "#fundo",
-        maxHeight: 260,
-        maxWidth: 180,
-        minHeight: 100,
-        minWidth: 50
-    });
-
-    $( ".balao" ).resizable({
-        containment: "#fundo",
-        maxHeight: 200,
-        maxWidth: 200,
-        minHeight: 75,
-        minWidth: 75
-    });
-
-}
 
 // Função para baixar o quadrinho
 function baixaQuadrinho(hqId, quadrinhoId){
@@ -115,6 +106,7 @@ function imprimeDiv(div, hqId, quadrinhoId){
     });
 }
 
+// função usada para oncontext menu
 function show_hide() {
     var img = document.getElementById('personagem');
 

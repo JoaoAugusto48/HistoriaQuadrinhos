@@ -53,30 +53,37 @@ function excluiQuadradin(event){
     <h3 class="text-center">Arraste os itens abaixo!</h3>
     
     <div class="container">
-        <div class="form-group row">
-            <div class="col-sm-4">
-                <button id="btn-personagem2" type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#personagem2">
+        <div class="form-group row mb-0">
+            <div class="col-sm-6">
+                <button id="btn-balao" type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#balao">
                     Balão de fala
                 </button>
             </div>
-            <div class="col-sm-4">
-                <button id="btn-personagem2" type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#personagem2">
-                    Balão de fala
+            <div class="col-sm-6">
+                <button id="btn-utensilio" type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#utensilio">
+                    Objetos
                 </button>
             </div>
         </div>
     
-        <div class="container containerCustomizado" id="fundo" onmousemove="capturaPosicaoDoMouse(event)" onclick="capturaPosicaoDoClick(event)" style="background-color: white; background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->ambiente->fundo }}')">
+        {{-- Com funcões referentes ao uso do mouse --}}
+        {{-- <div class="container containerCustomizado" id="fundo" onmousemove="capturaPosicaoDoMouse(event)" onclick="capturaPosicaoDoClick(event)" style="background-color: white; background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->ambiente->fundo }}')"> --}}
+        
+        {{-- Sem funcões referentes ao uso do mouse --}}
+        <div class="container containerCustomizado" id="fundo" style="background-color: white; background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->ambiente->fundo }}')">
         {{-- <div class="container containerCustomizado" style="background-color: white"> --}}
             <div class="row" >
                 {{-- <div class="col-12" style="border-bottom: 3px solid black"> --}}
                 <div class="col-12">
                     <div class="col-9 acopla-imagens" id="acopla-imagens" style="display: flex; align-items: stretch; z-index:2">
                         
-                        <div class="arrastavel personagem" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}')" oncontextmenu="show_hide();return false;"></div>
-                        <div class="arrastavel personagem" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}')" oncontextmenu="show_hide();return false;">
+                        {{-- Com context menu --}}
+                        {{-- <div class="arrastavel personagem" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}')" oncontextmenu="show_hide();return false;"></div>
+                        <div class="arrastavel personagem" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}')" oncontextmenu="show_hide();return false;"> --}}
                         
-                        </div>
+                            {{-- Sem context menu --}}
+                        <div class="arrastavel personagem" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}')"></div>
+                        <div class="arrastavel personagem" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}')"></div>
                     </div>
 
                     <div id="baloes" style="display: none;">
@@ -120,5 +127,26 @@ function excluiQuadradin(event){
         </div>
     </div>
 </div>   
+
+@include('quadrinhos.modal.balaoFala')
+@include('quadrinhos.modal.utensilio')
+
+{{-- função Javascrit para selecionar opção presente nos modais --}}
+<script>
+    function checked_radio() {
+        let radioButtons = document.querySelectorAll("input[type='radio']");
+
+        for (let i = 0; i < radioButtons.length; i++) {
+            const el = radioButtons[i];
+
+            if (el.checked) {
+                el.closest(".card").classList.add("card-checked");
+            } else {
+                el.closest(".card").classList.remove("card-checked");
+            }      
+        }
+    }
+</script>
+
 
 @endsection
