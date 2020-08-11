@@ -63,6 +63,26 @@
 
                 utensilio.appendChild(imagem);
 
+                let utensilioImg = document.createElement("div");
+                utensilioImg.id = "utensilioImg";
+                utensilioImg.classList.add("arrastavel");
+                utensilioImg.classList.add("arrastavelUtensilio");
+                utensilioImg.setAttribute("data-toggle", "tooltip");
+                utensilioImg.setAttribute("data-placement", "top");
+                utensilioImg.setAttribute("title", "Clique com o botão direito para remover");
+                utensilioImg.oncontextmenu = function(event) {
+                    event.preventDefault();
+                    this.remove();
+                };
+                // balaoMsg.classList.add("ui-draggable");
+                // balaoMsg.classList.add("ui-draggable-handle");
+                // balaoMsg.classList.add("ui-resizable");
+                utensilioImg.style.backgroundImage = "url({{ env('APP_URL') }}/storage/"+img+")";
+                
+                let outputQuadrinho = document.getElementById("acopla-imagens");
+                outputQuadrinho.append(utensilioImg);
+
+                colocarUtensilio();
             }
         }
     }

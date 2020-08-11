@@ -143,7 +143,7 @@
         <div class="card-group">
             <div class="card bg-dark text-white rounded-top-0">
                 <div class="card-body d-flex">
-                    <h2 class="card-title m-auto text-center">{{ $situars[0]->quadrinho->titulo }}</h2>
+                    <h2 class="card-title m-auto text-center" style="max-width: 25ch;">{{ $situars[0]->quadrinho->titulo }}</h2>
                 </div>
                 <div class="card-footer bg-transparent border-top-0 numeroPagina">{{ $situars[0]->quadrinho->pagina }}</div>
             </div>

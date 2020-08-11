@@ -53,19 +53,30 @@ function colocarBalao(){
 
     $( ".arrastavel" ).resizable({
         containment: "#fundo",
-        maxHeight: 200,
+        maxHeight: 180,
         maxWidth: 180,
-        minHeight: 100,
-        minWidth: 50
+        minHeight: 70,
+        minWidth: 70
+    });
+}
+
+function colocarUtensilio(){
+    
+    let acopladorImagens = document.querySelector('.acopla-imagens');
+
+    $( ".arrastavel" ).draggable({
+        containment: "#fundo", 
+        scroll: false
     });
 
-    $( ".balao" ).resizable({
+    $( ".arrastavel" ).resizable({
         containment: "#fundo",
         maxHeight: 200,
         maxWidth: 200,
-        minHeight: 75,
-        minWidth: 75
+        minHeight: 100,
+        minWidth: 100
     });
+
 }
 
 // Função para baixar o quadrinho
@@ -130,15 +141,3 @@ function imprimeDiv(div, hqId, quadrinhoId){
     });
 }
 
-// função usada para oncontext menu
-function show_hide() {
-    var img = document.getElementById('personagem');
-
-    var baloes = document.getElementById("baloes");
-
-    if(baloes.style.display === "none") {
-        baloes.style.display = "block";
-    } else {
-        baloes.style.display = "none";
-    }
-}

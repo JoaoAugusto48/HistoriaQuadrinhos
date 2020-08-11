@@ -82,21 +82,11 @@
                         {{-- <div class="arrastavel personagem" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}')" oncontextmenu="show_hide();return false;"></div>
                         <div class="arrastavel personagem" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}')" oncontextmenu="show_hide();return false;"> --}}
                         
-                            {{-- Sem context menu --}}
-                        <div class="arrastavel personagem" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}')"></div>
-                        <div class="arrastavel personagem" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}')"></div>
+                        {{-- Sem context menu --}}
+                        <div class="arrastavel personagem" style="z-index: 100; background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}')"></div>
+                        <div class="arrastavel personagem" style="z-index: 101; background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}')"></div>
                     </div>
 
-                    <div id="baloes" style="display: none;">
-                        {{-- https://www.youtube.com/watch?v=w88U9JA70wQ --}}
-                        @foreach ($balaos as $balao)
-                            {{-- <textarea rows="3" cols="3" class="arrastavel text-center balaoContent" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $balao->caminho }}'); border:none; outline:none; padding:5px"></textarea> --}}
-                            {{-- background:transparent --}}
-                            <div class="arrastavel balao p-1" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $balao->caminho }}')">
-                                <textarea id="txtBalao" rows="3" cols="13" class="text-center balaoContent" style="background:transparent;height:50px; border:none; outline:none; padding:5px; margin: 15px 0px 0px 13px; resize: none; width:80%; height:50%; overflow-y: hidden; line-height:15px; font-size:14px;"></textarea>
-                            </div>
-                        @endforeach
-                    </div>
                 </div>
             </div>
         </div>
