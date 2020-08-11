@@ -10,39 +10,63 @@ $(document).ready(() => {
     inputTitulo.name = titulo.name;
 
     titulo.addEventListener("input",function(){
-        // Estado inicial da página
-        function inicializarAplicacao(){
-            
-            let acopladorImagens = document.querySelector('.acopla-imagens');
-        
-            $( ".arrastavel" ).draggable({
-                containment: "#fundo", 
-                scroll: false
-            });
-        
-            $( ".arrastavel" ).resizable({
-                containment: "#fundo",
-                maxHeight: 260,
-                maxWidth: 180,
-                minHeight: 100,
-                minWidth: 50
-            });
-        
-            $( ".balao" ).resizable({
-                containment: "#fundo",
-                maxHeight: 200,
-                maxWidth: 200,
-                minHeight: 75,
-                minWidth: 75
-            });
-        
-        }
+        $("#titulo-escondido").append(inputTitulo);
         inputTitulo.value = titulo.value;
-    })
-    
-    $("#titulo-escondido").append(inputTitulo);
-});
+    });  
+})
 
+// Estado inicial da página
+function inicializarAplicacao(){
+    
+    let acopladorImagens = document.querySelector('.acopla-imagens');
+
+    $( ".arrastavel" ).draggable({
+        containment: "#fundo", 
+        scroll: false
+    });
+
+    $( ".arrastavel" ).resizable({
+        containment: "#fundo",
+        maxHeight: 260,
+        maxWidth: 180,
+        minHeight: 100,
+        minWidth: 50
+    });
+
+    $( ".balao" ).resizable({
+        containment: "#fundo",
+        maxHeight: 200,
+        maxWidth: 200,
+        minHeight: 75,
+        minWidth: 75
+    });
+}
+
+function colocarBalao(){
+    
+    let acopladorImagens = document.querySelector('.acopla-imagens');
+
+    $( ".arrastavel" ).draggable({
+        containment: "#fundo", 
+        scroll: false
+    });
+
+    $( ".arrastavel" ).resizable({
+        containment: "#fundo",
+        maxHeight: 200,
+        maxWidth: 180,
+        minHeight: 100,
+        minWidth: 50
+    });
+
+    $( ".balao" ).resizable({
+        containment: "#fundo",
+        maxHeight: 200,
+        maxWidth: 200,
+        minHeight: 75,
+        minWidth: 75
+    });
+}
 
 // Função para baixar o quadrinho
 function baixaQuadrinho(hqId, quadrinhoId){

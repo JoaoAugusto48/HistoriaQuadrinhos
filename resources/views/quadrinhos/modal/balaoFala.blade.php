@@ -52,17 +52,34 @@
         for (let i = 0; i < radio_balao.length; i++) {
             const el = radio_balao[i];
             if(el.checked){
-                // // console.log(el);
-                // let descricao = el.getAttribute("data-descricao");
-                // let img = el.getAttribute("data-img");
-                // balao.textContent = "Balão Selecionado: " + descricao;
+                // console.log(el);
+                let descricao = el.getAttribute("data-descricao");
+                let img = el.getAttribute("data-img");
+                balao.textContent = "Balão Selecionado: " + descricao;
 
-                // let imagem = document.createElement("img");
-                // imagem.src = "{{ env('APP_URL') }}/storage/" + img;
-                // imagem.classList.add("img-btn");
-                // imagem.classList.add("ml-2");
-
+                let imagem = document.createElement("img");
+                imagem.src = "{{ env('APP_URL') }}/storage/" + img;
+                imagem.classList.add("img-btn");
+                imagem.classList.add("ml-2");
+                
                 balao.appendChild(imagem);
+
+                let balaoMsg = document.createElement("div");
+                balaoMsg.classList.add("arrastavel");
+                balaoMsg.classList.add("arrastavelBalao");
+                // balaoMsg.classList.add("ui-draggable");
+                // balaoMsg.classList.add("ui-draggable-handle");
+                // balaoMsg.classList.add("ui-resizable");
+                balaoMsg.style.backgroundImage = "url({{ env('APP_URL') }}/storage/"+img+")";
+
+                let txtBalao = "<textarea rows='3' cols='13' class='text-center balaoContent txtBalao'></textarea>";
+                balaoMsg.innerHTML = txtBalao;
+                
+                let outputQuadrinho = document.getElementById("acopla-imagens");
+                outputQuadrinho.append(balaoMsg);
+
+                colocarBalao();
+
             }
         }
     }

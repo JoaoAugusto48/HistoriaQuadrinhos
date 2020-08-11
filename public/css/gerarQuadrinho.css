@@ -48,3 +48,25 @@
     width: 150px; 
     height: 150px;
 }
+
+.txtBalao {
+    background: transparent;
+    height:50px;
+    border:none; 
+    outline:none; 
+    padding:5px; 
+    margin: 15px 0px 0px 13px; 
+    resize: none; width:80%; 
+    height:50%; 
+    overflow-y: hidden; 
+    line-height:15px; 
+    font-size:14px;
+}
+
+.arrastavelBalao{
+    width: 100px; 
+    height: 90px;
+    /* border: 2px solid black; */
+    background-size: 100% 100%;
+    cursor: pointer;
+}

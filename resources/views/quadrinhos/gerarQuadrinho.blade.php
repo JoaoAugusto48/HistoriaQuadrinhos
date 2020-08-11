@@ -3,11 +3,11 @@
 
 @section('content')
     
-{{-- 
+
 <script>
-    function capturaPosicaoDoMouse(event){
-   // console.log(event);
-}
+//     function capturaPosicaoDoMouse(event){
+//    // console.log(event);
+// }
 
 function capturaPosicaoDoClick(event){
     const posicoes = {x : event.clientX, y : event.clientY + window.scrollY};
@@ -22,12 +22,12 @@ function capturaPosicaoDoClick(event){
     `;
 }
 
-function excluiQuadradin(event){
-    console.log(event.path[0].style.display="none");
-    event.preventDefault();
-    return false;
-}
-</script> --}}
+// function excluiQuadradin(event){
+//     console.log(event.path[0].style.display="none");
+//     event.preventDefault();
+//     return false;
+// }
+</script>
 
 
 
@@ -53,17 +53,17 @@ function excluiQuadradin(event){
     <h3 class="text-center">Arraste os itens abaixo!</h3>
     
     <div class="container">
-        <div class="form-group row mb-0">
-            <div class="col-sm-6">
-                <button id="btn-balao" type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#balao">
+        <div class="btn-group w-100 mb-0">
+            {{-- <div class="col-sm-6"> --}}
+                <button id="btn-balao" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#balao">
                     Balão de fala
                 </button>
-            </div>
-            <div class="col-sm-6">
-                <button id="btn-utensilio" type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#utensilio">
+            {{-- </div>
+            <div class="col-sm-6"> --}}
+                <button id="btn-utensilio" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#utensilio">
                     Objetos
                 </button>
-            </div>
+            {{-- </div> --}}
         </div>
     
         {{-- Com funcões referentes ao uso do mouse --}}
@@ -92,7 +92,7 @@ function excluiQuadradin(event){
                             {{-- <textarea rows="3" cols="3" class="arrastavel text-center balaoContent" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $balao->caminho }}'); border:none; outline:none; padding:5px"></textarea> --}}
                             {{-- background:transparent --}}
                             <div class="arrastavel balao p-1" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $balao->caminho }}')">
-                                <textarea rows="3" cols="13" class="text-center balaoContent" style="background:transparent;height:50px; border:none; outline:none; padding:5px; margin: 15px 0px 0px 13px; resize: none; width:80%; height:50%; overflow-y: hidden; line-height:15px; font-size:14px;"></textarea>
+                                <textarea id="txtBalao" rows="3" cols="13" class="text-center balaoContent" style="background:transparent;height:50px; border:none; outline:none; padding:5px; margin: 15px 0px 0px 13px; resize: none; width:80%; height:50%; overflow-y: hidden; line-height:15px; font-size:14px;"></textarea>
                             </div>
                         @endforeach
                     </div>
