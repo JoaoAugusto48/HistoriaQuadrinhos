@@ -52,17 +52,17 @@
         for (let i = 0; i < radio_utensilio.length; i++) {
             const el = radio_utensilio[i];
             if(el.checked){
-                // console.log(el);
-                // let descricao = el.getAttribute("data-descricao");
-                // let img = el.getAttribute("data-img");
-                // utensilio.textContent = "Balão Selecionado: " + descricao;
+                console.log(el);
+                let descricao = el.getAttribute("data-descricao");
+                let img = el.getAttribute("data-img");
+                utensilio.textContent = "Objeto Selecionado: ";
 
-                // let imagem = document.createElement("img");
-                // imagem.src = "{{ env('APP_URL') }}/storage/" + img;
-                // imagem.classList.add("img-btn");
-                // imagem.classList.add("ml-2");
+                let imagem = document.createElement("img");
+                imagem.src = "{{ env('APP_URL') }}/storage/" + img;
+                imagem.classList.add("modal-utensilio-btn");
 
                 utensilio.appendChild(imagem);
+
             }
         }
     }

@@ -70,3 +70,13 @@
     background-size: 100% 100%;
     cursor: pointer;
 }
+
+.modal-btn {
+    width: auto;
+    height: 25px;
+}
+
+.modal-utensilio-btn {
+    width: auto;
+    height: 50px;
+}

@@ -9,24 +9,25 @@
 //    // console.log(event);
 // }
 
-function capturaPosicaoDoClick(event){
-    const posicoes = {x : event.clientX, y : event.clientY + window.scrollY};
-    console.log(posicoes);
+// function capturaPosicaoDoClick(event){
+//     const posicoes = {x : event.clientX, y : event.clientY + window.scrollY};
+//     console.log(posicoes);
 
-    document.querySelector("#fundo").innerHTML+=
-    `
-    <div class="balaozin" oncontextmenu="excluiQuadradin(event)" style="width: 50px; display: block; height: 50x; background-color: pink; position: absolute; left: ${posicoes.x}px; top: ${posicoes.y}px">
-    teste
-    </div>
+//     document.querySelector("#fundo").innerHTML+=
+//     `
+//     <div class="balaozin" oncontextmenu="excluiQuadradin(event)" style="width: 50px; display: block; height: 50x; background-color: pink; position: absolute; left: ${posicoes.x}px; top: ${posicoes.y}px">
+//     teste
+//     </div>
     
-    `;
-}
+//     `;
+// }
 
 // function excluiQuadradin(event){
 //     console.log(event.path[0].style.display="none");
 //     event.preventDefault();
 //     return false;
 // }
+
 </script>
 
 
@@ -146,6 +147,12 @@ function capturaPosicaoDoClick(event){
             }      
         }
     }
+
+    // let balaoMsg = document.getElementById("balaoMsg");
+    // console.log(balaoMsg); 
+    // balaoMsg.addEventListener("contextmenu", function(){
+    //     console.log(balaoMsg); 
+    // });
 </script>
 
 

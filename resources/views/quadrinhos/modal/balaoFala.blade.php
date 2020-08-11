@@ -55,18 +55,25 @@
                 // console.log(el);
                 let descricao = el.getAttribute("data-descricao");
                 let img = el.getAttribute("data-img");
-                balao.textContent = "Balão Selecionado: " + descricao;
+                balao.textContent = "Balão Selecionado: ";
 
                 let imagem = document.createElement("img");
                 imagem.src = "{{ env('APP_URL') }}/storage/" + img;
-                imagem.classList.add("img-btn");
-                imagem.classList.add("ml-2");
+                imagem.classList.add("modal-btn");
                 
                 balao.appendChild(imagem);
 
                 let balaoMsg = document.createElement("div");
+                balaoMsg.id = "balaoMsg";
                 balaoMsg.classList.add("arrastavel");
                 balaoMsg.classList.add("arrastavelBalao");
+                balaoMsg.setAttribute("data-toggle", "tooltip");
+                balaoMsg.setAttribute("data-placement", "top");
+                balaoMsg.setAttribute("title", "Clique com o botão direito para remover");
+                balaoMsg.oncontextmenu = function(event) {
+                    event.preventDefault();
+                    this.remove();
+                };
                 // balaoMsg.classList.add("ui-draggable");
                 // balaoMsg.classList.add("ui-draggable-handle");
                 // balaoMsg.classList.add("ui-resizable");
@@ -79,7 +86,6 @@
                 outputQuadrinho.append(balaoMsg);
 
                 colocarBalao();
-
             }
         }
     }
