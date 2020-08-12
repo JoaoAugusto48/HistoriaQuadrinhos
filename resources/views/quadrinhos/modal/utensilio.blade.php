@@ -5,7 +5,7 @@
 
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Balão</h5>
-                <button type="button" class="btn btn-success ml-3" data-dismiss="modal" onclick="confirmarUtensilio()">Confirmar</button>
+                <button type="button" class="btn btn-success ml-3" data-dismiss="modal" onclick="confirmarUtensilio('{{$caminho_imagem}}')">Confirmar</button>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -22,7 +22,7 @@
                                         <div class="card-header card-title">{{ $utensilio->descricao }}</div>
                                         <div class="card-body align-center">
                                             <input type="radio" id="{{ $utensilio->id }}" name="utensilio_id" value="{{ $utensilio->id }}" data-descricao="{{ $utensilio->descricao }}" data-img="{{ $utensilio->caminho }}" onclick="checked_radio()">
-                                            <img src="{{ env('APP_URL') }}/storage/{{ $utensilio->caminho }}" class="card-img-top">
+                                            <img src="{{ $caminho_imagem.$utensilio->caminho }}" class="card-img-top">
                                         </div>
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="buttonCloseModal" data-dismiss="modal" onclick="confirmarUtensilio()">Confirmar</button>
+                <button type="button" class="btn btn-success" id="buttonCloseModal" data-dismiss="modal" onclick="confirmarUtensilio('{{$caminho_imagem}}')">Confirmar</button>
                 {{-- <button type="button" class="btn btn-primary">Understood</button> --}}
             </div>
         </div>
@@ -45,7 +45,7 @@
 <!-- Javascript de Confirmação de seleção utensilio -->
 <script>
 
-    function confirmarUtensilio(){
+    function confirmarUtensilio(caminho_imagem){
         let utensilio = document.querySelector("#btn-utensilio");
         let radio_utensilio = document.getElementsByName("utensilio_id");
 
@@ -58,7 +58,7 @@
                 utensilio.textContent = "Objeto Selecionado: ";
 
                 let imagem = document.createElement("img");
-                imagem.src = "{{ env('APP_URL') }}/storage/" + img;
+                imagem.src = caminho_imagem + img;
                 imagem.classList.add("modal-utensilio-btn");
 
                 utensilio.appendChild(imagem);

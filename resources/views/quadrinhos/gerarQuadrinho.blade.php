@@ -83,8 +83,8 @@
                         <div class="arrastavel personagem" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}')" oncontextmenu="show_hide();return false;"> --}}
                         
                         {{-- Sem context menu --}}
-                        <div class="arrastavel personagem" style="z-index: 100; background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}')"></div>
-                        <div class="arrastavel personagem" style="z-index: 101; background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}')"></div>
+                        <div class="arrastavel personagem" style="z-index: 100; background-image: url('{{ $caminho_imagem.$hq->personagem1->personagem }}')"></div>
+                        <div class="arrastavel personagem" style="z-index: 101; background-image: url('{{ $caminho_imagem.$hq->personagem2->personagem }}')"></div>
                     </div>
 
                 </div>

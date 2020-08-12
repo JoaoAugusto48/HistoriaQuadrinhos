@@ -5,7 +5,7 @@
 
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Balão</h5>
-                <button type="button" class="btn btn-success ml-3" data-dismiss="modal" onclick="confirmarBalao()">Confirmar</button>
+                <button type="button" class="btn btn-success ml-3" data-dismiss="modal" onclick="confirmarBalao('{{$caminho_imagem}}')">Confirmar</button>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -22,7 +22,7 @@
                                         <div class="card-header card-title">{{ $balao->descricao }}</div>
                                         <div class="card-body align-center">
                                             <input type="radio" id="{{ $balao->id }}" name="balao_id" value="{{ $balao->id }}" data-descricao="{{ $balao->descricao }}" data-img="{{ $balao->caminho }}" onclick="checked_radio()">
-                                            <img src="{{ env('APP_URL') }}/storage/{{ $balao->caminho }}" class="card-img-top">
+                                            <img src="{{ $caminho_imagem.$balao->caminho }}" class="card-img-top">
                                         </div>
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="buttonCloseModal" data-dismiss="modal" onclick="confirmarBalao()">Confirmar</button>
+                <button type="button" class="btn btn-success" id="buttonCloseModal" data-dismiss="modal" onclick="confirmarBalao('{{$caminho_imagem}}')">Confirmar</button>
                 {{-- <button type="button" class="btn btn-primary">Understood</button> --}}
             </div>
         </div>
@@ -45,7 +45,7 @@
 <!-- Javascript de Confirmação de seleção balao -->
 <script>
 
-    function confirmarBalao(){
+    function confirmarBalao(caminho_imagem){
         let balao = document.querySelector("#btn-balao");
         let radio_balao = document.getElementsByName("balao_id");
 
@@ -58,7 +58,7 @@
                 balao.textContent = "Balão Selecionado: ";
 
                 let imagem = document.createElement("img");
-                imagem.src = "{{ env('APP_URL') }}/storage/" + img;
+                imagem.src = caminho_imagem + img;
                 imagem.classList.add("modal-btn");
                 
                 balao.appendChild(imagem);
@@ -77,7 +77,7 @@
                 // balaoMsg.classList.add("ui-draggable");
                 // balaoMsg.classList.add("ui-draggable-handle");
                 // balaoMsg.classList.add("ui-resizable");
-                balaoMsg.style.backgroundImage = "url({{ env('APP_URL') }}/storage/"+img+")";
+                balaoMsg.style.backgroundImage = "url("+ caminho_imagem +img+")";
 
                 let txtBalao = "<textarea rows='3' cols='13' class='text-center balaoContent txtBalao'></textarea>";
                 balaoMsg.innerHTML = txtBalao;

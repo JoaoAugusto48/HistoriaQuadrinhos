@@ -74,7 +74,9 @@ class QuadrinhoController extends Controller
         $balaos = Balao::get();
         $utensilios = Utensilio::get();
 
-        return view('quadrinhos.gerarQuadrinho', compact('hq', 'quadrinho', 'balaos', 'utensilios'));
+        $caminho_imagem = ArquivoController::caminho_storage();
+
+        return view('quadrinhos.gerarQuadrinho', compact('hq', 'quadrinho', 'balaos', 'utensilios', 'caminho_imagem'));
     }
 
     /**
