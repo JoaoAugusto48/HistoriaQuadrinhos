@@ -141,3 +141,4 @@ function imprimeDiv(div, hqId, quadrinhoId){
     });
 }
 
+

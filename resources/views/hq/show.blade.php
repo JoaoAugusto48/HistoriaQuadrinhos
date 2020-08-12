@@ -133,8 +133,17 @@
 
     {{-- Botão para Baixar os quadrinhos --}}
     @if ($situarQuadrinho && $problematizarQuadrinho && $solucionarQuadrinho)
-        <button class="btn btn-outline-primary mb-3"><i class="fas fa-download"></i> Baixar Quadrinho</button>
+        <button class="btn btn-outline-primary mb-3" onclick="baixarHq('{{ $hq->tema }}')"><i class="fas fa-download"></i> Baixar Quadrinho</button>
     @endif
+
+    {{-- excluir --}}
+    <div id="output-hq">
+
+    </div>
+
+    <div id="testeImprimir">
+
+    </div>
 
 
     {{-- Inicio divisão para baixar os quadrinhos --}}
@@ -155,7 +164,9 @@
                         <tbody>
                             <tr>
                                 <th scope="col" class="balaoQuadrinho py-4" style="background-image: url('{{$caminho_imagem}}/balao/balaoEsquerda2.png')">
+                                {{-- <th scope="col"> --}}
                                     <textarea rows="3" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao1 }}</textarea>
+                                    {{-- <img src="{{$caminho_imagem}}/balao/balaoEsquerda2.png" class="balaoQuadrinho py-4"> --}}
                                 </th>
                                 <th scope="col" class="balaoQuadrinho py-4" style="background-image: url('{{$caminho_imagem}}/balao/balaoDireita1.png')">
                                     <textarea rows="3" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao2 }}</textarea>
@@ -188,7 +199,7 @@
                         <div class="card-header">&nbsp;</div>
                     @endif
                     <div class="card-body p-0 bg-white">
-                        <img src="{{ $caminho_imagem.$situars[3]->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-50" draggable="false">
+                        <img src="{{ $caminho_imagem.$situars[3]->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
                     </div>
                     <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $situars[3]->quadrinho->pagina }}</div>
                 </div>
@@ -198,22 +209,21 @@
         @if ($problematizars[0]->quadrinho->pathImg)
             <h4 class="text-center border border-dark bg-info text-white mt-3 mb-0 rounded-top font-weight-bold">Problematizar</h4>
             <div class="card-group">
-                <div class="row row-cols-1 row-cols-md-2 no-gutters">
+                {{-- <div class="row row-cols-1 row-cols-md-2 no-gutters"> --}}
+                <div class="row row-cols-1 no-gutters">
                     @foreach ($problematizars as $problematizar)
                         @if ($problematizar->quadrinho->pathImg)
                             {{-- <div class="col-md-6"> --}}
-                                <div class="col mb-1">
-                                    <div class="card text-center bg-dark text-white rounded-top-0">
-                                        @if ($problematizar->quadrinho->titulo)
-                                            <div class="card-header">{{ $problematizar->quadrinho->titulo }}</div>
-                                        @else
-                                            <div class="card-header">&nbsp;</div>
-                                        @endif
-                                        <div class="card-body p-0 bg-white">
-                                            <img src="{{ $caminho_imagem.$problematizar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-100" draggable="false">
-                                        </div>
-                                        <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $problematizar->quadrinho->pagina }}</div>
+                                <div class="card text-center bg-dark text-white rounded-top-0">
+                                    @if ($problematizar->quadrinho->titulo)
+                                        <div class="card-header">{{ $problematizar->quadrinho->titulo }}</div>
+                                    @else
+                                        <div class="card-header">&nbsp;</div>
+                                    @endif
+                                    <div class="card-body p-0 bg-white">
+                                        <img src="{{ $caminho_imagem.$problematizar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
                                     </div>
+                                    <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $problematizar->quadrinho->pagina }}</div>
                                 </div>
                             {{-- </div> --}}
                         @endif
@@ -223,24 +233,25 @@
         @endif
 
         @if ($solucionars->count() && $solucionars[0]->quadrinho->pathImg)
-            <h4 class="text-center border border-dark mt-3 mb-0 bg-info text-white rounded-top font-weight-bold">Solucionar</h4>
+            <h4 class="text-center border border-dark bg-info text-white mt-3 mb-0 rounded-top font-weight-bold">Solucionar</h4>
             <div class="card-group">
-                <div class="row row-cols-1 row-cols-md-2 no-gutters">
+                {{-- <div class="row row-cols-1 row-cols-md-2 no-gutters"> --}}
+                <div class="row row-cols-1 no-gutters">
                     @foreach ($solucionars as $solucionar)
                         @if ($solucionar->quadrinho->pathImg)
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6"> --}}
                                 <div class="card text-center bg-dark text-white rounded-top-0">
                                     @if ($solucionar->quadrinho->titulo)
                                         <div class="card-header">{{ $solucionar->quadrinho->titulo }}</div>
-                                        @else
+                                    @else
                                         <div class="card-header">&nbsp;</div>
                                     @endif
                                     <div class="card-body p-0 bg-white">
-                                        <img src="{{ $caminho_imagem.$solucionar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-100" draggable="false">
+                                        <img src="{{ $caminho_imagem.$solucionar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
                                     </div>
                                     <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $solucionar->quadrinho->pagina }}</div>
                                 </div>
-                            </div>
+                            {{-- </div> --}}
                         @endif
                     @endforeach
                 </div>

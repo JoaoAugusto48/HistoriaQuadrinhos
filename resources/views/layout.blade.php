@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.min.css') }}" >
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
 </head>
 <body>
     <div class="jumbotron bg-white py-4">
@@ -26,7 +29,9 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> --}}
     <script src="{{ asset('js/bootstrap/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
-
+    
+    <script src="{{ asset('js/baixarHq.js') }}"></script>
+    
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
