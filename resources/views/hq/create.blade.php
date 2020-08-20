@@ -1,14 +1,14 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
         
     <div class="row">
         <h1>
-            Criar História em Quadrinho
+            Criar HQ
             <button class="btn btn-outline-dark ml-1" onclick="javascript:history.back()"><i class="fa fa-reply" aria-hidden="true"></i> Voltar</button>
         </h1>
     </div>
-    <hr class="bg-dark"/>
+    <hr class="bg-dark mt-0"/>
 
     <form action="{{ route('hq.store') }}" method="post">
         @csrf

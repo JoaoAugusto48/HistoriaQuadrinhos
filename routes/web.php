@@ -37,3 +37,7 @@ Route::get('mostrarQuadrinho/{hqId}/{quadrinhoId}', 'QuadrinhoController@edit')-
 // Route::resource('situar', 'SituarController');
 // Route::resource('problematizar', 'ProblematizarController');
 // Route::resource('solucionar', 'SolucionarController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

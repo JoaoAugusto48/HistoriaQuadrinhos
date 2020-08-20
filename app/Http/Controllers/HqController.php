@@ -28,7 +28,7 @@ class HqController extends Controller
 
         $caminho_imagem = ArquivoController::caminho_storage();
 
-        return view('home', compact('hqs', 'caminho_imagem'));
+        return view('index', compact('hqs', 'caminho_imagem'));
     }
 
     /**

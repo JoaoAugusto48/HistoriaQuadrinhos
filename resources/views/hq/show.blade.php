@@ -1,18 +1,20 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
-        <h1>
-            Quadrinho - {{ $hq->tema }}
-            <a href="{{ route('hq.index') }}" class="btn btn-outline-dark ml-1" target="_parent"><i class="fas fa-home"></i> Inicio</a>
-        </h1>
+        <h1>Quadrinho - {{ $hq->tema }}</h1>
     </div>
     <div class="row">
-        <a href="{{ route('hq.edit', $hq->id) }}" class="btn btn-outline-dark ml-3" target="_parent"><i class="fas fa-edit"></i> Atualizar HQ</a>
+        <a href="{{ route('hq.index') }}" class="btn btn-outline-dark ml-1" target="_parent">
+            <i class="fas fa-home"></i> Inicio
+        </a>
+        <a href="{{ route('hq.edit', $hq->id) }}" class="btn btn-outline-dark ml-3" target="_parent">
+            <i class="fas fa-edit"></i> Atualizar HQ
+        </a>
     </div>
     <hr class="bg-dark"/>
 
-    <table class="table table-sm table-hover table-striped text-center" style="border: 3px solid black;">
+    <table class="table table-sm table-hover table-striped text-center bg-light" style="border: 3px solid black;">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Fase</th>

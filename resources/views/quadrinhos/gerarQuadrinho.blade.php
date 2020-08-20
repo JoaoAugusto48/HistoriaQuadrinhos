@@ -1,4 +1,5 @@
-@extends('criarQuadrinho')
+{{-- @extends('layouts.criarQuadrinho') --}}
+@extends('layouts.app')
 @section('title', $hq->tema)
 
 @section('content')

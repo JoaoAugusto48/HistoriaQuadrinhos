@@ -1,3 +1,11 @@
+.color-background {
+  background-color: #ddd;
+}
+
+.cor-azul-escuro {
+  background-color: #132036;
+}
+
 /* HIDE RADIO */
 .card-img-top {
   width: 100%;
