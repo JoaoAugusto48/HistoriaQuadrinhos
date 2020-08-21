@@ -20,7 +20,7 @@
         <tbody>
         @foreach ($hqs as $hq)
             <tr style="border-bottom: 2px solid #555;">
-                <th class="align-middle" scope="row" style="max-width: 35ch;">{{ $hq->tema }}</th>
+                <th class="align-middle font-weight-bold" scope="row" style="max-width: 35ch;">{{ $hq->tema }}</th>
                 <td class="align-middle" scope="row" style="max-width: 27ch;">{{ $hq->local }}</td>
                 <td class="align-middle">
 

@@ -13,14 +13,14 @@
     <form action="{{ route('hq.store') }}" method="post">
         @csrf
         <div class="form-group row">
-            <label for="nome" class="col-sm-2 col-form-label text-right">Titulo:</label>
+            <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Titulo:</label>
             <div class="col-sm-8">
                 <input id="txt-titulo" type="text" class="form-control" name="tema" maxlength="100" required autofocus>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="nome" class="col-sm-2 col-form-label text-right">Local:</label>
+            <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Local:</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="local" maxlength="70" required>
             </div>
@@ -28,7 +28,7 @@
 
         <!-- Button trigger modal personagem 1 -->
         <div class="form-group row">
-            <label for="nome" class="col-sm-2 col-form-label text-right">Personagem 1:</label>
+            <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Personagem 1:</label>
             <div class="col-sm-8">
                 <button id="btn-personagem1" type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#personagem1">
                     Personagem 1
@@ -37,7 +37,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="nome" class="col-sm-2 col-form-label text-right">Saudação 1:</label>
+            <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Saudação 1:</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="saudacao1" maxlength="70" placeholder="ex: Oi, sou gerente administrativo." autocomplete="off" data-toggle="tooltip" data-placement="top" title="Faça uma saudação com Personagem 1." required>
             </div>
@@ -45,7 +45,7 @@
         
         <!-- Button trigger modal personagem 2 -->
         <div class="form-group row">
-            <label for="nome" class="col-sm-2 col-form-label text-right">Personagem 2:</label>
+            <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Personagem 2:</label>
             <div class="col-sm-8">
                 <button id="btn-personagem2" type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#personagem2">
                     Personagem 2
@@ -54,7 +54,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="nome" class="col-sm-2 col-form-label text-right">Saudação 2:</label>
+            <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Saudação 2:</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control" name="saudacao2" maxlength="70" placeholder="ex: Olá, sou especialista em negócios." autocomplete="off" data-toggle="tooltip" data-placement="top" title="Faça uma saudação com Personagem 2." required>
             </div>
@@ -62,7 +62,7 @@
 
         <!-- Button trigger modal ambiente -->
         <div class="form-group row">
-            <label for="nome" class="col-sm-2 col-form-label text-right">Ambiente:</label>
+            <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Ambiente:</label>
             <div class="col-sm-8">
                 <button id="btn-ambiente" type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#ambiente">
                     Ambiente
@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="col-md-8 offset-md-2 pl-1 text-left">
-            <button type="submit" class="btn btn-outline-primary">Enviar</button>
+            <button type="submit" class="btn btn-outline-primary font-weight-bold">Enviar</button>
         </div>
 
         {{-- Incluindo os modais responsáveis pela apesentação dos dados selecionaveis pelo usuário --}}

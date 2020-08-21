@@ -1,6 +1,6 @@
 {{-- @extends('layouts.criarQuadrinho') --}}
 @extends('layouts.app')
-@section('title', $hq->tema)
+{{-- @section('title', $hq->tema) --}}
 
 @section('content')
     
@@ -46,7 +46,7 @@
 <div class="p-3">
 
     <div class="form-group row">
-        <label for="nome" class="col-sm-2 col-form-label text-right">Fala do autor:</label>
+        <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Fala do autor:</label>
         <div class="col-sm-8">
             <input id="txt-titulo" type="text" class="form-control" name="titulo" maxlength="255" value="{{ $quadrinho->titulo }}" placeholder="Se o autor houver fala. Adicione-a aqui.">
         </div>
