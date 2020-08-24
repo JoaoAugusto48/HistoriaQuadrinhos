@@ -22,11 +22,13 @@ class CreateHqTable extends Migration
             $table->unsignedBigInteger('personagem1_id');
             $table->unsignedBigInteger('personagem2_id');
             $table->unsignedBigInteger('ambiente_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
             $table->foreign('personagem1_id')->references('id')->on('personagems');
             $table->foreign('personagem2_id')->references('id')->on('personagems');
             $table->foreign('ambiente_id')->references('id')->on('ambientes');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

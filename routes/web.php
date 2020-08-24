@@ -32,12 +32,12 @@ Route::view('personagem1', 'hq/modal/personagem')->name('personagem1');
 
 Route::get('mostrarQuadrinho/{hqId}/{quadrinhoId}', 'QuadrinhoController@edit')->name('mostrarQuadrinho');
 
-// Route::resource('hq', 'HqController');
-// Route::resource('quadrinho', 'QuadrinhoController');
-// Route::resource('situar', 'SituarController');
-// Route::resource('problematizar', 'ProblematizarController');
-// Route::resource('solucionar', 'SolucionarController');
+// Route::resource('hq', 'HqController')->middleware('auth');
+// Route::resource('quadrinho', 'QuadrinhoController')->middleware('auth');
+// Route::resource('situar', 'SituarController')->middleware('auth');
+// Route::resource('problematizar', 'ProblematizarController')->middleware('auth');
+// Route::resource('solucionar', 'SolucionarController')->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HqController@index')->name('home');

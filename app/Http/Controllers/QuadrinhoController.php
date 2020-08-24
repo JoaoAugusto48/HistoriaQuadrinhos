@@ -13,51 +13,9 @@ use Illuminate\Support\Facades\Storage;
 
 class QuadrinhoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        // 
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // 
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        // 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Quadrinho  $quadrinho
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Quadrinho $quadrinho)
-    {
-        // $hq = Hq::findOrFail($hqId);
-        // $quadrinho = Quadrinho::findOrFail($quadrinhoId);
-
-        // $balaos = Balao::get();
-
-        // return view('quadrinhos.index', compact('hq', 'quadrinho', 'balaos'));
+        $this->middleware('auth');
     }
 
     /**
