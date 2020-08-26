@@ -12,6 +12,7 @@ use App\Quadrinho;
 use App\Situar;
 use App\Solucionar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -29,7 +30,7 @@ class HqController extends Controller
      */
     public function index()
     {
-        $hqs = Hq::get();
+        $hqs = Hq::where('user_id','=', Auth::user()->id)->get();
 
         $caminho_imagem = ArquivoController::caminho_storage();
 
@@ -75,6 +76,7 @@ class HqController extends Controller
         $hq->personagem1_id = $request->get('personagem1_id');
         $hq->personagem2_id = $request->get('personagem2_id');
         $hq->ambiente_id = $request->get('ambiente_id');
+        $hq->user_id = Auth::user()->id;
         
         $hq->save();
 
@@ -106,7 +108,7 @@ class HqController extends Controller
     public function show(Request $request)
     {
         $hq = Hq::FindOrFail($request->hq);
-        
+
         $situars = Situar::where('hq_id', '=', $hq->id)->get();
         $problematizars = Problematizar::where('hq_id', '=', $hq->id)->get();
         $solucionars = Solucionar::where('hq_id', '=', $hq->id)->get();
