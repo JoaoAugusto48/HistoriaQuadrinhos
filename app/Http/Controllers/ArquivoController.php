@@ -21,9 +21,9 @@ class ArquivoController extends Controller
     }
 
     // para recuperar o caminho do falder e o criar
-    public static function folder_path($hqId){
+    public static function folder_path($hqId, $user_id = null){
         // Teste de existencia do Diretório
-        $folder_path = ArquivoController::folder_name($hqId);
+        $folder_path = ArquivoController::folder_name($hqId, $user_id);
         if(!Storage::disk('public')->exists($folder_path)){ // se o diretório não existe
             Storage::disk('public')->makeDirectory($folder_path);
         }

@@ -80,7 +80,7 @@ class HqController extends Controller
         
         $hq->save();
 
-        ArquivoController::folder_path($hq->id);
+        ArquivoController::folder_path($hq->id, $hq->user_id);
 
         $this->adicionarQuadrinhos($hq);
 
@@ -217,7 +217,7 @@ class HqController extends Controller
 
         $hq->delete();
 
-        $arquivo = ArquivoController::folder_name($hq->id);
+        $arquivo = ArquivoController::folder_name($hq->id, $hq->user_id);
         Storage::deleteDirectory($arquivo);
 
         return redirect()->route('hq.index');

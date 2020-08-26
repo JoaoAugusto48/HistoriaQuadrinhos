@@ -4,7 +4,7 @@
 @section('content')
         
     <div class="row">
-        <h1>HQs criadas @lang('auth.failed')</h1>
+        <h1>HQs criadas</h1>
     </div>
     <hr class="bg-dark mt-0"/>
 
