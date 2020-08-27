@@ -15,14 +15,14 @@
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Titulo:</label>
             <div class="col-sm-8">
-                <input id="txt-titulo" type="text" class="form-control" name="tema" maxlength="100" required autofocus>
+                <input id="txt-titulo" type="text" class="form-control" name="tema" maxlength="100" value="{{ old('tema') }}" required autofocus>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Local:</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" name="local" maxlength="70" required>
+                <input type="text" class="form-control" name="local" maxlength="70" value="{{ old('local') }}" required>
             </div>
         </div>
 
@@ -39,7 +39,7 @@
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Saudação 1:</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" name="saudacao1" maxlength="70" placeholder="ex: Oi, sou gerente administrativo." autocomplete="off" data-toggle="tooltip" data-placement="top" title="Faça uma saudação com Personagem 1." required>
+                <input type="text" class="form-control" name="saudacao1" maxlength="70" value="{{ old('saudacao1') }}" placeholder="ex: Oi, sou gerente administrativo." autocomplete="off" data-toggle="tooltip" data-placement="top" title="Faça uma saudação com Personagem 1." required>
             </div>
         </div>
         
@@ -56,7 +56,7 @@
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Saudação 2:</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" name="saudacao2" maxlength="70" placeholder="ex: Olá, sou especialista em negócios." autocomplete="off" data-toggle="tooltip" data-placement="top" title="Faça uma saudação com Personagem 2." required>
+                <input type="text" class="form-control" name="saudacao2" maxlength="70" value="{{ old('saudacao2') }}" placeholder="ex: Olá, sou especialista em negócios." autocomplete="off" data-toggle="tooltip" data-placement="top" title="Faça uma saudação com Personagem 2." required>
             </div>
         </div>
 

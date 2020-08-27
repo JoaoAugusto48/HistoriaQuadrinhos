@@ -22,7 +22,7 @@
                                         <div class="card-header card-title">{{ $personagem->descricao }}</div>
                                         <div class="card-body align-center">
                                             <input type="radio" id="{{ $personagem->id }}" name="personagem1_id" value="{{ $personagem->id }}" data-descricao="{{ $personagem->descricao }}" data-img="{{ $personagem->personagem }}" onclick="checked_radio()">
-                                            <img src="{{ env('APP_URL') }}/storage/{{ $personagem->personagem }}" class="card-img-top">
+                                            <img src="{{ $caminho_imagem.$personagem->personagem }}" class="card-img-top">
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                 let img = el.getAttribute("data-img");
 
                 let imagem = document.createElement("img");
-                imagem.src = "{{ env('APP_URL') }}/storage/" + img;
+                imagem.src = "{!! $caminho_imagem !!}" + img;
                 imagem.classList.add("img-btn");
                 imagem.classList.add("ml-2");
 

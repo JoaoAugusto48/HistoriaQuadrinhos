@@ -47,7 +47,9 @@ class HqController extends Controller
         $personagems = Personagem::get();
         $ambientes = Ambiente::get();
 
-        return view('hq.create', compact('personagems', 'ambientes'));
+        $caminho_imagem = ArquivoController::caminho_storage();
+
+        return view('hq.create', compact('personagems', 'ambientes', 'caminho_imagem'));
     }
 
     /**

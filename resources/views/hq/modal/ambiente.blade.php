@@ -22,7 +22,7 @@
                                         <div class="card-header card-title">{{ $ambiente->descricao }}</div>
                                         <div class="card-body align-center">
                                             <input type="radio" id="{{ $ambiente->id }}" name="ambiente_id" value="{{ $ambiente->id }}" data-descricao="{{ $ambiente->descricao }}" data-img="{{ $ambiente->fundo }}" onclick="checked_radio()">
-                                            <img src="{{ env('APP_URL') }}/storage/{{ $ambiente->fundo }}" class="card-img-top">
+                                            <img src="{{ $caminho_imagem.$ambiente->fundo }}" class="card-img-top">
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                 ambiente.textContent = "Ambiente Selecionado: " + descricao;
 
                 let imagem = document.createElement("img");
-                imagem.src = "{{ env('APP_URL') }}/storage/" + img;
+                imagem.src = "{!! $caminho_imagem !!}" + img;
                 imagem.classList.add("img-btn");
                 imagem.classList.add("ml-2");
 
