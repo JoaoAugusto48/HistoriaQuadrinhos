@@ -108,7 +108,7 @@ class HqController extends Controller
     public function show(Request $request)
     {
         $hq = Hq::FindOrFail($request->hq);
-
+        
         $situars = Situar::where('hq_id', '=', $hq->id)->get();
         $problematizars = Problematizar::where('hq_id', '=', $hq->id)->get();
         $solucionars = Solucionar::where('hq_id', '=', $hq->id)->get();

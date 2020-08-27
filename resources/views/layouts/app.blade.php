@@ -45,9 +45,12 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name') }}
                 </a>
-                <a class="btn btn-outline-light ml-1" href="{{ route('hq.create') }}" target="_parent">
-                    <i class="fa fa-plus" aria-hidden="true"></i> Criar HQ
-                </a>
+                
+                @if (Auth::check())
+                    <a class="btn btn-outline-light ml-1" href="{{ route('hq.create') }}" target="_parent">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Criar HQ
+                    </a>    
+                @endif
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
