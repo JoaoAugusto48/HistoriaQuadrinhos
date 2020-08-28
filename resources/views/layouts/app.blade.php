@@ -114,12 +114,12 @@
 
     {{-- Scripts --}}
     {{-- <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script> --}}
-    <script src="{{ asset('js/gerarQuadrinho.js') }}"></script>
     
     <script src="{{ asset('js/bootstrap/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/baixarHq.js') }}"></script>
-
+    
+    <script src="{{ asset('js/gerarQuadrinho.js') }}"></script>
     
     <script>
         $(function () {

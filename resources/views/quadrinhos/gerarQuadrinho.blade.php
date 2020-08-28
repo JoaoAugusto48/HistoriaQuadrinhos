@@ -101,14 +101,14 @@
         </div>
     </div>
 
-    <div class="container ml-4" id="semEstilo">
+    <div class="container" id="semEstilo">
         <div class="row">
             <div class="col-12">
                 <form action="{{ route('quadrinho.update', $quadrinho->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="col-9" id="output-quadrinho">
-                    {{-- onde Fica o quadro para baixar --}}
+                    <div id="output-quadrinho">
+                        {{-- onde Fica o quadro para baixar --}}
                         {{-- <input type="hidden" name="id" value="{{ $quadrinho->id }}"> --}}
                     </div>
                     <div id="titulo-escondido">

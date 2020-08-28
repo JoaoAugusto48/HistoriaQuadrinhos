@@ -186,7 +186,9 @@
             <div class="card text-center bg-dark text-white rounded-top-0">
                 <div class="card-header">{{ $situars[2]->quadrinho->titulo }}</div>
                 <div class="card-body p-0 d-flex bg-white">
+
                     <img src="{{ $caminho_imagem.$hq->ambiente->fundo }}" class="card-img-ambiente my-auto" draggable="false">
+                
                 </div>
                 <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $situars[2]->quadrinho->pagina }}</div>
             </div>
