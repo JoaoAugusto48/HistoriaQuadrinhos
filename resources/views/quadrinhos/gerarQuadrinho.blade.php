@@ -72,7 +72,7 @@
         {{-- <div class="container containerCustomizado" id="fundo" onmousemove="capturaPosicaoDoMouse(event)" onclick="capturaPosicaoDoClick(event)" style="background-color: white; background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->ambiente->fundo }}')"> --}}
         
         {{-- Sem funcões referentes ao uso do mouse --}}
-        <div class="container containerCustomizado" id="fundo" style="background-color: white; background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->ambiente->fundo }}')">
+        <div class="container containerCustomizado" id="fundo" style="background-color: white; background-image: url('{{ $caminho_imagem.$hq->ambiente->fundo }}')">
         {{-- <div class="container containerCustomizado" style="background-color: white"> --}}
             <div class="row" >
                 {{-- <div class="col-12" style="border-bottom: 3px solid black"> --}}

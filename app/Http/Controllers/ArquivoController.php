@@ -15,7 +15,7 @@ class ArquivoController extends Controller
     }
 
     // para recuperar o nome do folder
-    public static function folder_name($hqId, $user = 'user'){
+    public static function folder_name($hqId, $user){
         return 'users/'.$user.'/hq_'.$hqId;
         // o nome do diretório que o usuário se encontra
     }
@@ -31,8 +31,8 @@ class ArquivoController extends Controller
     }
 
     // para recuperar o nome do arquivo
-    public static function file_name($hqId){
-        $folder_name = ArquivoController::folder_name($hqId);
+    public static function file_name($hqId,$user_id = 'user'){
+        $folder_name = ArquivoController::folder_name($hqId, $user_id);
         // para gerar o arquivo de nome unico
         $file_hash = hash('sha512',uniqid((time())));
         return $folder_name.'/'. $file_hash.'.png';

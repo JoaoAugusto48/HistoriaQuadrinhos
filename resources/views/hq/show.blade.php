@@ -187,7 +187,7 @@
                 <div class="card-header">{{ $situars[2]->quadrinho->titulo }}</div>
                 <div class="card-body p-0 d-flex bg-white">
 
-                    <img src="{{ $caminho_imagem.$hq->ambiente->fundo }}" class="card-img-ambiente my-auto" draggable="false">
+                    <img src="{{ $caminho_imagem.$hq->ambiente->fundo }}" class="card-img-ambiente my-auto w-100" draggable="false">
                 
                 </div>
                 <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $situars[2]->quadrinho->pagina }}</div>
@@ -214,25 +214,27 @@
             <h4 class="text-center border border-dark bg-info text-white mt-3 mb-0 rounded-top font-weight-bold">Problematizar</h4>
             <div class="card-group">
                 {{-- <div class="row row-cols-1 row-cols-md-2 no-gutters"> --}}
-                <div class="row row-cols-1 no-gutters">
-                    @foreach ($problematizars as $problematizar)
-                        @if ($problematizar->quadrinho->pathImg)
-                            {{-- <div class="col-md-6"> --}}
-                                <div class="card text-center bg-dark text-white rounded-top-0">
-                                    @if ($problematizar->quadrinho->titulo)
-                                        <div class="card-header">{{ $problematizar->quadrinho->titulo }}</div>
-                                    @else
-                                        <div class="card-header">&nbsp;</div>
-                                    @endif
-                                    <div class="card-body p-0 bg-white">
-                                        <img src="{{ $caminho_imagem.$problematizar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
+                {{-- <div class="row row-cols-1 no-gutters"> --}}
+                    <div class="col-md-12 m-0 p-0">
+                        @foreach ($problematizars as $problematizar)
+                            @if ($problematizar->quadrinho->pathImg)
+                                {{-- <div class="col-md-6"> --}}
+                                    <div class="card text-center bg-dark text-white rounded-top-0">
+                                        @if ($problematizar->quadrinho->titulo)
+                                            <div class="card-header">{{ $problematizar->quadrinho->titulo }}</div>
+                                        @else
+                                            <div class="card-header">&nbsp;</div>
+                                        @endif
+                                        <div class="card-body p-0 bg-white">
+                                            <img src="{{ $caminho_imagem.$problematizar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
+                                        </div>
+                                        <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $problematizar->quadrinho->pagina }}</div>
                                     </div>
-                                    <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $problematizar->quadrinho->pagina }}</div>
-                                </div>
-                            {{-- </div> --}}
-                        @endif
-                    @endforeach
-                </div>
+                                {{-- </div> --}}
+                            @endif
+                        @endforeach
+                    </div>
+                {{-- </div> --}}
             </div>
         @endif
 
@@ -240,25 +242,27 @@
             <h4 class="text-center border border-dark bg-info text-white mt-3 mb-0 rounded-top font-weight-bold">Solucionar</h4>
             <div class="card-group">
                 {{-- <div class="row row-cols-1 row-cols-md-2 no-gutters"> --}}
-                <div class="row row-cols-1 no-gutters">
-                    @foreach ($solucionars as $solucionar)
-                        @if ($solucionar->quadrinho->pathImg)
-                            {{-- <div class="col-md-6"> --}}
-                                <div class="card text-center bg-dark text-white rounded-top-0">
-                                    @if ($solucionar->quadrinho->titulo)
-                                        <div class="card-header">{{ $solucionar->quadrinho->titulo }}</div>
-                                    @else
-                                        <div class="card-header">&nbsp;</div>
-                                    @endif
-                                    <div class="card-body p-0 bg-white">
-                                        <img src="{{ $caminho_imagem.$solucionar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
+                {{-- <div class="row row-cols-1 no-gutters"> --}}
+                    <div class="col-md-12 m-0 p-0">
+                        @foreach ($solucionars as $solucionar)
+                            @if ($solucionar->quadrinho->pathImg)
+                                {{-- <div class="col-md-6"> --}}
+                                    <div class="card text-center bg-dark text-white rounded-top-0">
+                                        @if ($solucionar->quadrinho->titulo)
+                                            <div class="card-header">{{ $solucionar->quadrinho->titulo }}</div>
+                                        @else
+                                            <div class="card-header">&nbsp;</div>
+                                        @endif
+                                        <div class="card-body p-0 bg-white">
+                                            <img src="{{ $caminho_imagem.$solucionar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
+                                        </div>
+                                        <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $solucionar->quadrinho->pagina }}</div>
                                     </div>
-                                    <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $solucionar->quadrinho->pagina }}</div>
-                                </div>
-                            {{-- </div> --}}
-                        @endif
-                    @endforeach
-                </div>
+                                {{-- </div> --}}
+                            @endif
+                        @endforeach
+                    </div>
+                {{-- </div> --}}
             </div>
         @endif
     </div>

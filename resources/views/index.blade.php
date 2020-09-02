@@ -26,11 +26,11 @@
                     <td class="align-middle">
 
                         {{-- <img id="teste" src="{{ $caminho_imagem.$hq->personagem1->personagem }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-placement="top" data-html="true" title="<textarea rows='3' cols='13' class='text-center textareaQuadrinho' disabled>{{ $hq->saudacao1 }}</textarea><img class='img-tooltip' src='{{ $caminho_imagem.$hq->personagem1->personagem }}'>"> --}}
-                        <img src="{{ $caminho_imagem.$hq->personagem1->personagem }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip' src='{{ $caminho_imagem.$hq->personagem1->personagem }}'>">
+                        <img src="{{ $caminho_imagem.$hq->personagem1->personagem }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$hq->personagem1->personagem }}'>">
                         /
-                        <img src="{{ $caminho_imagem.$hq->personagem2->personagem }}" class="img-btn ml-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="right" title="<img class='img-tooltip' src='{{ $caminho_imagem.$hq->personagem2->personagem }}'>">
+                        <img src="{{ $caminho_imagem.$hq->personagem2->personagem }}" class="img-btn ml-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="right" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$hq->personagem2->personagem }}'>">
                     </td>
-                    <td class="align-middle"><img src="{{ $caminho_imagem.$hq->ambiente->fundo }}" class="img-btn ml-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip' src='{{ $caminho_imagem.$hq->ambiente->fundo }}'>"></td>
+                    <td class="align-middle"><img src="{{ $caminho_imagem.$hq->ambiente->fundo }}" class="img-btn ml-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$hq->ambiente->fundo }}'>"></td>
                     <td class="align-middle">
                         <div class="btn-group" role="group">
                             <a href="{{ route('hq.show', $hq->id) }}" class="btn btn-outline-info btn-sm border border-dark" role="button">

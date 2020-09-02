@@ -10,6 +10,7 @@ use App\Utensilio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class QuadrinhoController extends Controller
 {
@@ -74,8 +75,9 @@ class QuadrinhoController extends Controller
         // Teste caso tenha imagem, é criado nome para o arquivo, 
         // caso não a imagem atual é deletada para ser adicionada outra no local  
         $file_name = $quadrinho->pathImg;
+        
         if(!$quadrinho->pathImg){
-            $file_name = ArquivoController::file_name($hqId);
+            $file_name = ArquivoController::file_name($hqId, Auth::user()->id);
         }
         else {// Deletando a imagem atual e atualizando
             Storage::delete([$file_name]);
