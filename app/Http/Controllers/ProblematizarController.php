@@ -151,8 +151,7 @@ class ProblematizarController extends Controller
             
             DB::table('quadrinhos')->where('id','=', $paginaProblematizar->quadrinho->id)
                 ->update([
-                    'pagina' => $atualizarPagina,
-                    'pathImg' => ArquivoController::file_name($problematizar->hq_id, $atualizarPagina)
+                    'pagina' => $atualizarPagina
                 ]);
         }
     }
