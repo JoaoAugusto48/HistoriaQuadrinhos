@@ -98,7 +98,9 @@ class HqController extends Controller
 
         $problematizar->save();
 
-        return redirect()->route('hq.index');
+        // return redirect('/funcionario')->with('error', 'Deu erro!');
+
+        return redirect()->route('hq.index')->with('error', 'Deu erro!');
     }
 
     /**
@@ -110,6 +112,13 @@ class HqController extends Controller
     public function show(Request $request)
     {
         $hq = Hq::FindOrFail($request->hq);
+
+        $usuario = $hq->user;
+        $usuarioAutenticado = Auth::user();
+
+        if($usuario->id != $usuarioAutenticado->id){
+            return redirect()->route('home');
+        }
         
         $situars = Situar::where('hq_id', '=', $hq->id)->get();
         $problematizars = Problematizar::where('hq_id', '=', $hq->id)->get();

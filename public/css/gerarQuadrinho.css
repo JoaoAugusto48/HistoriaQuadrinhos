@@ -14,6 +14,16 @@
     /* border: 2px solid black; */
     background-size: 100% 100%;
     cursor: pointer;
+    position: absolute !important;
+    left: 100px;
+}
+
+.personagem1{
+    left: 15px;
+}
+
+.personagem2{
+    left: 150px;
 }
 
 
