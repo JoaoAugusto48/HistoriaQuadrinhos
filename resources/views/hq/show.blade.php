@@ -291,16 +291,16 @@
                         console.log(trProblematizar);
                         var tr = document.createElement("tr");
                         var tdFase = document.createElement("td");
-                        tdFase.innerHTML = "Problematizar";
+                        tdFase.append("Problematizar");
 
                         var tdTitulo = document.createElement("td");
-                        tdTitulo.innerHTML = " ";
+                        tdTitulo.append("Problematizar");
 
                         var tdPagina = document.createElement("td");
-                        tdPagina.innerHTML = response.problematizar.id;
-
+                        tdPagina.append(response.problematizar.id);
+                        // https://laracasts.com/discuss/channels/laravel/how-to-display-belongsto-in-ajax-with-laravel?page=1
                         var tdOperacoes = document.createElement("td");
-                        tdOperacoes.innerHTML = " ";
+                        tdOperacoes.append("Problematizar");
 
                         tr.appendChild(tdFase);
                         tr.appendChild(tdTitulo);
