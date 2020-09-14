@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Hq;
 use App\Problematizar;
 use App\Quadrinho;
 use App\Solucionar;
@@ -36,6 +37,8 @@ class SolucionarController extends Controller
 
         $hq = $request->get('hqId');
         
+        $hqUser = Hq::where('id','=', $hq)->first();
+
         $solucionar = Solucionar::where('hq_id','=', $hq)->orderBy('id','desc')->first();
         if($solucionar){
             $paginaSolucionar = $solucionar->quadrinho->pagina+1;
@@ -52,6 +55,7 @@ class SolucionarController extends Controller
         $quadrinho->titulo = null;
         $quadrinho->pathImg = null;
         $quadrinho->pagina = $paginaSolucionar;
+        $quadrinho->user_id = $hqUser->user_id;
 
         $quadrinho->save();
 

@@ -41,3 +41,5 @@ Route::get('mostrarQuadrinho/{hqId}/{quadrinhoId}', 'QuadrinhoController@edit')-
 Auth::routes();
 
 Route::get('/home', 'HqController@index')->name('home');
+
+Route::post('problematizar/store', 'ProblematizarController@store');

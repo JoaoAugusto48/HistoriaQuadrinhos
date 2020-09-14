@@ -28,6 +28,13 @@ class QuadrinhoController extends Controller
     public function edit($hqId, $quadrinhoId)
     {
         $hq = Hq::findOrFail($hqId);
+
+        $validaURL = HqController::validaURL($hq);
+        
+        if($validaURL){
+            return $validaURL;
+        }
+
         $quadrinho = Quadrinho::findOrFail($quadrinhoId);
 
         $balaos = Balao::get();

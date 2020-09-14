@@ -86,18 +86,6 @@ class HqController extends Controller
 
         $this->adicionarQuadrinhos($hq);
 
-        $quadrinho = new Quadrinho();
-        $quadrinho->titulo = null;
-        $quadrinho->pagina = 5;
-
-        $quadrinho->save();
-
-        $problematizar = new Problematizar();
-        $problematizar->hq_id = Hq::latest()->first()->id;
-        $problematizar->quadrinho_id = $quadrinho->id;
-
-        $problematizar->save();
-
         // return redirect('/funcionario')->with('error', 'Deu erro!');
 
         return redirect()->route('hq.index')->with('error', 'Deu erro!');
@@ -113,11 +101,10 @@ class HqController extends Controller
     {
         $hq = Hq::FindOrFail($request->hq);
 
-        $usuario = $hq->user;
-        $usuarioAutenticado = Auth::user();
-
-        if($usuario->id != $usuarioAutenticado->id){
-            return redirect()->route('home');
+        $validaURL = $this->validaURL($hq);
+        
+        if($validaURL){
+            return $validaURL;
         }
         
         $situars = Situar::where('hq_id', '=', $hq->id)->get();
@@ -160,6 +147,12 @@ class HqController extends Controller
     public function edit(Request $request)
     {
         $hq = Hq::findOrFail($request->hq);
+
+        $validaURL = $this->validaURL($hq);
+        
+        if($validaURL){
+            return $validaURL;
+        }
 
         return view('hq.edit', compact('hq'));
     }
@@ -234,6 +227,17 @@ class HqController extends Controller
         return redirect()->route('hq.index');
     }
 
+    public static function validaURL($hq){
+        // teste para validação de URL com usuário logado
+        $usuario = $hq->user;
+        $usuarioAutenticado = Auth::user();
+
+        if($usuario->id != $usuarioAutenticado->id){
+            return redirect()->route('home');
+        }
+        return 0;
+    }
+
     /*
     *  Adicionando todos os quadrinhos da primeira fase, os que já possuem padrão
     */
@@ -241,6 +245,7 @@ class HqController extends Controller
         $quadrinho1 = new Quadrinho();
         $quadrinho1->titulo = $hq->tema;
         $quadrinho1->pagina = 1;
+        $quadrinho1->user_id = $hq->user_id;
 
         $quadrinho1->save();
 
@@ -249,6 +254,7 @@ class HqController extends Controller
         $quadrinho2 = new Quadrinho();
         $quadrinho2->titulo = "Personagens";
         $quadrinho2->pagina = 2;
+        $quadrinho2->user_id = $hq->user_id;
 
         $quadrinho2->save();
 
@@ -257,6 +263,7 @@ class HqController extends Controller
         $quadrinho3 = new Quadrinho();
         $quadrinho3->titulo = "Ambiente de Trabalho";
         $quadrinho3->pagina = 3;
+        $quadrinho3->user_id = $hq->user_id;
 
         $quadrinho3->save();
 
@@ -265,10 +272,28 @@ class HqController extends Controller
         $quadrinho4 = new Quadrinho();
         $quadrinho4->titulo = null;
         $quadrinho4->pagina = 4;
+        $quadrinho4->user_id = $hq->user_id;
 
         $quadrinho4->save();
 
         $this->adicionarSituar($quadrinho4);
+
+        $quadrinho5 = new Quadrinho();
+        $quadrinho5->titulo = null;
+        $quadrinho5->pagina = 5;
+        $quadrinho5->user_id = $hq->user_id;
+
+        $quadrinho5->save();
+
+        $this->adicionarProblematizar($quadrinho5);
+    }
+
+    private function adicionarProblematizar($quadrinho){
+        $problematizar = new Problematizar();
+        $problematizar->hq_id = Hq::latest()->first()->id;
+        $problematizar->quadrinho_id = $quadrinho->id;
+
+        $problematizar->save();
     }
 
     /*

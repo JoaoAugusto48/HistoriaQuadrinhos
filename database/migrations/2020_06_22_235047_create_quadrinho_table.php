@@ -18,7 +18,10 @@ class CreateQuadrinhoTable extends Migration
             $table->string('titulo')->nullable();
             $table->string('pathImg')->nullable();
             $table->float('pagina', 2, 0);
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -67,14 +67,15 @@
                     </td>
                 </tr>
             @endforeach
+            <tr id="linhasProblematizar"></tr>
 
             <tr class="bg-secondary">  
                 <td colspan="4" class="text-center">
                     <div class="d-inline-flex">
-                        <form action="{{ route('problematizar.store') }}" method="post">
+                        <form id="form_adicionarProblematizar" action="{{ route('problematizar.store') }}" method="post">
                             @csrf
-                            <input type="hidden" name="hqId" value="{{$hq->id}}">
-                            <button type="submit" class="btn btn-sm btn-dark" role="button"><i class="fa fa-plus"></i> Adicionar Problematizar</button>
+                            <input id="hqId" type="hidden" name="hqId" value="{{$hq->id}}">
+                            <button type="submit" id="btn_adicionarProblematizar" class="btn btn-sm btn-dark" role="button"><i class="fa fa-plus"></i> Adicionar Problematizar</button>
                         </form>
 
                         @if ($solucionars->count() == 0)
@@ -266,6 +267,57 @@
             </div>
         @endif
     </div>
+
+
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $("#btn_adicionarProblematizar").click(function(e) {
+                e.preventDefault();
+                var data = $("#hqId");
+
+                $.ajax({
+                    type: "POST",
+                    url: '{!! URL::to('problematizar/store') !!}',
+                    dataType: "json",
+                    data: data,
+                    success: function(response) {
+                        var trProblematizar = $("#ultimaLinhaProblematizar");
+                        console.log(trProblematizar);
+                        var tr = document.createElement("tr");
+                        var tdFase = document.createElement("td");
+                        tdFase.innerHTML = "Problematizar";
+
+                        var tdTitulo = document.createElement("td");
+                        tdTitulo.innerHTML = " ";
+
+                        var tdPagina = document.createElement("td");
+                        tdPagina.innerHTML = response.problematizar.id;
+
+                        var tdOperacoes = document.createElement("td");
+                        tdOperacoes.innerHTML = " ";
+
+                        tr.appendChild(tdFase);
+                        tr.appendChild(tdTitulo);
+                        tr.appendChild(tdPagina);
+                        tr.appendChild(tdOperacoes);
+                        // trProblematizar.append("<tr><td>TESTE1</td><td>TESTE2</td><td>TESTE3</td><td>TESTE4</td></tr>")
+                        $(tr).insertAfter("#linhasProblematizar")
+                        console.log("FUNCIONA");
+                    }
+                });
+            })
+        });
+
+        function montarTr() {
+
+        }
+    </script>
     
 
 @endsection

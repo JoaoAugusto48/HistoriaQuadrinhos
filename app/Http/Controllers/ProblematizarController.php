@@ -47,6 +47,7 @@ class ProblematizarController extends Controller
         $hq = $request->get('hqId');
         
         $problematizars = Problematizar::where('hq_id','=', $hq)->orderBy('id','desc')->first();
+        $hqUser = Hq::where('id','=', $hq)->first();
         
         $paginaProblematizar = $problematizars->quadrinho->pagina+1;
 
@@ -59,6 +60,7 @@ class ProblematizarController extends Controller
         $quadrinho->titulo = null;
         $quadrinho->pathImg = null;
         $quadrinho->pagina = $paginaProblematizar;
+        $quadrinho->user_id = $hqUser->user_id;
 
         $quadrinho->save();
 
@@ -68,7 +70,14 @@ class ProblematizarController extends Controller
 
         $problematizar->save();
 
-        return redirect()->route('hq.show',$hq);
+        return response()->json(
+            [
+                'success' => true,
+                'problematizar' => $problematizar
+            ]
+        );
+
+        // return redirect()->route('hq.show',$hq);
     }
 
     /**
