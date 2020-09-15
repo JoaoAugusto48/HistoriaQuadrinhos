@@ -73,7 +73,8 @@ class ProblematizarController extends Controller
         return response()->json(
             [
                 'success' => true,
-                'problematizar' => $problematizar
+                'problematizar' => $problematizar,
+                'problematizarPagina' => $problematizar->quadrinho->pagina,
             ]
         );
 

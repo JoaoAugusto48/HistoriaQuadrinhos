@@ -38,8 +38,9 @@ Route::get('mostrarQuadrinho/{hqId}/{quadrinhoId}', 'QuadrinhoController@edit')-
 // Route::resource('problematizar', 'ProblematizarController')->middleware('auth');
 // Route::resource('solucionar', 'SolucionarController')->middleware('auth');
 
+Route::post('problematizar/store', 'ProblematizarController@store');
+
 Auth::routes();
 
 Route::get('/home', 'HqController@index')->name('home');
 
-Route::post('problematizar/store', 'ProblematizarController@store');

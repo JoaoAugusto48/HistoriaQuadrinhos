@@ -61,7 +61,8 @@
                                     $mensagem .= 'da página ' . $problematizar->quadrinho->pagina;
                                 @endphp
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }}?')">
-                                    <i class="fas fa-trash"></i> Remover</button>
+                                    <i class="fas fa-trash"></i> Remover
+                                </button>
                             </form>
                         @endif
                     </td>
@@ -290,34 +291,107 @@
                         var trProblematizar = $("#ultimaLinhaProblematizar");
                         console.log(trProblematizar);
                         var tr = document.createElement("tr");
-                        var tdFase = document.createElement("td");
+                        var tdFase = document.createElement("th");
                         tdFase.append("Problematizar");
 
                         var tdTitulo = document.createElement("td");
-                        tdTitulo.append("Problematizar");
+                        tdTitulo.append("");
 
                         var tdPagina = document.createElement("td");
-                        tdPagina.append(response.problematizar.id);
+                        tdPagina.append(response.problematizarPagina);
                         // https://laracasts.com/discuss/channels/laravel/how-to-display-belongsto-in-ajax-with-laravel?page=1
                         var tdOperacoes = document.createElement("td");
-                        tdOperacoes.append("Problematizar");
+                        tdOperacoes.append(montarBtnAdicionar("btn-info"));
+                        tdOperacoes.append(montarBtnRemover("submit","btn-danger"));
+                        
+                        tdFase.classList.add("align-middle");
+                        tdOperacoes.classList.add("align-middle");
+                        tdPagina.classList.add("align-middle");
+                        tdTitulo.classList.add("align-middle");
+                        tdOperacoes.classList.add("d-inline-flex");
 
                         tr.appendChild(tdFase);
                         tr.appendChild(tdTitulo);
                         tr.appendChild(tdPagina);
                         tr.appendChild(tdOperacoes);
+
+                        tr.style.borderBottom = "2px solid #555";
+                        // style="border-bottom: 2px solid #555;"
+                        
+                        
                         // trProblematizar.append("<tr><td>TESTE1</td><td>TESTE2</td><td>TESTE3</td><td>TESTE4</td></tr>")
-                        $(tr).insertAfter("#linhasProblematizar")
+                        $(tr).insertBefore("#linhasProblematizar")
                         console.log("FUNCIONA");
                     }
                 });
             })
         });
 
-        function montarTr() {
+        // <form class="ml-1" action="" method="post">
+        //                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho?')">
+                                
+
+        function criarFormularioRemover(td) {
+            // return td.innerHTML = `
+            //                     @csrf
+            //                     @method('DELETE')
+            //                     @php
+            //                         $mensagem = $solucionar->quadrinho->titulo ? 'de titulo ' . $solucionar->quadrinho->titulo . ', ' : '';
+            //                         $mensagem .= 'da página ' . $solucionar->quadrinho->pagina;
+            //                     @endphp
+            
+            //                         <i class="fas fa-trash"></i> Remover</button>
+            //                 </form>
+            // `;
 
         }
+
+        function montarBtnRemover(type,btnClass) {
+            var btn = document.createElement("button");
+
+            btn.type = type;
+            btn.classList.add("btn");
+            btn.classList.add("btn-sm");
+            btn.classList.add(btnClass);
+            btn.classList.add("ml-1"); // para dar o espaçamento de 1px, isso deve ser no formulário
+
+            var icon = montarIcone("fa-trash");
+
+            btn.appendChild(icon);
+            btn.append(" Remover");
+
+            return btn;
+        }
+
+
+        function montarIcone(classe) {
+            var icon = document.createElement("i");
+
+            icon.classList.add("fas");
+            icon.classList.add(classe);
+
+            return icon;
+        }
+
+
+        function montarBtnAdicionar(btnClass) {
+            var btn = document.createElement("a");
+
+            btn.classList.add("btn");
+            btn.classList.add("btn-sm");
+            btn.classList.add(btnClass);
+
+            var icon = montarIcone("fa-plus")
+            
+            btn.href = "";
+            btn.appendChild(icon);
+            btn.append(" Adicionar");
+
+            return btn;
+        }
     </script>
-    
+
+{{-- <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $problematizar->quadrinho->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-plus"></i> Adicionar</a> --}}
+{{-- <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }}?')"><i class="fas fa-trash"></i> Remover</button> --}}
 
 @endsection
