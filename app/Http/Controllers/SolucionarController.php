@@ -65,7 +65,15 @@ class SolucionarController extends Controller
 
         $solucionar->save();
 
-        return redirect()->route('hq.show',$hq);
+        return response()->json(
+            [
+                'success' => true,
+                'solucionar' => $solucionar,
+                'solucionarPagina' => $solucionar->quadrinho->pagina,
+            ]
+        );
+
+        // return redirect()->route('hq.show',$hq);
     }
 
     /**

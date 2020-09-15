@@ -83,7 +83,7 @@
                             <form action="{{ route('solucionar.store') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="hqId" value="{{$hq->id}}">
-                                <button class="btn btn-sm btn-dark ml-1" role="button"><i class="fa fa-plus"></i> Criar Solucionar</button>
+                                <button id="btn_adicionarSolucionar" class="btn btn-sm btn-dark ml-1" role="button"><i class="fa fa-plus"></i> Criar Solucionar</button>
                             </form>
                         @endif
                     </div>
@@ -125,7 +125,7 @@
                         <form action="{{ route('solucionar.store') }}" method="post">
                             @csrf
                             <input type="hidden" name="hqId" value="{{$hq->id}}">
-                            <button class="btn btn-sm btn-dark ml-1" role="button"><i class="fa fa-plus"></i> Adicionar Solucionar</button>
+                            <button id="btn_adicionarSolucionar" class="btn btn-sm btn-dark ml-1" role="button"><i class="fa fa-plus"></i> Adicionar Solucionar</button>
                         </form>
                     </td>
                 </tr>
@@ -271,6 +271,7 @@
 
 
     <script>
+        //problematizar
         $(document).ready(function() {
             $.ajaxSetup({
                 headers: {
@@ -329,8 +330,7 @@
 
         // <form class="ml-1" action="" method="post">
         //                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho?')">
-                                
-
+        
         function criarFormularioRemover(td) {
             // return td.innerHTML = `
             //                     @csrf
@@ -389,6 +389,32 @@
 
             return btn;
         }
+
+
+        // solucionar
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $("#btn_adicionarSolucionar").click(function(e) {
+                e.preventDefault();
+                var data = $("#hqId");
+
+                $.ajax({
+                    type: "POST",
+                    url: '{!! URL::to('solucionar/store') !!}',
+                    dataType: "json",
+                    data: data,
+                    success: function(response) {
+
+                        console.log("Fui clicado");
+                    }
+                });
+            })
+        });
     </script>
 
 {{-- <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $problematizar->quadrinho->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-plus"></i> Adicionar</a> --}}
