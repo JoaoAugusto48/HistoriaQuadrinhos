@@ -42,6 +42,7 @@ Route::post('problematizar/store', 'ProblematizarController@store');
 Route::post('solucionar/store', 'SolucionarController@store');
 
 Auth::routes();
+Route::resource('usuario', 'Auth\AuthController');
 
 Route::get('/home', 'HqController@index')->name('home');
 
