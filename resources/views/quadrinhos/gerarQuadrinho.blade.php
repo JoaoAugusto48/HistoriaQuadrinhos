@@ -37,7 +37,7 @@
     <div class="row">
         <h1>Criar - {{ $hq->tema }}, pág. {{ $quadrinho->pagina }}</h1>
     </div>
-    <button class="btn btn-outline-dark" onclick="javascript:history.back()"><i class="fa fa-reply" aria-hidden="true"></i> Voltar</button>
+    <a class="btn btn-outline-dark" href="{{ route('hq.show', $hq->id) }}"><i class="fa fa-reply" aria-hidden="true"></i> Voltar</a>
     <button class="btn btn-outline-dark ml-2" onclick="javascript:location.reload()"><i class="fa fa-undo" aria-hidden="true"></i> Recarregar</button>
 </div>
 <hr class="bg-dark"/>

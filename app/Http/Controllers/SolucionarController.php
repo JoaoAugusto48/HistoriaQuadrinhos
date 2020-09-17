@@ -69,6 +69,7 @@ class SolucionarController extends Controller
             [
                 'success' => true,
                 'solucionar' => $solucionar,
+                'solucionarId' => $solucionar->quadrinho->id,
                 'solucionarPagina' => $solucionar->quadrinho->pagina,
             ]
         );

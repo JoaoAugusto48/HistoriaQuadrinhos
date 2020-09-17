@@ -74,6 +74,7 @@ class ProblematizarController extends Controller
             [
                 'success' => true,
                 'problematizar' => $problematizar,
+                'problematizarId' => $problematizar->quadrinho->id,
                 'problematizarPagina' => $problematizar->quadrinho->pagina,
             ]
         );

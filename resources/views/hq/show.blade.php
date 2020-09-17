@@ -42,7 +42,7 @@
             @endforeach
             @foreach ($problematizars as $indice => $problematizar)
                 <tr style="border-bottom: 2px solid #555;">
-                    <th class="align-middle" scope="row">Problematizar</th>
+                    <th class="align-middle" scope="row" id="tabProblematizar">Problematizar</th>
                     <td class="align-middle">{{ $problematizar->quadrinho->titulo }}</td>
                     <td class="align-middle">{{ $problematizar->quadrinho->pagina }}</td>
                     <td class="align-middle d-inline-flex">
@@ -92,9 +92,9 @@
             
             @foreach ($solucionars as $solucionar)
                 <tr style="border-bottom: 2px solid #555;">
-                    <th class="align-middle" scope="row">Solucionar</th>
+                    <th class="align-middle" scope="row" id="tabSolucionar">Solucionar</th>
                     <td class="align-middle">{{ $solucionar->quadrinho->titulo }}</td>
-                    <td class="align-middle">{{ $solucionar->quadrinho->pagina }}</td>
+                    <td class="align-middle" id="atualizarNumeroPagina">{{ $solucionar->quadrinho->pagina }}</td>
                     <td class="align-middle">
                         <div class="d-inline-flex">
                             @if($solucionar->quadrinho->pathImg)
@@ -118,6 +118,7 @@
                     </td>
                 </tr>
             @endforeach
+            <tr id="linhasSolucionar"></tr>
 
             @if ($solucionars->count() > 0)
                 <tr class="bg-secondary">
@@ -290,10 +291,10 @@
                     data: data,
                     success: function(response) {
                         var trProblematizar = $("#ultimaLinhaProblematizar");
-                        console.log(trProblematizar);
+                        
                         var tr = document.createElement("tr");
                         var tdFase = document.createElement("th");
-                        tdFase.append("Problematizar");
+                        tdFase.append(document.querySelector('#tabProblematizar').textContent);
 
                         var tdTitulo = document.createElement("td");
                         tdTitulo.append("");
@@ -302,8 +303,7 @@
                         tdPagina.append(response.problematizarPagina);
                         // https://laracasts.com/discuss/channels/laravel/how-to-display-belongsto-in-ajax-with-laravel?page=1
                         var tdOperacoes = document.createElement("td");
-                        tdOperacoes.append(montarBtnAdicionar("btn-info"));
-                        tdOperacoes.append(montarBtnRemover("submit","btn-danger"));
+                        criarBotoesOperacoesProblematizar(tdOperacoes, response.problematizarId, response.problematizar.id,response.problematizarPagina);
                         
                         tdFase.classList.add("align-middle");
                         tdOperacoes.classList.add("align-middle");
@@ -322,76 +322,30 @@
                         
                         // trProblematizar.append("<tr><td>TESTE1</td><td>TESTE2</td><td>TESTE3</td><td>TESTE4</td></tr>")
                         $(tr).insertBefore("#linhasProblematizar")
-                        console.log("FUNCIONA");
+                        atualizarNumeroPagina();
                     }
                 });
             })
         });
 
-        // <form class="ml-1" action="" method="post">
-        //                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho?')">
         
-        function criarFormularioRemover(td) {
-            // return td.innerHTML = `
-            //                     @csrf
-            //                     @method('DELETE')
-            //                     @php
-            //                         $mensagem = $solucionar->quadrinho->titulo ? 'de titulo ' . $solucionar->quadrinho->titulo . ', ' : '';
-            //                         $mensagem .= 'da página ' . $solucionar->quadrinho->pagina;
-            //                     @endphp
-            
-            //                         <i class="fas fa-trash"></i> Remover</button>
-            //                 </form>
-            // `;
+        function criarBotoesOperacoesProblematizar(td, idProblematizar, idPagina, pagina) {
+            return td.innerHTML = `
+                            <a href="{{ env('APP_URL') }}/mostrarQuadrinho/{!! $hq->id !!}/${idProblematizar}" class="btn btn-sm btn-info"><i class="fas fa-plus"></i> Adicionar</a>
+                            <form class="ml-1" action="{{ env('APP_URL') }}/problematizar/${idPagina}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho página ${pagina}?')">
+                                    <i class="fas fa-trash"></i> Remover
+                                </button>
+                            </form>
+            `;
 
         }
 
-        function montarBtnRemover(type,btnClass) {
-            var btn = document.createElement("button");
-
-            btn.type = type;
-            btn.classList.add("btn");
-            btn.classList.add("btn-sm");
-            btn.classList.add(btnClass);
-            btn.classList.add("ml-1"); // para dar o espaçamento de 1px, isso deve ser no formulário
-
-            var icon = montarIcone("fa-trash");
-
-            btn.appendChild(icon);
-            btn.append(" Remover");
-
-            return btn;
-        }
 
 
-        function montarIcone(classe) {
-            var icon = document.createElement("i");
-
-            icon.classList.add("fas");
-            icon.classList.add(classe);
-
-            return icon;
-        }
-
-
-        function montarBtnAdicionar(btnClass) {
-            var btn = document.createElement("a");
-
-            btn.classList.add("btn");
-            btn.classList.add("btn-sm");
-            btn.classList.add(btnClass);
-
-            var icon = montarIcone("fa-plus")
-            
-            btn.href = "";
-            btn.appendChild(icon);
-            btn.append(" Adicionar");
-
-            return btn;
-        }
-
-
-        // solucionar
+        //solucionar
         $(document).ready(function() {
             $.ajaxSetup({
                 headers: {
@@ -409,13 +363,72 @@
                     dataType: "json",
                     data: data,
                     success: function(response) {
+                        var trSolucionar = $("#ultimaLinhaSolucionar");
+                        
+                        var tr = document.createElement("tr");
+                        var tdFase = document.createElement("th");
+                        tdFase.append(document.querySelector('#tabSolucionar').textContent);
 
-                        console.log("Fui clicado");
+                        var tdTitulo = document.createElement("td");
+                        tdTitulo.append("");
+
+                        var tdPagina = document.createElement("td");
+                        tdPagina.append(response.solucionarPagina);
+                        // https://laracasts.com/discuss/channels/laravel/how-to-display-belongsto-in-ajax-with-laravel?page=1
+                        var tdOperacoes = document.createElement("td");
+                        criarBotoesOperacoesSolucionar(tdOperacoes, response.solucionarId, response.solucionar.id,response.solucionarPagina);
+                        
+                        tdFase.classList.add("align-middle");
+                        tdOperacoes.classList.add("align-middle");
+                        tdPagina.classList.add("align-middle");
+                        tdTitulo.classList.add("align-middle");
+                        tdOperacoes.classList.add("d-inline-flex");
+
+                        tr.appendChild(tdFase);
+                        tr.appendChild(tdTitulo);
+                        tr.appendChild(tdPagina);
+                        tr.appendChild(tdOperacoes);
+
+                        tr.style.borderBottom = "2px solid #555";
+                        // style="border-bottom: 2px solid #555;"
+                        
+                        
+                        // trsolucionar.append("<tr><td>TESTE1</td><td>TESTE2</td><td>TESTE3</td><td>TESTE4</td></tr>")
+                        $(tr).insertBefore("#linhasSolucionar")
                     }
                 });
             })
         });
+
+        
+        function criarBotoesOperacoesSolucionar(td, idSolucionar, idPagina, pagina) {
+            return td.innerHTML = `
+                            <a href="{{ env('APP_URL') }}/mostrarQuadrinho/{!! $hq->id !!}/${idSolucionar}" class="btn btn-sm btn-info"><i class="fas fa-plus"></i> Adicionar</a>
+                            <form class="ml-1" action="{{ env('APP_URL') }}/solucionar/${idPagina}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho página ${pagina}?')">
+                                    <i class="fas fa-trash"></i> Remover
+                                </button>
+                            </form>
+            `;
+
+        }
+
+
+        function atualizarNumeroPagina() {
+            var paginas = document.querySelectorAll("#atualizarNumeroPagina");
+            for (let i = 0; i < paginas.length; i++) {
+                const element = paginas[i];
+                var number = parseInt(element.textContent);
+                number++;
+                element.textContent = number;
+            }
+        }
+
+
     </script>
+{{-- <td class="align-middle" id="atualizarNumeroPagina">{{ $solucionar->quadrinho->pagina }}</td> --}}
 
 {{-- <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $problematizar->quadrinho->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-plus"></i> Adicionar</a> --}}
 {{-- <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }}?')"><i class="fas fa-trash"></i> Remover</button> --}}
