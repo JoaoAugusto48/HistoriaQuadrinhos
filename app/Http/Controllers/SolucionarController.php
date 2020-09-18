@@ -32,7 +32,8 @@ class SolucionarController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'hqId' => 'required'
+            'hqId' => 'required',
+            'criarSolucionar' // valor para diferenciar a criação por js ou php
         ]);
 
         $hq = $request->get('hqId');
@@ -64,6 +65,10 @@ class SolucionarController extends Controller
         $solucionar->quadrinho_id = $quadrinho->id;
 
         $solucionar->save();
+
+        if($request->get('criarSolucionar') == 'valorGeradoEstaticamente'){
+            return redirect()->route('hq.show',$hq);
+        }
 
         return response()->json(
             [

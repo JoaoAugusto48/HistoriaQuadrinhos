@@ -83,7 +83,8 @@
                             <form action="{{ route('solucionar.store') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="hqId" value="{{$hq->id}}">
-                                <button id="btn_adicionarSolucionar" class="btn btn-sm btn-dark ml-1" role="button"><i class="fa fa-plus"></i> Criar Solucionar</button>
+                                <input type="hidden" name="criarSolucionar" value="valorGeradoEstaticamente">
+                                <button class="btn btn-sm btn-dark ml-1" role="button"><i class="fa fa-plus"></i> Criar Solucionar</button>
                             </form>
                         @endif
                     </div>
