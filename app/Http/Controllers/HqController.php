@@ -102,7 +102,6 @@ class HqController extends Controller
         $hq = Hq::FindOrFail($request->hq);
 
         $validaURL = $this->validaURL($hq);
-        
         if($validaURL){
             return $validaURL;
         }

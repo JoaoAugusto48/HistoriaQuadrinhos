@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -56,5 +57,18 @@ class AuthController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function atualizarSenha(Request $request){
+        dd($request->all());
+        $request->validate([
+            'id' => 'required',
+            'senha_antiga' => ['required', 'string', 'min:8', 'confirmed'],
+            'nova_senha' => ['required', 'string', 'min:8', 'confirmed'],
+            'confirmar_senha'
+        ]);
+
+        $user = User::where('id','=', $request->get('id'));
+
     }
 }

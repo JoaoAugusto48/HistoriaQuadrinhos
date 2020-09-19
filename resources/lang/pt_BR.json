@@ -2,6 +2,8 @@
     "Name": "Nome",
     "E-Mail Address": "Email",
     "Password": "Senha",
+    "Old Password": "Senha Antiga",
+    "New Password": "Nova Senha",
     "Confirm Password": "Confirmação de senha",
     "Remember Me": "Manter conectado",
     "Forgot Your Password?": "Esqueceu sua senha?",
