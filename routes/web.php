@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\HqController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,7 +43,8 @@ Route::post('solucionar/store', 'SolucionarController@store');
 
 Auth::routes();
 Route::resource('usuario', 'Auth\AuthController');
-Route::post('usuario/atualizarSenha/{id}', 'Auth\AuthController@atualizarSenha')->name('atualizarSenha');
+Route::post('usuario/atualizarUsuario', 'Auth\AuthController@atualizarUsuario')->name('atualizarUsuario');
+Route::post('usuario/atualizarSenha', 'Auth\AuthController@atualizarSenha')->name('atualizarSenha');
 
 Route::get('/home', 'HqController@index')->name('home');
 

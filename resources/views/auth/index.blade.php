@@ -12,16 +12,15 @@
     </div>
     <hr class="bg-dark mt-0"/>
 
-    <form action="{{ route('usuario.update', $usuario->id) }}" method="post">
+    <form action="{{ route('atualizarUsuario') }}" method="post">
         @csrf
-        @method('PUT')
 
         <input type="hidden" name="id" value="{{ $usuario->id }}">
         
         <div class="form-group row">
             <label for="nome" class="col-sm-1 col-form-label text-right font-weight-bold">{{ __('Name') }}:</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="nome" value="{{ $usuario->name }}" maxlength="255" required autofocus>
+                <input type="text" class="form-control" name="nome" value="{{ $usuario->name }}" maxlength="255" autocomplete="name" required autofocus>
             </div>
 
             <label for="nome" class="col-sm-1 col-form-label text-right font-weight-bold">{{ __('E-Mail Address') }}:</label>
@@ -39,28 +38,46 @@
     <hr class="bg-dark mt-2"/>
 
 
-    <form action="{{ route('atualizarSenha', $usuario->id) }}" method="post">
+    <form action="{{ route('atualizarSenha') }}" method="post">
         @csrf
         {{-- @method('PUT') --}}
+
+        @if ($error = Session::get('error'))
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($error as $mensagem)
+                    <li>{{ $mensagem }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @if ($success = Session::get('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{{ $success }}</li>
+                </ul>
+            </div>
+        @endif
 
         <input type="hidden" name="id" value="{{ $usuario->id }}">
         
         <div class="form-group row">
-            <label for="nome" class="col-sm-3 col-form-label text-right font-weight-bold">{{ __('Old Password') }}:</label>
+            <label for="senha_antiga" class="col-sm-3 col-form-label text-right font-weight-bold">{{ __('Old Password') }}:</label>
             <div class="col-sm-8">
                 <input type="password" class="form-control" name="senha_antiga" maxlength="255" required autofocus>
             </div>
         </div>
         
         <div class="form-group row">
-            <label for="nome" class="col-sm-3 col-form-label text-right font-weight-bold">{{ __('New Password') }}:</label>
+            <label for="nova_senha" class="col-sm-3 col-form-label text-right font-weight-bold">{{ __('New Password') }}:</label>
             <div class="col-sm-8">
                 <input type="password" class="form-control" name="nova_senha" required>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="nome" class="col-sm-3 col-form-label text-right font-weight-bold">{{ __('Confirm Password') }}:</label>
+            <label for="confirmar_senha" class="col-sm-3 col-form-label text-right font-weight-bold">{{ __('Confirm Password') }}:</label>
             <div class="col-sm-8">
                 <input type="password" class="form-control" name="confirmar_senha" required>
             </div>

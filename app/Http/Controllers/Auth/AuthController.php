@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -29,7 +30,7 @@ class AuthController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function atualizarUsuario(Request $request)
     {
         $request->validate([
             'id' => 'required',
@@ -37,13 +38,15 @@ class AuthController extends Controller
         ]);
 
         $idUser = $request->get('id');
-        $nomeUser = $request->get('nome');
+        $nomeUser = trim($request->get('nome'));
 
-
-        DB::table('users')->where('id','=', $idUser)
-            ->update([
-                'name' => $nomeUser
-            ]);
+        $userName = User::where('id','=', $idUser)->first();
+        if($userName->name != $nomeUser){
+            DB::table('users')->where('id','=', $idUser)
+                ->update([
+                    'name' => $nomeUser
+                ]);    
+        }
         
         return redirect()->route('usuario.index');
     }
@@ -60,15 +63,70 @@ class AuthController extends Controller
     }
 
     public function atualizarSenha(Request $request){
-        dd($request->all());
         $request->validate([
             'id' => 'required',
-            'senha_antiga' => ['required', 'string', 'min:8', 'confirmed'],
-            'nova_senha' => ['required', 'string', 'min:8', 'confirmed'],
-            'confirmar_senha'
+            // 'senha_antiga' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'nova_senha' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'confirmar_senha'
+            'senha_antiga' => 'required',
+            'nova_senha' => 'required',
+            'confirmar_senha' => 'required'
         ]);
 
-        $user = User::where('id','=', $request->get('id'));
+        $id = $request->get('id');
+        $senhaAntiga = $request->get('senha_antiga');
+        $novaSenha = $request->get('nova_senha');
+        $confirmarSenha = $request->get('confirmar_senha');
 
+        $user = User::where('id','=', $id)->first();
+        
+        $validacaoSenha = $this->validaSenha($user, $senhaAntiga, $novaSenha, $confirmarSenha);
+        
+        if(!$validacaoSenha['validacao']){
+            return redirect()->route('usuario.index')->with('error', $validacaoSenha['mensagens']);
+        }
+
+        DB::table('users')->where('id','=', $id)
+            ->update([
+                'password' => Hash::make($novaSenha)
+            ]);
+        
+        return redirect()->route('usuario.index')->with('success', 'Senha atualizada!');
     }
+
+    /**
+     * Usado para consferir as senhas se estão de acordo com os requisitos de cada área
+     * Criando também uma mensagem de erro para cada situação
+     */
+    private function validaSenha($user, $senhaAntiga, $novaSenha, $confirmarSenha){
+        $mensagens = [];
+        $validarSenha = true;
+        
+        $comparaSenhaAntiga = Hash::check($senhaAntiga, $user->password);
+        if(!$comparaSenhaAntiga){
+            $mensagem = 'A senha antiga não é equivalente!';
+            array_push($mensagens, $mensagem);
+            $validarSenha = false;
+        }
+
+        $novaEAntiga = Hash::check($novaSenha, $user->password);
+        if($novaEAntiga){
+            $mensagem = 'A nova senha não pode ser igual a antiga!';
+            array_push($mensagens, $mensagem);
+            $validarSenha = false;
+        }
+        
+        $confirmaSenha = ($novaSenha == $confirmarSenha) ? true : false;
+        if(!$confirmaSenha){
+            $mensagem = 'A confirmação de senha está incorreta!';
+            array_push($mensagens, $mensagem);
+            $validarSenha = false;
+        }
+
+        return [
+            'validacao' => $validarSenha,
+            'mensagens' => $mensagens
+        ];
+    }
+
 }
