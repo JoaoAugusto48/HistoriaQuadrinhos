@@ -66,10 +66,10 @@ class AuthController extends Controller
         $request->validate([
             'id' => 'required',
             // 'senha_antiga' => ['required', 'string', 'min:8', 'confirmed'],
-            // 'nova_senha' => ['required', 'string', 'min:8', 'confirmed'],
+            'nova_senha' => ['required', 'string', 'min:8', 'confirmed'],
             // 'confirmar_senha'
             'senha_antiga' => 'required',
-            'nova_senha' => 'required',
+            // 'nova_senha' => 'required',
             'confirmar_senha' => 'required'
         ]);
 
@@ -82,6 +82,7 @@ class AuthController extends Controller
         
         $validacaoSenha = $this->validaSenha($user, $senhaAntiga, $novaSenha, $confirmarSenha);
         
+        //Validação das senhas criadas
         if(!$validacaoSenha['validacao']){
             return redirect()->route('usuario.index')->with('error', $validacaoSenha['mensagens']);
         }
