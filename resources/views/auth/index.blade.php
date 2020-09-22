@@ -85,13 +85,20 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
+                
             </div>
         </div>
 
         <div class="form-group row">
             <label for="confirmar_senha" class="col-sm-3 col-form-label text-right font-weight-bold">{{ __('Confirm Password') }}:</label>
             <div class="col-sm-8">
-                <input id="password-confirm" type="password" class="form-control" name="confirmar_senha" required>
+                <input type="password" class="form-control @error('confirmar_senha') is-invalid @enderror" name="confirmar_senha" required>
+                
+                @error('confirmar_senha')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
 

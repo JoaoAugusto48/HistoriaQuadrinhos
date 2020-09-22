@@ -65,22 +65,18 @@ class AuthController extends Controller
     public function atualizarSenha(Request $request){
         $request->validate([
             'id' => 'required',
-            // 'senha_antiga' => ['required', 'string', 'min:8', 'confirmed'],
-            'nova_senha' => ['required', 'string', 'min:8', 'confirmed'],
-            // 'confirmar_senha'
-            'senha_antiga' => 'required',
-            // 'nova_senha' => 'required',
-            'confirmar_senha' => 'required'
+            'senha_antiga' => ['required', 'string'],
+            'nova_senha' => ['required', 'string', 'min:8'],
+            'confirmar_senha' => ['required','same:nova_senha']
         ]);
 
         $id = $request->get('id');
         $senhaAntiga = $request->get('senha_antiga');
         $novaSenha = $request->get('nova_senha');
-        $confirmarSenha = $request->get('confirmar_senha');
 
         $user = User::where('id','=', $id)->first();
         
-        $validacaoSenha = $this->validaSenha($user, $senhaAntiga, $novaSenha, $confirmarSenha);
+        $validacaoSenha = $this->validaSenha($user, $senhaAntiga, $novaSenha);
         
         //Validação das senhas criadas
         if(!$validacaoSenha['validacao']){
@@ -99,13 +95,13 @@ class AuthController extends Controller
      * Usado para consferir as senhas se estão de acordo com os requisitos de cada área
      * Criando também uma mensagem de erro para cada situação
      */
-    private function validaSenha($user, $senhaAntiga, $novaSenha, $confirmarSenha){
+    private function validaSenha($user, $senhaAntiga, $novaSenha){
         $mensagens = [];
         $validarSenha = true;
         
         $comparaSenhaAntiga = Hash::check($senhaAntiga, $user->password);
         if(!$comparaSenhaAntiga){
-            $mensagem = 'A senha antiga não é equivalente!';
+            $mensagem = 'A senha antiga está incorreta!';
             array_push($mensagens, $mensagem);
             $validarSenha = false;
         }
@@ -113,13 +109,6 @@ class AuthController extends Controller
         $novaEAntiga = Hash::check($novaSenha, $user->password);
         if($novaEAntiga){
             $mensagem = 'A nova senha não pode ser igual a antiga!';
-            array_push($mensagens, $mensagem);
-            $validarSenha = false;
-        }
-        
-        $confirmaSenha = ($novaSenha == $confirmarSenha) ? true : false;
-        if(!$confirmaSenha){
-            $mensagem = 'A confirmação de senha está incorreta!';
             array_push($mensagens, $mensagem);
             $validarSenha = false;
         }

@@ -5,7 +5,9 @@
     <div class="row">
         <h1>
             Criar HQ
-            <button class="btn btn-outline-dark ml-1" onclick="javascript:history.back()"><i class="fa fa-reply" aria-hidden="true"></i> Voltar</button>
+            <a href="{{ route('hq.index') }}" class="btn btn-outline-dark ml-1" target="_parent">
+                <i class="fas fa-home"></i> Inicio
+            </a>
         </h1>
     </div>
     <hr class="bg-dark mt-0"/>
@@ -33,7 +35,7 @@
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Local:</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" name="local" maxlength="70" value="{{ old('local') }}" required>
+                <input type="text" class="form-control" name="local" maxlength="70" value="{{ old('local') }}" placeholder="ex: Escritório de Contabilidade" required>
             </div>
         </div>
 

@@ -49,7 +49,14 @@
                 @if (Auth::check())
                     <a class="btn btn-outline-light ml-1" href="{{ route('hq.create') }}" target="_parent">
                         <i class="fa fa-plus" aria-hidden="true"></i> Criar HQ
-                    </a>    
+                    </a>
+
+                    @if (Auth::user()->privilegio > 0)
+                        <a class="btn btn-outline-light ml-1" href="{{ route('gerencia.index') }}" target="_parent">
+                            <i class="fas fa-cog"></i> Gerenciar
+                        </a>
+                    @endif
+
                 @endif
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

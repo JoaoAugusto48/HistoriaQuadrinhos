@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class PersonagemController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,9 @@ class PersonagemController extends Controller
      */
     public function index()
     {
-        //
+        GerenciarController::userGerente();
+
+        return view('gerencia.personagem.personagem');
     }
 
     /**
