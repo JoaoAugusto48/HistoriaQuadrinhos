@@ -44,7 +44,7 @@
 
         @if ($error = Session::get('error'))
             <div class="alert alert-danger">
-                <ul>
+                <ul class="mb-0">
                     @foreach ($error as $mensagem)
                     <li>{{ $mensagem }}</li>
                     @endforeach
@@ -54,7 +54,7 @@
 
         @if ($success = Session::get('success'))
             <div class="alert alert-success">
-                <ul>
+                <ul class="mb-0">
                     <li>{{ $success }}</li>
                 </ul>
             </div>
