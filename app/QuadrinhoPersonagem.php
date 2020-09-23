@@ -9,14 +9,14 @@ class QuadrinhoPersonagem extends Model
     protected $table = 'quadrinhoPersonagens';
 
     protected $fillable = [
-        'id', 'balao1_id', 'balao2_id'
+        'id', 'balao_esquerda', 'balao_direita'
     ];
 
-    public function balao1(){
-        return $this->belongsTo('App\Balao');
+    public function balaoEsq(){
+        return $this->belongsTo('App\Balao', 'balao_esquerda');
     }
 
-    public function balao2(){
-        return $this->belongsTo('App\Balao');
+    public function balaoDir(){
+        return $this->belongsTo('App\Balao', 'balao_direita');
     }
 }

@@ -13,7 +13,7 @@
     <hr class="bg-dark mt-0"/>
 
     <div class="row">
-        <table class="table table-striped text-center col-sm-8" style="border: 3px solid black;">
+        <table class="table table-striped text-center col-sm-8 offset-sm-2" style="border: 3px solid black;">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">Balão Esquerda</th>
@@ -22,12 +22,14 @@
             </thead>
             <tbody>
             <tr style="border-bottom: 2px solid #555;">
-                <th class="align-middle font-weight-bold" scope="row">{{ $quadPer->balao1->descricao }} <img src="{{ $caminho_imagem.$quadPer->balao1->caminho }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$quadPer->balao1->caminho }}'>"></th>
-                <td class="align-middle font-weight-bold">{{ $quadPer->balao2->descricao }} <img src="{{ $caminho_imagem.$quadPer->balao2->caminho }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$quadPer->balao2->caminho }}'>"></td>
+                
+                <th class="align-middle font-weight-bold" scope="row">{{ $quadPer->balaoEsq->descricao }} <img src="{{ $caminho_imagem.$quadPer->balaoEsq->caminho }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$quadPer->balaoEsq->caminho }}'>"></th>
+                <td class="align-middle font-weight-bold">{{ $quadPer->balaoDir->descricao }} <img src="{{ $caminho_imagem.$quadPer->balaoDir->caminho }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$quadPer->balaoDir->caminho }}'>"></td>
             </tr>
             </tbody>
         </table>
     </div>
+    
 
     <hr class="bg-dark mt-0"/>
 
@@ -39,14 +41,14 @@
         <div class="form-group row">
             <label for="balaoEsquerda" class="col-sm-2 col-form-label text-right font-weight-bold">Balão Esquerda:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="nome" value="{{ $quadPer->balao1 }}" maxlength="255" autocomplete="name" required>
+                <input type="text" class="form-control" name="nome" value="{{ $quadPer->balao1_id }}" maxlength="255" autocomplete="name" required>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="balaoDireita" class="col-sm-2 col-form-label text-right font-weight-bold">Balão Direita:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="email" value="{{ $quadPer->balao2 }}" disabled>
+                <input type="text" class="form-control" name="email" value="{{ $quadPer->balao2_id }}" disabled>
             </div>
         </div>
 

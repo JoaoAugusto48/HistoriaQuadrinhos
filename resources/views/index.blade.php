@@ -53,7 +53,7 @@
         </table>
     
     @else
-        <div class="card text-center">
+        <div class="card text-center border border-dark shadow">
             <div class="card-header">
                 &nbsp;
             </div>

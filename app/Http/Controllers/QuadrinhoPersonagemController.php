@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Balao;
 use App\QuadrinhoPersonagem;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class QuadrinhoPersonagemController extends Controller
     public function index()
     {
         $quadPer = QuadrinhoPersonagem::get()->first();
-
+        
         $caminho_imagem = ArquivoController::caminho_storage();
 
         return view('gerencia.balao.quadrinhoPersonagens', compact('quadPer', 'caminho_imagem'));

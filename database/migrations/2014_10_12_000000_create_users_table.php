@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
@@ -23,6 +24,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        $this->adicionaDados();
     }
 
     /**
@@ -33,5 +36,18 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
+    }
+
+    private function adicionaDados(){
+        // adicionando dado
+        DB::table('users')->insert(
+            array(
+                'id' => 1,
+                'name' => 'João Augusto',
+                'email' => 'teste@teste',
+                'privilegio' => 1,
+                'password' => '$2y$10$/zpMuglqHXJzD.WZxNu2fumieAv.aL24L6UFfSqjNRQvlWUEY7iLG'
+            )
+        );
     }
 }

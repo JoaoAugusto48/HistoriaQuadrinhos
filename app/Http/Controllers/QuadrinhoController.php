@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Balao;
 use App\Hq;
 use App\Quadrinho;
-use App\Situar;
 use App\Utensilio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

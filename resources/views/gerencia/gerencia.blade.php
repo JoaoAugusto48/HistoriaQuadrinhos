@@ -18,7 +18,7 @@
 
     <div class="row">
         <div class="col-sm-4">
-            <div class="card border border-dark">
+            <div class="card border border-dark shadow">
                 <div class="card-body">
                     <h5 class="card-title">Personagens</h5>
                     <p class="card-text">Gerenciar os personagens disponíveis a criação de HQs.</p>
@@ -28,7 +28,7 @@
         </div>
 
         <div class="col-sm-4">
-            <div class="card border border-dark">
+            <div class="card border border-dark shadow">
                 <div class="card-body">
                     <h5 class="card-title">Ambientes</h5>
                     <p class="card-text">Gerenciar os ambientes disponíveis a criação de HQs.</p>
@@ -44,7 +44,7 @@
 
     <div class="row">
         <div class="col-sm-4">
-            <div class="card border border-dark">
+            <div class="card border border-dark shadow">
                 <div class="card-body">
                     <h5 class="card-title">Balões</h5>
                     <p class="card-text">Adicionar ou remover os balões de fala disponíveis.</p>
@@ -54,7 +54,7 @@
         </div>
 
         <div class="col-sm-4">
-            <div class="card border border-dark">
+            <div class="card border border-dark shadow">
                 <div class="card-body">
                     <h5 class="card-title">Utensilios</h5>
                     <p class="card-text">Adicionar ou remover os objetos disponíveis a HQ.</p>
@@ -64,7 +64,7 @@
         </div>
 
         <div class="col-sm-4">
-            <div class="card border border-dark">
+            <div class="card border border-dark shadow">
                 <div class="card-body">
                     <h5 class="card-title">Quadrinho Personagens</h5>
                     <p class="card-text">Gerenciar balões que estão vinculados ao quadrinho de personagens.</p>

@@ -13,18 +13,18 @@ class Hq extends Model
     ];
 
     public function personagem1(){
-        return $this->belongsTo('App\Personagem');
+        return $this->belongsTo('App\Personagem', 'personagem1_id');
     }
 
     public function personagem2(){
-        return $this->belongsTo('App\Personagem');
+        return $this->belongsTo('App\Personagem', 'personagem2_id');
     }
 
     public function ambiente(){
-        return $this->belongsTo('App\Ambiente');
+        return $this->belongsTo('App\Ambiente', 'ambiente_id');
     }
 
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'user_id');
     }
 }
