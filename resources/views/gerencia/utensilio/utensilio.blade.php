@@ -4,7 +4,7 @@
 
     <div class="row">
         <h1>
-            Balão
+            Utensilio
             <a href="{{ route('gerencia.index') }}" class="btn btn-outline-dark ml-1" target="_parent">
                 <i class="fas fa-reply"></i> Gerência
             </a>
@@ -21,18 +21,18 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($balaos as $balao)
+        @foreach ($utensilios as $utensilio)
             <tr style="border-bottom: 2px solid #555;">
-                <th class="align-middle font-weight-bold" scope="row">{{ $balao->descricao }}</th>
-                <td class="align-middle"><img src="{{ $caminho_imagem.$balao->caminho }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$balao->caminho }}'>"></td>
+                <th class="align-middle font-weight-bold" scope="row">{{ $utensilio->descricao }}</th>
+                <td class="align-middle"><img src="{{ $caminho_imagem.$utensilio->caminho }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$utensilio->caminho }}'>"></td>
                 <td class="align-middle">
                     <div class="btn-group" role="group">
-                        <a href="{{ route('balao.show', $balao->id) }}" class="btn btn-sm btn-info border border-dark"><i class="fas fa-edit"></i> Editar</a>
-                        <form class="ml-1" action="{{ route('balao.destroy', $balao->id) }}" method="post">
+                        <a href="{{ route('utensilio.show', $utensilio->id) }}" class="btn btn-sm btn-info border border-dark"><i class="fas fa-edit"></i> Editar</a>
+                        <form class="ml-1" action="{{ route('utensilio.destroy', $utensilio->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             @php
-                                $mensagem = '"'.$balao->descricao.'"';
+                                $mensagem = '"'.$utensilio->descricao.'"';
                             @endphp
                             <button type="submit" class="btn btn-sm btn-danger border border-dark" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }}?')">
                                 <i class="fas fa-trash"></i> Remover

@@ -30,7 +30,8 @@ Route::resources([
     'personagem' => 'PersonagemController',
     'ambiente' => 'AmbienteController',
     'balao' => 'BalaoController',
-    'objeto' => 'ObjetoController',
+    'utensilio' => 'UtensilioController',
+    'quadrinhoPersonagem' => 'QuadrinhoPersonagemController',
 ]);
 
 Route::view('quadrinhos', 'quadrinhos/index')->name('quadrinhos'); //view de quadrinho

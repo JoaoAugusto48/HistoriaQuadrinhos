@@ -20,7 +20,11 @@ class AmbienteController extends Controller
     {
         GerenciarController::userGerente();
 
-        return view('gerencia.ambiente.ambiente');
+        $ambientes = Ambiente::orderby('descricao', 'asc')->get();
+
+        $caminho_imagem = ArquivoController::caminho_storage();
+
+        return view('gerencia.ambiente.ambiente', compact('ambientes', 'caminho_imagem'));
     }
 
     /**

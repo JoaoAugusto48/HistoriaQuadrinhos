@@ -18,9 +18,7 @@ class ObjetoController extends Controller
      */
     public function index()
     {
-        GerenciarController::userGerente();
-
-        return view('gerencia.objeto.objeto');
+        //
     }
 
     /**

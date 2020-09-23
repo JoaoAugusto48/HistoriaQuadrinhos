@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Balao;
+use App\QuadrinhoPersonagem;
 use Illuminate\Http\Request;
 
-class BalaoController extends Controller
+class QuadrinhoPersonagemController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,13 +14,11 @@ class BalaoController extends Controller
      */
     public function index()
     {
-        GerenciarController::userGerente();
-
-        $balaos = Balao::orderby('descricao', 'asc')->get();
+        $quadPer = QuadrinhoPersonagem::get()->first();
 
         $caminho_imagem = ArquivoController::caminho_storage();
 
-        return view('gerencia.balao.balao', compact('balaos','caminho_imagem'));
+        return view('gerencia.balao.quadrinhoPersonagens', compact('quadPer', 'caminho_imagem'));
     }
 
     /**
@@ -51,10 +45,10 @@ class BalaoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Balao  $balao
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Balao $balao)
+    public function show($id)
     {
         //
     }
@@ -62,10 +56,10 @@ class BalaoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Balao  $balao
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Balao $balao)
+    public function edit($id)
     {
         //
     }
@@ -74,10 +68,10 @@ class BalaoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Balao  $balao
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Balao $balao)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -85,10 +79,10 @@ class BalaoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Balao  $balao
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Balao $balao)
+    public function destroy($id)
     {
         //
     }
