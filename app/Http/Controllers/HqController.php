@@ -9,6 +9,7 @@ use App\Mensagem;
 use App\Personagem;
 use App\Problematizar;
 use App\Quadrinho;
+use App\QuadrinhoPersonagem;
 use App\Situar;
 use App\Solucionar;
 use Illuminate\Http\Request;
@@ -110,6 +111,7 @@ class HqController extends Controller
         $problematizars = Problematizar::where('hq_id', '=', $hq->id)->get();
         $solucionars = Solucionar::where('hq_id', '=', $hq->id)->get();
 
+        $quadrinhoPersonagens = QuadrinhoPersonagem::get()->first();
 
         $situarQuadrinho = $situars[3]->quadrinho->pathImg ? true : false;
 
@@ -133,8 +135,11 @@ class HqController extends Controller
 
         $caminho_imagem = ArquivoController::caminho_storage(); //endereço do projeto, local: pasta storage
         
-        return view('hq.show', compact('hq', 'situars', 'problematizars', 'solucionars', 'caminho_imagem',
-            'situarQuadrinho', 'problematizarQuadrinho', 'solucionarQuadrinho'));
+        return view('hq.show', 
+            compact('hq', 'situars', 'problematizars', 'solucionars', 'caminho_imagem',
+            'situarQuadrinho', 'problematizarQuadrinho', 'solucionarQuadrinho',
+            'quadrinhoPersonagens')
+        );
     }
 
     /**

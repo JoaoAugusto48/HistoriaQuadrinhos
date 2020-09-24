@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -18,7 +19,7 @@ class UserSeeder extends Seeder
                 'name' => 'João Augusto',
                 'email' => 'teste@teste',
                 'privilegio' => 1,
-                'password' => '$2y$10$/zpMuglqHXJzD.WZxNu2fumieAv.aL24L6UFfSqjNRQvlWUEY7iLG'
+                'password' => Hash::make('123123123')
             )
         );
     }

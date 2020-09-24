@@ -14,126 +14,128 @@
     </div>
     <hr class="bg-dark"/>
 
-    <table class="table table-sm table-hover table-striped text-center bg-light" style="border: 3px solid black;">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Fase</th>
-            <th scope="col">Título</th>
-            <th scope="col">Página</th>
-            <th scope="col">Operações</th>
-          </tr>
-        </thead>
-        <tbody>
-            @foreach ($situars as $indice => $situar)
-                <tr style="border-bottom: 2px solid #555;">
-                    <th class="align-middle" scope="row">Situar</th>
-                    <td class="align-middle">{{ $situar->quadrinho->titulo }}</td>
-                    <td class="align-middle">{{ $situar->quadrinho->pagina }}</td>
-                    <td class="align-middle">
-                        @if ($indice < 3) {{-- 3 é o valor correspondente as Hqs que não podem ser alteradas --}}
-                            <button disabled="disabled" class="btn btn-sm btn-secondary">Quadrinho estático</button>
-                        @elseif($situar->quadrinho->pathImg)
-                            <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $situar->quadrinho->id]) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
-                        @else
-                            <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $situar->quadrinho->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-plus"></i> Adicionar</a>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
-            @foreach ($problematizars as $indice => $problematizar)
-                <tr style="border-bottom: 2px solid #555;">
-                    <th class="align-middle" scope="row" id="tabProblematizar">Problematizar</th>
-                    <td class="align-middle">{{ $problematizar->quadrinho->titulo }}</td>
-                    <td class="align-middle">{{ $problematizar->quadrinho->pagina }}</td>
-                    <td class="align-middle d-inline-flex">
-                        @if($problematizar->quadrinho->pathImg) 
-                            <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $problematizar->quadrinho->id]) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
-                        @else
-                            <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $problematizar->quadrinho->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-plus"></i> Adicionar</a>
-                        @endif
-
-                        @if ($indice >= 1) {{-- Evento ocorrente para os valores de a partir do 2º Indice--}} 
-                            <form class="ml-1" action="{{ route('problematizar.destroy', $problematizar->id) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                @php
-                                    $mensagem = $problematizar->quadrinho->titulo ? 'de titulo ' . $problematizar->quadrinho->titulo . ', ' : '';
-                                    $mensagem .= 'da página ' . $problematizar->quadrinho->pagina;
-                                @endphp
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }}?')">
-                                    <i class="fas fa-trash"></i> Remover
-                                </button>
-                            </form>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
-            <tr id="linhasProblematizar"></tr>
-
-            <tr class="bg-secondary">  
-                <td colspan="4" class="text-center">
-                    <div class="d-inline-flex">
-                        <form id="form_adicionarProblematizar" action="{{ route('problematizar.store') }}" method="post">
-                            @csrf
-                            <input id="hqId" type="hidden" name="hqId" value="{{$hq->id}}">
-                            <button type="submit" id="btn_adicionarProblematizar" class="btn btn-sm btn-dark" role="button"><i class="fa fa-plus"></i> Adicionar Problematizar</button>
-                        </form>
-
-                        @if ($solucionars->count() == 0)
-                            <form action="{{ route('solucionar.store') }}" method="post">
-                                @csrf
-                                <input type="hidden" name="hqId" value="{{$hq->id}}">
-                                <input type="hidden" name="criarSolucionar" value="valorGeradoEstaticamente">
-                                <button class="btn btn-sm btn-dark ml-1" role="button"><i class="fa fa-plus"></i> Criar Solucionar</button>
-                            </form>
-                        @endif
-                    </div>
-                </td>
+    <div class="p-0 mb-3" style="border: 3px solid black;">
+        <table class="table table-sm table-hover table-striped text-center bg-light m-0">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Fase</th>
+                <th scope="col">Título</th>
+                <th scope="col">Página</th>
+                <th scope="col">Operações</th>
             </tr>
-            
-            @foreach ($solucionars as $solucionar)
-                <tr style="border-bottom: 2px solid #555;">
-                    <th class="align-middle" scope="row" id="tabSolucionar">Solucionar</th>
-                    <td class="align-middle">{{ $solucionar->quadrinho->titulo }}</td>
-                    <td class="align-middle" id="atualizarNumeroPagina">{{ $solucionar->quadrinho->pagina }}</td>
-                    <td class="align-middle">
-                        <div class="d-inline-flex">
-                            @if($solucionar->quadrinho->pathImg)
-                                <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $solucionar->quadrinho->id]) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
+            </thead>
+            <tbody>
+                @foreach ($situars as $indice => $situar)
+                    <tr style="border-bottom: 2px solid #555;">
+                        <th class="align-middle" scope="row">Situar</th>
+                        <td class="align-middle">{{ $situar->quadrinho->titulo }}</td>
+                        <td class="align-middle">{{ $situar->quadrinho->pagina }}</td>
+                        <td class="align-middle">
+                            @if ($indice < 3) {{-- 3 é o valor correspondente as Hqs que não podem ser alteradas --}}
+                                <button disabled="disabled" class="btn btn-sm btn-secondary">Quadrinho estático</button>
+                            @elseif($situar->quadrinho->pathImg)
+                                <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $situar->quadrinho->id]) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
                             @else
-                                <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $solucionar->quadrinho->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-plus"></i> Adicionar</a>
+                                <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $situar->quadrinho->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-plus"></i> Adicionar</a>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+                @foreach ($problematizars as $indice => $problematizar)
+                    <tr style="border-bottom: 2px solid #555;">
+                        <th class="align-middle" scope="row" id="tabProblematizar">Problematizar</th>
+                        <td class="align-middle">{{ $problematizar->quadrinho->titulo }}</td>
+                        <td class="align-middle">{{ $problematizar->quadrinho->pagina }}</td>
+                        <td class="align-middle d-inline-flex">
+                            @if($problematizar->quadrinho->pathImg) 
+                                <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $problematizar->quadrinho->id]) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
+                            @else
+                                <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $problematizar->quadrinho->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-plus"></i> Adicionar</a>
                             @endif
 
-                            {{-- Formulário de Remoção --}}
-                            <form class="ml-1" action="{{ route('solucionar.destroy', $solucionar->id) }}" method="post">
+                            @if ($indice >= 1) {{-- Evento ocorrente para os valores de a partir do 2º Indice--}} 
+                                <form class="ml-1" action="{{ route('problematizar.destroy', $problematizar->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    @php
+                                        $mensagem = $problematizar->quadrinho->titulo ? 'de titulo ' . $problematizar->quadrinho->titulo . ', ' : '';
+                                        $mensagem .= 'da página ' . $problematizar->quadrinho->pagina;
+                                    @endphp
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }}?')">
+                                        <i class="fas fa-trash"></i> Remover
+                                    </button>
+                                </form>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+                <tr id="linhasProblematizar"></tr>
+
+                <tr class="bg-secondary">  
+                    <td colspan="4" class="text-center">
+                        <div class="d-inline-flex">
+                            <form id="form_adicionarProblematizar" action="{{ route('problematizar.store') }}" method="post">
                                 @csrf
-                                @method('DELETE')
-                                @php
-                                    $mensagem = $solucionar->quadrinho->titulo ? 'de titulo ' . $solucionar->quadrinho->titulo . ', ' : '';
-                                    $mensagem .= 'da página ' . $solucionar->quadrinho->pagina;
-                                @endphp
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }} ?')">
-                                    <i class="fas fa-trash"></i> Remover</button>
+                                <input id="hqId" type="hidden" name="hqId" value="{{$hq->id}}">
+                                <button type="submit" id="btn_adicionarProblematizar" class="btn btn-sm btn-dark" role="button"><i class="fa fa-plus"></i> Adicionar Problematizar</button>
                             </form>
+
+                            @if ($solucionars->count() == 0)
+                                <form action="{{ route('solucionar.store') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="hqId" value="{{$hq->id}}">
+                                    <input type="hidden" name="criarSolucionar" value="valorGeradoEstaticamente">
+                                    <button class="btn btn-sm btn-dark ml-1" role="button"><i class="fa fa-plus"></i> Criar Solucionar</button>
+                                </form>
+                            @endif
                         </div>
                     </td>
                 </tr>
-            @endforeach
-            <tr id="linhasSolucionar"></tr>
+                
+                @foreach ($solucionars as $solucionar)
+                    <tr style="border-bottom: 2px solid #555;">
+                        <th class="align-middle" scope="row" id="tabSolucionar">Solucionar</th>
+                        <td class="align-middle">{{ $solucionar->quadrinho->titulo }}</td>
+                        <td class="align-middle" id="atualizarNumeroPagina">{{ $solucionar->quadrinho->pagina }}</td>
+                        <td class="align-middle">
+                            <div class="d-inline-flex">
+                                @if($solucionar->quadrinho->pathImg)
+                                    <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $solucionar->quadrinho->id]) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
+                                @else
+                                    <a href="{{ route('mostrarQuadrinho', ['hqId' => $hq->id, 'quadrinhoId' => $solucionar->quadrinho->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-plus"></i> Adicionar</a>
+                                @endif
 
-            @if ($solucionars->count() > 0)
-                <tr class="bg-secondary">
-                    <td colspan="4" class="text-center">
-                        <form action="{{ route('solucionar.store') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="hqId" value="{{$hq->id}}">
-                            <button id="btn_adicionarSolucionar" class="btn btn-sm btn-dark ml-1" role="button"><i class="fa fa-plus"></i> Adicionar Solucionar</button>
-                        </form>
-                    </td>
-                </tr>
-            @endif
-        </tbody>
-    </table>
+                                {{-- Formulário de Remoção --}}
+                                <form class="ml-1" action="{{ route('solucionar.destroy', $solucionar->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    @php
+                                        $mensagem = $solucionar->quadrinho->titulo ? 'de titulo ' . $solucionar->quadrinho->titulo . ', ' : '';
+                                        $mensagem .= 'da página ' . $solucionar->quadrinho->pagina;
+                                    @endphp
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }} ?')">
+                                        <i class="fas fa-trash"></i> Remover</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                <tr id="linhasSolucionar"></tr>
+
+                @if ($solucionars->count() > 0)
+                    <tr class="bg-secondary">
+                        <td colspan="4" class="text-center">
+                            <form action="{{ route('solucionar.store') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="hqId" value="{{$hq->id}}">
+                                <button id="btn_adicionarSolucionar" class="btn btn-sm btn-dark ml-1" role="button"><i class="fa fa-plus"></i> Adicionar Solucionar</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endif
+            </tbody>
+        </table>
+    </div>
 
     {{-- Fim da Tabela - inicio do pre view --}}
 
@@ -169,12 +171,12 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="col" class="balaoQuadrinho py-4" style="background-image: url('{{$caminho_imagem}}/balao/balaoEsquerda2.png')">
+                                <th scope="col" class="balaoQuadrinho py-4" style="background-image: url('{{$caminho_imagem.$quadrinhoPersonagens->balaoEsq->caminho}}')">
                                 {{-- <th scope="col"> --}}
                                     <textarea rows="3" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao1 }}</textarea>
                                     {{-- <img src="{{$caminho_imagem}}/balao/balaoEsquerda2.png" class="balaoQuadrinho py-4"> --}}
                                 </th>
-                                <th scope="col" class="balaoQuadrinho py-4" style="background-image: url('{{$caminho_imagem}}/balao/balaoDireita1.png')">
+                                <th scope="col" class="balaoQuadrinho py-4" style="background-image: url('{{$caminho_imagem.$quadrinhoPersonagens->balaoDir->caminho}}')">
                                     <textarea rows="3" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao2 }}</textarea>
                                 </th>
                             </tr>

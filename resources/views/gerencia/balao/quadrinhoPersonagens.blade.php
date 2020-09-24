@@ -15,8 +15,8 @@
     </div>
     <hr class="bg-dark mt-0"/>
 
-    <div class="row">
-        <table class="table table-striped text-center col-sm-8 offset-sm-2" style="border: 3px solid black;">
+    <div class=" col-sm-8 offset-sm-2 p-0 mb-3" style="border: 3px solid black;">
+        <table class="table table-striped text-center m-0">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">Balão Esquerda</th>
@@ -24,8 +24,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr style="border-bottom: 2px solid #555;">
-                
+            <tr>
                 <th class="align-middle font-weight-bold" scope="row">{{ $quadPer->balaoEsq->descricao }} <img src="{{ $caminho_imagem.$quadPer->balaoEsq->caminho }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$quadPer->balaoEsq->caminho }}'>"></th>
                 <td class="align-middle font-weight-bold">{{ $quadPer->balaoDir->descricao }} <img src="{{ $caminho_imagem.$quadPer->balaoDir->caminho }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$quadPer->balaoDir->caminho }}'>"></td>
             </tr>
@@ -47,12 +46,13 @@
             <div class="col-sm-10">
                 
                 <select class="custom-select" name="balao_esquerda" required>
+                    @php
+                        $selecionar = ($balao->id == $quadPer->balao_esquerda) ? 'selected' : '';
+                    @endphp
                     @foreach ($balaos as $balao)
-                        @if ($balao->id == $quadPer->balao_esquerda)
-                            <option value="{{ $balao->id }}" selected>{{ $balao->descricao }}</option>
-                        @else
-                            <option value="{{ $balao->id }}">{{ $balao->descricao }}</option>
-                        @endif
+                        <option value="{{ $balao->id }}" @if ($balao->id == $quadPer->balao_esquerda) selected @endif>
+                            {{ $balao->descricao }}
+                        </option>
                     @endforeach
                 </select>
             </div>
