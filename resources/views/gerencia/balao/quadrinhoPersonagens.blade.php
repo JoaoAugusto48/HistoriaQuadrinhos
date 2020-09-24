@@ -8,6 +8,9 @@
             <a href="{{ route('gerencia.index') }}" class="btn btn-outline-dark ml-1" target="_parent">
                 <i class="fas fa-reply"></i> Gerência
             </a>
+            <a href="{{ route('balao.index') }}" target="_blank" class="btn btn-outline-dark ml-1">
+                <i class="fa fa-comments" aria-hidden="true"></i> Visualizar Balões
+            </a>
         </h1>
     </div>
     <hr class="bg-dark mt-0"/>
@@ -33,22 +36,41 @@
 
     <hr class="bg-dark mt-0"/>
 
-    <form action="{{ route('atualizarUsuario') }}" method="post">
+    <form action="{{ route('quadrinhoPersonagem.update', $quadPer->id) }}" method="post">
         @csrf
+        @method('PUT')
 
         <input type="hidden" name="id" value="{{ $quadPer->id }}">
         
         <div class="form-group row">
             <label for="balaoEsquerda" class="col-sm-2 col-form-label text-right font-weight-bold">Balão Esquerda:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="nome" value="{{ $quadPer->balao1_id }}" maxlength="255" autocomplete="name" required>
+                
+                <select class="custom-select" name="balao_esquerda" required>
+                    @foreach ($balaos as $balao)
+                        @if ($balao->id == $quadPer->balao_esquerda)
+                            <option value="{{ $balao->id }}" selected>{{ $balao->descricao }}</option>
+                        @else
+                            <option value="{{ $balao->id }}">{{ $balao->descricao }}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="balaoDireita" class="col-sm-2 col-form-label text-right font-weight-bold">Balão Direita:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="email" value="{{ $quadPer->balao2_id }}" disabled>
+                {{-- <input type="text" class="form-control" name="email" value="{{ $quadPer->balao2_id }}" disabled> --}}
+                <select class="custom-select" name="balao_direita" required>
+                    @foreach ($balaos as $balao)
+                        @if ($balao->id == $quadPer->balao_direita)
+                            <option value="{{ $balao->id }}" selected>{{ $balao->descricao }}</option>
+                        @else
+                            <option value="{{ $balao->id }}">{{ $balao->descricao }}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
         </div>
 

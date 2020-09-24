@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Balao;
 use App\QuadrinhoPersonagem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class QuadrinhoPersonagemController extends Controller
 {
@@ -16,10 +17,12 @@ class QuadrinhoPersonagemController extends Controller
     public function index()
     {
         $quadPer = QuadrinhoPersonagem::get()->first();
+
+        $balaos = Balao::orderby('descricao')->get();
         
         $caminho_imagem = ArquivoController::caminho_storage();
 
-        return view('gerencia.balao.quadrinhoPersonagens', compact('quadPer', 'caminho_imagem'));
+        return view('gerencia.balao.quadrinhoPersonagens', compact('quadPer', 'caminho_imagem', 'balaos'));
     }
 
     /**
@@ -72,9 +75,32 @@ class QuadrinhoPersonagemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'id' => 'required',
+            'balao_esquerda' => 'required',
+            'balao_direita' => 'required'
+        ]);
+
+        $balaoQuadrinho2 = new QuadrinhoPersonagem();
+        $balaoQuadrinho2->id = $request->get('id');
+        $balaoQuadrinho2->balao_esquerda = $request->get('balao_esquerda');
+        $balaoQuadrinho2->balao_direita = $request->get('balao_direita');
+
+        $antigo = QuadrinhoPersonagem::where('id', '=', $balaoQuadrinho2->id)->get()->first();
+        if(($balaoQuadrinho2->balao_esquerda == $antigo->balao_esquerda) && ($balaoQuadrinho2->balao_direita == $antigo->balao_direita)){
+            return redirect()->route('quadrinhoPersonagem.index');
+        }
+
+        DB::table('quadrinhoPersonagens')->where('id', '=', $balaoQuadrinho2->id)
+            ->update([
+                'balao_esquerda' => $balaoQuadrinho2->balao_esquerda,
+                'balao_direita' => $balaoQuadrinho2->balao_direita
+            ]);
+
+        return redirect()->route('quadrinhoPersonagem.index');
     }
 
     /**

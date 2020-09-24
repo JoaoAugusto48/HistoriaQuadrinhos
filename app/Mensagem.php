@@ -13,14 +13,14 @@ class Mensagem extends Model
     ];
 
     public function quadrinho(){
-        return $this->belongsTo('App\Quadrinho');
+        return $this->belongsTo('App\Quadrinho', 'quadrinho_id');
     }
 
     public function personagem(){
-        return $this->belongsTo('App\Personagem');
+        return $this->belongsTo('App\Personagem', 'personagem_id');
     }
 
     public function balao(){
-        return $this->belongsTo('App\Balao');
+        return $this->belongsTo('App\Balao', 'balao_id');
     }
 }

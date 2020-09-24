@@ -13,10 +13,14 @@ class Objeto extends Model
     ];
 
     public function quadrinho(){
-        return $this->belongsTo('App\Quadrinho');
+        return $this->belongsTo('App\Quadrinho', 'quadrinho_id');
     }
 
     public function utensilio(){
-        return $this->belongsTo('App\Utensilio');
+        return $this->belongsTo('App\Utensilio', 'utensilio_id');
+    }
+
+    public function balao(){
+        return $this->belongsTo('App\Balao', 'balao_id');
     }
 }

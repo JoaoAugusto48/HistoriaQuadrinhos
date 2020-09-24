@@ -13,10 +13,10 @@ class Situar extends Model
     ];
 
     public function hq(){
-        return $this->belongsTo('App\Hq');
+        return $this->belongsTo('App\Hq', 'hq_id');
     }
 
     public function quadrinho(){
-        return $this->belongsTo('App\Quadrinho');
+        return $this->belongsTo('App\Quadrinho', 'quadrinho_id');
     }
 }

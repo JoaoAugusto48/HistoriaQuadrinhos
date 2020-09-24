@@ -23,8 +23,6 @@ class CreateQuadrinhoPersonagensTable extends Migration
             $table->foreign('balao_esquerda')->references('id')->on('balaos');
             $table->foreign('balao_direita')->references('id')->on('balaos');
         });
-
-        $this->adicionaDados();
     }
 
     /**
@@ -35,16 +33,5 @@ class CreateQuadrinhoPersonagensTable extends Migration
     public function down()
     {
         Schema::dropIfExists('quadrinhoPersonagens');
-    }
-
-    private function adicionaDados(){
-        // adicionando dado
-        DB::table('quadrinhoPersonagens')->insert(
-            array(
-                'id' => 1,
-                'balao_esquerda' => 4,
-                'balao_direita' => 1
-            )
-        );
     }
 }
