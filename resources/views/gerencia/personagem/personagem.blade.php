@@ -66,12 +66,12 @@
                                         <button id="adicionar"  onclick="trocarExibicao()" type="button" class="btn btn-sm btn-dark" role="button" onclick="adicionar()"><i class="fa fa-plus"></i> Adicionar Personagem</button>
                                     </div>
 
-                                    <form action="{{ route('personagem.store') }}" method="post">
+                                    <form enctype="multipart/form-data" action="{{ route('personagem.store') }}" method="post">
                                         @csrf
                                         <div class="form-group row" id="col-descricao" style="display: none">
                                             <label for="nome" class="col-form-label text-right font-weight-bold">Descrição:</label>
                                             <div class="col-sm-8">
-                                                <input id="txt-titulo" type="text" class="form-control" name="descricao" maxlength="70" required autofocus>
+                                                <input id="txt-titulo" type="text" class="form-control" name="descricao" maxlength="70" value="{{ old('descricao') }}" required autofocus>
                                             </div>
                                         </div>
                                         <div class=" form-group row" id="col-img" style="display: none">

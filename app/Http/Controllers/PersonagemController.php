@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Personagem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PersonagemController extends Controller
 {
@@ -45,14 +46,23 @@ class PersonagemController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-
         $request->validate([
             'descricao' => 'required|max:70',
             'img' => 'required'
         ]);
+            
+        $descricao = $request->get('descricao');
+        $imagem = $request->file('img');
+        
+        // dd($request->all());
+        $caminhoImagem = ArquivoController::caminho_imagem("personagem", $imagem);
+        
+        // Storage::disk('public')->put($caminhoImagem, $imagem->getClientOriginalName());
+        dd($imagem->getRealPath());
 
-        // $path = Storage::putFile('avatars', $request->file('avatar'));
+        // Storage::disk('public')->put($file_name, base64_decode($file_data));
+
+        return redirect()->route('personagem.index');
     }
 
     /**

@@ -14,6 +14,14 @@ class ArquivoController extends Controller
         // retornando o modo feito para armazenar os arquivos do projeto em storage
     }
 
+    public static function caminho_imagem($arquivoImagem, $imagem){
+        if(Storage::disk('public')->exists($arquivoImagem)){
+            $nomeImagem = hash('sha512',uniqid((time())));
+            $imagem->store($arquivoImagem);
+            return $arquivoImagem.'/'. $nomeImagem .'.png';
+        }
+    }
+
     // para recuperar o nome do folder
     public static function folder_name($hqId, $user){
         return 'users/'.$user.'/hq_'.$hqId;
