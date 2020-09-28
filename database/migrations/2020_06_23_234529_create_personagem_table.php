@@ -17,6 +17,7 @@ class CreatePersonagemTable extends Migration
         Schema::create('personagems', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('personagem'); //imagem
+            $table->boolean('status'); //estado da imagem 1 para ativo
             $table->string('descricao', 70);
             $table->timestamps();
         });

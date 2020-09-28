@@ -17,17 +17,20 @@ class AmbienteSeeder extends Seeder
                 [
                     'id' => 1,
                     'fundo' => 'ambiente/ambiente1.png',
-                    'descricao' => 'ambiente1'
+                    'descricao' => 'ambiente1',
+                    'status' => true,
                 ],
                 [
                     'id' => 2,
                     'fundo' => 'ambiente/ambiente2.png',
-                    'descricao' => 'ambiente2'
+                    'descricao' => 'ambiente2',
+                    'status' => true,
                 ],
                 [
                     'id' => 3,
                     'fundo' => 'ambiente/ambiente3.png',
-                    'descricao' => 'ambiente3'
+                    'descricao' => 'ambiente3',
+                    'status' => true,
                 ]
             )
         );

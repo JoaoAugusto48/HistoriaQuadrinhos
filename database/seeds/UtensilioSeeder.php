@@ -17,17 +17,20 @@ class UtensilioSeeder extends Seeder
                 [
                     'id' => 1,
                     'caminho' => 'utensilio/utensilio1.png',
-                    'descricao' => 'cadeira1'
+                    'descricao' => 'cadeira1',
+                    'status' => true,
                 ],
                 [
                     'id' => 2,
                     'caminho' => 'utensilio/utensilio2.png',
-                    'descricao' => 'cadeira2'
+                    'descricao' => 'cadeira2',
+                    'status' => true,
                 ],
                 [
                     'id' => 3,
                     'caminho' => 'utensilio/utensilio3.png',
-                    'descricao' => 'cadeira3'
+                    'descricao' => 'cadeira3',
+                    'status' => true,
                 ]
             )
         );

@@ -17,27 +17,32 @@ class PersonagemSeeder extends Seeder
                 [
                     'id' => 1,
                     'personagem' => 'personagem/personagem1.png',
-                    'descricao' => 'personagem1'
+                    'descricao' => 'personagem1',
+                    'status' => true,
                 ],
                 [
                     'id' => 2,
                     'personagem' => 'personagem/personagem2.png',
-                    'descricao' => 'personagem2'
+                    'descricao' => 'personagem2',
+                    'status' => true,
                 ],
                 [
                     'id' => 3,
                     'personagem' => 'personagem/personagem3.png',
-                    'descricao' => 'personagem3'
+                    'descricao' => 'personagem3',
+                    'status' => true,
                 ],
                 [
                     'id' => 4,
                     'personagem' => 'personagem/personagem4.png',
-                    'descricao' => 'personagem4'
+                    'descricao' => 'personagem4',
+                    'status' => true,
                 ],
                 [
                     'id' => 5,
                     'personagem' => 'personagem/personagem5.png',
-                    'descricao' => 'personagem5'
+                    'descricao' => 'personagem5',
+                    'status' => true,
                 ]
             )
         );

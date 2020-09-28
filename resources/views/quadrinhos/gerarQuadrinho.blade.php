@@ -1,37 +1,6 @@
-{{-- @extends('layouts.criarQuadrinho') --}}
 @extends('layouts.app')
-{{-- @section('title', $hq->tema) --}}
 
 @section('content')
-    
-
-<script>
-//     function capturaPosicaoDoMouse(event){
-//    // console.log(event);
-// }
-
-// function capturaPosicaoDoClick(event){
-//     const posicoes = {x : event.clientX, y : event.clientY + window.scrollY};
-//     console.log(posicoes);
-
-//     document.querySelector("#fundo").innerHTML+=
-//     `
-//     <div class="balaozin" oncontextmenu="excluiQuadradin(event)" style="width: 50px; display: block; height: 50x; background-color: pink; position: absolute; left: ${posicoes.x}px; top: ${posicoes.y}px">
-//     teste
-//     </div>
-    
-//     `;
-// }
-
-// function excluiQuadradin(event){
-//     console.log(event.path[0].style.display="none");
-//     event.preventDefault();
-//     return false;
-// }
-
-</script>
-
-
 
 <div class="container pt-1">
     <div class="row">
@@ -56,34 +25,18 @@
     
     <div class="container">
         <div class="btn-group w-100 mb-0">
-            {{-- <div class="col-sm-6"> --}}
-                <button id="btn-balao" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#balao">
-                    Balão de fala
-                </button>
-            {{-- </div>
-            <div class="col-sm-6"> --}}
-                <button id="btn-utensilio" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#utensilio">
-                    Objetos
-                </button>
-            {{-- </div> --}}
+            <button id="btn-balao" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#balao">
+                Balão de fala
+            </button>
+            <button id="btn-utensilio" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#utensilio">
+                Objetos
+            </button>
         </div>
     
-        {{-- Com funcões referentes ao uso do mouse --}}
-        {{-- <div class="container containerCustomizado" id="fundo" onmousemove="capturaPosicaoDoMouse(event)" onclick="capturaPosicaoDoClick(event)" style="background-color: white; background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->ambiente->fundo }}')"> --}}
-        
-        {{-- Sem funcões referentes ao uso do mouse --}}
         <div class="container containerCustomizado" id="fundo" style="background-color: white; background-image: url('{{ $caminho_imagem.$hq->ambiente->fundo }}')">
-        {{-- <div class="container containerCustomizado" style="background-color: white"> --}}
             <div class="row" >
-                {{-- <div class="col-12" style="border-bottom: 3px solid black"> --}}
                 <div class="col-12">
                     <div class="col-9 acopla-imagens" id="acopla-imagens" style="display: flex; align-items: stretch; z-index:2">
-                        
-                        {{-- Com context menu --}}
-                        {{-- <div class="arrastavel personagem" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem1->personagem }}')" oncontextmenu="show_hide();return false;"></div>
-                        <div class="arrastavel personagem" style="background-image: url('{{ env('APP_URL') }}/storage/{{ $hq->personagem2->personagem }}')" oncontextmenu="show_hide();return false;"> --}}
-                        
-                        {{-- Sem context menu --}}
                         <div class="arrastavel personagem personagem1" style="z-index: 101; background-image: url('{{ $caminho_imagem.$hq->personagem1->personagem }}')"></div>
                         <div class="arrastavel personagem personagem2" style="z-index: 100; background-image: url('{{ $caminho_imagem.$hq->personagem2->personagem }}')"></div>
                     </div>

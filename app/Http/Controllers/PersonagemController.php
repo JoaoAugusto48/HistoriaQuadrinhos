@@ -45,7 +45,14 @@ class PersonagemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
+
+        $request->validate([
+            'descricao' => 'required|max:70',
+            'img' => 'required'
+        ]);
+
+        // $path = Storage::putFile('avatars', $request->file('avatar'));
     }
 
     /**

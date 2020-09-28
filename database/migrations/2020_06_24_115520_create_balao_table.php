@@ -16,8 +16,9 @@ class CreateBalaoTable extends Migration
     {
         Schema::create('balaos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('caminho');
+            $table->boolean('status'); //estado da imagem 1 para ativo
             $table->string('descricao');
+            $table->string('caminho');
             $table->timestamps();
         });
     }

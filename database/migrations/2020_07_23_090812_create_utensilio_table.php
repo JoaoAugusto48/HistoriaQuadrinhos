@@ -16,8 +16,9 @@ class CreateUtensilioTable extends Migration
     {
         Schema::create('utensilios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('caminho');
             $table->string('descricao');
+            $table->boolean('status'); //estado da imagem 1 para ativo
+            $table->string('caminho');
             $table->timestamps();
         });
     }

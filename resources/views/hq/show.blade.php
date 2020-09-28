@@ -162,7 +162,7 @@
                 <div class="card-body d-flex">
                     <h2 class="card-title m-auto text-center" style="max-width: 25ch;">{{ $situars[0]->quadrinho->titulo }}</h2>
                 </div>
-                <div class="card-footer bg-transparent border-top-0 numeroPagina">{{ $situars[0]->quadrinho->pagina }}</div>
+                <div class="card-footer bg-transparent border-top-0 numeroPagina"><span style="text-shadow: 0px 0px 10px #cecece; font-weight: bold; color: black; font-size: 20px;">{{ $situars[0]->quadrinho->pagina }}</span></div>
             </div>
             <div class="card text-center bg-dark text-white">
                 <div class="card-header">{{ $situars[1]->quadrinho->titulo }}</div>
@@ -171,14 +171,27 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="col" class="balaoQuadrinho py-4" style="background-image: url('{{$caminho_imagem.$quadrinhoPersonagens->balaoEsq->caminho}}')">
+                                <th scope="col" class="balaoQuadrinho py-4">
                                 {{-- <th scope="col"> --}}
-                                    <textarea rows="3" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao1 }}</textarea>
+                                   <!-- <div style="background-image: url('{{$caminho_imagem.$quadrinhoPersonagens->balaoEsq->caminho}}'); background-size: contain; background-repeat: no-repeat; background-position: center center;">
+                                        <textarea rows="3" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao1 }}</textarea> 
+                                    </div>!-->
+                                    <div style="width: 100px; height: 100px">
+                                        <img src="{{$caminho_imagem.$quadrinhoPersonagens->balaoEsq->caminho}}" style="width: 150%; height: 125%; z-index: -10">
+                                        <textarea rows="3" style="position: absolute; left: -12%; top: 21%;" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao1 }}</textarea>
+                                    </div>
+                                    {{-- <img src="{{$caminho_imagem.$quadrinhoPersonagens->balaoEsq->caminho}}" style="width: 100%; height: 100%"> --}}
                                     {{-- <img src="{{$caminho_imagem}}/balao/balaoEsquerda2.png" class="balaoQuadrinho py-4"> --}}
                                 </th>
-                                <th scope="col" class="balaoQuadrinho py-4" style="background-image: url('{{$caminho_imagem.$quadrinhoPersonagens->balaoDir->caminho}}')">
+                                {{-- <th scope="col" class="balaoQuadrinho py-4" style="background-image: url('{{$caminho_imagem.$quadrinhoPersonagens->balaoDir->caminho}}')">
                                     <textarea rows="3" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao2 }}</textarea>
-                                </th>
+                                </th> --}}
+                                <th scope="col" class="balaoQuadrinho py-4">
+                                        <div style="width: 100px; height: 100px">
+                                            <img src="{{$caminho_imagem.$quadrinhoPersonagens->balaoDir->caminho}}" style="width: 150%; height: 125%; z-index: -10">
+                                            <textarea rows="3" style="position: absolute; left: 36%; top: 21%;" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao1 }}</textarea>
+                                        </div>
+                                    </th>
                             </tr>
                             <tr>
                                 <th scope="col"><img src="{{ $caminho_imagem.$hq->personagem1->personagem }}" class="card-img-personagens text-left" draggable="false"></th>
@@ -187,16 +200,22 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $situars[1]->quadrinho->pagina }}</div>
+                <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">
+                    <span style="text-shadow: 0px 0px 10px #cecece; font-weight: bold; color: black; font-size: 20px;">
+                        {{ $situars[1]->quadrinho->pagina }}
+                    </span>
+                </div>
             </div>
             <div class="card text-center bg-dark text-white rounded-top-0">
                 <div class="card-header">{{ $situars[2]->quadrinho->titulo }}</div>
                 <div class="card-body p-0 d-flex bg-white">
-
                     <img src="{{ $caminho_imagem.$hq->ambiente->fundo }}" class="card-img-ambiente my-auto w-100" draggable="false">
-                
                 </div>
-                <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $situars[2]->quadrinho->pagina }}</div>
+                <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">
+                    <span style="text-shadow: 0px 0px 10px #cecece; font-weight: bold; color: black; font-size: 20px;">
+                        {{ $situars[2]->quadrinho->pagina }}
+                    </span>
+                </div>
             </div>
         </div>
 
@@ -211,7 +230,11 @@
                     <div class="card-body p-0 bg-white">
                         <img src="{{ $caminho_imagem.$situars[3]->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
                     </div>
-                    <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $situars[3]->quadrinho->pagina }}</div>
+                    <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">
+                        <span style="text-shadow: 0px 0px 10px #cecece; font-weight: bold; color: black; font-size: 20px;">
+                            {{ $situars[3]->quadrinho->pagina }}
+                        </span>
+                    </div>
                 </div>
             @endif
         </div>
@@ -234,7 +257,11 @@
                                         <div class="card-body p-0 bg-white">
                                             <img src="{{ $caminho_imagem.$problematizar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
                                         </div>
-                                        <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $problematizar->quadrinho->pagina }}</div>
+                                        <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">
+                                            <span style="text-shadow: 0px 0px 10px #cecece; font-weight: bold; color: black; font-size: 20px;">
+                                                {{ $problematizar->quadrinho->pagina }}
+                                            </span>
+                                        </div>
                                     </div>
                                 {{-- </div> --}}
                             @endif
@@ -252,19 +279,21 @@
                     <div class="col-md-12 m-0 p-0">
                         @foreach ($solucionars as $solucionar)
                             @if ($solucionar->quadrinho->pathImg)
-                                {{-- <div class="col-md-6"> --}}
-                                    <div class="card text-center bg-dark text-white rounded-top-0">
-                                        @if ($solucionar->quadrinho->titulo)
-                                            <div class="card-header">{{ $solucionar->quadrinho->titulo }}</div>
-                                        @else
-                                            <div class="card-header">&nbsp;</div>
-                                        @endif
-                                        <div class="card-body p-0 bg-white">
-                                            <img src="{{ $caminho_imagem.$solucionar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
-                                        </div>
-                                        <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">{{ $solucionar->quadrinho->pagina }}</div>
+                                <div class="card text-center bg-dark text-white rounded-top-0">
+                                    @if ($solucionar->quadrinho->titulo)
+                                        <div class="card-header">{{ $solucionar->quadrinho->titulo }}</div>
+                                    @else
+                                        <div class="card-header">&nbsp;</div>
+                                    @endif
+                                    <div class="card-body p-0 bg-white">
+                                        <img src="{{ $caminho_imagem.$solucionar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
                                     </div>
-                                {{-- </div> --}}
+                                    <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">
+                                        <span style="text-shadow: 0px 0px 10px #cecece; font-weight: bold; color: black; font-size: 20px;">
+                                            {{ $solucionar->quadrinho->pagina }}
+                                        </span>
+                                    </div>
+                                </div>
                             @endif
                         @endforeach
                     </div>

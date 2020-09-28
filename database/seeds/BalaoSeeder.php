@@ -17,22 +17,26 @@ class BalaoSeeder extends Seeder
                 [
                     'id' => 1,
                     'caminho' => 'balao/balaoDireita1.png',
-                    'descricao' => 'balao1'
+                    'descricao' => 'balao1',
+                    'status' => true,
                 ],
                 [
                     'id' => 2,
                     'caminho' => 'balao/balaoDireita2.png',
-                    'descricao' => 'balao2'
+                    'descricao' => 'balao2',
+                    'status' => true,
                 ],
                 [
                     'id' => 3,
                     'caminho' => 'balao/balaoEsquerda1.png',
-                    'descricao' => 'balao3'
+                    'descricao' => 'balao3',
+                    'status' => true,
                 ],
                 [
                     'id' => 4,
                     'caminho' => 'balao/balaoEsquerda2.png',
-                    'descricao' => 'balao4'
+                    'descricao' => 'balao4',
+                    'status' => true,
                 ]
             )
         );

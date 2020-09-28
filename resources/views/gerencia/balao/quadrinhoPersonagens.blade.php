@@ -46,11 +46,12 @@
             <div class="col-sm-10">
                 
                 <select class="custom-select" name="balao_esquerda" required>
-                    @php
-                        $selecionar = ($balao->id == $quadPer->balao_esquerda) ? 'selected' : '';
-                    @endphp
                     @foreach ($balaos as $balao)
-                        <option value="{{ $balao->id }}" @if ($balao->id == $quadPer->balao_esquerda) selected @endif>
+                        @php
+                            $selecionar = ($balao->id == $quadPer->balao_esquerda) ? 'selected' : '';
+                        @endphp
+
+                        <option value="{{ $balao->id }}" {{ $selecionar }}>
                             {{ $balao->descricao }}
                         </option>
                     @endforeach

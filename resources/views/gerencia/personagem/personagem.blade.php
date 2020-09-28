@@ -2,6 +2,19 @@
 
 @section('content')
 
+<script>
+
+    function trocarExibicao(){
+        $('#col-adicionar').fadeOut(100);
+
+        setTimeout(function(){
+        $('#col-img').fadeIn(100);
+        $('#col-descricao').fadeIn(100);
+        $('#col-enviar').fadeIn(100);
+        }, 50)
+
+    }
+</script>
     <div class="row">
         <h1>
             Personagem
@@ -45,11 +58,34 @@
             @endforeach
                 <tr class="bg-secondary">  
                     <td colspan="4" class="text-center">
-                        <div class="d-inline-flex">
-                            <form action="{{ route('personagem.store') }}" method="post">
-                                @csrf
-                                <button type="submit" class="btn btn-sm btn-dark" role="button"><i class="fa fa-plus"></i> Adicionar Personagem</button>
-                            </form>
+                        <div class="d-inline-flex" id="alterar-texto">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12" id="col-adicionar">
+                                        @csrf
+                                        <button id="adicionar"  onclick="trocarExibicao()" type="button" class="btn btn-sm btn-dark" role="button" onclick="adicionar()"><i class="fa fa-plus"></i> Adicionar Personagem</button>
+                                    </div>
+
+                                    <form action="{{ route('personagem.store') }}" method="post">
+                                        @csrf
+                                        <div class="form-group row" id="col-descricao" style="display: none">
+                                            <label for="nome" class="col-form-label text-right font-weight-bold">Descrição:</label>
+                                            <div class="col-sm-8">
+                                                <input id="txt-titulo" type="text" class="form-control" name="descricao" maxlength="70" required autofocus>
+                                            </div>
+                                        </div>
+                                        <div class=" form-group row" id="col-img" style="display: none">
+                                            <label for="img" class="text-right font-weight-bold">Select image:</label>
+                                            <div class="col-sm-8">
+                                                <input type="file" id="img" name="img" accept="image/x-png">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 offset-md-2 pl-1 text-left" id="col-enviar" style="display: none">
+                                            <button type="submit" class="btn btn-primary font-weight-bold border border-dark">Enviar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </td>
                 </tr>

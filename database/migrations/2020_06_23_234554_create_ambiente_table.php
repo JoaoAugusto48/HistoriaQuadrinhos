@@ -16,6 +16,7 @@ class CreateAmbienteTable extends Migration
         Schema::create('ambientes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fundo'); //imagem
+            $table->boolean('status'); //estado da imagem 1 para ativo
             $table->string('descricao', 70);
             $table->timestamps();
         });
