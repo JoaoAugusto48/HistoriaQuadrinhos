@@ -141,7 +141,7 @@
 
     {{-- Botão para Baixar os quadrinhos --}}
     @if ($situarQuadrinho && $problematizarQuadrinho && $solucionarQuadrinho)
-        <button class="btn btn-outline-primary mb-3" onclick="baixarHq('{{ $hq->tema }}')"><i class="fas fa-download"></i> Baixar Quadrinho</button>
+        <button class="btn btn-outline-primary mb-3" onclick="baixarHq('{{ $hq->tema }}')" ><i class="fas fa-download"></i> Baixar Quadrinho</button>
     @endif
 
     {{-- excluir --}}
@@ -172,24 +172,15 @@
                         <tbody>
                             <tr>
                                 <th scope="col" class="balaoQuadrinho py-4">
-                                {{-- <th scope="col"> --}}
-                                   <!-- <div style="background-image: url('{{$caminho_imagem.$quadrinhoPersonagens->balaoEsq->caminho}}'); background-size: contain; background-repeat: no-repeat; background-position: center center;">
-                                        <textarea rows="3" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao1 }}</textarea> 
-                                    </div>!-->
                                     <div style="width: 100px; height: 100px">
                                         <img src="{{$caminho_imagem.$quadrinhoPersonagens->balaoEsq->caminho}}" style="width: 150%; height: 125%; z-index: -10">
-                                        <textarea rows="3" style="position: absolute; left: -12%; top: 21%;" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao1 }}</textarea>
+                                        <textarea rows="3" style="max-width: 15ch; position: absolute; left: 14%; top: 18%;" cols="13" class="text-center textareaQuadrinho p-1" disabled>{{ $hq->saudacao1 }}</textarea>
                                     </div>
-                                    {{-- <img src="{{$caminho_imagem.$quadrinhoPersonagens->balaoEsq->caminho}}" style="width: 100%; height: 100%"> --}}
-                                    {{-- <img src="{{$caminho_imagem}}/balao/balaoEsquerda2.png" class="balaoQuadrinho py-4"> --}}
                                 </th>
-                                {{-- <th scope="col" class="balaoQuadrinho py-4" style="background-image: url('{{$caminho_imagem.$quadrinhoPersonagens->balaoDir->caminho}}')">
-                                    <textarea rows="3" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao2 }}</textarea>
-                                </th> --}}
                                 <th scope="col" class="balaoQuadrinho py-4">
                                         <div style="width: 100px; height: 100px">
                                             <img src="{{$caminho_imagem.$quadrinhoPersonagens->balaoDir->caminho}}" style="width: 150%; height: 125%; z-index: -10">
-                                            <textarea rows="3" style="position: absolute; left: 36%; top: 21%;" cols="13" class="text-center textareaQuadrinho" disabled>{{ $hq->saudacao1 }}</textarea>
+                                            <textarea rows="3" style="max-width: 15ch; position: absolute; left: 60%; top: 18%;" cols="13" class="text-center textareaQuadrinho p-1" disabled>{{ $hq->saudacao2 }}</textarea>
                                         </div>
                                     </th>
                             </tr>
