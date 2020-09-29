@@ -80,7 +80,7 @@ class AuthController extends Controller
         
         //Validação das senhas criadas
         if(!$validacaoSenha['validacao']){
-            return redirect()->route('usuario.index')->with('error', $validacaoSenha['mensagens']);
+            return redirect()->route('usuario.index')->with($validacaoSenha['mensagens']);
         }
 
         DB::table('users')->where('id','=', $id)

@@ -32,8 +32,10 @@
                 Objetos
             </button>
         </div>
-    
-        <div class="container containerCustomizado" id="fundo" style="background-color: white; background-image: url('{{ $caminho_imagem.$hq->ambiente->fundo }}'); background-repeat: repeat-x">
+        @php
+            $repeteX = ($hq->ambiente->repeteFundo) ? 'background-repeat: repeat-x' : '';
+        @endphp
+        <div class="container containerCustomizado" id="fundo" style="background-color: white; background-image: url('{{ $caminho_imagem.$hq->ambiente->fundo }}'); {{ $repeteX }}">
             <div class="row" >
                 <div class="col-12">
                     <div class="col-9 acopla-imagens" id="acopla-imagens" style="display: flex; align-items: stretch; z-index:2">

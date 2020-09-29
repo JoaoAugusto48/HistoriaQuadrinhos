@@ -6,6 +6,7 @@ use App\Personagem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class PersonagemController extends Controller
 {
@@ -22,7 +23,7 @@ class PersonagemController extends Controller
     {
         GerenciarController::userGerente();
 
-        $personagens = Personagem::orderby('descricao', 'asc')->get();
+        $personagens = Personagem::where('status','=', true)->orderby('descricao', 'asc')->get();
 
         $caminho_imagem = ArquivoController::caminho_storage();
 
@@ -73,7 +74,7 @@ class PersonagemController extends Controller
      * @param  \App\Personagem  $personagem
      * @return \Illuminate\Http\Response
      */
-    public function show(Personagem $personagem)
+    public function show(Request $request)
     {
         //
     }
@@ -84,9 +85,13 @@ class PersonagemController extends Controller
      * @param  \App\Personagem  $personagem
      * @return \Illuminate\Http\Response
      */
-    public function edit(Personagem $personagem)
+    public function edit(Request $request)
     {
-        //
+        $personagem = Personagem::FindOrFail($request->personagem);
+
+        $caminho_imagem = ArquivoController::caminho_storage();
+
+        return view('gerencia.personagem.edit', compact('personagem', 'caminho_imagem'));
     }
 
     /**
@@ -96,9 +101,29 @@ class PersonagemController extends Controller
      * @param  \App\Personagem  $personagem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Personagem $personagem)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'id' => 'required',
+            'descricao' => 'required|max:70'
+        ]);
+
+        $personagem = new Personagem();
+        $personagem->id = $request->get('id');
+        $personagem->descricao = trim($request->get('descricao'));
+
+        $validarDescricao = $this->verificarDescricao($personagem->id, $personagem->descricao);
+        // dd($validarDescricao);
+        if($validarDescricao){
+            DB::table('personagems')->where('id','=',$personagem->id)
+                ->update([
+                    'descricao' => $personagem->descricao
+                ]);
+            return redirect()->route('personagem.index');
+        }
+
+        return redirect()->route('personagem.edit', $personagem->id)
+                ->withErrors(['error', 'Já possui personagem com a descrição "'. $personagem->descricao.'"!']);
     }
 
     /**
@@ -107,8 +132,24 @@ class PersonagemController extends Controller
      * @param  \App\Personagem  $personagem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Personagem $personagem)
+    public function destroy(Request $request)
     {
-        //
+        $personagem = Personagem::FindOrFail($request->personagem);
+
+        DB::table('personagems')->where('id','=',$personagem->id)
+                ->update([
+                    'status' => false
+                ]);
+
+        return redirect()->route('personagem.index');
+    }
+
+
+    private function verificarDescricao($id, $descricao){
+        $verificar = Personagem::where('id', '<>', $id)
+                    ->where('descricao','=',$descricao)
+                    ->where('status','=',true)->get();
+
+        return ($verificar->count() > 0) ? false : true;
     }
 }

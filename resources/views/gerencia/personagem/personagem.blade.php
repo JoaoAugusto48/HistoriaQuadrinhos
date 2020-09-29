@@ -6,14 +6,13 @@
 
     function trocarExibicao(){
         // $('#col-adicionar').fadeOut(100);
-
         setTimeout(function(){
         $('#col-img').fadeIn(100);
         $('#col-descricao').fadeIn(100);
         $('#col-enviar').fadeIn(100);
         $('#col-formImg').show(100);
+        $('#col-fechar').show(100);
         }, 50)
-
     }
 </script>
     <div class="row">
@@ -53,7 +52,7 @@
                                                 <input id="txt-titulo" type="text" class="form-control" name="descricao" maxlength="70" value="{{ old('descricao') }}" required autofocus>
                                             </div>
                                         </div>
-                                        <div class=" form-group row" id="col-img" style="display: none">
+                                        <div class=" form-group row" id="col-img" style="display: none" required>
                                             <label for="img" class="text-right font-weight-bold">Select image:</label>
                                             <div class="col-sm-8">
                                                 <input type="file" id="img" name="img" accept="image/x-png">
@@ -74,14 +73,14 @@
                     <td class="col-sm-4 align-middle border-0"><img src="{{ $caminho_imagem.$personagem->personagem }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$personagem->personagem }}'>"></td>
                     <td class="col-sm-4 align-middle border-0">
                         <div class="btn-group" role="group">
-                            <a href="{{ route('personagem.show', $personagem->id) }}" class="btn btn-sm btn-info border border-dark"><i class="fas fa-edit"></i> Editar</a>
+                            <a href="{{ route('personagem.edit', $personagem->id) }}" class="btn btn-sm btn-info border border-dark"><i class="fas fa-edit"></i> Editar</a>
                             <form class="ml-1" action="{{ route('personagem.destroy', $personagem->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 @php
                                     $mensagem = '"'.$personagem->descricao.'"';
                                 @endphp
-                                <button type="submit" class="btn btn-sm btn-danger border border-dark" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }}?')">
+                                <button type="submit" class="btn btn-sm btn-danger border border-dark" onclick="return confirm('Deseja realmente remover o personagem {{ $mensagem }}?')">
                                     <i class="fas fa-trash"></i> Remover
                                 </button>
                             </form>

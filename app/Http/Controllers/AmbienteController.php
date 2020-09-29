@@ -45,7 +45,28 @@ class AmbienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
+        $request->validate([
+            'descricao' => 'required|max:70',
+            'img' => 'required',
+            'repeteFundo'
+        ]);
+        
+        $descricao = $request->get('descricao');
+        $imagem = $request->file('img');
+        $repeteFundo = $request->get('repeteFundo');
+        
+        $caminhoImagem = ArquivoController::caminho_imagem("ambiente", $imagem);
+        
+        $ambiente = new Ambiente();
+        $ambiente->fundo = $caminhoImagem;
+        $ambiente->status = true;
+        $ambiente->descricao = $descricao;
+        $ambiente->repeteFundo = $repeteFundo;
+
+        $ambiente->save();
+
+        return redirect()->route('ambiente.index');
     }
 
     /**
