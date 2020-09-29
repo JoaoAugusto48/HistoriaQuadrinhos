@@ -33,7 +33,7 @@
             </button>
         </div>
     
-        <div class="container containerCustomizado" id="fundo" style="background-color: white; background-image: url('{{ $caminho_imagem.$hq->ambiente->fundo }}')">
+        <div class="container containerCustomizado" id="fundo" style="background-color: white; background-image: url('{{ $caminho_imagem.$hq->ambiente->fundo }}'); background-repeat: repeat-x">
             <div class="row" >
                 <div class="col-12">
                     <div class="col-9 acopla-imagens" id="acopla-imagens" style="display: flex; align-items: stretch; z-index:2">

@@ -9,6 +9,6 @@ class Personagem extends Model
     protected $table = 'personagems';
 
     protected $fillable = [
-        'id', 'personagem', 'descricao'
+        'id', 'personagem', 'descricao', 'status'
     ];
 }

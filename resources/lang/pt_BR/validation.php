@@ -175,8 +175,12 @@ return [
         'title'     => 'título',
         'username'  => 'usuário',
         'year'      => 'ano',
+        
         'description' => 'descrição',
         'password_confirmation' => 'confirmação da senha',
+        'personagem1_id' => 'Personagem 1',
+        'personagem2_id' => 'Personagem 2',
+        'ambiente_id' => 'Ambiente'
     ],
 
 ];

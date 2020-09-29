@@ -17,6 +17,7 @@ class CreateAmbienteTable extends Migration
             $table->bigIncrements('id');
             $table->string('fundo'); //imagem
             $table->boolean('status'); //estado da imagem 1 para ativo
+            $table->boolean('repeteFundo'); //imagem pode ser repetida
             $table->string('descricao', 70);
             $table->timestamps();
         });

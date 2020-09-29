@@ -9,6 +9,6 @@ class Utensilio extends Model
     protected $table = 'utensilios';
 
     protected $fillable = [
-        'id', 'caminho', 'descricao'
+        'id', 'caminho', 'descricao', 'status'
     ];
 }

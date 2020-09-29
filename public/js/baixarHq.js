@@ -1,11 +1,11 @@
 // Para o usuário baixar a Hq de seu desejo.
 function baixarHq(nomeHq){
-    $("#output-hq").html('');
+    $("#baixar-hq").html('');
 
-    imprimeDiv($("#baixarQuadrinho"), nomeHq);
+    imprimeHq($("#baixarQuadrinho"), nomeHq);
 }
 
-function imprimeDiv(div, nomeHq){
+function imprimeHq(div, nomeHq){
     html2canvas(div, {
         onrendered: function(canvas) {
             var myImage = canvas.toDataURL();

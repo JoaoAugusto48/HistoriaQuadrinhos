@@ -64,7 +64,7 @@ class HqController extends Controller
         $request->validate([
             'tema' => 'required|max:100',
             'local' => 'required|max:70',
-            'personagem1_id' => 'required',
+            'personagem1_id' => 'required|different:personagem2_id',
             'personagem2_id' => 'required',
             'ambiente_id' => 'required',
             'saudacao1' => 'required|max:70',

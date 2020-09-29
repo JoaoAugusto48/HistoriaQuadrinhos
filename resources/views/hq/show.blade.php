@@ -145,7 +145,7 @@
     @endif
 
     {{-- excluir --}}
-    <div id="output-hq">
+    <div id="baixar-hq">
 
     </div>
 

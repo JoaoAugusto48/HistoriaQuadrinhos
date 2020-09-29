@@ -39,6 +39,8 @@
 
 </head>
 <body class="color-background">
+    <div class="thetop"></div>
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark cor-azul-escuro shadow-sm">
             <div class="container">
@@ -119,19 +121,46 @@
         </main>
     </div>
 
+    {{-- <a href="#" class="scrollToTop">Scroll To Top</a> --}}
+
+    <div class="scrolltop">
+        <div class="scroll shadow-lg">
+            <i class="fas fa-angle-up h4 m-0"></i>
+        </div>
+    </div>
+
     {{-- Scripts --}}
     {{-- <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script> --}}
     
     <script src="{{ asset('js/bootstrap/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
     
-    <script src="{{ asset('js/gerarQuadrinho.js') }}"></script>
     <script src="{{ asset('js/baixarHq.js') }}"></script>
+    <script src="{{ asset('js/gerarQuadrinho.js') }}"></script>
     
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 200) {
+                    $('.scrolltop:hidden').stop(true, true).fadeIn();
+                    // $('.scrolltop').animate({left:'-80px'},"500");
+                    // return false
+                } else {
+                    $('.scrolltop').stop(true, true).fadeOut();
+                    // return false
+                }
+            });
+            $(function(){$(".scroll").click(function(){
+                $("html,body").animate({scrollTop:$(".thetop").offset().top},"1000");
+                return false
+            })})
+        });
     </script>
 
 </body>

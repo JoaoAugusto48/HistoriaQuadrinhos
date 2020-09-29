@@ -5,12 +5,13 @@
 <script>
 
     function trocarExibicao(){
-        $('#col-adicionar').fadeOut(100);
+        // $('#col-adicionar').fadeOut(100);
 
         setTimeout(function(){
         $('#col-img').fadeIn(100);
         $('#col-descricao').fadeIn(100);
         $('#col-enviar').fadeIn(100);
+        $('#col-formImg').show(100);
         }, 50)
 
     }
@@ -18,9 +19,12 @@
     <div class="row">
         <h1>
             Personagem
-            <a href="{{ route('gerencia.index') }}" class="btn btn-outline-dark ml-1" target="_parent">
-                <i class="fas fa-reply"></i> Gerência
-            </a>
+            <div class="btn-group btn-group-sm" role="group">
+                <a class="btn btn-outline-dark" href="{{ route('gerencia.index') }}" role="button">
+                    <i class="fas fa-reply"></i> Gerência
+                </a>                
+                <button id="col-adicionar"  onclick="trocarExibicao()" type="button" class="btn btn-dark" role="button" onclick="adicionar()"><i class="fa fa-plus"></i> Adicionar Personagem</button>
+            </div>
         </h1>
     </div>
     <hr class="bg-dark mt-0"/>
@@ -28,44 +32,19 @@
     <div class="p-0 mb-3" style="border: 3px solid black;">
         <table class="table table-sm table-striped text-center m-0">
             <thead class="thead-dark">
-            <tr>
-                <th scope="col">Descrição</th>
-                <th scope="col">Imagem</th>
-                <th scope="col">Operações</th>
+            <tr class="d-flex align-items-center">
+                <th class="col-md-4" scope="col">Descrição</th>
+                <th class="col-md-4" scope="col">Imagem</th>
+                <th class="col-md-4" scope="col">Operações</th>
             </tr>
             </thead>
             <tbody>
-            @foreach ($personagens as $personagem)
-                <tr style="border-bottom: 2px solid #555;">
-                    <th class="align-middle font-weight-bold" scope="row">{{ $personagem->descricao }}</th>
-                    <td class="align-middle"><img src="{{ $caminho_imagem.$personagem->personagem }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$personagem->personagem }}'>"></td>
-                    <td class="align-middle">
-                        <div class="btn-group" role="group">
-                            <a href="{{ route('personagem.show', $personagem->id) }}" class="btn btn-sm btn-info border border-dark"><i class="fas fa-edit"></i> Editar</a>
-                            <form class="ml-1" action="{{ route('personagem.destroy', $personagem->id) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                @php
-                                    $mensagem = '"'.$personagem->descricao.'"';
-                                @endphp
-                                <button type="submit" class="btn btn-sm btn-danger border border-dark" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }}?')">
-                                    <i class="fas fa-trash"></i> Remover
-                                </button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-                <tr class="bg-secondary">  
+
+                <tr id="col-formImg" class="bg-secondary text-white" style="display: none">  
                     <td colspan="4" class="text-center">
                         <div class="d-inline-flex" id="alterar-texto">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="col-12" id="col-adicionar">
-                                        @csrf
-                                        <button id="adicionar"  onclick="trocarExibicao()" type="button" class="btn btn-sm btn-dark" role="button" onclick="adicionar()"><i class="fa fa-plus"></i> Adicionar Personagem</button>
-                                    </div>
-
                                     <form enctype="multipart/form-data" action="{{ route('personagem.store') }}" method="post">
                                         @csrf
                                         <div class="form-group row" id="col-descricao" style="display: none">
@@ -89,6 +68,27 @@
                         </div>
                     </td>
                 </tr>
+            @foreach ($personagens as $personagem)
+                <tr class="d-flex align-items-center" style="border-bottom: 2px solid #555;">
+                    <th class="col-sm-4 align-middle font-weight-bold border-0" scope="row">{{ $personagem->descricao }}</th>
+                    <td class="col-sm-4 align-middle border-0"><img src="{{ $caminho_imagem.$personagem->personagem }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$personagem->personagem }}'>"></td>
+                    <td class="col-sm-4 align-middle border-0">
+                        <div class="btn-group" role="group">
+                            <a href="{{ route('personagem.show', $personagem->id) }}" class="btn btn-sm btn-info border border-dark"><i class="fas fa-edit"></i> Editar</a>
+                            <form class="ml-1" action="{{ route('personagem.destroy', $personagem->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                @php
+                                    $mensagem = '"'.$personagem->descricao.'"';
+                                @endphp
+                                <button type="submit" class="btn btn-sm btn-danger border border-dark" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }}?')">
+                                    <i class="fas fa-trash"></i> Remover
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>

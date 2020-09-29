@@ -9,6 +9,6 @@ class Balao extends Model
     protected $table = 'balaos';
 
     protected $fillable = [
-        'id', 'caminho', 'descricao'
+        'id', 'caminho', 'descricao', 'status'
     ];
 }

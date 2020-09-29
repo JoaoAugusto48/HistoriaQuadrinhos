@@ -9,6 +9,6 @@ class Ambiente extends Model
     protected $table = 'ambientes';
 
     protected $fillable = [
-        'id', 'fundo', 'descricao'
+        'id', 'fundo', 'descricao', 'repeteFundo', 'status'
     ];
 }
