@@ -70,7 +70,7 @@
                 balaoMsg.setAttribute("data-toggle", "tooltip");
                 balaoMsg.setAttribute("data-placement", "top");
                 balaoMsg.setAttribute("title", "Clique com o botão direito para remover");
-                balaoMsg.setAttribute("ondblclick", "trocaXporY(event)"); // para espelhar a imagem
+                balaoMsg.setAttribute("ondblclick", "espelharImagem(event)"); // para espelhar a imagem
                 balaoMsg.oncontextmenu = function(event) {
                     event.preventDefault();
                     this.remove();

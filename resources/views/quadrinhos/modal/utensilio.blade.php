@@ -72,7 +72,7 @@
                 utensilioImg.setAttribute("data-toggle", "tooltip");
                 utensilioImg.setAttribute("data-html", "true");
                 utensilioImg.setAttribute("data-placement", "top");
-                utensilioImg.setAttribute("ondblclick", "trocaXporY(event)"); // para espelhar a imagem
+                utensilioImg.setAttribute("ondblclick", "espelharImagem(event)"); // para espelhar a imagem
                 utensilioImg.setAttribute("title", "Clique com o botão direito para remover.<hr class='border-white m-0'> Dê duplo click para inverter a imagem.");
                 utensilioImg.oncontextmenu = function(event) {
                     event.preventDefault();

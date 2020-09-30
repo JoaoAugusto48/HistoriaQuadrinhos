@@ -6,7 +6,7 @@
         <h1>
             Personagem - {{ $personagem->descricao }}
             <img src="{{ $caminho_imagem.$personagem->personagem }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$personagem->personagem }}'>">
-            <button class="btn btn-outline-dark ml-1" onclick="javascript:history.back()"><i class="fa fa-reply" aria-hidden="true"></i> Voltar</button>
+            <button class="btn btn-outline-dark ml-1" href="{{ route('personagem.index') }}"><i class="fa fa-reply" aria-hidden="true"></i> Voltar</button>
         </h1>
     </div>
     <hr class="bg-dark"/>

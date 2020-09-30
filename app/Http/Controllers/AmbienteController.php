@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ambiente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AmbienteController extends Controller
 {
@@ -20,7 +21,7 @@ class AmbienteController extends Controller
     {
         GerenciarController::userGerente();
 
-        $ambientes = Ambiente::orderby('descricao', 'asc')->get();
+        $ambientes = Ambiente::where('status','=', true)->orderby('descricao', 'asc')->get();
 
         $caminho_imagem = ArquivoController::caminho_storage();
 
@@ -45,16 +46,15 @@ class AmbienteController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'descricao' => 'required|max:70',
             'img' => 'required',
-            'repeteFundo'
+            'repeteFundo' //chkbox
         ]);
-        
+            
         $descricao = $request->get('descricao');
         $imagem = $request->file('img');
-        $repeteFundo = $request->get('repeteFundo');
+        $repeteFundo = $request->has('repeteFundo');
         
         $caminhoImagem = ArquivoController::caminho_imagem("ambiente", $imagem);
         
@@ -86,9 +86,13 @@ class AmbienteController extends Controller
      * @param  \App\Ambiente  $ambiente
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ambiente $ambiente)
+    public function edit(Request $request)
     {
-        //
+        $ambiente = Ambiente::FindOrFail($request->ambiente);
+
+        $caminho_imagem = ArquivoController::caminho_storage();
+
+        return view('gerencia.ambiente.edit', compact('ambiente', 'caminho_imagem'));
     }
 
     /**
@@ -100,7 +104,30 @@ class AmbienteController extends Controller
      */
     public function update(Request $request, Ambiente $ambiente)
     {
-        //
+        $request->validate([
+            'id' => 'required',
+            'descricao' => 'required|max:70',
+            'repeteFundo' //chkbox
+        ]);
+
+        $ambiente = new Ambiente();
+        $ambiente->id = $request->get('id');
+        $ambiente->descricao = trim($request->get('descricao'));
+        $ambiente->repeteFundo = $request->has('repeteFundo');
+
+        $validarDescricao = $this->verificarDescricao($ambiente->id, $ambiente->descricao);
+        // dd($validarDescricao);
+        if($validarDescricao){
+            DB::table('ambientes')->where('id','=',$ambiente->id)
+                ->update([
+                    'descricao' => $ambiente->descricao,
+                    'repeteFundo' => $ambiente->repeteFundo
+                ]);
+            return redirect()->route('ambiente.index');
+        }
+
+        return redirect()->route('ambiente.edit', $ambiente->id)
+                ->withErrors(['error', 'Já possui ambiente com a descrição "'. $ambiente->descricao.'"!']);
     }
 
     /**
@@ -109,8 +136,23 @@ class AmbienteController extends Controller
      * @param  \App\Ambiente  $ambiente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ambiente $ambiente)
+    public function destroy(Request $request)
     {
-        //
+        $ambiente = Ambiente::FindOrFail($request->ambiente);
+
+        DB::table('ambientes')->where('id','=',$ambiente->id)
+                ->update([
+                    'status' => false
+                ]);
+
+        return redirect()->route('ambiente.index');
+    }
+
+    private function verificarDescricao($id, $descricao){
+        $verificar = Ambiente::where('id', '<>', $id)
+                    ->where('descricao','=',$descricao)
+                    ->where('status','=',true)->get();
+
+        return ($verificar->count() > 0) ? false : true;
     }
 }

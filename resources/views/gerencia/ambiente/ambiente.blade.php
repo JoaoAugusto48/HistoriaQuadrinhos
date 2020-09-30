@@ -24,7 +24,7 @@
                 <a class="btn btn-outline-dark" href="{{ route('gerencia.index') }}" role="button">
                     <i class="fas fa-reply"></i> Gerência
                 </a>                
-                <button id="col-adicionar"  onclick="trocarExibicao()" type="button" class="btn btn-dark" role="button" onclick="adicionar()"><i class="fa fa-plus"></i> Adicionar ambiente</button>
+                <button id="col-adicionar" onclick="trocarExibicao()" type="button" class="btn btn-dark" role="button" onclick="adicionar()"><i class="fa fa-plus"></i> Adicionar ambiente</button>
             </div>
         </h1>
     </div>
@@ -34,9 +34,10 @@
         <table class="table table-sm table-striped text-center m-0">
             <thead class="thead-dark">
             <tr class="d-flex align-items-center">
-                <th class="col-md-4" scope="col">Descrição</th>
-                <th class="col-md-4" scope="col">Imagem</th>
-                <th class="col-md-4" scope="col">Operações</th>
+                <th class="col-md-3" scope="col">Descrição</th>
+                <th class="col-md-3" scope="col">Imagem</th>
+                <th class="col-md-3" scope="col">Repete</th>
+                <th class="col-md-3" scope="col">Operações</th>
             </tr>
             </thead>
             <tbody>
@@ -63,7 +64,7 @@
                                         <div class="form-group m-0">
                                             <div class="form-check form-check-inline" id="col-check" style="display: none">
                                                 <input type="checkbox" class="form-check-input" name="repeteFundo" value="{{ old('repeteFundo') }}">
-                                                <label for="check" class="col-form-label text-right font-weight-bold">Repetir fundo</label>
+                                                <label for="check" class="col-form-label text-right">Permitir a imagem repetir o fundo</label>
                                             </div>
                                         </div>
                                         <div class="col-md-8 offset-md-2 pl-1 text-left" id="col-enviar" style="display: none">
@@ -77,9 +78,10 @@
                 </tr>
             @foreach ($ambientes as $ambiente)
                 <tr class="d-flex align-items-center" style="border-bottom: 2px solid #555;">
-                    <th class="col-sm-4 align-middle font-weight-bold border-0" scope="row">{{ $ambiente->descricao }}</th>
-                    <td class="col-sm-4 align-middle border-0"><img src="{{ $caminho_imagem.$ambiente->fundo }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$ambiente->fundo }}'>"></td>
-                    <td class="col-sm-4 align-middle border-0">
+                    <th class="col-sm-3 align-middle font-weight-bold border-0" scope="row">{{ $ambiente->descricao }}</th>
+                    <td class="col-sm-3 align-middle border-0"><img src="{{ $caminho_imagem.$ambiente->fundo }}" class="img-btn mr-2" draggable="false" data-toggle="tooltip" data-html="true" data-placement="left" title="<img class='img-tooltip mw-100' src='{{ $caminho_imagem.$ambiente->fundo }}'>"></td>
+                    <td class="col-sm-3 align-middle border-0 {{ ($ambiente->repeteFundo) ? 'font-weight-bold' : '' }}">{{ ($ambiente->repeteFundo) ? 'Sim' : 'Não' }}</td>
+                    <td class="col-sm-3 align-middle border-0">
                         <div class="btn-group" role="group">
                             <a href="{{ route('ambiente.edit', $ambiente->id) }}" class="btn btn-sm btn-info border border-dark"><i class="fas fa-edit"></i> Editar</a>
                             <form class="ml-1" action="{{ route('ambiente.destroy', $ambiente->id) }}" method="post">
