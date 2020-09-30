@@ -99,3 +99,8 @@
     width: auto;
     height: 50px;
 }
+
+.operacoesPersonagem {
+    position: absolute;
+    margin-top: -40px;
+  }

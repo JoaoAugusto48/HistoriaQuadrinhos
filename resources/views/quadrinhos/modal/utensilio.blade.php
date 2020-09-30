@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" id="buttonCloseModal" data-dismiss="modal" onclick="confirmarUtensilio('{{$caminho_imagem}}')">Confirmar</button>
                 {{-- <button type="button" class="btn btn-primary">Understood</button> --}}
@@ -44,8 +44,9 @@
 
 <!-- Javascript de Confirmação de seleção utensilio -->
 <script>
-
     function confirmarUtensilio(caminho_imagem){
+        
+
         let utensilio = document.querySelector("#btn-utensilio");
         let radio_utensilio = document.getElementsByName("utensilio_id");
 
@@ -64,12 +65,15 @@
                 utensilio.appendChild(imagem);
 
                 let utensilioImg = document.createElement("div");
+
                 utensilioImg.id = "utensilioImg";
                 utensilioImg.classList.add("arrastavel");
                 utensilioImg.classList.add("arrastavelUtensilio");
                 utensilioImg.setAttribute("data-toggle", "tooltip");
+                utensilioImg.setAttribute("data-html", "true");
                 utensilioImg.setAttribute("data-placement", "top");
-                utensilioImg.setAttribute("title", "Clique com o botão direito para remover");
+                utensilioImg.setAttribute("ondblclick", "trocaXporY(event)"); // para espelhar a imagem
+                utensilioImg.setAttribute("title", "Clique com o botão direito para remover.<hr class='border-white m-0'> Dê duplo click para inverter a imagem.");
                 utensilioImg.oncontextmenu = function(event) {
                     event.preventDefault();
                     this.remove();
@@ -86,6 +90,5 @@
             }
         }
     }
-
 </script>
 <!-- Fim Javascript de Confirmação de seleção utensilio -->

@@ -33,14 +33,17 @@
             </button>
         </div>
         @php
+            // para verificar se imagem repete ou não
             $repeteX = ($hq->ambiente->repeteFundo) ? 'background-repeat: repeat-x' : '';
         @endphp
         <div class="container containerCustomizado" id="fundo" style="background-color: white; background-image: url('{{ $caminho_imagem.$hq->ambiente->fundo }}'); {{ $repeteX }}">
             <div class="row" >
                 <div class="col-12">
                     <div class="col-9 acopla-imagens" id="acopla-imagens" style="display: flex; align-items: stretch; z-index:2">
-                        <div class="arrastavel personagem personagem1" style="z-index: 101; background-image: url('{{ $caminho_imagem.$hq->personagem1->personagem }}')"></div>
-                        <div class="arrastavel personagem personagem2" style="z-index: 100; background-image: url('{{ $caminho_imagem.$hq->personagem2->personagem }}')"></div>
+                        <div id="personagem1" class="arrastavel personagem personagem1" ondblclick="trocaXporY(event)" oncontextmenu="mostraBotoes(event)" style="z-index: 101; background-image: url('{{ $caminho_imagem.$hq->personagem1->personagem }}')">
+                            <button id="btnRotate" type="button" class="btn btn-dark operacoesPersonagem" style="display: none"><i class="fas fa-adjust"></i></button>
+                        </div>
+                        <div class="arrastavel personagem personagem2" ondblclick="trocaXporY(event)" style="z-index: 100; background-image: url('{{ $caminho_imagem.$hq->personagem2->personagem }}')"></div>
                     </div>
 
                 </div>
@@ -80,6 +83,36 @@
 
 {{-- função Javascrit para selecionar opção presente nos modais --}}
 <script>
+    var teste = true;
+
+    function mostraBotoes(e) {
+        e.preventDefault();
+        // var personagem = e.target;
+
+        var btnRotate = $(this).children('#btnRotate');
+        $("#btnRotate").toggle();
+        btnRotate.toggle();
+        console.log(btnRotate)
+        // personagem.append(button);
+
+    }
+
+    function trocaXporY(e){
+        var imagem = e.target;
+        var transform;
+        if(teste){
+            transform = "scaleX(-1)";
+            teste = false;
+        }else {
+            transform = "scaleX(1)";
+            teste = true;
+        }
+
+        imagem.style.webkitTransform = transform;
+        imagem.style.transform = transform;
+    }
+
+
     function checked_radio() {
         let radioButtons = document.querySelectorAll("input[type='radio']");
 

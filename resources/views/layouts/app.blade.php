@@ -139,9 +139,9 @@
     <script src="{{ asset('js/gerarQuadrinho.js') }}"></script>
     
     <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+        $(document).ready(function() {
+            $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+        });
     </script>
 
     <script>
