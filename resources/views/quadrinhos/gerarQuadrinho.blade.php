@@ -2,6 +2,13 @@
 
 @section('content')
 
+<script>
+    window.addEventListener("scroll", (event) => {
+        let scroll = this.scrollY;
+        console.log(scroll);
+    });
+</script>
+
 <div class="container pt-1">
     <div class="row">
         <h1>Criar - {{ $hq->tema }}, pág. {{ $quadrinho->pagina }}</h1>
@@ -87,15 +94,28 @@
     function mostraBotoes(e) {
         e.preventDefault();
         // var personagem = e.target;
-
         var btnRotate = $(this).children('#btnRotate');
         $("#btnRotate").toggle();
         btnRotate.toggle();
-        btnRotate.onclick = function(e) {espelharImagem(e)};
         console.log(btnRotate);
+
+        eventoBotao(e);
         // personagem.append(button);
 
     }
+
+    // function eventoBotao(e){
+    //     // var btnRotate = document.getElement("#btnRotate").clicked;
+    //     // console.log(btnRotate);
+    //     document.getElementById("btnRotate").click(function(event){
+    //         espelharImagem(event);
+    //         console.log(espelharImagem(event));
+    //     });
+
+    //     // if(document.getElementById("btnRotate").onclick){
+    //     //     alert("button was clicked");
+    //     // }
+    // }
 
     var teste = true;
     function espelharImagem(e){

@@ -396,6 +396,7 @@
                         tdTitulo.append("");
 
                         var tdPagina = document.createElement("td");
+                        tdPagina.setAttribute("id", "atualizarNumeroPagina");
                         tdPagina.append(response.solucionarPagina);
                         // https://laracasts.com/discuss/channels/laravel/how-to-display-belongsto-in-ajax-with-laravel?page=1
                         var tdOperacoes = document.createElement("td");

@@ -31,7 +31,7 @@ class HqController extends Controller
      */
     public function index()
     {
-        $hqs = Hq::where('user_id','=', Auth::user()->id)->get();
+        $hqs = Hq::where('user_id','=', Auth::user()->id)->orderby('id','desc')->get();
 
         $caminho_imagem = ArquivoController::caminho_storage();
 
