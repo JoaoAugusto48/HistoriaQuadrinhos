@@ -45,8 +45,8 @@ class HqController extends Controller
      */
     public function create()
     {
-        $personagems = Personagem::get();
-        $ambientes = Ambiente::get();
+        $personagems = Personagem::where('status','=', true)->get();
+        $ambientes = Ambiente::where('status','=', true)->get();
 
         $caminho_imagem = ArquivoController::caminho_storage();
 
@@ -102,7 +102,7 @@ class HqController extends Controller
     {
         $hq = Hq::FindOrFail($request->hq);
 
-        $validaURL = $this->validaURL($hq);
+        $validaURL = ValidarController::validaURL($hq);
         if($validaURL){
             return $validaURL;
         }
@@ -152,7 +152,7 @@ class HqController extends Controller
     {
         $hq = Hq::findOrFail($request->hq);
 
-        $validaURL = $this->validaURL($hq);
+        $validaURL = ValidarController::validaURL($hq);
         
         if($validaURL){
             return $validaURL;
@@ -229,17 +229,6 @@ class HqController extends Controller
         Storage::deleteDirectory($arquivo);
 
         return redirect()->route('hq.index');
-    }
-
-    public static function validaURL($hq){
-        // teste para validação de URL com usuário logado
-        $usuario = $hq->user;
-        $usuarioAutenticado = Auth::user();
-
-        if($usuario->id != $usuarioAutenticado->id){
-            return redirect()->route('home');
-        }
-        return 0;
     }
 
     /*

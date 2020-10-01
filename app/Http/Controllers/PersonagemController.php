@@ -89,6 +89,10 @@ class PersonagemController extends Controller
     {
         $personagem = Personagem::FindOrFail($request->personagem);
 
+        if(!$personagem->status){
+            return redirect()->route('personagem.index');
+        }
+
         $caminho_imagem = ArquivoController::caminho_storage();
 
         return view('gerencia.personagem.edit', compact('personagem', 'caminho_imagem'));

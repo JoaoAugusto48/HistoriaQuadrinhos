@@ -28,7 +28,7 @@ class QuadrinhoController extends Controller
     {
         $hq = Hq::findOrFail($hqId);
 
-        $validaURL = HqController::validaURL($hq);
+        $validaURL = ValidarController::validaURL($hq);
         
         if($validaURL){
             return $validaURL;
@@ -36,8 +36,8 @@ class QuadrinhoController extends Controller
 
         $quadrinho = Quadrinho::findOrFail($quadrinhoId);
 
-        $balaos = Balao::get();
-        $utensilios = Utensilio::get();
+        $balaos = Balao::where('status','=', true)->get();
+        $utensilios = Utensilio::where('status','=', true)->get();
 
         $caminho_imagem = ArquivoController::caminho_storage();
 

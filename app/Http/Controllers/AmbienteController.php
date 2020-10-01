@@ -90,6 +90,10 @@ class AmbienteController extends Controller
     {
         $ambiente = Ambiente::FindOrFail($request->ambiente);
 
+        if(!$ambiente->status){
+            return redirect()->route('ambiente.index');
+        }
+
         $caminho_imagem = ArquivoController::caminho_storage();
 
         return view('gerencia.ambiente.edit', compact('ambiente', 'caminho_imagem'));
