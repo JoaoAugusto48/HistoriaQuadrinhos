@@ -23,7 +23,10 @@ class PersonagemController extends Controller
     {
         GerenciarController::userGerente();
 
-        $personagens = Personagem::where('status','=', true)->orderby('descricao', 'asc')->get();
+        $personagens = Personagem::where('status','=', true)
+                ->orderByRaw('LENGTH(descricao) asc')
+                ->orderby('descricao', 'asc')
+                ->get();
 
         $caminho_imagem = ArquivoController::caminho_storage();
 
