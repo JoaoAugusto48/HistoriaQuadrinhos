@@ -112,16 +112,16 @@ class HqController extends Controller
         $solucionars = Solucionar::where('hq_id', '=', $hq->id)->get();
 
         $quadrinhoPersonagens = QuadrinhoPersonagem::get()->first();
-
+        
         $situarQuadrinho = $situars[3]->quadrinho->pathImg ? true : false;
-
+        
         $problematizarQuadrinho = true;
         foreach($problematizars as $problematizar){
             if(!$problematizar->quadrinho->pathImg){
                 $problematizarQuadrinho = false;
             }
         }
-
+        
         $solucionarQuadrinho = true;
         if($solucionars->isEmpty()){ //verificando se esse vetor está vazio
             $solucionarQuadrinho = false;
@@ -132,9 +132,10 @@ class HqController extends Controller
                 }
             }
         }
-
+        
         $caminho_imagem = ArquivoController::caminho_storage(); //endereço do projeto, local: pasta storage
         
+
         return view('hq.show', 
             compact('hq', 'situars', 'problematizars', 'solucionars', 'caminho_imagem',
             'situarQuadrinho', 'problematizarQuadrinho', 'solucionarQuadrinho',

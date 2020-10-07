@@ -20,7 +20,10 @@
 
 
 <div class="p-3">
-
+    
+    <div class="form-group row">
+        <label for="nome" class="col-sm-12 col-form-label text-center"><span class="font-weight-bold">{{ $faseQuadrinho['fase'] }}</span> - {{ $faseQuadrinho['mensagem'] }}</label>
+    </div>
     <div class="form-group row">
         <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Fala do autor:</label>
         <div class="col-sm-8">

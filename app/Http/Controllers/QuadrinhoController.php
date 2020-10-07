@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Balao;
 use App\Hq;
+use App\Problematizar;
 use App\Quadrinho;
+use App\Situar;
+use App\Solucionar;
 use App\Utensilio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,13 +38,16 @@ class QuadrinhoController extends Controller
         }
 
         $quadrinho = Quadrinho::findOrFail($quadrinhoId);
+        
+        $faseQuadrinho = $this->faseQuadrinho($quadrinho->id);
 
         $balaos = Balao::where('status','=', true)->get();
         $utensilios = Utensilio::where('status','=', true)->get();
 
         $caminho_imagem = ArquivoController::caminho_storage();
 
-        return view('quadrinhos.gerarQuadrinho', compact('hq', 'quadrinho', 'balaos', 'utensilios', 'caminho_imagem'));
+        return view('quadrinhos.gerarQuadrinho', 
+            compact('hq', 'quadrinho', 'balaos', 'utensilios', 'caminho_imagem', 'faseQuadrinho'));
     }
 
     /**
@@ -75,8 +81,8 @@ class QuadrinhoController extends Controller
 
         //Passando a codificação de Base64 para imagem 
         $base64_image = $imgQuadrinho; // your base64 encoded     
-        @list($type, $file_data) = explode(';', $base64_image);
-        @list(, $file_data) = explode(',', $file_data);
+@list($type, $file_data) = explode(';', $base64_image);
+@list(, $file_data) = explode(',', $file_data);
         
         // Teste caso tenha imagem, é criado nome para o arquivo, 
         // caso não a imagem atual é deletada para ser adicionada outra no local  
@@ -109,6 +115,36 @@ class QuadrinhoController extends Controller
     public static function destroy(Quadrinho $quadrinho)
     {
         $quadrinho->delete();
+    }
+
+    /**
+     * função criada para recuperar o estado do quadrinho
+     */
+    private function faseQuadrinho($idQuadrinho){
+        $problematizar = Problematizar::where('quadrinho_id','=', $idQuadrinho)->get()->first();
+        $situar = Situar::where('quadrinho_id','=', $idQuadrinho)->get()->first();
+        // não é necessário realizar o solucionar
+        // $solucionar = Solucionar::where('quadrinho_id','=', $idQuadrinho)->get()->first();
+        $texto = [];
+
+        if($problematizar){
+            $texto = [
+                'fase' => 'Problematizar',
+                'mensagem' => 'Dê detalhes sobre as dificuldades presentes no meio em que essa HQ se encontra.',
+            ];
+        } else if($situar) {
+            $texto = [
+                'fase' => 'Situar',
+                'mensagem' => 'Determinar em que época, em que período de tempo se passa a HQ.',
+            ];
+        } else {
+            $texto = [
+                'fase' => 'Solucionar',
+                'mensagem' => 'Dê detalhes sobre possíveis soluções para as dificuldades apresentadas nos quadrinhos em "Solucionar".',
+            ];
+        }
+
+        return $texto;
     }
     
 }
