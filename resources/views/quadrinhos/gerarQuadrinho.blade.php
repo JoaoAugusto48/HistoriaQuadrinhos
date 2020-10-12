@@ -5,7 +5,7 @@
 <script>
     window.addEventListener("scroll", (event) => {
         let scroll = this.scrollY;
-        console.log(scroll);
+        // console.log(scroll);
     });
 </script>
 
@@ -50,8 +50,11 @@
             <div class="row" >
                 <div class="col-12">
                     <div class="col-9 acopla-imagens" id="acopla-imagens" style="display: flex; align-items: stretch; z-index:2">
-                        <div id="personagem1" class="arrastavel personagem personagem1" ondblclick="espelharImagem(event)" oncontextmenu="mostraBotoes(event)" style="z-index: 101; background-image: url('{{ $caminho_imagem.$hq->personagem1->personagem }}')">
+                        {{-- <div id="personagem1" class="arrastavel personagem personagem1" ondblclick="espelharImagem(event)" oncontextmenu="mostraBotoes(event)" style="z-index: 101; background-image: url('{{ $caminho_imagem.$hq->personagem1->personagem }}')">
                             <button id="btnRotate" type="button" class="btn btn-dark operacoesPersonagem" style="display: none"><i class="fas fa-adjust"></i></button>
+                        </div> --}}
+                        <div id="personagem1" class="arrastavel personagem personagem1" style="z-index: 101; background-image: url('{{ $caminho_imagem.$hq->personagem1->personagem }}')">
+                            <button type="button" class="btn btn-dark operacoesPersonagem" style="display: none"><i class="fas fa-adjust"></i></button>
                         </div>
                         <div class="arrastavel personagem personagem2" ondblclick="espelharImagem(event)" style="z-index: 100; background-image: url('{{ $caminho_imagem.$hq->personagem2->personagem }}')"></div>
                     </div>

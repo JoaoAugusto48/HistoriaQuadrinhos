@@ -180,7 +180,7 @@
                                 <th scope="col" class="balaoQuadrinho py-4">
                                         <div style="margin-left: 5%;width: 100px; height: 120px">
                                             <img src="{{$caminho_imagem.$quadrinhoPersonagens->balaoDir->caminho}}" style="width: 150%; height: 125%; z-index: -10">
-                                            <textarea rows="3" style="max-width: 15ch; position: absolute; left: 55%; top: 18%;" cols="13" class="text-center textareaQuadrinho p-1" disabled>{{ $hq->saudacao2 }}</textarea>
+                                            <textarea rows="3" style="max-width: 15ch; position: absolute; left: 61%; top: 18%;" cols="13" class="text-center textareaQuadrinho p-1" disabled>{{ $hq->saudacao2 }}</textarea>
                                         </div>
                                     </th>
                             </tr>

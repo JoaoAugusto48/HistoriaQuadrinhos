@@ -67,8 +67,8 @@
                 balaoMsg.id = "balaoMsg";
                 balaoMsg.classList.add("arrastavel");
                 balaoMsg.classList.add("arrastavelBalao");
-                balaoMsg.setAttribute("data-toggle", "tooltip");
-                balaoMsg.setAttribute("data-placement", "top");
+                // balaoMsg.setAttribute("data-toggle", "tooltip");
+                // balaoMsg.setAttribute("data-placement", "top");
                 balaoMsg.setAttribute("title", "Clique com o botão direito para remover");
                 balaoMsg.setAttribute("ondblclick", "espelharImagem(event)"); // para espelhar a imagem
                 balaoMsg.oncontextmenu = function(event) {

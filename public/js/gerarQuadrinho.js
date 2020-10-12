@@ -8,6 +8,7 @@ $(document).ready(() => {
     var inputTitulo = document.createElement("input");
     inputTitulo.type = "hidden";
     inputTitulo.name = titulo.name;
+    inputTitulo.value = titulo.value;
     
     titulo.addEventListener("input",function(){
         $("#titulo-escondido").append(inputTitulo);
