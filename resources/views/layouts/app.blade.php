@@ -49,8 +49,8 @@
                 </a>
                 
                 @if (Auth::check())
-                    <a class="btn btn-outline-light ml-1" href="{{ route('hq.create') }}" target="_parent">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Criar HQ
+                    <a class="btn btn-outline-light ml-1" href="{{ route('software.create') }}" target="_parent">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Cadastrar Software
                     </a>
 
                     @if (Auth::user()->privilegio > 0)

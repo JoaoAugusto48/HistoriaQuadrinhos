@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('home');
 // });
-Route::get('/', 'HqController@index');
+Route::get('/', 'SoftwareController@index');
 
 Route::resources([
     'hq'            => 'HqController',
@@ -32,6 +32,7 @@ Route::resources([
     'balao' => 'BalaoController',
     'utensilio' => 'UtensilioController',
     'quadrinhoPersonagem' => 'QuadrinhoPersonagemController',
+    'software' => 'SoftwareController',
 ]);
 
 Route::view('quadrinhos', 'quadrinhos/index')->name('quadrinhos'); //view de quadrinho
