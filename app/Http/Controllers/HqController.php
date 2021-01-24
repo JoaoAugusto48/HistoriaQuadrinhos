@@ -31,11 +31,11 @@ class HqController extends Controller
      */
     public function index()
     {
-        $hqs = Hq::where('user_id','=', Auth::user()->id)->orderby('id','desc')->get();
+        // $hqs = Hq::where('user_id','=', Auth::user()->id)->orderby('id','desc')->get();
 
-        $caminho_imagem = ArquivoController::caminho_storage();
+        // $caminho_imagem = ArquivoController::caminho_storage();
 
-        return view('hq.home', compact('hqs', 'caminho_imagem'));
+        // return view('hq.home', compact('hqs', 'caminho_imagem'));
     }
 
     /**
@@ -43,14 +43,14 @@ class HqController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($softwareId)
     {
         $personagems = Personagem::where('status','=', true)->get();
         $ambientes = Ambiente::where('status','=', true)->get();
 
         $caminho_imagem = ArquivoController::caminho_storage();
 
-        return view('hq.create', compact('personagems', 'ambientes', 'caminho_imagem'));
+        return view('hq.create', compact('personagems', 'ambientes', 'caminho_imagem', 'softwareId'));
     }
 
     /**
@@ -61,6 +61,7 @@ class HqController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'tema' => 'required|max:100',
             'local' => 'required|max:70',
@@ -68,9 +69,10 @@ class HqController extends Controller
             'personagem2_id' => 'required',
             'ambiente_id' => 'required',
             'saudacao1' => 'required|max:70',
-            'saudacao2' => 'required|max:70'
+            'saudacao2' => 'required|max:70',
+            'softwareId' => 'required'
         ]);
-        
+            
         $hq = new Hq();
         $hq->tema = trim($request->get('tema'));
         $hq->local = trim($request->get('local'));
@@ -79,6 +81,7 @@ class HqController extends Controller
         $hq->personagem1_id = $request->get('personagem1_id');
         $hq->personagem2_id = $request->get('personagem2_id');
         $hq->ambiente_id = $request->get('ambiente_id');
+        $hq->software_id = $request->get('softwareId');
         $hq->user_id = Auth::user()->id;
         
         $hq->save();
@@ -89,7 +92,7 @@ class HqController extends Controller
 
         // return redirect('/funcionario')->with('error', 'Deu erro!');
 
-        return redirect()->route('hq.index')->with('error', 'Deu erro!');
+        return redirect()->route('software.show', $hq->software_id)->with('error', 'Deu erro!');
     }
 
     /**
@@ -229,75 +232,20 @@ class HqController extends Controller
         $arquivo = ArquivoController::folder_name($hq->id, $hq->user_id);
         Storage::deleteDirectory($arquivo);
 
-        return redirect()->route('hq.index');
+        return redirect()->route('software.show', $hq->software_id);
     }
 
     /*
     *  Adicionando todos os quadrinhos da primeira fase, os que já possuem padrão
     */
     private function adicionarQuadrinhos(Hq $hq){
-        $quadrinho1 = new Quadrinho();
-        $quadrinho1->titulo = $hq->tema;
-        $quadrinho1->pagina = 1;
-        $quadrinho1->user_id = $hq->user_id;
+        $hqId = Hq::latest()->first()->id;
 
-        $quadrinho1->save();
-
-        $this->adicionarSituar($quadrinho1);
-
-        $quadrinho2 = new Quadrinho();
-        $quadrinho2->titulo = "Personagens";
-        $quadrinho2->pagina = 2;
-        $quadrinho2->user_id = $hq->user_id;
-
-        $quadrinho2->save();
-
-        $this->adicionarSituar($quadrinho2);
-
-        $quadrinho3 = new Quadrinho();
-        $quadrinho3->titulo = "Ambiente de Trabalho";
-        $quadrinho3->pagina = 3;
-        $quadrinho3->user_id = $hq->user_id;
-
-        $quadrinho3->save();
-
-        $this->adicionarSituar($quadrinho3);
-
-        $quadrinho4 = new Quadrinho();
-        $quadrinho4->titulo = null;
-        $quadrinho4->pagina = 4;
-        $quadrinho4->user_id = $hq->user_id;
-
-        $quadrinho4->save();
-
-        $this->adicionarSituar($quadrinho4);
-
-        $quadrinho5 = new Quadrinho();
-        $quadrinho5->titulo = null;
-        $quadrinho5->pagina = 5;
-        $quadrinho5->user_id = $hq->user_id;
-
-        $quadrinho5->save();
-
-        $this->adicionarProblematizar($quadrinho5);
+        QuadrinhoController::store($hq->tema,1, $hq->user_id, $hqId);
+        QuadrinhoController::store('Personagens',2, $hq->user_id, $hqId);
+        QuadrinhoController::store('Ambiente de Trabalho',3, $hq->user_id, $hqId);
+        QuadrinhoController::store(null,4, $hq->user_id, $hqId);
+        QuadrinhoController::store(null,5, $hq->user_id, $hqId, 'problematizar');
     }
 
-    private function adicionarProblematizar($quadrinho){
-        $problematizar = new Problematizar();
-        $problematizar->hq_id = Hq::latest()->first()->id;
-        $problematizar->quadrinho_id = $quadrinho->id;
-
-        $problematizar->save();
-    }
-
-    /*
-    * Adicionar a cada quadrinho a relação com a Hq principal
-    */
-    private function adicionarSituar(Quadrinho $quadrinho){
-        $situar = new Situar();
-        $situar->hq_id = Hq::latest()->first()->id;
-        $situar->quadrinho_id = $quadrinho->id;
-
-        $situar->save();
-    }
 }

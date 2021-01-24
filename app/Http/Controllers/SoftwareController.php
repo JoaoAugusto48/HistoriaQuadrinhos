@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class SoftwareController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -16,11 +21,11 @@ class SoftwareController extends Controller
      */
     public function index()
     {
-        $hqs = Hq::where('user_id','=', Auth::user()->id)->orderby('id','desc')->get();
+        $softwares = Software::where('user_id','=', Auth::user()->id)->orderby('id','desc')->get();
 
-        $caminho_imagem = ArquivoController::caminho_storage();
+        // $caminho_imagem = ArquivoController::caminho_storage();
 
-        return view('index');
+        return view('index', compact('softwares'));
     }
 
     /**
@@ -41,7 +46,17 @@ class SoftwareController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'descricao' => 'required|max:70',
+        ]);
+
+        $software = new Software();
+        $software->descricao = trim($request->get('descricao'));
+        $software->user_id = Auth::user()->id;
+
+        $software->save();
+
+        return redirect()->route('software.index')->with('error', 'Deu erro!');
     }
 
     /**
@@ -52,7 +67,13 @@ class SoftwareController extends Controller
      */
     public function show(Software $software)
     {
-        //
+        $hqs = Hq::where('user_id','=', $software->id)->orderby('id','desc')->get();
+
+        $caminho_imagem = ArquivoController::caminho_storage();
+
+        // $softwareId = $software->id;
+
+        return view('software.show', compact('hqs', 'caminho_imagem', 'software'));
     }
 
     /**
@@ -61,9 +82,11 @@ class SoftwareController extends Controller
      * @param  \App\Software  $software
      * @return \Illuminate\Http\Response
      */
-    public function edit(Software $software)
+    public function edit(Request $request)
     {
-        return view('software.edit');
+        $software = Software::findOrFail($request->software);
+
+        return view('software.edit', compact('software'));
     }
 
     /**
@@ -73,9 +96,18 @@ class SoftwareController extends Controller
      * @param  \App\Software  $software
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Software $software)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'descricao' => 'required|max:70',
+        ]);
+
+        $software = Software::findOrFail($request->software);
+        $software->descricao = trim($request->get('descricao'));
+
+        $software->update();
+
+        return redirect()->route('software.show', $software->id);
     }
 
     /**
@@ -84,8 +116,11 @@ class SoftwareController extends Controller
      * @param  \App\Software  $software
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Software $software)
+    public function destroy(Request $request)
     {
-        //
+        $software = Software::findOrFail($request->software);
+        $software->delete();
+
+        return redirect()->route('software.index');
     }
 }

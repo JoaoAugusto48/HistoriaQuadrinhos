@@ -82,6 +82,9 @@
                 </button>
             </div>
         </div>
+
+        <input type="hidden" name="softwareId" value="{{ $softwareId }}">
+
         <div class="col-md-8 offset-md-2 pl-1 text-left">
             <button type="submit" class="btn btn-outline-primary font-weight-bold">Enviar</button>
         </div>

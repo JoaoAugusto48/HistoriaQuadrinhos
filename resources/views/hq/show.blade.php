@@ -5,8 +5,8 @@
         <h1>Quadrinho - {{ $hq->tema }}</h1>
     </div>
     <div class="row">
-        <a href="{{ route('hq.index') }}" class="btn btn-outline-dark ml-1" target="_parent">
-            <i class="fas fa-home"></i> Inicio
+        <a href="{{ route('software.show', $hq->software_id) }}" class="btn btn-outline-dark ml-1" target="_parent">
+            <i class="fa fa-reply" aria-hidden="true"></i> Voltar
         </a>
         <a href="{{ route('hq.edit', $hq->id) }}" class="btn btn-outline-dark ml-3" target="_parent">
             <i class="fas fa-edit"></i> Atualizar HQ
@@ -418,7 +418,7 @@
                         
                         
                         // trsolucionar.append("<tr><td>TESTE1</td><td>TESTE2</td><td>TESTE3</td><td>TESTE4</td></tr>")
-                        $(tr).insertBefore("#linhasSolucionar")
+                        $(tr).insertBefore("#linhasSolucionar");
                     }
                 });
             })

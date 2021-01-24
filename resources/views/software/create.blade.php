@@ -28,7 +28,7 @@
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Titulo:</label>
             <div class="col-sm-8">
-                <input id="txt-titulo" type="text" class="form-control" name="tema" maxlength="100" value="{{ old('tema') }}" placeholder="Insira o nome do software criado" required autofocus>
+                <input id="txt-titulo" type="text" class="form-control" name="descricao" maxlength="100" value="{{ old('descricao') }}" placeholder="Insira o nome do software criado" required autofocus>
             </div>
         </div>
         <div class="col-md-8 offset-md-2 pl-1 text-left">

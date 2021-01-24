@@ -17,9 +17,7 @@ class ArquivoController extends Controller
     // Função para fazer o upload dos arquivos pelo administrador do sistema
     public static function caminho_imagem($arquivoImagem, $imagem){
         if(Storage::disk('public')->exists($arquivoImagem)){
-            // $nomeImagem = hash('sha512',uniqid((time())));
             return $imagem->store($arquivoImagem);
-            // return $arquivoImagem.'/'. $nomeImagem .'.png';
         }
     }
 

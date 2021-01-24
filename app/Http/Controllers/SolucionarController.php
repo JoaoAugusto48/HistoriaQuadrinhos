@@ -51,20 +51,7 @@ class SolucionarController extends Controller
             $paginaSolucionar = $problematizar->quadrinho->pagina+1;
         }
         
-
-        $quadrinho = new Quadrinho();
-        $quadrinho->titulo = null;
-        $quadrinho->pathImg = null;
-        $quadrinho->pagina = $paginaSolucionar;
-        $quadrinho->user_id = $hqUser->user_id;
-
-        $quadrinho->save();
-
-        $solucionar = new Solucionar();
-        $solucionar->hq_id = $hq;
-        $solucionar->quadrinho_id = $quadrinho->id;
-
-        $solucionar->save();
+        QuadrinhoController::store(null,$paginaSolucionar,$hqUser->user_id, $hq, 'solucionar');
 
         if($request->get('criarSolucionar') == 'valorGeradoEstaticamente'){
             return redirect()->route('hq.show',$hq);

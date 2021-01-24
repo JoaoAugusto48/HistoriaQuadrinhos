@@ -120,7 +120,7 @@ class AmbienteController extends Controller
         $ambiente->repeteFundo = $request->has('repeteFundo');
 
         $validarDescricao = $this->verificarDescricao($ambiente->id, $ambiente->descricao);
-        // dd($validarDescricao);
+        
         if($validarDescricao){
             DB::table('ambientes')->where('id','=',$ambiente->id)
                 ->update([

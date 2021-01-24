@@ -5,7 +5,7 @@
     <div class="row">
         <h1>
             Gerência
-            <a href="{{ route('hq.index') }}" class="btn btn-outline-dark ml-1" target="_parent">
+            <a href="{{ route('software.index') }}" class="btn btn-outline-dark ml-1" target="_parent">
                 <i class="fas fa-home"></i> Inicio
             </a>
         </h1>

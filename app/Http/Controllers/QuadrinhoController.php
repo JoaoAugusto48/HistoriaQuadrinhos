@@ -81,8 +81,8 @@ class QuadrinhoController extends Controller
 
         //Passando a codificação de Base64 para imagem 
         $base64_image = $imgQuadrinho; // your base64 encoded     
-@list($type, $file_data) = explode(';', $base64_image);
-@list(, $file_data) = explode(',', $file_data);
+        @list($type, $file_data) = explode(';', $base64_image);
+        @list(, $file_data) = explode(',', $file_data);
         
         // Teste caso tenha imagem, é criado nome para o arquivo, 
         // caso não a imagem atual é deletada para ser adicionada outra no local  
@@ -117,6 +117,27 @@ class QuadrinhoController extends Controller
         $quadrinho->delete();
     }
 
+
+    public static function store($titulo, $pagina, $user_id, $hq, $fase = 'situar')
+    {
+        $quadrinho = new Quadrinho();
+        $quadrinho->titulo = $titulo;
+        $quadrinho->pagina = $pagina;
+        $quadrinho->user_id = $user_id;
+
+        $quadrinho->save();
+
+        if($fase == 'situar'){
+            QuadrinhoController::adicionarSituar($quadrinho, $hq);
+        } else 
+        if($fase == 'problematizar') {
+            QuadrinhoController::adicionarProblematizar($quadrinho, $hq);
+        } else if($fase == 'solucionar') {
+            QuadrinhoController::adicionarSolucionar($quadrinho, $hq);
+        }
+
+    }
+
     /**
      * função criada para recuperar o estado do quadrinho
      */
@@ -125,26 +146,50 @@ class QuadrinhoController extends Controller
         $situar = Situar::where('quadrinho_id','=', $idQuadrinho)->get()->first();
         // não é necessário realizar o solucionar
         // $solucionar = Solucionar::where('quadrinho_id','=', $idQuadrinho)->get()->first();
-        $texto = [];
+
+        $fase = 'Solucionar';
+        $mensagem = 'Dê detalhes sobre possíveis soluções para as dificuldades apresentadas nos quadrinhos em "Solucionar".';
 
         if($problematizar){
-            $texto = [
-                'fase' => 'Problematizar',
-                'mensagem' => 'Dê detalhes sobre as dificuldades presentes no meio em que essa HQ se encontra.',
-            ];
+            $fase = 'Problematizar';
+            $mensagem = 'Dê detalhes sobre as dificuldades presentes no meio em que essa HQ se encontra.';
         } else if($situar) {
-            $texto = [
-                'fase' => 'Situar',
-                'mensagem' => 'Determinar em que época, em que período de tempo se passa a HQ.',
-            ];
-        } else {
-            $texto = [
-                'fase' => 'Solucionar',
-                'mensagem' => 'Dê detalhes sobre possíveis soluções para as dificuldades apresentadas nos quadrinhos em "Solucionar".',
-            ];
-        }
+            $fase = 'Situar';
+            $mensagem = 'Determinar em que época, em que período de tempo se passa a HQ.';
+        } 
+        
+        return [
+            'fase' => $fase,
+            'mensagem' => $mensagem
+        ];
+       
+    }
 
-        return $texto;
+    /*
+    * Adicionar a cada quadrinho a relação com a Hq principal
+    */
+    private static function adicionarSituar(Quadrinho $quadrinho, $hq){
+        $situar = new Situar();
+        $situar->hq_id = $hq;
+        $situar->quadrinho_id = $quadrinho->id;
+
+        $situar->save();
+    }
+
+    private static function adicionarProblematizar(Quadrinho $quadrinho, $hq){
+        $problematizar = new Problematizar();
+        $problematizar->hq_id = $hq;
+        $problematizar->quadrinho_id = $quadrinho->id;
+
+        $problematizar->save();
+    }
+
+    private static function adicionarSolucionar(Quadrinho $quadrinho, $hq){
+        $solucionar = new Solucionar();
+        $solucionar->hq_id = $hq;
+        $solucionar->quadrinho_id = $quadrinho->id;
+
+        $solucionar->save();
     }
     
 }

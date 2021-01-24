@@ -3,9 +3,22 @@
 @section('content')
         
     <div class="row">
-        <h1>HQs criadas</h1>
+        <h1>
+            Requisitos - {{$software->descricao}}
+        </h1>
     </div>
-    <hr class="bg-dark mt-0"/>
+    <div class="row">
+        <a href="{{ route('software.index') }}" class="btn btn-outline-dark ml-1" target="_parent">
+            <i class="fas fa-home"></i> Inicio
+        </a>
+        <a href="{{ route('software.edit', $software->id) }}" class="btn btn-outline-dark ml-3" target="_parent">
+            <i class="fas fa-edit"></i> Atualizar Software
+        </a>
+        <a href="{{ route('criarHq', $software->id) }}" class="btn btn-outline-dark ml-3" target="_parent">
+            <i class="fas fa-edit"></i> Criar HQ
+        </a>
+    </div>
+    <hr class="bg-dark mt-2"/>
 
     @if ($hqs->count() > 0)
         <table class="table table-striped text-center" style="border: 3px solid black;">
@@ -60,7 +73,7 @@
             <div class="card-body">
                 <h5 class="card-title">Você ainda não possui Histórias em Quadrinhos!</h5>
                 <p class="card-text">Clique no Botão abaixo para criar uma HQ.</p>
-                <a href="{{ route('hq.create') }}" class="btn btn-primary"> 
+                <a href="{{ route('criarHq', ['softwareId' => $software->id]) }}" class="btn btn-primary"> 
                     <i class="fa fa-plus" aria-hidden="true"></i> Criar HQ
                 </a>
             </div>

@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('home');
 // });
-Route::get('/', 'SoftwareController@index');
+
+Route::get('/', 'SoftwareController@index')->middleware('auth');
+Route::get('/home', 'SoftwareController@index')->name('home')->middleware('auth');
 
 Route::resources([
     'hq'            => 'HqController',
@@ -27,24 +29,21 @@ Route::resources([
     'solucionar'    => 'SolucionarController',
 
     'gerencia'      => 'GerenciarController',
-    'personagem' => 'PersonagemController',
-    'ambiente' => 'AmbienteController',
-    'balao' => 'BalaoController',
-    'utensilio' => 'UtensilioController',
+    'personagem'    => 'PersonagemController',
+    'ambiente'      => 'AmbienteController',
+    'balao'         => 'BalaoController',
+    'utensilio'     => 'UtensilioController',
     'quadrinhoPersonagem' => 'QuadrinhoPersonagemController',
-    'software' => 'SoftwareController',
+    'software'      => 'SoftwareController',
 ]);
+
+//criar uma HQ pelo software cadastrado
+Route::get('hq/create/{softwareId}', 'HqController@create')->name('criarHq');
 
 Route::view('quadrinhos', 'quadrinhos/index')->name('quadrinhos'); //view de quadrinho
 Route::view('personagem1', 'hq/modal/personagem')->name('personagem1');
 
 Route::get('mostrarQuadrinho/{hqId}/{quadrinhoId}', 'QuadrinhoController@edit')->name('mostrarQuadrinho');
-
-// Route::resource('hq', 'HqController')->middleware('auth');
-// Route::resource('quadrinho', 'QuadrinhoController')->middleware('auth');
-// Route::resource('situar', 'SituarController')->middleware('auth');
-// Route::resource('problematizar', 'ProblematizarController')->middleware('auth');
-// Route::resource('solucionar', 'SolucionarController')->middleware('auth');
 
 Route::post('problematizar/store', 'ProblematizarController@store');
 Route::post('solucionar/store', 'SolucionarController@store');
@@ -53,6 +52,4 @@ Auth::routes();
 Route::resource('usuario', 'Auth\AuthController');
 Route::post('usuario/atualizarUsuario', 'Auth\AuthController@atualizarUsuario')->name('atualizarUsuario');
 Route::post('usuario/atualizarSenha', 'Auth\AuthController@atualizarSenha')->name('atualizarSenha');
-
-Route::get('/home', 'HqController@index')->name('home');
 
