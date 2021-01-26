@@ -31,11 +31,7 @@ class HqController extends Controller
      */
     public function index()
     {
-        // $hqs = Hq::where('user_id','=', Auth::user()->id)->orderby('id','desc')->get();
-
-        // $caminho_imagem = ArquivoController::caminho_storage();
-
-        // return view('hq.home', compact('hqs', 'caminho_imagem'));
+        //
     }
 
     /**
@@ -250,7 +246,7 @@ class HqController extends Controller
     }
 
     private function pagina4temImagem($quadrinhoPag4){
-            return $quadrinhoPag4 ? true : false;
+        return $quadrinhoPag4 ? true : false;
     }
 
 }

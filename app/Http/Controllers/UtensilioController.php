@@ -16,9 +16,8 @@ class UtensilioController extends Controller
     public function index()
     {
         GerenciarController::userGerente();
-
+        
         $utensilios = Utensilio::where('status','=', true)->orderby('descricao', 'asc')->get();
-
         $caminho_imagem = ArquivoController::caminho_storage();
 
         return view('gerencia.utensilio.utensilio', compact('utensilios', 'caminho_imagem'));

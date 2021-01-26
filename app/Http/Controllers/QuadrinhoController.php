@@ -148,21 +148,24 @@ class QuadrinhoController extends Controller
         // não é necessário realizar o solucionar
         // $solucionar = Solucionar::where('quadrinho_id','=', $idQuadrinho)->get()->first();
 
-        $fase = 'Solucionar';
-        $mensagem = 'Dê detalhes sobre possíveis soluções para as dificuldades apresentadas nos quadrinhos em "Solucionar".';
+        $faseQuadrinho = [
+            'fase' => 'Solucionar',
+            'mensagem' => 'Dê detalhes sobre possíveis soluções para as dificuldades apresentadas nos quadrinhos em "Problematizar".'
+        ];
 
         if($problematizar){
-            $fase = 'Problematizar';
-            $mensagem = 'Dê detalhes sobre as dificuldades presentes no meio em que essa HQ se encontra.';
+            $faseQuadrinho = [
+                'fase' => 'Problematizar',
+                'mensagem' => 'Dê detalhes sobre as dificuldades presentes no meio em que essa HQ se encontra.'
+            ];
         } else if($situar) {
-            $fase = 'Situar';
-            $mensagem = 'Determinar em que época, em que período de tempo se passa a HQ.';
+            $faseQuadrinho = [
+                'fase' => 'Situar',
+                'mensagem' => 'Determinar em que época, em que período de tempo se passa a HQ.'
+            ];
         } 
         
-        return [
-            'fase' => $fase,
-            'mensagem' => $mensagem
-        ];
+        return $faseQuadrinho;
        
     }
     

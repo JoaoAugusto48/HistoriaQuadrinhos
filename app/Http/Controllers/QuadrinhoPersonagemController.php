@@ -17,9 +17,7 @@ class QuadrinhoPersonagemController extends Controller
     public function index()
     {
         $quadPer = QuadrinhoPersonagem::get()->first();
-
         $balaos = Balao::orderby('descricao')->get();
-        
         $caminho_imagem = ArquivoController::caminho_storage();
 
         return view('gerencia.balao.quadrinhoPersonagens', compact('quadPer', 'caminho_imagem', 'balaos'));

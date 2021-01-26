@@ -13,7 +13,7 @@ class SoftwareController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +23,11 @@ class SoftwareController extends Controller
     {
         $softwares = Software::where('user_id','=', Auth::user()->id)->orderby('id','desc')->get();
 
-        // $caminho_imagem = ArquivoController::caminho_storage();
+        // $hq = Hq::where('')
+        // $validaURL = ValidarController::validaURL($hq);
+        // if($validaURL){
+        //     return $validaURL;
+        // }
 
         return view('index', compact('softwares'));
     }
@@ -68,10 +72,7 @@ class SoftwareController extends Controller
     public function show(Software $software)
     {
         $hqs = Hq::where('user_id','=', Auth::user()->id)->orderby('id','desc')->get();
-
         $caminho_imagem = ArquivoController::caminho_storage();
-
-        // $softwareId = $software->id;
 
         return view('software.show', compact('hqs', 'caminho_imagem', 'software'));
     }
