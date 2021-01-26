@@ -64,11 +64,7 @@ class ProblematizarController extends Controller
 
         $quadrinho->save();
 
-        $problematizar = new Problematizar();
-        $problematizar->hq_id = $hq;
-        $problematizar->quadrinho_id = $quadrinho->id;
-
-        $problematizar->save();
+        $problematizar = FaseController::adicionarProblematizar($quadrinho, $hq);
 
         return response()->json(
             [

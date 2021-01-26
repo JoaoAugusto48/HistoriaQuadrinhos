@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class GerenciarController extends Controller
@@ -12,6 +11,11 @@ class GerenciarController extends Controller
         $this->middleware('auth');
     }
 
+    private static $privilegio = [
+        'semPrivilegio' => 0,
+        'comPrivilegio' => 1
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -19,14 +23,14 @@ class GerenciarController extends Controller
      */
     public function index()
     {
-        GerenciarController::userGerente();
+        $naoEGerente = GerenciarController::userGerente();
 
-        return view('gerencia.gerencia');
+        return $naoEGerente ? $naoEGerente : view('gerencia.gerencia');
     }
 
     public static function userGerente(){
-        if(Auth::user()->privilegio < 1){
-            return redirect()->route('hq.index');
+        if(Auth::user()->privilegio < GerenciarController::$privilegio['comPrivilegio']){
+            return redirect()->route('software.index');
         }
     }
 

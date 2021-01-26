@@ -116,29 +116,12 @@ class HqController extends Controller
 
         $quadrinhoPersonagens = QuadrinhoPersonagem::get()->first();
         
-        $situarQuadrinho = $situars[3]->quadrinho->pathImg ? true : false;
-        
-        $problematizarQuadrinho = true;
-        foreach($problematizars as $problematizar){
-            if(!$problematizar->quadrinho->pathImg){
-                $problematizarQuadrinho = false;
-            }
-        }
-        
-        $solucionarQuadrinho = true;
-        if($solucionars->isEmpty()){ //verificando se esse vetor está vazio
-            $solucionarQuadrinho = false;
-        }else {
-            foreach($solucionars as $solucionar){
-                if(!$solucionar->quadrinho->pathImg){
-                    $solucionarQuadrinho = false;
-                }
-            }
-        }
-        
+        $situarQuadrinho = $this->pagina4temImagem($situars[3]->quadrinho->pathImg);
+        $problematizarQuadrinho = $this->mostrarImagens($problematizars);
+        $solucionarQuadrinho = $this->mostrarImagensSolucionar($solucionars);
+                
         $caminho_imagem = ArquivoController::caminho_storage(); //endereço do projeto, local: pasta storage
         
-
         return view('hq.show', 
             compact('hq', 'situars', 'problematizars', 'solucionars', 'caminho_imagem',
             'situarQuadrinho', 'problematizarQuadrinho', 'solucionarQuadrinho',
@@ -157,7 +140,6 @@ class HqController extends Controller
         $hq = Hq::findOrFail($request->hq);
 
         $validaURL = ValidarController::validaURL($hq);
-        
         if($validaURL){
             return $validaURL;
         }
@@ -210,6 +192,7 @@ class HqController extends Controller
         $hq = Hq::findOrFail($request->hq);
 
         $situars = Situar::where('hq_id','=',$hq->id)->get();
+        
         Situar::where('hq_id','=',$hq->id)->delete();
         foreach($situars as $situar){
             DB::table('quadrinhos')->where('id','=',$situar->quadrinho_id)->delete();
@@ -246,6 +229,28 @@ class HqController extends Controller
         QuadrinhoController::store('Ambiente de Trabalho',3, $hq->user_id, $hqId);
         QuadrinhoController::store(null,4, $hq->user_id, $hqId);
         QuadrinhoController::store(null,5, $hq->user_id, $hqId, 'problematizar');
+    }
+
+    private function mostrarImagens($fases){
+        $faseQuadrinho = true;
+        foreach($fases as $fase){
+            if(!$fase->quadrinho->pathImg){
+                $faseQuadrinho = false;
+            }
+        }
+        return $faseQuadrinho;
+    }
+
+    private function mostrarImagensSolucionar($solucionars){
+        if($solucionars->isEmpty()){ //verificando se esse vetor está vazio
+            return false;
+        }
+        
+        return $this->mostrarImagens($solucionars);
+    }
+
+    private function pagina4temImagem($quadrinhoPag4){
+            return $quadrinhoPag4 ? true : false;
     }
 
 }

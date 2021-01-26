@@ -128,12 +128,12 @@ class QuadrinhoController extends Controller
         $quadrinho->save();
 
         if($fase == 'situar'){
-            QuadrinhoController::adicionarSituar($quadrinho, $hq);
+            FaseController::adicionarSituar($quadrinho, $hq);
         } else 
         if($fase == 'problematizar') {
-            QuadrinhoController::adicionarProblematizar($quadrinho, $hq);
+            FaseController::adicionarProblematizar($quadrinho, $hq);
         } else if($fase == 'solucionar') {
-            QuadrinhoController::adicionarSolucionar($quadrinho, $hq);
+            FaseController::adicionarSolucionar($quadrinho, $hq);
         }
 
     }
@@ -163,33 +163,6 @@ class QuadrinhoController extends Controller
             'mensagem' => $mensagem
         ];
        
-    }
-
-    /*
-    * Adicionar a cada quadrinho a relação com a Hq principal
-    */
-    private static function adicionarSituar(Quadrinho $quadrinho, $hq){
-        $situar = new Situar();
-        $situar->hq_id = $hq;
-        $situar->quadrinho_id = $quadrinho->id;
-
-        $situar->save();
-    }
-
-    private static function adicionarProblematizar(Quadrinho $quadrinho, $hq){
-        $problematizar = new Problematizar();
-        $problematizar->hq_id = $hq;
-        $problematizar->quadrinho_id = $quadrinho->id;
-
-        $problematizar->save();
-    }
-
-    private static function adicionarSolucionar(Quadrinho $quadrinho, $hq){
-        $solucionar = new Solucionar();
-        $solucionar->hq_id = $hq;
-        $solucionar->quadrinho_id = $quadrinho->id;
-
-        $solucionar->save();
     }
     
 }

@@ -77,7 +77,6 @@ class QuadrinhoPersonagemController extends Controller
      */
     public function update(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'id' => 'required',
             'balao_esquerda' => 'required',

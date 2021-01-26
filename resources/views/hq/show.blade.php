@@ -145,13 +145,9 @@
     @endif
 
     {{-- excluir --}}
-    <div id="baixar-hq">
+    <div id="baixar-hq"></div>
 
-    </div>
-
-    <div id="testeImprimir">
-
-    </div>
+    <div id="testeImprimir"></div>
 
 
     {{-- Inicio divisão para baixar os quadrinhos --}}
@@ -233,62 +229,54 @@
         @if ($problematizars[0]->quadrinho->pathImg)
             <h4 class="text-center border border-dark bg-info text-white mt-3 mb-0 rounded-top font-weight-bold">Problematizar</h4>
             <div class="card-group">
-                {{-- <div class="row row-cols-1 row-cols-md-2 no-gutters"> --}}
-                {{-- <div class="row row-cols-1 no-gutters"> --}}
-                    <div class="col-md-12 m-0 p-0">
-                        @foreach ($problematizars as $problematizar)
-                            @if ($problematizar->quadrinho->pathImg)
-                                {{-- <div class="col-md-6"> --}}
-                                    <div class="card text-center bg-dark text-white rounded-top-0">
-                                        @if ($problematizar->quadrinho->titulo)
-                                            <div class="card-header">{{ $problematizar->quadrinho->titulo }}</div>
-                                        @else
-                                            <div class="card-header">&nbsp;</div>
-                                        @endif
-                                        <div class="card-body p-0 bg-white">
-                                            <img src="{{ $caminho_imagem.$problematizar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
-                                        </div>
-                                        <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">
-                                            <span style="text-shadow: 0px 0px 10px #cecece; font-weight: bold; color: black; font-size: 20px;">
-                                                {{ $problematizar->quadrinho->pagina }}
-                                            </span>
-                                        </div>
+                <div class="col-md-12 m-0 p-0">
+                    @foreach ($problematizars as $problematizar)
+                        @if ($problematizar->quadrinho->pathImg)
+                                <div class="card text-center bg-dark text-white rounded-top-0">
+                                    @if ($problematizar->quadrinho->titulo)
+                                        <div class="card-header">{{ $problematizar->quadrinho->titulo }}</div>
+                                    @else
+                                        <div class="card-header">&nbsp;</div>
+                                    @endif
+                                    <div class="card-body p-0 bg-white">
+                                        <img src="{{ $caminho_imagem.$problematizar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
                                     </div>
-                                {{-- </div> --}}
-                            @endif
-                        @endforeach
-                    </div>
-                {{-- </div> --}}
+                                    <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">
+                                        <span style="text-shadow: 0px 0px 10px #cecece; font-weight: bold; color: black; font-size: 20px;">
+                                            {{ $problematizar->quadrinho->pagina }}
+                                        </span>
+                                    </div>
+                                </div>
+                        @endif
+                    @endforeach
+                </div>
             </div>
         @endif
 
         @if ($solucionars->count() && $solucionars[0]->quadrinho->pathImg)
             <h4 class="text-center border border-dark bg-info text-white mt-3 mb-0 rounded-top font-weight-bold">Solucionar</h4>
             <div class="card-group">
-                {{-- <div class="row row-cols-1 row-cols-md-2 no-gutters"> --}}
-                {{-- <div class="row row-cols-1 no-gutters"> --}}
-                    <div class="col-md-12 m-0 p-0">
-                        @foreach ($solucionars as $solucionar)
-                            @if ($solucionar->quadrinho->pathImg)
-                                <div class="card text-center bg-dark text-white rounded-top-0">
-                                    @if ($solucionar->quadrinho->titulo)
-                                        <div class="card-header">{{ $solucionar->quadrinho->titulo }}</div>
-                                    @else
-                                        <div class="card-header">&nbsp;</div>
-                                    @endif
-                                    <div class="card-body p-0 bg-white">
-                                        <img src="{{ $caminho_imagem.$solucionar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
-                                    </div>
-                                    <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">
-                                        <span style="text-shadow: 0px 0px 10px #cecece; font-weight: bold; color: black; font-size: 20px;">
-                                            {{ $solucionar->quadrinho->pagina }}
-                                        </span>
-                                    </div>
+                <div class="col-md-12 m-0 p-0">
+                    @foreach ($solucionars as $solucionar)
+                        @if ($solucionar->quadrinho->pathImg)
+                            <div class="card text-center bg-dark text-white rounded-top-0">
+                                @if ($solucionar->quadrinho->titulo)
+                                    <div class="card-header">{{ $solucionar->quadrinho->titulo }}</div>
+                                @else
+                                    <div class="card-header">&nbsp;</div>
+                                @endif
+                                <div class="card-body p-0 bg-white">
+                                    <img src="{{ $caminho_imagem.$solucionar->quadrinho->pathImg }}" class="card-img-ambiente my-auto w-75" draggable="false">
                                 </div>
-                            @endif
-                        @endforeach
-                    </div>
-                {{-- </div> --}}
+                                <div class="card-footer text-left bg-secondary border-top-0 numeroPagina">
+                                    <span style="text-shadow: 0px 0px 10px #cecece; font-weight: bold; color: black; font-size: 20px;">
+                                        {{ $solucionar->quadrinho->pagina }}
+                                    </span>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
             </div>
         @endif
     </div>
@@ -367,7 +355,6 @@
         }
 
 
-
         //solucionar
         $(document).ready(function() {
             $.ajaxSetup({
@@ -398,6 +385,7 @@
                         var tdPagina = document.createElement("td");
                         tdPagina.setAttribute("id", "atualizarNumeroPagina");
                         tdPagina.append(response.solucionarPagina);
+                        tdPagina.textContent++; // necessário para deixar o número das páginas correto ao adicionar solucionar
                         // https://laracasts.com/discuss/channels/laravel/how-to-display-belongsto-in-ajax-with-laravel?page=1
                         var tdOperacoes = document.createElement("td");
                         criarBotoesOperacoesSolucionar(tdOperacoes, response.solucionarId, response.solucionar.id,response.solucionarPagina);
@@ -413,9 +401,7 @@
                         tr.appendChild(tdPagina);
                         tr.appendChild(tdOperacoes);
 
-                        tr.style.borderBottom = "2px solid #555";
-                        // style="border-bottom: 2px solid #555;"
-                        
+                        tr.style.borderBottom = "2px solid #555";                        
                         
                         // trsolucionar.append("<tr><td>TESTE1</td><td>TESTE2</td><td>TESTE3</td><td>TESTE4</td></tr>")
                         $(tr).insertBefore("#linhasSolucionar");
@@ -442,7 +428,7 @@
 
         function atualizarNumeroPagina() {
             var paginas = document.querySelectorAll("#atualizarNumeroPagina");
-            for (let i = 0; i < paginas.length; i++) {
+            for (let i = 0; i <= paginas.length; i++) {
                 const element = paginas[i];
                 var number = parseInt(element.textContent);
                 number++;

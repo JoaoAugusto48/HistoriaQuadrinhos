@@ -18,21 +18,14 @@
     <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @yield('js')
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/gerarQuadrinho.css') }}">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!-- Style -->
+    <link href="{{ asset('css/index.css') }}" rel="stylesheet">
 
     <!-- Font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA==" crossorigin="anonymous" />
@@ -136,15 +129,13 @@
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
     
     <script src="{{ asset('js/baixarHq.js') }}"></script>
-    <script src="{{ asset('js/gerarQuadrinho.js') }}"></script>
     
     <script>
         $(document).ready(function() {
             $("body").tooltip({ selector: '[data-toggle=tooltip]' });
         });
-    </script>
 
-    <script>
+        
         $(document).ready(function(){
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 200) {

@@ -4,19 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Solucionar extends Model
+class Solucionar extends Fase
 {
     protected $table = 'solucionars';
 
-    protected $fillable = [
-        'id', 'hq_id', 'quadrinho_id'
-    ];
-
-    public function hq(){
-        return $this->belongsTo('App\Hq', 'hq_id');
-    }
-
-    public function quadrinho(){
-        return $this->belongsTo('App\Quadrinho', 'quadrinho_id');
-    }
 }

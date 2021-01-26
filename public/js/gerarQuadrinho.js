@@ -87,7 +87,7 @@ function baixaQuadrinho(hqId, quadrinhoId){
 
     $('html, body').animate({
         scrollTop: $("#output-quadrinho").offset().top
-        }, 500);
+    }, 500);
 }
 
 // Local onde o usuário poderá ver a imagem gerada e salvar 
