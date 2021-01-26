@@ -4,10 +4,8 @@
         
     <div class="row">
         <h1>
-            Criar HQ
-            <a href="{{ route('hq.index') }}" class="btn btn-outline-dark ml-1" target="_parent">
-                <i class="fas fa-home"></i> Inicio
-            </a>
+            Criar HQ - 
+            <button class="btn btn-outline-dark ml-1" onclick="javascript:history.back()"><i class="fa fa-reply" aria-hidden="true"></i> Voltar</button>
         </h1>
     </div>
     <hr class="bg-dark mt-0"/>

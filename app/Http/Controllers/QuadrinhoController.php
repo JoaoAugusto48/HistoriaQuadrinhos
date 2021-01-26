@@ -70,6 +70,7 @@ class QuadrinhoController extends Controller
         $quadrinhoId = $request->get('quadrinhoId');
         $imgQuadrinho = $request->get('imgQuadrinho');
         $titulo = trim($request->get('titulo'));
+        // dd($titulo);
 
         // verificando se titulo possui algum valor para caso não, ele seja null
         if(strlen($titulo) == 0){

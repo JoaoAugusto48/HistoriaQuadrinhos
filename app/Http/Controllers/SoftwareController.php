@@ -67,7 +67,7 @@ class SoftwareController extends Controller
      */
     public function show(Software $software)
     {
-        $hqs = Hq::where('user_id','=', $software->id)->orderby('id','desc')->get();
+        $hqs = Hq::where('user_id','=', Auth::user()->id)->orderby('id','desc')->get();
 
         $caminho_imagem = ArquivoController::caminho_storage();
 

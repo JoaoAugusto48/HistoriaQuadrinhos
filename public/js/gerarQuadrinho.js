@@ -8,12 +8,12 @@ $(document).ready(() => {
     var inputTitulo = document.createElement("input");
     inputTitulo.type = "hidden";
     inputTitulo.name = titulo.name;
-    inputTitulo.value = titulo.value;
+    inputTitulo.value = titulo.value; 
     
+    $("#titulo-escondido").append(inputTitulo);
     titulo.addEventListener("input",function(){
-        $("#titulo-escondido").append(inputTitulo);
         inputTitulo.value = titulo.value;
-    });  
+    });
 })
 
 // Estado inicial da página
