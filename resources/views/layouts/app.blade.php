@@ -19,7 +19,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     @yield('js')
-    
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -40,7 +40,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name') }}
                 </a>
-                
+
                 @if (Auth::check())
                     <a class="btn btn-outline-light ml-1" href="{{ route('software.create') }}" target="_parent">
                         <i class="fa fa-plus" aria-hidden="true"></i> Cadastrar Software
@@ -51,18 +51,15 @@
                             <i class="fas fa-cog"></i> Gerenciar
                         </a>
                     @endif
-
                 @endif
-                
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
+                    <ul class="navbar-nav mr-auto"></ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -124,18 +121,18 @@
 
     {{-- Scripts --}}
     {{-- <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script> --}}
-    
+
     <script src="{{ asset('js/bootstrap/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
-    
+
     <script src="{{ asset('js/baixarHq.js') }}"></script>
-    
+
     <script>
         $(document).ready(function() {
             $("body").tooltip({ selector: '[data-toggle=tooltip]' });
         });
 
-        
+
         $(document).ready(function(){
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 200) {

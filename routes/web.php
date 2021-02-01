@@ -18,8 +18,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('home');
 // });
 
-Route::get('/', 'SoftwareController@index')->middleware('auth');
+// Route::get('/', 'SoftwareController@index')->middleware('auth');
 Route::get('/home', 'SoftwareController@index')->name('home')->middleware('auth');
+Route::view('/', 'nonUser/index')->name('index');
 
 Route::resources([
     'hq'            => 'HqController',
