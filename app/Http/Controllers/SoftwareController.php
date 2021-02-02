@@ -71,7 +71,10 @@ class SoftwareController extends Controller
      */
     public function show(Software $software)
     {
-        $hqs = Hq::where('user_id','=', Auth::user()->id)->orderby('id','desc')->get();
+        $hqs = Hq::where('user_id','=', Auth::user()->id)
+            ->where('software_id','=',$software->id)
+            ->orderby('id','desc')
+            ->get();
         $caminho_imagem = ArquivoController::caminho_storage();
 
         return view('software.show', compact('hqs', 'caminho_imagem', 'software'));
@@ -120,6 +123,8 @@ class SoftwareController extends Controller
     public function destroy(Request $request)
     {
         $software = Software::findOrFail($request->software);
+        Hq::where('software_id','=',$software->id)->delete();
+        dd($software);
         $software->delete();
 
         return redirect()->route('software.index');

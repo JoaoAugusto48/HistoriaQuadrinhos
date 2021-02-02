@@ -57,7 +57,7 @@ class HqController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'tema' => 'required|max:100',
             'local' => 'required|max:70',
@@ -68,7 +68,7 @@ class HqController extends Controller
             'saudacao2' => 'required|max:70',
             'softwareId' => 'required'
         ]);
-            
+
         $hq = new Hq();
         $hq->tema = trim($request->get('tema'));
         $hq->local = trim($request->get('local'));
@@ -79,7 +79,7 @@ class HqController extends Controller
         $hq->ambiente_id = $request->get('ambiente_id');
         $hq->software_id = $request->get('softwareId');
         $hq->user_id = Auth::user()->id;
-        
+
         $hq->save();
 
         ArquivoController::folder_path($hq->id, $hq->user_id);
@@ -105,20 +105,20 @@ class HqController extends Controller
         if($validaURL){
             return $validaURL;
         }
-        
+
         $situars = Situar::where('hq_id', '=', $hq->id)->get();
         $problematizars = Problematizar::where('hq_id', '=', $hq->id)->get();
         $solucionars = Solucionar::where('hq_id', '=', $hq->id)->get();
 
         $quadrinhoPersonagens = QuadrinhoPersonagem::get()->first();
-        
+
         $situarQuadrinho = $this->pagina4temImagem($situars[3]->quadrinho->pathImg);
         $problematizarQuadrinho = $this->mostrarImagens($problematizars);
         $solucionarQuadrinho = $this->mostrarImagensSolucionar($solucionars);
-                
+
         $caminho_imagem = ArquivoController::caminho_storage(); //endereço do projeto, local: pasta storage
-        
-        return view('hq.show', 
+
+        return view('hq.show',
             compact('hq', 'situars', 'problematizars', 'solucionars', 'caminho_imagem',
             'situarQuadrinho', 'problematizarQuadrinho', 'solucionarQuadrinho',
             'quadrinhoPersonagens')
@@ -188,7 +188,7 @@ class HqController extends Controller
         $hq = Hq::findOrFail($request->hq);
 
         $situars = Situar::where('hq_id','=',$hq->id)->get();
-        
+
         Situar::where('hq_id','=',$hq->id)->delete();
         foreach($situars as $situar){
             DB::table('quadrinhos')->where('id','=',$situar->quadrinho_id)->delete();
@@ -241,7 +241,7 @@ class HqController extends Controller
         if($solucionars->isEmpty()){ //verificando se esse vetor está vazio
             return false;
         }
-        
+
         return $this->mostrarImagens($solucionars);
     }
 

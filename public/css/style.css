@@ -13,7 +13,7 @@
   object-fit: scale-down;
 }
 
-.hiddenradio [type=radio] { 
+.hiddenradio [type=radio] {
   position: absolute;
   opacity: 0;
   width: 0;
@@ -87,23 +87,23 @@
 }
 
 .balaoQuadrinho {
-  background-size: contain; 
-  background-repeat: no-repeat; 
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center center;
 }
 
 .textareaQuadrinho {
   background:transparent;
   height:50px;
-  border:none; 
-  outline:none; 
-  padding:5px; 
-  margin: 0px 0px 0px 0px; 
-  resize: none; 
-  width:80%; 
-  height:50%; 
-  overflow-y: hidden; 
-  line-height:15px; 
+  border:none;
+  outline:none;
+  padding:5px;
+  margin: 0px 0px 0px 0px;
+  resize: none;
+  width:80%;
+  height:50%;
+  overflow-y: hidden;
+  line-height:15px;
   font-size:14px;
 }
 
