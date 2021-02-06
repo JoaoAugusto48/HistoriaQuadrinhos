@@ -187,24 +187,9 @@ class HqController extends Controller
     {
         $hq = Hq::findOrFail($request->hq);
 
-        $situars = Situar::where('hq_id','=',$hq->id)->get();
-
-        Situar::where('hq_id','=',$hq->id)->delete();
-        foreach($situars as $situar){
-            DB::table('quadrinhos')->where('id','=',$situar->quadrinho_id)->delete();
-        }
-
-        $problematizars = Problematizar::where('hq_id','=',$hq->id)->get();
-        Problematizar::where('hq_id','=',$hq->id)->delete();
-        foreach($problematizars as $problematizar){
-            DB::table('quadrinhos')->where('id','=',$problematizar->quadrinho_id)->delete();
-        }
-
-        $solucionars = Solucionar::where('hq_id','=',$hq->id)->get();
-        Solucionar::where('hq_id','=',$hq->id)->delete();
-        foreach($solucionars as $solucionar){
-            DB::table('quadrinhos')->where('id','=',$solucionar->quadrinho_id)->delete();
-        }
+        FaseController::deletarSituar($hq);
+        FaseController::deletarProblematizar($hq);
+        FaseController::deletarSolucionar($hq);
 
         $hq->delete();
 
@@ -248,5 +233,34 @@ class HqController extends Controller
     private function pagina4temImagem($quadrinhoPag4){
         return $quadrinhoPag4 ? true : false;
     }
+
+
+    //otimizar
+    // public static function deletarSituar($hq){
+    //     $situars = Situar::where('hq_id','=',$hq->id)->get();
+        
+    //     Situar::where('hq_id','=',$hq->id)->delete();
+    //     foreach($situars as $situar){
+    //         DB::table('quadrinhos')->where('id','=',$situar->quadrinho_id)->delete();
+    //     }
+    // }
+
+    // public static function deletarProblematizar($hq){
+    //     $problematizars = Problematizar::where('hq_id','=',$hq->id)->get();
+        
+    //     Problematizar::where('hq_id','=',$hq->id)->delete();
+    //     foreach($problematizars as $problematizar){
+    //         DB::table('quadrinhos')->where('id','=',$problematizar->quadrinho_id)->delete();
+    //     }
+    // }
+
+    // public static function deletarSolucionar($hq){
+    //     $solucionars = Solucionar::where('hq_id','=',$hq->id)->get();
+        
+    //     Solucionar::where('hq_id','=',$hq->id)->delete();
+    //     foreach($solucionars as $solucionar){
+    //         DB::table('quadrinhos')->where('id','=',$solucionar->quadrinho_id)->delete();
+    //     }
+    // }
 
 }

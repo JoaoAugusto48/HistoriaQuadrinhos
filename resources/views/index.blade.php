@@ -29,6 +29,10 @@
                             <a href="{{ route('software.show', $software->id) }}" class="btn btn-outline-info btn-sm border border-dark" role="button">
                                 <i class="fa fa-comments" aria-hidden="true"></i> <em>Requisitos</em>
                             </a>
+                            <a href="{{ route('software.edit', $software->id) }}" class="btn btn-outline-secondary btn-sm border border-dark" target="_parent">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            
                             <form action="{{ route('software.destroy', $software->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')

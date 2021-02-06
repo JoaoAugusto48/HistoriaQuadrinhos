@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Hq;
+use App\Problematizar;
+use App\Situar;
 use App\Software;
+use App\Solucionar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SoftwareController extends Controller
 {
@@ -123,9 +127,20 @@ class SoftwareController extends Controller
     public function destroy(Request $request)
     {
         $software = Software::findOrFail($request->software);
-        Hq::where('software_id','=',$software->id)->delete();
-        dd($software);
+
+        //otimizar
+        $hqs = Hq::where('software_id','=',$software->id)->get();
+        foreach($hqs as $hq) {
+            FaseController::deletarSituar($hq);
+            FaseController::deletarProblematizar($hq);
+            FaseController::deletarSolucionar($hq);
+
+            Hq::where('id','=',$hq->id)->delete(); 
+        }
+
         $software->delete();
+        //
+        // Hq::where('software_id','=',$software->id)->delete();
 
         return redirect()->route('software.index');
     }
