@@ -11,9 +11,10 @@
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">Crie suas próprias Histórias</h5>
+                    <hr class="m-0 mb-2">
+                    <p class="card-text">No intuito de auxiliar no desenvolvimento de softwares, {{ config('app.name') }} visa auxiliar a stakeholders na especificação do software.</p>
+                    <a href="{{ route('register') }}" class="btn btn-primary">Faça já seu cadastro!</a>
                 </div>
             </div>
         </div>

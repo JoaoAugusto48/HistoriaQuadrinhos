@@ -44,13 +44,6 @@
 
 <!-- Javascript de Confirmação de seleção personagem 1 -->
 <script>
-    // let titulo = document.querySelector("#txt-titulo");
-    // let personagem1 = document.querySelector("#btn-personagem1");
-
-    // titulo.addEventListener("input",function(){
-    //     console.log(this.value);
-    //     personagem1.textContent = this.value;
-    // })
 
     function  confirmarP1() {
         let personagem1 = document.querySelector("#btn-personagem1");

@@ -97,7 +97,6 @@ class QuadrinhoController extends Controller
         }
         Storage::disk('public')->put($file_name, base64_decode($file_data));
 
-
         DB::table('quadrinhos')->where('id','=',$quadrinhoId)
             ->update([
                 'pathImg' => $file_name,
@@ -166,7 +165,6 @@ class QuadrinhoController extends Controller
         } 
         
         return $faseQuadrinho;
-       
     }
     
 }

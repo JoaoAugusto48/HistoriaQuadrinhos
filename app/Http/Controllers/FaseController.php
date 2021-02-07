@@ -42,7 +42,7 @@ class FaseController extends Controller
      * Delete
      */
 
-    public static function deletarFase($fase, $hq){
+    private static function deletarFase($fase, $hq){
         $fases = $fase->where('hq_id','=',$hq->id)->get();
         
         $fase->where('hq_id','=',$hq->id)->delete();

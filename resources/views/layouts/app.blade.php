@@ -37,7 +37,9 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark cor-azul-escuro shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+
+                {{-- se logado, link é diferente de não logado --}}
+                <a class="navbar-brand" href="@guest {{ url('/') }} @else {{ route('software.index') }} @endguest">
                     {{ config('app.name') }}
                 </a>
 

@@ -47,7 +47,6 @@ class SolucionarController extends Controller
         else{
             // recuperando o ultimo quadrinho inserido a essa Hq
             $problematizar = Problematizar::where('hq_id','=', $hq)->orderBy('id','desc')->first();
-
             $paginaSolucionar = $problematizar->quadrinho->pagina+1;
         }
         
