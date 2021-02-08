@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Quadrinho;
 
+use App\Http\Controllers\Controller;
 use App\Balao;
 use App\Hq;
+use App\Http\Controllers\Gerencia\ArquivoController;
+use App\Http\Controllers\Gerencia\ValidarController;
 use App\Problematizar;
 use App\Quadrinho;
 use App\Situar;
-use App\Solucionar;
 use App\Utensilio;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 

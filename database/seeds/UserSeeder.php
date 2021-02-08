@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
                 'id' => 2,
                 'name' => 'João Augusto Paião Bonifácio',
                 'email' => 'teste@teste',
-                'privilegio' => 2,
+                'privilegio' => 1,
                 'password' => Hash::make('123123123')
             ]),
         );

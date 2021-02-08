@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Quadrinho;
 
+use App\Http\Controllers\Controller;
 use App\Hq;
 use App\Problematizar;
 use App\Quadrinho;
@@ -25,10 +26,10 @@ class ProblematizarController extends Controller
         ]);
 
         $hq = $request->get('hqId');
-        
+
         $problematizars = Problematizar::where('hq_id','=', $hq)->orderBy('id','desc')->first();
         $hqUser = Hq::where('id','=', $hq)->first();
-        
+
         $paginaProblematizar = $problematizars->quadrinho->pagina+1;
 
         $solucionars = Solucionar::where('hq_id','=',$hq)->get();
@@ -67,14 +68,14 @@ class ProblematizarController extends Controller
     public function destroy(Request $request)
     {
         $problematizar = Problematizar::findOrFail($request->problematizar);
-        
+
         $problematizar->delete();
 
         $file_name = $problematizar->quadrinho->pathImg;
         Storage::delete([$file_name]);
 
         Quadrinho::destroy($problematizar->quadrinho_id);
-        
+
         $this->atualizarPaginaProblematizar($problematizar);
 
         $solucionars = Solucionar::where('hq_id','=',$problematizar->hq_id)->get();
@@ -85,9 +86,9 @@ class ProblematizarController extends Controller
 
     private function alterarPaginaSolucionar($solucionars, $valorSomarPagina = 1){ // somar página
         foreach($solucionars as $solucionar){
-            // Atualizando as páginas em Solucionars para que possa ser inserido um quadrinho em Problematizar 
+            // Atualizando as páginas em Solucionars para que possa ser inserido um quadrinho em Problematizar
             $paginaSolucionar = $solucionar->quadrinho->pagina + $valorSomarPagina;
-            
+
             DB::table('quadrinhos')->where('id','=', $solucionar->quadrinho->id)
                 ->update([
                     'pagina' => $paginaSolucionar
@@ -97,11 +98,11 @@ class ProblematizarController extends Controller
 
     private function atualizarPaginaProblematizar($problematizar){ // subtrair página
         $paginaProblematizars = Problematizar::where('hq_id','=',$problematizar->hq_id)->where('quadrinho_id','>',$problematizar->quadrinho_id)->get();
-        
+
         foreach($paginaProblematizars as $paginaProblematizar){
-            // Atualizando as páginas em Solucionars para que possa ser inserido um quadrinho em Problematizar 
+            // Atualizando as páginas em Solucionars para que possa ser inserido um quadrinho em Problematizar
             $atualizarPagina = $paginaProblematizar->quadrinho->pagina-1;
-            
+
             DB::table('quadrinhos')->where('id','=', $paginaProblematizar->quadrinho->id)
                 ->update([
                     'pagina' => $atualizarPagina

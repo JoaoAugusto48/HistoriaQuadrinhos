@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Quadrinho;
 
+use App\Http\Controllers\Controller;
 use App\Hq;
+use App\Http\Controllers\Gerencia\ArquivoController;
 use App\Problematizar;
 use App\Quadrinho;
 use App\Solucionar;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class SolucionarController extends Controller

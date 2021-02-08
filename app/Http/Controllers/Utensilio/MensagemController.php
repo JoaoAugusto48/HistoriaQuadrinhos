@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Utensilio;
 
-use App\Hq;
-use App\Situar;
+use App\Http\Controllers\Controller;
+use App\Mensagem;
 use Illuminate\Http\Request;
 
-class SituarController extends Controller
+class MensagemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,16 +36,16 @@ class SituarController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Mensagem  $mensagem
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Mensagem $mensagem)
     {
         //
     }
@@ -53,10 +53,10 @@ class SituarController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Mensagem  $mensagem
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit(Mensagem $mensagem)
     {
         //
     }
@@ -65,10 +65,10 @@ class SituarController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Mensagem  $mensagem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Mensagem $mensagem)
     {
         //
     }
@@ -76,10 +76,10 @@ class SituarController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Mensagem  $mensagem
      * @return \Illuminate\Http\Response
      */
-    public static function destroy(Hq $hqId)
+    public function destroy(Mensagem $mensagem)
     {
         //
     }

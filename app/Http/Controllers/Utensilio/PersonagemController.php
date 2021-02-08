@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Utensilio;
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Gerencia\ArquivoController;
+use App\Http\Controllers\Gerencia\GerenciarController;
 use App\Personagem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 class PersonagemController extends Controller
 {

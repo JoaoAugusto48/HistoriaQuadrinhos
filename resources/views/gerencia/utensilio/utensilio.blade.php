@@ -19,9 +19,9 @@
         <h1>
             Utensilio
             <div class="btn-group btn-group-sm" role="group">
-                <a class="btn btn-outline-dark" href="{{ route('utensilio.index') }}" role="button">
+                <a class="btn btn-outline-dark" href="{{ route('gerencia.index') }}" role="button">
                     <i class="fas fa-reply"></i> Gerência
-                </a>                
+                </a>
                 <button id="col-adicionar"  onclick="trocarExibicao()" type="button" class="btn btn-dark" role="button" onclick="adicionar()"><i class="fa fa-plus"></i> Adicionar Utensilio</button>
             </div>
         </h1>
@@ -39,7 +39,7 @@
             </thead>
             <tbody>
 
-                <tr id="col-formImg" class="bg-secondary text-white" style="display: none">  
+                <tr id="col-formImg" class="bg-secondary text-white" style="display: none">
                     <td colspan="4" class="text-center">
                         <div class="d-inline-flex" id="alterar-texto">
                             <div class="container-fluid">

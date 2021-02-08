@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Hq;
-use App\Problematizar;
-use App\Situar;
+use App\Http\Controllers\Gerencia\ArquivoController;
 use App\Software;
-use App\Solucionar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class SoftwareController extends Controller
 {

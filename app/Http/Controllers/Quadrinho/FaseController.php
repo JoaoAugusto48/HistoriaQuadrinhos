@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Quadrinho;
 
-use App\Fase;
+use App\Http\Controllers\Controller;
 use App\Problematizar;
 use App\Quadrinho;
 use App\Situar;
 use App\Solucionar;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class FaseController extends Controller
 {

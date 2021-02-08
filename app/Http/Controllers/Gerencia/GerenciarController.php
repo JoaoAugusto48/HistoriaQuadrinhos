@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Gerencia;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class GerenciarController extends Controller

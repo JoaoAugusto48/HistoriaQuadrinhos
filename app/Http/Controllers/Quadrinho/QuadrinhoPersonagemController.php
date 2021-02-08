@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Quadrinho;
 
+use App\Http\Controllers\Controller;
 use App\Balao;
+use App\Http\Controllers\Gerencia\ArquivoController;
 use App\QuadrinhoPersonagem;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class QuadrinhoPersonagemController extends Controller
 {

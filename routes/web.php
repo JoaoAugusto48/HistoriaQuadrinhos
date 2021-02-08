@@ -29,12 +29,12 @@ Route::resources([
     'problematizar' => 'ProblematizarController',
     'solucionar'    => 'SolucionarController',
 
-    'gerencia'      => 'GerenciarController',
-    'personagem'    => 'PersonagemController',
-    'ambiente'      => 'AmbienteController',
-    'balao'         => 'BalaoController',
-    'utensilio'     => 'UtensilioController',
-    'quadrinhoPersonagem' => 'QuadrinhoPersonagemController',
+    'gerencia'      => 'Gerencia\GerenciarController',
+    'personagem'    => 'Utensilio\PersonagemController',
+    'ambiente'      => 'Utensilio\AmbienteController',
+    'balao'         => 'Utensilio\BalaoController',
+    'utensilio'     => 'Utensilio\UtensilioController',
+    'quadrinhoPersonagem' => 'Utensilio\QuadrinhoPersonagemController',
     'software'      => 'SoftwareController',
 ]);
 

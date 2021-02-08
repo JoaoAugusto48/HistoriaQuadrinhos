@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Ambiente;
-use App\Balao;
 use App\Hq;
-use App\Mensagem;
+use App\Http\Controllers\Gerencia\ArquivoController;
+use App\Http\Controllers\Gerencia\ValidarController;
+use App\Http\Controllers\Quadrinho\QuadrinhoController;
 use App\Personagem;
 use App\Problematizar;
 use App\Quadrinho;
@@ -14,8 +15,6 @@ use App\Situar;
 use App\Solucionar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class HqController extends Controller
 {

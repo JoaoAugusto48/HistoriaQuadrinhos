@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Utensilio;
 
+use App\Http\Controllers\Controller;
 use App\Ambiente;
+use App\Http\Controllers\Gerencia\ArquivoController;
+use App\Http\Controllers\Gerencia\GerenciarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -131,7 +134,7 @@ class AmbienteController extends Controller
         }
 
         return redirect()->route('ambiente.edit', $ambiente->id)
-                ->withErrors(['error', 'Já possui ambiente com a descrição "'. $ambiente->descricao.'"!']);
+            ->withErrors(['error', 'Já possui ambiente com a descrição "'. $ambiente->descricao.'"!']);
     }
 
     /**
@@ -145,17 +148,17 @@ class AmbienteController extends Controller
         $ambiente = Ambiente::FindOrFail($request->ambiente);
 
         DB::table('ambientes')->where('id','=',$ambiente->id)
-                ->update([
-                    'status' => false
-                ]);
+            ->update([
+                'status' => false
+            ]);
 
         return redirect()->route('ambiente.index');
     }
 
     private function verificarDescricao($id, $descricao){
         $verificar = Ambiente::where('id', '<>', $id)
-                    ->where('descricao','=',$descricao)
-                    ->where('status','=',true)->get();
+            ->where('descricao','=',$descricao)
+            ->where('status','=',true)->get();
 
         return ($verificar->count() > 0) ? false : true;
     }
