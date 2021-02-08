@@ -16,7 +16,7 @@ class UtensilioController extends Controller
     public function index()
     {
         GerenciarController::userGerente();
-        
+
         $utensilios = Utensilio::where('status','=', true)->orderby('descricao', 'asc')->get();
         $caminho_imagem = ArquivoController::caminho_storage();
 
@@ -45,12 +45,12 @@ class UtensilioController extends Controller
             'descricao' => 'required|max:70',
             'img' => 'required'
         ]);
-            
+
         $descricao = $request->get('descricao');
         $imagem = $request->file('img');
-        
+
         $caminhoImagem = ArquivoController::caminho_imagem("utensilio", $imagem);
-        
+
         $utensilio = new Utensilio();
         $utensilio->caminho = $caminhoImagem;
         $utensilio->status = true;
@@ -133,7 +133,7 @@ class UtensilioController extends Controller
     {
         $utensilio = Utensilio::FindOrFail($request->utensilio);
 
-        DB::table('utensilios')->where('id','=',$utensilio->id)
+        Utensilio::where('id','=',$utensilio->id)
                 ->update([
                     'status' => false
                 ]);

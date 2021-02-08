@@ -91,7 +91,7 @@ class QuadrinhoPersonagemController extends Controller
             return redirect()->route('quadrinhoPersonagem.index');
         }
 
-        DB::table('quadrinhoPersonagens')->where('id', '=', $balaoQuadrinho2->id)
+        QuadrinhoPersonagem::where('id', '=', $balaoQuadrinho2->id)
             ->update([
                 'balao_esquerda' => $balaoQuadrinho2->balao_esquerda,
                 'balao_direita' => $balaoQuadrinho2->balao_direita

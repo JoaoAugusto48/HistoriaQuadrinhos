@@ -42,28 +42,28 @@ class FaseController extends Controller
      * Delete
      */
 
-    private static function deletarFase($fase, $hq){
-        $fases = $fase->where('hq_id','=',$hq->id)->get();
-        
-        $fase->where('hq_id','=',$hq->id)->delete();
-        foreach($fases as $fase){
-            Quadrinho::where('id','=',$fase->quadrinho_id)->delete();
-        }
-    }
+    // private static function deletarFase($fase, $hq){
+    //     $fases = $fase->where('hq_id','=',$hq->id)->get();
+
+    //     $fase->where('hq_id','=',$hq->id)->delete();
+    //     foreach($fases as $fase){
+    //         Quadrinho::where('id','=',$fase->quadrinho_id)->delete();
+    //     }
+    // }
 
     /*
     * Deletar a cada quadrinho a relação com a Hq principal
     */
-    public static function deletarSituar($hq){
-        FaseController::deletarFase(new Situar, $hq);
-    }
+    // public static function deletarSituar($hq){
+    //     FaseController::deletarFase(new Situar, $hq);
+    // }
 
-    public static function deletarProblematizar($hq){
-        FaseController::deletarFase(new Problematizar, $hq);
-    }
+    // public static function deletarProblematizar($hq){
+    //     FaseController::deletarFase(new Problematizar, $hq);
+    // }
 
-    public static function deletarSolucionar($hq){
-        FaseController::deletarFase(new Solucionar, $hq);
-    }
+    // public static function deletarSolucionar($hq){
+    //     FaseController::deletarFase(new Solucionar, $hq);
+    // }
 
 }

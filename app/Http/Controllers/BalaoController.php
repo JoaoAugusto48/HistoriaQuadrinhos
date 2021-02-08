@@ -50,12 +50,12 @@ class BalaoController extends Controller
             'descricao' => 'required|max:70',
             'img' => 'required'
         ]);
-            
+
         $descricao = $request->get('descricao');
         $imagem = $request->file('img');
-        
+
         $caminhoImagem = ArquivoController::caminho_imagem("balao", $imagem);
-        
+
         $balao = new Balao();
         $balao->caminho = $caminhoImagem;
         $balao->status = true;
@@ -86,7 +86,7 @@ class BalaoController extends Controller
     public function edit(Request $request)
     {
         $balao = Balao::FindOrFail($request->balao);
-        
+
         if(!$balao->status){
             return redirect()->route('balao.index');
         }
@@ -117,7 +117,7 @@ class BalaoController extends Controller
         $validarDescricao = $this->verificarDescricao($balao->id, $balao->descricao);
         // dd($validarDescricao);
         if($validarDescricao){
-            DB::table('balaos')->where('id','=',$balao->id)
+            Balao::where('id','=',$balao->id)
                 ->update([
                     'descricao' => $balao->descricao
                 ]);

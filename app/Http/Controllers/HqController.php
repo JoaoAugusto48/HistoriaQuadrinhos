@@ -74,6 +74,7 @@ class HqController extends Controller
         $hq->local = trim($request->get('local'));
         $hq->saudacao1 = trim($request->get('saudacao1'));
         $hq->saudacao2 = trim($request->get('saudacao2'));
+        $hq->status = true;
         $hq->personagem1_id = $request->get('personagem1_id');
         $hq->personagem2_id = $request->get('personagem2_id');
         $hq->ambiente_id = $request->get('ambiente_id');
@@ -85,8 +86,6 @@ class HqController extends Controller
         ArquivoController::folder_path($hq->id, $hq->user_id);
 
         $this->adicionarQuadrinhos($hq);
-
-        // return redirect('/funcionario')->with('error', 'Deu erro!');
 
         return redirect()->route('software.show', $hq->software_id)->with('error', 'Deu erro!');
     }
@@ -171,7 +170,7 @@ class HqController extends Controller
 
         $situar = Situar::where('hq_id','=',$hq->id)->orderBy('id', 'asc')->first();
 
-        DB::table('quadrinhos')->where('id','=',$situar->quadrinho_id)
+        Quadrinho::where('id','=',$situar->quadrinho_id)
             ->update(['titulo' => $hq->tema]);
 
         return redirect()->route('hq.show', $hq->id);
@@ -187,14 +186,16 @@ class HqController extends Controller
     {
         $hq = Hq::findOrFail($request->hq);
 
-        FaseController::deletarSituar($hq);
-        FaseController::deletarProblematizar($hq);
-        FaseController::deletarSolucionar($hq);
+        Hq::where('id','=',$hq->id)->update(['status' => false]);
 
-        $hq->delete();
+        // FaseController::deletarSituar($hq);
+        // FaseController::deletarProblematizar($hq);
+        // FaseController::deletarSolucionar($hq);
 
-        $arquivo = ArquivoController::folder_name($hq->id, $hq->user_id);
-        Storage::deleteDirectory($arquivo);
+        // $hq->delete();
+
+        // $arquivo = ArquivoController::folder_name($hq->id, $hq->user_id);
+        // Storage::deleteDirectory($arquivo);
 
         return redirect()->route('software.show', $hq->software_id);
     }
@@ -238,7 +239,7 @@ class HqController extends Controller
     //otimizar
     // public static function deletarSituar($hq){
     //     $situars = Situar::where('hq_id','=',$hq->id)->get();
-        
+
     //     Situar::where('hq_id','=',$hq->id)->delete();
     //     foreach($situars as $situar){
     //         DB::table('quadrinhos')->where('id','=',$situar->quadrinho_id)->delete();
@@ -247,7 +248,7 @@ class HqController extends Controller
 
     // public static function deletarProblematizar($hq){
     //     $problematizars = Problematizar::where('hq_id','=',$hq->id)->get();
-        
+
     //     Problematizar::where('hq_id','=',$hq->id)->delete();
     //     foreach($problematizars as $problematizar){
     //         DB::table('quadrinhos')->where('id','=',$problematizar->quadrinho_id)->delete();
@@ -256,7 +257,7 @@ class HqController extends Controller
 
     // public static function deletarSolucionar($hq){
     //     $solucionars = Solucionar::where('hq_id','=',$hq->id)->get();
-        
+
     //     Solucionar::where('hq_id','=',$hq->id)->delete();
     //     foreach($solucionars as $solucionar){
     //         DB::table('quadrinhos')->where('id','=',$solucionar->quadrinho_id)->delete();

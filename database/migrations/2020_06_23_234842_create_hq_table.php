@@ -15,6 +15,7 @@ class CreateHqTable extends Migration
     {
         Schema::create('hqs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->boolean('status');
             $table->string('tema', 100);
             $table->string('local', 70);
             $table->string('saudacao1', 70);

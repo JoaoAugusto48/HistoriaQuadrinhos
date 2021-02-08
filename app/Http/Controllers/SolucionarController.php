@@ -37,7 +37,7 @@ class SolucionarController extends Controller
         ]);
 
         $hq = $request->get('hqId');
-        
+
         $hqUser = Hq::where('id','=', $hq)->first();
 
         $solucionar = Solucionar::where('hq_id','=', $hq)->orderBy('id','desc')->first();
@@ -49,7 +49,7 @@ class SolucionarController extends Controller
             $problematizar = Problematizar::where('hq_id','=', $hq)->orderBy('id','desc')->first();
             $paginaSolucionar = $problematizar->quadrinho->pagina+1;
         }
-        
+
         QuadrinhoController::store(null,$paginaSolucionar,$hqUser->user_id, $hq, 'solucionar');
 
         if($request->get('criarSolucionar') == 'valorGeradoEstaticamente'){
@@ -77,7 +77,7 @@ class SolucionarController extends Controller
     public function destroy(Request $request)
     {
         $solucionar = Solucionar::findOrFail($request->solucionar);
-        
+
         $solucionar->delete();
 
         $file_name = ArquivoController::file_name($solucionar->hq_id, $solucionar->quadrinho->pagina);
@@ -92,16 +92,16 @@ class SolucionarController extends Controller
 
     private function atualizarPaginaSolucionar($solucionar){ // subtrair página
         $paginaSolucionars = Solucionar::where('hq_id','=',$solucionar->hq_id)->where('quadrinho_id','>',$solucionar->quadrinho_id)->get();
-        
+
         foreach($paginaSolucionars as $paginaSolucionar){
-            // Atualizando as páginas em Solucionars para que possa ser inserido um quadrinho em Problematizar 
+            // Atualizando as páginas em Solucionars para que possa ser inserido um quadrinho em Problematizar
             $atualizarPagina = $paginaSolucionar->quadrinho->pagina-1;
-            
-            DB::table('quadrinhos')->where('id','=', $paginaSolucionar->quadrinho->id)
+
+            Quadrinho::where('id','=', $paginaSolucionar->quadrinho->id)
                 ->update([
                     'pagina' => $atualizarPagina
                 ]);
         }
     }
-    
+
 }

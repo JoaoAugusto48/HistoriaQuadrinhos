@@ -16,9 +16,10 @@ class CreateSoftwaresTable extends Migration
         Schema::create('softwares', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('descricao', 70);
+            $table->boolean('status');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
-            
+
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

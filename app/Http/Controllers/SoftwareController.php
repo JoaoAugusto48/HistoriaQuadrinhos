@@ -25,9 +25,11 @@ class SoftwareController extends Controller
      */
     public function index()
     {
-        $softwares = Software::where('user_id','=', Auth::user()->id)->orderby('id','desc')->get();
+        $softwares = Software::where('user_id','=', Auth::user()->id)
+            ->where('status','=',true)
+            ->orderby('id','desc')
+            ->get();
 
-        // $hq = Hq::where('')
         // $validaURL = ValidarController::validaURL($hq);
         // if($validaURL){
         //     return $validaURL;
@@ -60,6 +62,7 @@ class SoftwareController extends Controller
 
         $software = new Software();
         $software->descricao = trim($request->get('descricao'));
+        $software->status = true;
         $software->user_id = Auth::user()->id;
 
         $software->save();
@@ -77,6 +80,7 @@ class SoftwareController extends Controller
     {
         $hqs = Hq::where('user_id','=', Auth::user()->id)
             ->where('software_id','=',$software->id)
+            ->where('status','=',true)
             ->orderby('id','desc')
             ->get();
         $caminho_imagem = ArquivoController::caminho_storage();
@@ -128,17 +132,19 @@ class SoftwareController extends Controller
     {
         $software = Software::findOrFail($request->software);
 
+        Software::where('id','=',$software->id)->update(['status' => false]);
+
         //otimizar
-        $hqs = Hq::where('software_id','=',$software->id)->get();
-        foreach($hqs as $hq) {
-            FaseController::deletarSituar($hq);
-            FaseController::deletarProblematizar($hq);
-            FaseController::deletarSolucionar($hq);
+        // $hqs = Hq::where('software_id','=',$software->id)->get();
+        // foreach($hqs as $hq) {
+        //     FaseController::deletarSituar($hq);
+        //     FaseController::deletarProblematizar($hq);
+        //     FaseController::deletarSolucionar($hq);
 
-            Hq::where('id','=',$hq->id)->delete(); 
-        }
+        //     Hq::where('id','=',$hq->id)->delete();
+        // }
 
-        $software->delete();
+        // $software->delete();
         //
         // Hq::where('software_id','=',$software->id)->delete();
 

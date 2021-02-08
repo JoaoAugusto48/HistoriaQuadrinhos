@@ -51,13 +51,13 @@ class AmbienteController extends Controller
             'img' => 'required',
             'repeteFundo' //chkbox
         ]);
-            
+
         $descricao = $request->get('descricao');
         $imagem = $request->file('img');
         $repeteFundo = $request->has('repeteFundo');
-        
+
         $caminhoImagem = ArquivoController::caminho_imagem("ambiente", $imagem);
-        
+
         $ambiente = new Ambiente();
         $ambiente->fundo = $caminhoImagem;
         $ambiente->status = true;
@@ -120,9 +120,9 @@ class AmbienteController extends Controller
         $ambiente->repeteFundo = $request->has('repeteFundo');
 
         $validarDescricao = $this->verificarDescricao($ambiente->id, $ambiente->descricao);
-        
+
         if($validarDescricao){
-            DB::table('ambientes')->where('id','=',$ambiente->id)
+            Ambiente::where('id','=',$ambiente->id)
                 ->update([
                     'descricao' => $ambiente->descricao,
                     'repeteFundo' => $ambiente->repeteFundo

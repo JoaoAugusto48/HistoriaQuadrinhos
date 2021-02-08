@@ -32,13 +32,13 @@ class QuadrinhoController extends Controller
         $hq = Hq::findOrFail($hqId);
 
         $validaURL = ValidarController::validaURL($hq);
-        
+
         if($validaURL){
             return $validaURL;
         }
 
         $quadrinho = Quadrinho::findOrFail($quadrinhoId);
-        
+
         $faseQuadrinho = $this->faseQuadrinho($quadrinho->id);
 
         $balaos = Balao::where('status','=', true)->get();
@@ -46,7 +46,7 @@ class QuadrinhoController extends Controller
 
         $caminho_imagem = ArquivoController::caminho_storage();
 
-        return view('quadrinhos.gerarQuadrinho', 
+        return view('quadrinhos.gerarQuadrinho',
             compact('hq', 'quadrinho', 'balaos', 'utensilios', 'caminho_imagem', 'faseQuadrinho'));
     }
 
@@ -80,15 +80,15 @@ class QuadrinhoController extends Controller
         // consulta ao banco do quadrinho apresentado
         $quadrinho = Quadrinho::where('id','=',$quadrinhoId)->get()->first();
 
-        //Passando a codificação de Base64 para imagem 
-        $base64_image = $imgQuadrinho; // your base64 encoded     
+        //Passando a codificação de Base64 para imagem
+        $base64_image = $imgQuadrinho; // your base64 encoded
         @list($type, $file_data) = explode(';', $base64_image);
         @list(, $file_data) = explode(',', $file_data);
-        
-        // Teste caso tenha imagem, é criado nome para o arquivo, 
-        // caso não a imagem atual é deletada para ser adicionada outra no local  
+
+        // Teste caso tenha imagem, é criado nome para o arquivo,
+        // caso não a imagem atual é deletada para ser adicionada outra no local
         $file_name = $quadrinho->pathImg;
-        
+
         if(!$quadrinho->pathImg){
             $file_name = ArquivoController::file_name($hqId, Auth::user()->id);
         }
@@ -97,7 +97,7 @@ class QuadrinhoController extends Controller
         }
         Storage::disk('public')->put($file_name, base64_decode($file_data));
 
-        DB::table('quadrinhos')->where('id','=',$quadrinhoId)
+        Quadrinho::where('id','=',$quadrinhoId)
             ->update([
                 'pathImg' => $file_name,
                 'titulo' => $titulo
@@ -129,7 +129,7 @@ class QuadrinhoController extends Controller
 
         if($fase == 'situar'){
             FaseController::adicionarSituar($quadrinho, $hq);
-        } else 
+        } else
         if($fase == 'problematizar') {
             FaseController::adicionarProblematizar($quadrinho, $hq);
         } else if($fase == 'solucionar') {
@@ -162,9 +162,9 @@ class QuadrinhoController extends Controller
                 'fase' => 'Situar',
                 'mensagem' => 'Determinar em que época, em que período de tempo se passa a HQ.'
             ];
-        } 
-        
+        }
+
         return $faseQuadrinho;
     }
-    
+
 }

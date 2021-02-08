@@ -55,12 +55,12 @@ class PersonagemController extends Controller
             'descricao' => 'required|max:70',
             'img' => 'required'
         ]);
-            
+
         $descricao = $request->get('descricao');
         $imagem = $request->file('img');
-        
+
         $caminhoImagem = ArquivoController::caminho_imagem("personagem", $imagem);
-        
+
         $personagem = new Personagem();
         $personagem->personagem = $caminhoImagem;
         $personagem->status = true;
@@ -122,7 +122,7 @@ class PersonagemController extends Controller
         $validarDescricao = $this->verificarDescricao($personagem->id, $personagem->descricao);
         // dd($validarDescricao);
         if($validarDescricao){
-            DB::table('personagems')->where('id','=',$personagem->id)
+            Personagem::where('id','=',$personagem->id)
                 ->update([
                     'descricao' => $personagem->descricao
                 ]);
