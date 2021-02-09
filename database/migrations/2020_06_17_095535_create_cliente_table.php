@@ -15,7 +15,18 @@ class CreateClienteTable extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nome',100);
+            $table->string('responsavel',100);
+            $table->string('email');
+            $table->string('telefone', 14);
+            $table->string('cidade', 50);
+            $table->string('endereco', 50);
+            $table->number('numero', 5,0);
+            $table->string('complemento', 30)->nullable();
+            $table->string('estado_id');
             $table->timestamps();
+
+            $table->foreign('estado_id')->references('id')->on('estados');
         });
     }
 

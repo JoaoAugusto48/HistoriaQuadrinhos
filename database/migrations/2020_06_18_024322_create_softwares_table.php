@@ -17,13 +17,12 @@ class CreateSoftwaresTable extends Migration
             $table->bigIncrements('id');
             $table->string('descricao', 70);
             $table->boolean('status');
-            $table->string('nome_cliente');
-            $table->string('email',255);
-            $table->string('telefone', 14);
+            $table->unsignedBigInteger('cliente_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('cliente_id')->references('id')->on('clientes');
         });
     }
 
