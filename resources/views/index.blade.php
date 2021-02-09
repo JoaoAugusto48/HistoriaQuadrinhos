@@ -4,7 +4,7 @@
 
     <div class="row">
         <h1>
-            Softwares 
+            Softwares
             <a class="btn btn-outline-dark ml-1" href="{{ route('software.create') }}" target="_parent">
                 <i class="fa fa-plus" aria-hidden="true"></i> Cadastrar Software
             </a>
@@ -13,7 +13,7 @@
     <hr class="bg-dark mt-0"/>
 
     @if ($softwares->count() > 0)
-        <table class="table table-striped text-center" style="border: 3px solid black;">
+        <table class="table table-sm table-striped text-center" style="border: 3px solid black;">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col" title="Título do Software">Título</th>
@@ -40,7 +40,9 @@
                         </span>
                     </td>
                     <td class="align-middle">
-                        email / telefone
+                        email
+                        <br>
+                        telefone
                     </td>
                     <td class="align-middle">
                         <div class="btn-group" role="group">
@@ -50,7 +52,7 @@
                             <a href="{{ route('software.edit', $software->id) }}" class="btn btn-outline-secondary btn-sm border border-dark" target="_parent">
                                 <i class="fas fa-edit"></i> Editar
                             </a>
-                            
+
                             <form action="{{ route('software.destroy', $software->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
@@ -75,7 +77,7 @@
             <div class="card-body">
                 <h5 class="card-title">Você ainda não possui Softwares cadastrados!</h5>
                 <p class="card-text">Clique no Botão abaixo para cadastrá-lo.</p>
-                <a href="{{ route('software.create') }}" class="btn btn-primary"> 
+                <a href="{{ route('software.create') }}" class="btn btn-primary">
                     <i class="fa fa-plus" aria-hidden="true"></i> Cadastrar Software
                 </a>
             </div>
@@ -83,7 +85,7 @@
                 &nbsp;
             </div>
         </div>
-        
+
     @endif
 
 @endsection

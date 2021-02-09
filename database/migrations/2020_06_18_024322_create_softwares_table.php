@@ -17,6 +17,9 @@ class CreateSoftwaresTable extends Migration
             $table->bigIncrements('id');
             $table->string('descricao', 70);
             $table->boolean('status');
+            $table->string('nome_cliente');
+            $table->string('email',255);
+            $table->string('telefone', 14);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
