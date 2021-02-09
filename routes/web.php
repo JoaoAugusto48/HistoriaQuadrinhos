@@ -34,7 +34,7 @@ Route::resources([
     'ambiente'      => 'Utensilio\AmbienteController',
     'balao'         => 'Utensilio\BalaoController',
     'utensilio'     => 'Utensilio\UtensilioController',
-    'quadrinhoPersonagem' => 'Utensilio\QuadrinhoPersonagemController',
+    'quadrinhoPersonagem' => 'Quadrinho\QuadrinhoPersonagemController',
     'software'      => 'SoftwareController',
 ]);
 

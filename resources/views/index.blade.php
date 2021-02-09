@@ -16,14 +16,32 @@
         <table class="table table-striped text-center" style="border: 3px solid black;">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Operações</th>
+                    <th scope="col" title="Título do Software">Título</th>
+                    <th scope="col" title="Estimativa de Entrega">Est. Entrega</th>
+                    <th scope="col" title="Informações de contato">Inf. Contato</th>
+                    <th scope="col" title="Manipulações possíveis">Operações</th>
                 </tr>
             </thead>
             <tbody>
             @foreach ($softwares as $software)
                 <tr style="border-bottom: 2px solid #555;">
-                    <th class="align-middle font-weight-bold" scope="row" style="max-width: 35ch;">{{ $software->descricao }}</th>
+                    <th class="align-middle" scope="row" style="max-width: 35ch;">
+                        <span class="font-weight-bold">{{ $software->descricao }}</span>
+                        <br>
+                        <span class="font-italic">
+                            ( nome da empresa )
+                        </span>
+                    </th>
+                    <td class="align-middle">
+                        dd/mm/aaaa
+                        <br>
+                        <span class="font-italic">
+                            ( dias que faltam / finalizado )
+                        </span>
+                    </td>
+                    <td class="align-middle">
+                        email / telefone
+                    </td>
                     <td class="align-middle">
                         <div class="btn-group" role="group">
                             <a href="{{ route('software.show', $software->id) }}" class="btn btn-outline-info btn-sm border border-dark" role="button">

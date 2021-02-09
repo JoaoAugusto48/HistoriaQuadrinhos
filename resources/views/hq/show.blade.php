@@ -18,10 +18,18 @@
         <table class="table table-sm table-hover table-striped text-center bg-light m-0">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">Fase</th>
-                <th scope="col">Título</th>
-                <th scope="col">Página</th>
-                <th scope="col">Operações</th>
+                <th scope="col" title="Fase da HQ no projeto">
+                    Fase
+                </th>
+                <th scope="col" title="Possível especificação do quadrinho">
+                    Título
+                </th>
+                <th scope="col" title="Número da página">
+                    Página
+                </th>
+                <th scope="col" title="Manipulações possíveis">
+                    Operações
+                </th>
             </tr>
             </thead>
             <tbody>

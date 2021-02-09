@@ -26,14 +26,14 @@
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Titulo:</label>
             <div class="col-sm-8">
-                <input id="txt-titulo" type="text" class="form-control" name="tema" maxlength="100" value="{{ old('tema') }}" required autofocus>
+                <input id="txt-titulo" type="text" class="form-control" name="tema" maxlength="100" value="{{ old('tema') }}" autocomplete="off" required autofocus>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Local:</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" name="local" maxlength="70" value="{{ old('local') }}" placeholder="ex: Escritório de Contabilidade" required>
+                <input type="text" class="form-control" name="local" maxlength="70" value="{{ old('local') }}" autocomplete="off" placeholder="ex: Escritório de Contabilidade" required>
             </div>
         </div>
 

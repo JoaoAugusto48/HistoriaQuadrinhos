@@ -24,11 +24,21 @@
         <table class="table table-striped text-center" style="border: 3px solid black;">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">Título</th>
-                <th scope="col">Local</th>
-                <th scope="col">Personagem 1/2</th>
-                <th scope="col">Ambiente</th>
-                <th scope="col">Operações</th>
+                <th scope="col" title="Título do Caso de Uso">
+                    Título
+                </th>
+                <th scope="col" title="Onde a história se passa">
+                    Local
+                </th>
+                <th scope="col" title="Personagens principais">
+                    Personagem 1/2
+                </th>
+                <th scope="col" title="Local onde a história acontece">
+                    Ambiente
+                </th>
+                <th scope="col" title="Manipulações possíveis">
+                    Operações
+                </th>
             </tr>
             </thead>
             <tbody>
