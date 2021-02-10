@@ -24,7 +24,7 @@ class CreateClienteTable extends Migration
             $table->float('numero', 5,0);
             $table->string('complemento', 30)->nullable();
             $table->unsignedBigInteger('estado_id');
-            $table->string('status');
+            $table->boolean('status');
             $table->timestamps();
 
             $table->foreign('estado_id')->references('id')->on('estados');

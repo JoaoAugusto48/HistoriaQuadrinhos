@@ -37,7 +37,7 @@ Route::resources([
     'quadrinhoPersonagem' => 'Quadrinho\QuadrinhoPersonagemController',
     'software'      => 'SoftwareController',
 
-    'cliente'       => 'ClienteController',
+    'cliente'       => 'Gerencia\ClienteController',
 ]);
 
 //criar uma HQ pelo software cadastrado
