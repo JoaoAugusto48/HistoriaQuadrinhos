@@ -47,6 +47,9 @@
                     <a class="btn btn-outline-light ml-1" href="{{ route('software.create') }}" target="_parent">
                         <i class="fa fa-plus" aria-hidden="true"></i> Cadastrar Software
                     </a>
+                    <a class="btn btn-outline-light ml-1" href="{{ route('cliente.index') }}" target="_parent">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Clientes
+                    </a>
 
                     @if (Auth::user()->privilegio > 0)
                         <a class="btn btn-outline-light ml-1" href="{{ route('gerencia.index') }}" target="_parent">

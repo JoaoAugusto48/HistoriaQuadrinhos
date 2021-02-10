@@ -21,9 +21,10 @@ class CreateClienteTable extends Migration
             $table->string('telefone', 14);
             $table->string('cidade', 50);
             $table->string('endereco', 50);
-            $table->number('numero', 5,0);
+            $table->float('numero', 5,0);
             $table->string('complemento', 30)->nullable();
-            $table->string('estado_id');
+            $table->unsignedBigInteger('estado_id');
+            $table->string('status');
             $table->timestamps();
 
             $table->foreign('estado_id')->references('id')->on('estados');
