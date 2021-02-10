@@ -28,7 +28,7 @@
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Titulo:</label>
             <div class="col-sm-8">
-                <input id="txt-titulo" type="text" class="form-control" name="descricao" maxlength="100" value="{{ old('descricao') }}" autocomplete="off" placeholder="Insira o nome do software criado" required autofocus>
+                <input type="text" class="form-control" name="descricao" maxlength="100" value="{{ old('descricao') }}" autocomplete="off" placeholder="Insira o nome do software criado" required autofocus>
             </div>
         </div>
 
@@ -42,49 +42,56 @@
         </div>
 
         <div class="form-group row">
+            <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Est. Entrega:</label>
+            <div class="col-sm-8">
+                <input type="date" class="form-control" name="prazo" value="{{ old('prazo') }}" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Responsável:</label>
             <div class="col-sm-8">
-                <input id="txt-titulo" type="text" class="form-control" placeholder="Responsável pela empresa" disabled>
+                <input type="text" class="form-control" placeholder="Responsável pela empresa" disabled>
             </div>
         </div>
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Email:</label>
             <div class="col-sm-4">
-                <input id="txt-titulo" type="text" class="form-control" placeholder="Email" disabled>
+                <input type="text" class="form-control" placeholder="Email" disabled>
             </div>
             <label for="nome" class="col-sm-1 col-form-label text-right font-weight-bold">Telefone:</label>
             <div class="col-sm-3">
-                <input id="txt-titulo" type="text" class="form-control" placeholder="Telefone" disabled>
+                <input type="text" class="form-control" placeholder="Telefone" disabled>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Cidade:</label>
             <div class="col-sm-5">
-                <input id="txt-titulo" type="text" class="form-control" placeholder="Cidade" disabled>
+                <input type="text" class="form-control" placeholder="Cidade" disabled>
             </div>
 
             <label for="nome" class="col-sm-1 col-form-label text-right font-weight-bold">Estado:</label>
             <div class="col-sm-2">
-                <input id="txt-titulo" type="text" class="form-control" placeholder="UF" disabled>
+                <input type="text" class="form-control" placeholder="UF" disabled>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Endereco:</label>
             <div class="col-sm-5">
-                <input id="txt-titulo" type="text" class="form-control" placeholder="Endereco" disabled>
+                <input type="text" class="form-control" placeholder="Endereco" disabled>
             </div>
             <label for="nome" class="col-sm-1 col-form-label text-right font-weight-bold">Número:</label>
             <div class="col-sm-2">
-                <input id="txt-titulo" type="text" class="form-control" placeholder="Número" disabled>
+                <input type="text" class="form-control" placeholder="Número" disabled>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Complemento:</label>
             <div class="col-sm-8">
-                <input id="txt-titulo" type="text" class="form-control" placeholder="Complemento" disabled>
+                <input type="text" class="form-control" placeholder="Complemento" disabled>
             </div>
         </div>
 

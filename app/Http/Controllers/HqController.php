@@ -56,7 +56,6 @@ class HqController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'tema' => 'required|max:100',
             'local' => 'required|max:70',

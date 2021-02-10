@@ -16,6 +16,7 @@ class CreateSoftwaresTable extends Migration
         Schema::create('softwares', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('descricao', 70);
+            $table->date('prazo');
             $table->boolean('status');
             $table->unsignedBigInteger('cliente_id');
             $table->unsignedBigInteger('user_id');

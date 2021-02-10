@@ -59,14 +59,18 @@ class ClienteController extends Controller
 
         $cliente = new Cliente();
         $cliente->nome = trim($request->get('nome'));
-        $cliente->responsavel = trim($request->get('nome'));
-        $cliente->email = trim($request->get('nome'));
-        $cliente->telefone = trim($request->get('nome'));
-        $cliente->cidade = trim($request->get('nome'));
-        $cliente->endereco = trim($request->get('nome'));
-        $cliente->numero = $request->get('nome');
-        $cliente->complemento = trim($request->get('nome'));
-        $cliente->estado_id = trim($request->get('nome'));
+        $cliente->responsavel = trim($request->get('responsavel'));
+        $cliente->email = trim($request->get('email'));
+        $cliente->telefone = trim($request->get('telefone'));
+        $cliente->cidade = trim($request->get('cidade'));
+        $cliente->endereco = trim($request->get('endereco'));
+        $cliente->numero = $request->get('numero');
+        $cliente->complemento = trim($request->get('complemento'));
+        $cliente->estado_id = $request->get('estado_id');
+        $cliente->status = true;
+        $cliente->user_id = Auth::user()->id;
+
+        $cliente->save();
     }
 
     /**
