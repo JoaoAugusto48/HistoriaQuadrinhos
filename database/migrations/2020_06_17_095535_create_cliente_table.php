@@ -23,11 +23,14 @@ class CreateClienteTable extends Migration
             $table->string('endereco', 50);
             $table->float('numero', 5,0);
             $table->string('complemento', 30)->nullable();
-            $table->unsignedBigInteger('estado_id');
             $table->boolean('status');
+            $table->unsignedBigInteger('estado_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
             $table->foreign('estado_id')->references('id')->on('estados');
+            $table->foreign('user_id')->references('id')->on('users');
+
         });
     }
 
