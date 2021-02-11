@@ -35,8 +35,11 @@
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Cliente:</label>
             <div class="col-sm-8">
-                <select class="custom-select" name="cliente_id" required>
-                    <option value="id" selected>selecionar</option>
+                <select class="custom-select" id="cliente_id" name="cliente_id" required>
+                    <option value="null" selected>- </option>               
+                    @foreach ($clientes as $cliente)
+                        <option value="{{$cliente->id}}">{{$cliente->nome}}</option>               
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -51,47 +54,47 @@
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Responsável:</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="Responsável pela empresa" disabled>
+                <input type="text" id="responsavel" class="form-control" placeholder="Responsável pela empresa" disabled>
             </div>
         </div>
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Email:</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" placeholder="Email" disabled>
+                <input type="text" id="email" class="form-control" placeholder="Email" disabled>
             </div>
             <label for="nome" class="col-sm-1 col-form-label text-right font-weight-bold">Telefone:</label>
             <div class="col-sm-3">
-                <input type="text" class="form-control" placeholder="Telefone" disabled>
+                <input type="text" id="telefone" class="form-control" placeholder="Telefone" disabled>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Cidade:</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="Cidade" disabled>
+                <input type="text" id="telefone" class="form-control" placeholder="Cidade" disabled>
             </div>
 
             <label for="nome" class="col-sm-1 col-form-label text-right font-weight-bold">Estado:</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" placeholder="UF" disabled>
+                <input type="text" id="estado" class="form-control" placeholder="UF" disabled>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Endereco:</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="Endereco" disabled>
+                <input type="text" id="endereco" class="form-control" placeholder="Endereco" disabled>
             </div>
             <label for="nome" class="col-sm-1 col-form-label text-right font-weight-bold">Número:</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" placeholder="Número" disabled>
+                <input type="text" id="numero" class="form-control" placeholder="Número" disabled>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Complemento:</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" placeholder="Complemento" disabled>
+                <input type="text" id="complemento" class="form-control" placeholder="Complemento" disabled>
             </div>
         </div>
 
@@ -99,5 +102,15 @@
             <button type="submit" class="btn btn-outline-primary font-weight-bold">Enviar</button>
         </div>
     </form>
+
+    <script>
+        let cliente = document.getElementById('cliente_id');
+        
+        cliente.addEventListener('click', function (event) {
+            let cli = event.srcElement.value;
+            console.log(cli);
+            // document.getElementById('name').value = price;
+        });
+    </script>
 
 @endsection

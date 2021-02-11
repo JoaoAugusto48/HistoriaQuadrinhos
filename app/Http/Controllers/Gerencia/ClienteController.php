@@ -45,7 +45,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validade([
+        $request->validate([
             'nome' => 'required|max:100',
             'responsavel' => 'required|max:100',
             'email' => 'required|max:255',
@@ -71,6 +71,8 @@ class ClienteController extends Controller
         $cliente->user_id = Auth::user()->id;
 
         $cliente->save();
+
+        return redirect()->route('cliente.index');
     }
 
     /**

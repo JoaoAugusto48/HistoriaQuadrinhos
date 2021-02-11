@@ -25,9 +25,8 @@
                     <th scope="col" title="Manipulações possíveis">Operações</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach ($clientes as $cliente)
-
+            @foreach ($clientes as $cliente)
+                <tbody style="border-bottom: 2px solid #555;">
                     <th class="align-middle" scope="row" style="max-width: 35ch;">
                         <span class="font-weight-bold">{{$cliente->nome}}</span>
                         <br>
@@ -64,8 +63,8 @@
                             </form>
                         </div>
                     </td>
-                @endforeach
-            </tbody>
+                </tbody>
+            @endforeach
         </table>
     @else
         @include('mensagens.cadastrar.cliente')

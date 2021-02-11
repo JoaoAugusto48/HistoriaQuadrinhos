@@ -55,4 +55,3 @@ Auth::routes();
 Route::resource('usuario', 'Auth\AuthController');
 Route::post('usuario/atualizarUsuario', 'Auth\AuthController@atualizarUsuario')->name('atualizarUsuario');
 Route::post('usuario/atualizarSenha', 'Auth\AuthController@atualizarSenha')->name('atualizarSenha');
-

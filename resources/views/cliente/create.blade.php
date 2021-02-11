@@ -47,7 +47,7 @@
 
             <label for="nome" class="col-sm-1 col-form-label text-right font-weight-bold">Estado:</label>
             <div class="col-sm-2">
-                <select class="custom-select" name="balao_direita" required>
+                <select class="custom-select" name="estado_id" required>
                     @foreach ($estados as $estado)
                         <option value="{{ $estado->id }}"
                             @if ($estado->id == $saoPaulo->id)

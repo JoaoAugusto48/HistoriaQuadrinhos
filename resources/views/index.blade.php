@@ -29,20 +29,20 @@
                         <span class="font-weight-bold">{{ $software->descricao }}</span>
                         <br>
                         <span class="font-italic">
-                            ( nome da empresa )
+                            {{$software->cliente->nome}}
                         </span>
                     </th>
                     <td class="align-middle">
-                        dd/mm/aaaa
+                        {{ $software->prazo }}
                         <br>
                         <span class="font-italic">
                             ( dias que faltam / finalizado )
                         </span>
                     </td>
                     <td class="align-middle">
-                        email
+                        {{$software->cliente->email}}
                         <br>
-                        telefone
+                        {{$software->cliente->telefone}}
                     </td>
                     <td class="align-middle">
                         <div class="btn-group" role="group">

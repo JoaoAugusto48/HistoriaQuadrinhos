@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cliente;
 use App\Hq;
 use App\Http\Controllers\Gerencia\ArquivoController;
 use App\Software;
@@ -27,6 +28,8 @@ class SoftwareController extends Controller
             ->orderby('id','desc')
             ->get();
 
+        // $softwares[0]->prazo = date('d/m/Y', strtotime($softwares[0]->prazo));
+
         // $validaURL = ValidarController::validaURL($hq);
         // if($validaURL){
         //     return $validaURL;
@@ -42,7 +45,9 @@ class SoftwareController extends Controller
      */
     public function create()
     {
-        return view('software.create');
+        $clientes = Cliente::where('user_id','=',Auth::user()->id)->get();
+
+        return view('software.create', compact('clientes'));
     }
 
     /**
@@ -55,11 +60,15 @@ class SoftwareController extends Controller
     {
         $request->validate([
             'descricao' => 'required|max:70',
+            'prazo' => 'required',
+            'cliente_id' => 'required',
         ]);
 
         $software = new Software();
         $software->descricao = trim($request->get('descricao'));
         $software->status = true;
+        $software->prazo = $request->get('prazo');
+        $software->cliente_id = $request->get('cliente_id');
         $software->user_id = Auth::user()->id;
 
         $software->save();
