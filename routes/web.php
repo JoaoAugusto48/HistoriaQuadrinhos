@@ -24,10 +24,10 @@ Route::view('/', 'nonUser/index')->name('index');
 
 Route::resources([
     'hq'            => 'HqController',
-    'quadrinho'     => 'QuadrinhoController',
-    'situar'        => 'SituarController',
-    'problematizar' => 'ProblematizarController',
-    'solucionar'    => 'SolucionarController',
+    'quadrinho'     => 'Quadrinho\QuadrinhoController',
+    'situar'        => 'Quadrinho\SituarController',
+    'problematizar' => 'Quadrinho\ProblematizarController',
+    'solucionar'    => 'Quadrinho\SolucionarController',
 
     'gerencia'      => 'Gerencia\GerenciarController',
     'personagem'    => 'Utensilio\PersonagemController',
@@ -46,7 +46,7 @@ Route::get('hq/create/{softwareId}', 'HqController@create')->name('criarHq');
 Route::view('quadrinhos', 'quadrinhos/index')->name('quadrinhos'); //view de quadrinho
 Route::view('personagem1', 'hq/modal/personagem')->name('personagem1');
 
-Route::get('mostrarQuadrinho/{hqId}/{quadrinhoId}', 'QuadrinhoController@edit')->name('mostrarQuadrinho');
+Route::get('mostrarQuadrinho/{hqId}/{quadrinhoId}', 'Quadrinho\QuadrinhoController@edit')->name('mostrarQuadrinho');
 
 Route::post('problematizar/store', 'ProblematizarController@store');
 Route::post('solucionar/store', 'SolucionarController@store');

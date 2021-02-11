@@ -70,6 +70,8 @@ class ClienteController extends Controller
         $cliente->status = true;
         $cliente->user_id = Auth::user()->id;
 
+        $this->formatarCliente($cliente);
+
         $cliente->save();
 
         return redirect()->route('cliente.index');
@@ -118,5 +120,18 @@ class ClienteController extends Controller
     public function destroy(Cliente $cliente)
     {
         //
+    }
+
+    private function formatarCliente(Cliente $cliente){
+        $cliente->nome = $cliente->nome;
+        $cliente->responsavel = $cliente->responsavel;
+        $cliente->email = $cliente->email;
+        $cliente->telefone = preg_replace('/\s+/', '', $cliente->telefone);
+        $cliente->cidade = $cliente->cidade;
+        $cliente->endereco = $cliente->endereco;
+        $cliente->numero = $cliente->numero;
+        $cliente->complemento = $cliente->complemento;
+
+        return $cliente;
     }
 }

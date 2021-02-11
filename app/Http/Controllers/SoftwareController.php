@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cliente;
 use App\Hq;
 use App\Http\Controllers\Gerencia\ArquivoController;
+use App\Http\Controllers\Gerencia\MascaraController;
 use App\Software;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,9 @@ class SoftwareController extends Controller
             ->where('status','=',true)
             ->orderby('id','desc')
             ->get();
+
+        $this->vetorData($softwares);
+        $this->vetorTelefone($softwares);
 
         // $softwares[0]->prazo = date('d/m/Y', strtotime($softwares[0]->prazo));
 
@@ -155,5 +159,17 @@ class SoftwareController extends Controller
         // Hq::where('software_id','=',$software->id)->delete();
 
         return redirect()->route('software.index');
+    }
+
+    private function vetorData($softwares){
+        foreach($softwares as $software){
+            $software->prazo = MascaraController::data($software->prazo);
+        }
+    }
+
+    private function vetorTelefone($softwares){
+        foreach($softwares as $software){
+            $software->cliente->telefone = MascaraController::telefone($software->cliente->telefone);
+        }
     }
 }
