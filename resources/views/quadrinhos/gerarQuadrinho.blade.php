@@ -16,14 +16,16 @@
         <div class="row">
             <h1>Criar - {{ $hq->tema }}, pág. {{ $quadrinho->pagina }}</h1>
         </div>
-        <a class="btn btn-outline-dark" href="{{ route('hq.show', $hq->id) }}"><i class="fa fa-reply" aria-hidden="true"></i> Voltar</a>
+        <a class="btn btn-outline-dark" href="{{ route('hq.show', $hq->id) }}">
+            <i class="fa fa-reply" aria-hidden="true"></i> Voltar
+        </a>
         <button class="btn btn-outline-dark ml-2" onclick="javascript:location.reload()"><i class="fa fa-undo" aria-hidden="true"></i> Recarregar</button>
     </div>
     <hr class="bg-dark"/>
 
 
     <div class="p-3">
-        
+
         <div class="form-group row">
             <label for="nome" class="col-sm-12 col-form-label text-center"><span class="font-weight-bold">{{ $faseQuadrinho['fase'] }}</span> - {{ $faseQuadrinho['mensagem'] }}</label>
         </div>
@@ -35,7 +37,7 @@
         </div>
 
         <h3 class="text-center">Arraste os itens abaixo!</h3>
-        
+
         <div class="container">
             <div class="btn-group w-100 mb-0">
                 <button id="btn-balao" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#balao">
@@ -92,7 +94,7 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
 
     @include('quadrinhos.modal.balaoFala')
     @include('quadrinhos.modal.utensilio')
@@ -153,14 +155,14 @@
                     el.closest(".card").classList.add("card-checked");
                 } else {
                     el.closest(".card").classList.remove("card-checked");
-                }      
+                }
             }
         }
 
         // let balaoMsg = document.getElementById("balaoMsg");
-        // console.log(balaoMsg); 
+        // console.log(balaoMsg);
         // balaoMsg.addEventListener("contextmenu", function(){
-        //     console.log(balaoMsg); 
+        //     console.log(balaoMsg);
         // });
     </script>
 

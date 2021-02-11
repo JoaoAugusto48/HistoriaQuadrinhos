@@ -36,7 +36,8 @@
                         {{ $software->prazo }}
                         <br>
                         <span class="font-italic">
-                            ( dias que faltam / finalizado )
+                            {{-- ( dias que faltam / finalizado ) --}}
+                            {{$software->difPrazo}} dias
                         </span>
                     </td>
                     <td class="align-middle">

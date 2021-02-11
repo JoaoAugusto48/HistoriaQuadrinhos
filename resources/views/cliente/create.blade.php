@@ -2,6 +2,16 @@
 
 @section('content')
 
+    <div class="row">
+        <h1>
+            Cadastrar Cliente
+            <a href="{{ route('cliente.index') }}" class="btn btn-outline-dark ml-1" target="_parent">
+                <i class="fa fa-reply" aria-hidden="true"></i> Clientes
+            </a>
+        </h1>
+    </div>
+    <hr class="bg-dark mt-0"/>
+
     <form action="{{ route('cliente.store') }}" method="post">
         @csrf
 

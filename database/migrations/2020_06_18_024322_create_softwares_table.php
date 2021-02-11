@@ -18,6 +18,7 @@ class CreateSoftwaresTable extends Migration
             $table->string('descricao', 70);
             $table->date('prazo');
             $table->boolean('status');
+            $table->boolean('entregue');
             $table->unsignedBigInteger('cliente_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

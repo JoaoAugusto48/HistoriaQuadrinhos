@@ -13,22 +13,18 @@ class MascaraController extends Controller
     }
 
     public static function telefone($telefone){
-        if(strlen($telefone) == 8){
-            $telefone = preg_replace('~.*(\d{4})[^\d]{0,8}(\d{4}).*~', '$1-$2', $telefone);
-        } else
-            if(strlen($telefone) == 9){
-                $telefone = preg_replace('~.*(\d{5})[^\d]{0,8}(\d{4}).*~', '$1-$2', $telefone);
-            } else
-                if(strlen($telefone) == 10){
-                    $telefone = preg_replace('~.*(\d{2})[^\d]{0,8}(\d{4})[^\d]{0,8}(\d{4}).*~', '($1)$2-$3', $telefone);
-                } else
-                    // if(strlen($telefone) == 11){
-                    //     $telefone = preg_replace('~.*(\d{2})[^\d]{0,8}(\d{5})[^\d]{0,8}(\d{4}).*~', '($1)$2-$3', $telefone);
-                    // } else
-                        if(strlen($telefone) == 11){
-                            $telefone = preg_replace('~.*(\d{2})[^\d]{0,8}(\d{2})[^\d]{0,8}(\d{4})[^\d]{0,8}(\d{4}).*~', '+$1 ($2)$3-$3', $telefone);
-                        }
+        return MascaraController::foneFormato($telefone);
+    }
 
-        dd($telefone);
+    private static function foneFormato($telefone){
+        switch(strlen($telefone)){
+            case 8: {return preg_replace('~.*(\d{4})[^\d]{0,8}(\d{4}).*~', '$1-$2', $telefone);break;}
+            case 9: {return preg_replace('~.*(\d{5})[^\d]{0,8}(\d{4}).*~', '$1-$2', $telefone);break;}
+            case 10: {return preg_replace('~.*(\d{2})[^\d]{0,8}(\d{4})[^\d]{0,8}(\d{4}).*~', '($1)$2-$3', $telefone);break;}
+            case 11: {return preg_replace('~.*(\d{2})[^\d]{0,8}(\d{5})[^\d]{0,8}(\d{4}).*~', '($1)$2-$3', $telefone);break;}
+            case 12: {return preg_replace('~.*(\d{2})[^\d]{0,8}(\d{2})[^\d]{0,8}(\d{4})[^\d]{0,8}(\d{4}).*~', '+$1 ($2)$3-$4', $telefone);break;}
+            case 13: {return preg_replace('~.*(\d{2})[^\d]{0,8}(\d{2})[^\d]{0,8}(\d{5})[^\d]{0,8}(\d{4}).*~', '+$1 ($2)$3-$4', $telefone);break;}
+            default: {return $telefone;}
+        }
     }
 }

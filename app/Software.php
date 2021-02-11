@@ -9,7 +9,7 @@ class Software extends Model
     protected $table = 'softwares';
 
     protected $fillable = [
-        'id', 'descricao', 'prazo', 'status', 'cliente_id', 'user_id'
+        'id', 'descricao', 'prazo', 'status', 'entregue', 'cliente_id', 'user_id', 'difPrazo'
     ];
 
     public function user(){

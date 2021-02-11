@@ -7,6 +7,7 @@ use App\Hq;
 use App\Http\Controllers\Gerencia\ArquivoController;
 use App\Http\Controllers\Gerencia\MascaraController;
 use App\Software;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,10 +30,18 @@ class SoftwareController extends Controller
             ->orderby('id','desc')
             ->get();
 
-        $this->vetorData($softwares);
-        $this->vetorTelefone($softwares);
+        // dd($dataHoje->diff($softwares[0]->prazo));
 
-        // $softwares[0]->prazo = date('d/m/Y', strtotime($softwares[0]->prazo));
+        $dataHoje = Carbon::now();
+        foreach($softwares as $software){
+            $software->difPrazo = $dataHoje->diff($software->prazo)->format('%a');
+        }
+
+        SoftwareController::vetorData($softwares);
+        SoftwareController::vetorTelefone($softwares);
+
+        $dataHoje = MascaraController::data($dataHoje);
+
 
         // $validaURL = ValidarController::validaURL($hq);
         // if($validaURL){
@@ -72,8 +81,13 @@ class SoftwareController extends Controller
         $software->descricao = trim($request->get('descricao'));
         $software->status = true;
         $software->prazo = $request->get('prazo');
+        $software->entregue = false;
         $software->cliente_id = $request->get('cliente_id');
         $software->user_id = Auth::user()->id;
+
+        if(!is_numeric($software->cliente_id)){
+            return redirect()->route('software.create')->with('error', 'Deu erro!');
+        }
 
         $software->save();
 
@@ -161,13 +175,13 @@ class SoftwareController extends Controller
         return redirect()->route('software.index');
     }
 
-    private function vetorData($softwares){
+    private static function vetorData($softwares){
         foreach($softwares as $software){
             $software->prazo = MascaraController::data($software->prazo);
         }
     }
 
-    private function vetorTelefone($softwares){
+    private static function vetorTelefone($softwares){
         foreach($softwares as $software){
             $software->cliente->telefone = MascaraController::telefone($software->cliente->telefone);
         }
