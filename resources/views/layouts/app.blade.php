@@ -48,7 +48,7 @@
                         <i class="fa fa-plus" aria-hidden="true"></i> Cadastrar Software
                     </a>
                     <a class="btn btn-outline-light ml-1" href="{{ route('cliente.index') }}" target="_parent">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Clientes
+                        <i class="fas fa-address-book"></i> Clientes
                     </a>
 
                     @if (Auth::user()->privilegio > 0)

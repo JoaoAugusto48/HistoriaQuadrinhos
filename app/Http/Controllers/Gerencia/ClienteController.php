@@ -20,6 +20,10 @@ class ClienteController extends Controller
         $clientes = Cliente::where('user_id','=',Auth::user()->id)
             ->where('status','=',true)
             ->get();
+        
+        foreach($clientes as $cliente){
+            $cliente->telefone = MascaraController::telefone($cliente->telefone);
+        }
 
         return view('cliente.index', compact('clientes'));
     }

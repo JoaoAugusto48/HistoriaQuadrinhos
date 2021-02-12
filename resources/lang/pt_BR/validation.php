@@ -59,7 +59,8 @@ return [
     'image'                => 'O campo :attribute deve ser uma imagem.',
     'in'                   => 'O campo :attribute selecionado é inválido.',
     'in_array'             => 'O campo :attribute não existe em :other.',
-    'integer'              => 'O campo :attribute deve ser um número inteiro.',
+    // 'integer'              => 'O campo :attribute deve ser um número inteiro.',
+    'integer'              => 'O campo :attribute deve ser selecionado.',
     'ip'                   => 'O campo :attribute deve ser um endereço de IP válido.',
     'ipv4'                 => 'O campo :attribute deve ser um endereço IPv4 válido.',
     'ipv6'                 => 'O campo :attribute deve ser um endereço IPv6 válido.',
@@ -180,7 +181,8 @@ return [
         'password_confirmation' => 'confirmação da senha',
         'personagem1_id' => 'Personagem 1',
         'personagem2_id' => 'Personagem 2',
-        'ambiente_id' => 'Ambiente'
+        'ambiente_id' => 'Ambiente',
+        'cliente_id' => 'Cliente',
     ],
 
 ];

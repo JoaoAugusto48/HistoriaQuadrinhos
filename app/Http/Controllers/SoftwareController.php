@@ -74,7 +74,7 @@ class SoftwareController extends Controller
         $request->validate([
             'descricao' => 'required|max:70',
             'prazo' => 'required',
-            'cliente_id' => 'required',
+            'cliente_id' => 'required|integer',
         ]);
 
         $software = new Software();
