@@ -85,15 +85,20 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('usuario.index') }}">
-                                        Perfil
+                                    <a class="dropdown-item text-info" href="{{ route('info.index', ['userId'=> Auth::user()->id]) }}">
+                                        <i class="fas fa-info-circle"></i> Info
                                     </a>
+                                    <a class="dropdown-item text-black-50" href="{{ route('usuario.index') }}">
+                                        <i class="fas fa-user"></i> Perfil
+                                    </a>
+
+                                    <hr class="m-0">
 
                                     {{-- Logout --}}
                                     <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -12,13 +12,7 @@
     <hr class="bg-dark"/>
 
     @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div><br />
+        @include('mensagens.formulario.erro')
     @endif
 
     <form action="{{ route('utensilio.update', $utensilio->id) }}" method="post">

@@ -47,6 +47,7 @@ Route::view('quadrinhos', 'quadrinhos/index')->name('quadrinhos'); //view de qua
 Route::view('personagem1', 'hq/modal/personagem')->name('personagem1');
 
 Route::get('mostrarQuadrinho/{hqId}/{quadrinhoId}', 'Quadrinho\QuadrinhoController@edit')->name('mostrarQuadrinho');
+Route::get('info/{userId}', 'Gerencia\InformationController@index')->name('info.index');
 
 Route::post('problematizar/store', 'ProblematizarController@store');
 Route::post('solucionar/store', 'SolucionarController@store');

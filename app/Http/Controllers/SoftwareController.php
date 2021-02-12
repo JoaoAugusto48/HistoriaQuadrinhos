@@ -27,7 +27,7 @@ class SoftwareController extends Controller
     {
         $softwares = Software::where('user_id','=', Auth::user()->id)
             ->where('status','=',true)
-            ->orderby('id','desc')
+            ->orderby('prazo','asc')
             ->get();
 
         // dd($dataHoje->diff($softwares[0]->prazo));
@@ -41,7 +41,6 @@ class SoftwareController extends Controller
         SoftwareController::vetorTelefone($softwares);
 
         $dataHoje = MascaraController::data($dataHoje);
-
 
         // $validaURL = ValidarController::validaURL($hq);
         // if($validaURL){

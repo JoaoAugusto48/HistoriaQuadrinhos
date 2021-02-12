@@ -20,7 +20,7 @@ class ClienteController extends Controller
         $clientes = Cliente::where('user_id','=',Auth::user()->id)
             ->where('status','=',true)
             ->get();
-        
+
         foreach($clientes as $cliente){
             $cliente->telefone = MascaraController::telefone($cliente->telefone);
         }
@@ -38,7 +38,9 @@ class ClienteController extends Controller
         $estados = Estado::get();
         $saoPaulo = Estado::where('uf','=','sp')->first();
 
-        return view('cliente.create', compact('estados', 'saoPaulo'));
+        $listaEmpresas = Cliente::where('user_id','=',Auth::user()->id)->get('nome');
+
+        return view('cliente.create', compact('estados', 'saoPaulo', 'listaEmpresas'));
     }
 
     /**

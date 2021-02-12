@@ -16,20 +16,20 @@
         @csrf
 
         @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div><br />
+            @include('mensagens.formulario.erro')
         @endif
 
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Empresa:</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" name="nome" value="{{old('nome')}}" maxlength="100" placeholder="Empresa" autocomplete="off" required autofocus>
+                <input type="text" list="empresa" class="form-control" name="nome" value="{{old('nome')}}" maxlength="100" placeholder="Empresa" autocomplete="off" required autofocus>
             </div>
+            {{-- datalist de empresa --}}
+            <datalist id="empresa">
+                @foreach ($listaEmpresas as $empresa)
+                    <option value="{{$empresa->nome}}">
+                @endforeach
+            </datalist>
         </div>
 
         <div class="form-group row">

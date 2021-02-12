@@ -35,7 +35,7 @@
                         </span>
                     </th>
                     <td class="align-middle">
-                        {{$cliente->endereco}}, {{$cliente->numero}}
+                        {{$cliente->endereco}}, {{$cliente->numero}} @if($cliente->complemento) - {{$cliente->complemento}} @endif
                         <br>
                         <span class="font-italic">
                             {{$cliente->cidade}}-{{$cliente->estado->uf}}
