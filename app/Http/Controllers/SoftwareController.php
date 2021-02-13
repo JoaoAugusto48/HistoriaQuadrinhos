@@ -6,6 +6,7 @@ use App\Cliente;
 use App\Hq;
 use App\Http\Controllers\Gerencia\ArquivoController;
 use App\Http\Controllers\Gerencia\MascaraController;
+use App\Http\Controllers\Gerencia\ValidarController;
 use App\Software;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -101,6 +102,11 @@ class SoftwareController extends Controller
      */
     public function show(Software $software)
     {
+        $validaURL = ValidarController::validaURL($software);
+        if($validaURL){
+            return $validaURL;
+        }
+
         $hqs = Hq::where('user_id','=', Auth::user()->id)
             ->where('software_id','=',$software->id)
             ->where('status','=',true)

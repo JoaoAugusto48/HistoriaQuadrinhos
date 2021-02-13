@@ -42,7 +42,7 @@ class AuthController extends Controller
 
         $userName = User::where('id','=', $idUser)->first();
         if($userName->name != $nomeUser){
-            DB::table('users')->where('id','=', $idUser)
+            User::where('id','=', $idUser)
                 ->update([
                     'name' => $nomeUser
                 ]);    
@@ -83,7 +83,7 @@ class AuthController extends Controller
             return redirect()->route('usuario.index')->with($validacaoSenha['mensagens']);
         }
 
-        DB::table('users')->where('id','=', $id)
+        User::where('id','=', $id)
             ->update([
                 'password' => Hash::make($novaSenha)
             ]);

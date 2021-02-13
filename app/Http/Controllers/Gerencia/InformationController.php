@@ -17,6 +17,11 @@ class InformationController extends Controller
      */
     public function index($userId)
     {
+        $validaURL = ValidarController::validaURLId($userId);
+        if($validaURL){
+            return $validaURL;
+        }
+
         $nClientes = count(Cliente::where('user_id','=',Auth::user()->id)->get('nome'));
         $nEmpresas = count(Cliente::where('user_id','=',Auth::user()->id)->distinct()->get('nome'));
         $nSoftwares = count(Software::where('user_id','=', Auth::user()->id)->get());
