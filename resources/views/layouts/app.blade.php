@@ -80,20 +80,8 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                @php
-                                
-                                    $usuario = explode(" ", Auth::user()->name);
-                                    
-                                    $nomeUsuario = $usuario[0].' '.$usuario[1];
-                                    if((strlen($usuario[1]) == 2) || (strlen($usuario[1]) == 3)){
-                                        if(isset($usuario[2])){
-                                            $nomeUsuario .= ' '.$usuario[2];
-                                        }
-                                    }
-
-                                @endphp
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ $nomeUsuario }} <span class="caret"></span>
+                                    {{ nomeUsuario(Auth::user()->name) }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
