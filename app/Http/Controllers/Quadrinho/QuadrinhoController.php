@@ -32,7 +32,7 @@ class QuadrinhoController extends Controller
     {
         $hq = Hq::findOrFail($hqId);
 
-        $validaURL = ValidarController::validaURL($hq);
+        $validaURL = ValidarController::validaURL($hq->user->id);
         if($validaURL){
             return $validaURL;
         }

@@ -7,13 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ValidarController extends Controller
 {
-    public static function validaURL($validacao){
+    public static function validaURL($userId){
         // teste para validação de URL com usuário logado
-        return ValidarController::testeValidacao($validacao->user->id,Auth::user()->id);
-    }
-
-    public static function validaURLId($userId){
-        return ValidarController::testeValidacao($userId,Auth::user()->id);
+        return ValidarController::testeValidacao($userId, Auth::user()->id);
     }
 
     private static function testeValidacao($userId,$authId){

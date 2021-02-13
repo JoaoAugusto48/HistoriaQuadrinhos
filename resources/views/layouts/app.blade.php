@@ -85,8 +85,10 @@
                                     $usuario = explode(" ", Auth::user()->name);
                                     
                                     $nomeUsuario = $usuario[0].' '.$usuario[1];
-                                    if(strlen($usuario[1]) == 2){
-                                        $nomeUsuario .= ' '.$usuario[2];
+                                    if((strlen($usuario[1]) == 2) || (strlen($usuario[1]) == 3)){
+                                        if(isset($usuario[2])){
+                                            $nomeUsuario .= ' '.$usuario[2];
+                                        }
                                     }
 
                                 @endphp

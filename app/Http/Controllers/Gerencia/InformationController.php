@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class InformationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +22,7 @@ class InformationController extends Controller
      */
     public function index($userId)
     {
-        $validaURL = ValidarController::validaURLId($userId);
+        $validaURL = ValidarController::validaURL($userId);
         if($validaURL){
             return $validaURL;
         }

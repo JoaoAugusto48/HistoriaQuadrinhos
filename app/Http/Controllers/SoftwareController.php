@@ -102,7 +102,7 @@ class SoftwareController extends Controller
      */
     public function show(Software $software)
     {
-        $validaURL = ValidarController::validaURL($software);
+        $validaURL = ValidarController::validaURL($software->user_id);
         if($validaURL){
             return $validaURL;
         }
