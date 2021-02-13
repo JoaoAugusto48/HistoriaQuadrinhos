@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,22 +14,22 @@ class Hq extends Model
     ];
 
     public function personagem1(){
-        return $this->belongsTo('App\Personagem', 'personagem1_id');
+        return $this->belongsTo('App\Models\Personagem', 'personagem1_id');
     }
 
     public function personagem2(){
-        return $this->belongsTo('App\Personagem', 'personagem2_id');
+        return $this->belongsTo('App\Models\Personagem', 'personagem2_id');
     }
 
     public function ambiente(){
-        return $this->belongsTo('App\Ambiente', 'ambiente_id');
+        return $this->belongsTo('App\Models\Ambiente', 'ambiente_id');
     }
 
     public function software(){
-        return $this->belongsTo('App\Software', 'software_id');
+        return $this->belongsTo('App\Models\Software', 'software_id');
     }
 
     public function user(){
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 }

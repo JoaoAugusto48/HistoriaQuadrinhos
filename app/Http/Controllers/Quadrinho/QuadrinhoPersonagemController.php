@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Quadrinho;
 
 use App\Http\Controllers\Controller;
-use App\Balao;
+use App\Models\Balao;
 use App\Http\Controllers\Gerencia\ArquivoController;
-use App\QuadrinhoPersonagem;
+use App\Models\QuadrinhoPersonagem;
 use Illuminate\Http\Request;
 
 class QuadrinhoPersonagemController extends Controller

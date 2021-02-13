@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Gerencia;
 
-use App\Cliente;
+use App\Models\Cliente;
 use App\Http\Controllers\Controller;
-use App\Software;
+use App\Models\Software;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

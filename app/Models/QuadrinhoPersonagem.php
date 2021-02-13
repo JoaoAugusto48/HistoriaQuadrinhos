@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,10 +13,10 @@ class QuadrinhoPersonagem extends Model
     ];
 
     public function balaoEsq(){
-        return $this->belongsTo('App\Balao', 'balao_esquerda');
+        return $this->belongsTo('App\Models\Balao', 'balao_esquerda');
     }
 
     public function balaoDir(){
-        return $this->belongsTo('App\Balao', 'balao_direita');
+        return $this->belongsTo('App\Models\Balao', 'balao_direita');
     }
 }

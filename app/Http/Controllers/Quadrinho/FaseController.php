@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Quadrinho;
 
 use App\Http\Controllers\Controller;
-use App\Problematizar;
-use App\Quadrinho;
-use App\Situar;
-use App\Solucionar;
+use App\Models\Problematizar;
+use App\Models\Quadrinho;
+use App\Models\Situar;
+use App\Models\Solucionar;
 
 class FaseController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,10 +14,10 @@ class Cliente extends Model
     ];
 
     public function estado(){
-        return $this->belongsTo('App\Estado', 'estado_id');
+        return $this->belongsTo('App\Models\Estado', 'estado_id');
     }
 
     public function usuario(){
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +13,6 @@ class Quadrinho extends Model
     ];
 
     public function user(){
-        return $this->belongsTo('App\Software', 'software_id');
+        return $this->belongsTo('App\Models\Software', 'software_id');
     }
 }

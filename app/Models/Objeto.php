@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,14 +13,14 @@ class Objeto extends Model
     ];
 
     public function quadrinho(){
-        return $this->belongsTo('App\Quadrinho', 'quadrinho_id');
+        return $this->belongsTo('App\Models\Quadrinho', 'quadrinho_id');
     }
 
     public function utensilio(){
-        return $this->belongsTo('App\Utensilio', 'utensilio_id');
+        return $this->belongsTo('App\Models\Utensilio', 'utensilio_id');
     }
 
     public function balao(){
-        return $this->belongsTo('App\Balao', 'balao_id');
+        return $this->belongsTo('App\Models\Balao', 'balao_id');
     }
 }

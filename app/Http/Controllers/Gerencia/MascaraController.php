@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Gerencia;
 
 use App\Http\Controllers\Controller;
-use App\Software;
+use App\Models\Software;
 use Illuminate\Http\Request;
 
 class MascaraController extends Controller

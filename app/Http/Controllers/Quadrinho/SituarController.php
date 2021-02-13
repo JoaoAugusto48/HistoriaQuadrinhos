@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Quadrinho;
 
 use App\Http\Controllers\Controller;
-use App\Hq;
+use App\Models\Hq;
 use Illuminate\Http\Request;
 
 class SituarController extends Controller

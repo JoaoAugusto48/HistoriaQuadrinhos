@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Utensilio;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Gerencia\ArquivoController;
 use App\Http\Controllers\Gerencia\GerenciarController;
-use App\Personagem;
+use App\Models\Personagem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

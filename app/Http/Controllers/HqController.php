@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Ambiente;
-use App\Hq;
+use App\Models\Ambiente;
+use App\Models\Hq;
 use App\Http\Controllers\Gerencia\ArquivoController;
 use App\Http\Controllers\Gerencia\ValidarController;
 use App\Http\Controllers\Quadrinho\QuadrinhoController;
-use App\Personagem;
-use App\Problematizar;
-use App\Quadrinho;
-use App\QuadrinhoPersonagem;
-use App\Situar;
-use App\Solucionar;
+use App\Models\Personagem;
+use App\Models\Problematizar;
+use App\Models\Quadrinho;
+use App\Models\QuadrinhoPersonagem;
+use App\Models\Situar;
+use App\Models\Solucionar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

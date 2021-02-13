@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Balao extends Model
+class Utensilio extends Model
 {
-    protected $table = 'balaos';
+    protected $table = 'utensilios';
 
     protected $fillable = [
         'id', 'caminho', 'descricao', 'status'

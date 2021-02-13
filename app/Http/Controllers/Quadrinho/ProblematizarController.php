@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Quadrinho;
 
 use App\Http\Controllers\Controller;
-use App\Hq;
-use App\Problematizar;
-use App\Quadrinho;
-use App\Solucionar;
+use App\Models\Hq;
+use App\Models\Problematizar;
+use App\Models\Quadrinho;
+use App\Models\Solucionar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;

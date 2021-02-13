@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Utensilio;
 
 use App\Http\Controllers\Controller;
-use App\Objeto;
+use App\Models\Objeto;
 use Illuminate\Http\Request;
 
 class ObjetoController extends Controller

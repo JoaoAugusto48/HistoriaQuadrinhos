@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Cliente;
-use App\Hq;
+use App\Models\Cliente;
+use App\Models\Hq;
 use App\Http\Controllers\Gerencia\ArquivoController;
 use App\Http\Controllers\Gerencia\MascaraController;
 use App\Http\Controllers\Gerencia\ValidarController;
-use App\Software;
+use App\Models\Software;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

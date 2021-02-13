@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Quadrinho;
 
 use App\Http\Controllers\Controller;
-use App\Balao;
-use App\Hq;
+use App\Models\Balao;
+use App\Models\Hq;
 use App\Http\Controllers\Gerencia\ArquivoController;
 use App\Http\Controllers\Gerencia\ValidarController;
-use App\Problematizar;
-use App\Quadrinho;
-use App\Situar;
-use App\Utensilio;
+use App\Models\Problematizar;
+use App\Models\Quadrinho;
+use App\Models\Situar;
+use App\Models\Utensilio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;

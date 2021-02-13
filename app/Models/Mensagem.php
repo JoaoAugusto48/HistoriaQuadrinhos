@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,14 +13,14 @@ class Mensagem extends Model
     ];
 
     public function quadrinho(){
-        return $this->belongsTo('App\Quadrinho', 'quadrinho_id');
+        return $this->belongsTo('App\Models\Quadrinho', 'quadrinho_id');
     }
 
     public function personagem(){
-        return $this->belongsTo('App\Personagem', 'personagem_id');
+        return $this->belongsTo('App\Models\Personagem', 'personagem_id');
     }
 
     public function balao(){
-        return $this->belongsTo('App\Balao', 'balao_id');
+        return $this->belongsTo('App\Models\Balao', 'balao_id');
     }
 }

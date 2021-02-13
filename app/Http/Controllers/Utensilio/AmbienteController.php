@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Utensilio;
 
 use App\Http\Controllers\Controller;
-use App\Ambiente;
+use App\Models\Ambiente;
 use App\Http\Controllers\Gerencia\ArquivoController;
 use App\Http\Controllers\Gerencia\GerenciarController;
 use Illuminate\Http\Request;

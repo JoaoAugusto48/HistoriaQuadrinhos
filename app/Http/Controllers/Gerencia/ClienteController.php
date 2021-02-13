@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Gerencia;
 
 use App\Http\Controllers\Controller;
-use App\Cliente;
-use App\Estado;
+use App\Models\Cliente;
+use App\Models\Estado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
