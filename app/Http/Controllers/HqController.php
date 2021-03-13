@@ -98,7 +98,7 @@ class HqController extends Controller
     {
         $hq = Hq::FindOrFail($request->hq);
 
-        $validaURL = ValidarController::validaURL($hq);
+        $validaURL = ValidarController::validaURL($hq->user->id);
         if($validaURL){
             return $validaURL;
         }
