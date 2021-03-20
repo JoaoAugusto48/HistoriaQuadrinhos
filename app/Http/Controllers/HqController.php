@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ambiente;
 use App\Models\Hq;
 use App\Http\Controllers\Gerencia\ArquivoController;
+use App\Http\Controllers\Gerencia\MensagemController;
 use App\Http\Controllers\Gerencia\ValidarController;
 use App\Http\Controllers\Quadrinho\QuadrinhoController;
 use App\Models\Personagem;
@@ -103,6 +104,8 @@ class HqController extends Controller
             return $validaURL;
         }
 
+        $msgExclusao = new MensagemController();
+
         $situars = Situar::where('hq_id', '=', $hq->id)->get();
         $problematizars = Problematizar::where('hq_id', '=', $hq->id)->get();
         $solucionars = Solucionar::where('hq_id', '=', $hq->id)->get();
@@ -118,7 +121,7 @@ class HqController extends Controller
         return view('hq.show',
             compact('hq', 'situars', 'problematizars', 'solucionars', 'caminho_imagem',
             'situarQuadrinho', 'problematizarQuadrinho', 'solucionarQuadrinho',
-            'quadrinhoPersonagens')
+            'quadrinhoPersonagens', 'msgExclusao')
         );
     }
 

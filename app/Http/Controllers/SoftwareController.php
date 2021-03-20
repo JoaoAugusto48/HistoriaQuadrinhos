@@ -6,6 +6,7 @@ use App\Models\Cliente;
 use App\Models\Hq;
 use App\Http\Controllers\Gerencia\ArquivoController;
 use App\Http\Controllers\Gerencia\MascaraController;
+use App\Http\Controllers\Gerencia\MensagemController;
 use App\Http\Controllers\Gerencia\ValidarController;
 use App\Models\Software;
 use Carbon\Carbon;
@@ -32,6 +33,7 @@ class SoftwareController extends Controller
             ->get();
 
         // dd($dataHoje->diff($softwares[0]->prazo));
+        $msgExclusao = new MensagemController();
 
         $dataHoje = Carbon::now();
         foreach($softwares as $software){
@@ -48,7 +50,7 @@ class SoftwareController extends Controller
         //     return $validaURL;
         // }
 
-        return view('index', compact('softwares'));
+        return view('index', compact('softwares', 'msgExclusao'));
     }
 
     /**
@@ -114,7 +116,9 @@ class SoftwareController extends Controller
             ->get();
         $caminho_imagem = ArquivoController::caminho_storage();
 
-        return view('software.show', compact('hqs', 'caminho_imagem', 'software'));
+        $msgExclusao = new MensagemController();
+
+        return view('software.show', compact('hqs', 'caminho_imagem', 'software', 'msgExclusao'));
     }
 
     /**

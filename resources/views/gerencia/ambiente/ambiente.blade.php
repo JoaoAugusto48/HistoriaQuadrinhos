@@ -87,10 +87,7 @@
                             <form class="ml-1" action="{{ route('ambiente.destroy', $ambiente->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                @php
-                                    $mensagem = '"'.$ambiente->descricao.'"';
-                                @endphp
-                                <button type="submit" class="btn btn-sm btn-danger border border-dark" onclick="return confirm('Deseja realmente remover o ambiente {{ $mensagem }}?')">
+                                <button type="submit" class="btn btn-sm btn-danger border border-dark" onclick="return confirm('{{ $msgExclusao->excluirItemTabela($ambiente->descricao, 'ambiente', 'o') }}')">
                                     <i class="fas fa-trash"></i> Remover
                                 </button>
                             </form>

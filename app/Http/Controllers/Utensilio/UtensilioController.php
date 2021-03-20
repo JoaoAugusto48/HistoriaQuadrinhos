@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Utensilio;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Gerencia\ArquivoController;
 use App\Http\Controllers\Gerencia\GerenciarController;
+use App\Http\Controllers\Gerencia\MensagemController;
 use App\Models\Utensilio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,9 @@ class UtensilioController extends Controller
         $utensilios = Utensilio::where('status','=', true)->orderby('descricao', 'asc')->get();
         $caminho_imagem = ArquivoController::caminho_storage();
 
-        return view('gerencia.utensilio.utensilio', compact('utensilios', 'caminho_imagem'));
+        $msgExclusao = new MensagemController();
+
+        return view('gerencia.utensilio.utensilio', compact('utensilios', 'caminho_imagem', 'msgExclusao'));
     }
 
     /**

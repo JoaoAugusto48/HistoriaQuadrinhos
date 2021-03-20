@@ -77,10 +77,7 @@
                             <form class="ml-1" action="{{ route('balao.destroy', $balao->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                @php
-                                    $mensagem = '"'.$balao->descricao.'"';
-                                @endphp
-                                <button type="submit" class="btn btn-sm btn-danger border border-dark" onclick="return confirm('Deseja realmente remover o balão {{ $mensagem }}?')">
+                                <button type="submit" class="btn btn-sm btn-danger border border-dark" onclick="return confirm('{{ $msgExclusao->excluirItemTabela($balao->descricao, 'balão', 'o') }}')">
                                     <i class="fas fa-trash"></i> Remover
                                 </button>
                             </form>

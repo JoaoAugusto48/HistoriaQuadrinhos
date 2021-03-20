@@ -65,11 +65,7 @@
                                 <form class="ml-1" action="{{ route('problematizar.destroy', $problematizar->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    @php
-                                        $mensagem = $problematizar->quadrinho->titulo ? 'de titulo ' . $problematizar->quadrinho->titulo . ', ' : '';
-                                        $mensagem .= 'da página ' . $problematizar->quadrinho->pagina;
-                                    @endphp
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }}?')">
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('{{ $msgExclusao->excluirItemTabela('página '.$problematizar->quadrinho->pagina, 'quadrinho', 'o') }}')">
                                         <i class="fas fa-trash"></i> Remover
                                     </button>
                                 </form>
@@ -117,11 +113,7 @@
                                 <form class="ml-1" action="{{ route('solucionar.destroy', $solucionar->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    @php
-                                        $mensagem = $solucionar->quadrinho->titulo ? 'de titulo ' . $solucionar->quadrinho->titulo . ', ' : '';
-                                        $mensagem .= 'da página ' . $solucionar->quadrinho->pagina;
-                                    @endphp
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho {{ $mensagem }} ?')">
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('{{ $msgExclusao->excluirItemTabela('página '.$solucionar->quadrinho->pagina, 'quadrinho', 'o') }}')">
                                         <i class="fas fa-trash"></i> Remover</button>
                                 </form>
                             </div>
@@ -354,7 +346,7 @@
                             <form class="ml-1" action="{{ env('APP_URL') }}/problematizar/${idPagina}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho página ${pagina}?')">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho - página ${pagina}?')">
                                     <i class="fas fa-trash"></i> Remover
                                 </button>
                             </form>
@@ -425,7 +417,7 @@
                             <form class="ml-1" action="{{ env('APP_URL') }}/solucionar/${idPagina}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho página ${pagina}?')">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente remover o quadrinho - página ${pagina}?')">
                                     <i class="fas fa-trash"></i> Remover
                                 </button>
                             </form>

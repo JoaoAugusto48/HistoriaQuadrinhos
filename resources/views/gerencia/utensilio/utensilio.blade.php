@@ -77,10 +77,7 @@
                             <form class="ml-1" action="{{ route('utensilio.destroy', $utensilio->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                @php
-                                    $mensagem = '"'.$utensilio->descricao.'"';
-                                @endphp
-                                <button type="submit" class="btn btn-sm btn-danger border border-dark" onclick="return confirm('Deseja realmente remover o utensilio {{ $mensagem }}?')">
+                                <button type="submit" class="btn btn-sm btn-danger border border-dark" onclick="return confirm('{{ $msgExclusao->excluirItemTabela($utensilio->descricao, 'utensilio', 'o') }}')">
                                     <i class="fas fa-trash"></i> Remover
                                 </button>
                             </form>

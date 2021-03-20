@@ -62,10 +62,7 @@
                             <form action="{{ route('hq.destroy', $hq->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                @php
-                                    $mensagem = '"'.$hq->tema.'"';
-                                @endphp
-                                <button type="submit" class="btn btn-outline-danger btn-sm border border-dark" onclick="return confirm('Deseja realmente excluir a HQ - {{ $mensagem }}?')">
+                                <button type="submit" class="btn btn-outline-danger btn-sm border border-dark" onclick="return confirm('{{ $msgExclusao->excluirItemTabela($hq->tema, 'HQ') }}')">
                                     <i class="fas fa-trash"></i> <em>Excluir</em></button>
                             </form>
                         </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Balao;
 use App\Http\Controllers\Gerencia\ArquivoController;
 use App\Http\Controllers\Gerencia\GerenciarController;
+use App\Http\Controllers\Gerencia\MensagemController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,7 +29,9 @@ class BalaoController extends Controller
 
         $caminho_imagem = ArquivoController::caminho_storage();
 
-        return view('gerencia.balao.balao', compact('balaos','caminho_imagem'));
+        $msgExclusao = new MensagemController();
+
+        return view('gerencia.balao.balao', compact('balaos','caminho_imagem', 'msgExclusao'));
     }
 
     /**
