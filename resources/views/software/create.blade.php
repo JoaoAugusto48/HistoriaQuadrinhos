@@ -66,7 +66,7 @@
             <div class="form-group row">
                 <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Cidade:</label>
                 <div class="col-sm-5">
-                    <input type="text" id="telefone" class="form-control" placeholder="Cidade" disabled>
+                    <input type="text" id="cidade" class="form-control" placeholder="Cidade" disabled>
                 </div>
 
                 <label for="nome" class="col-sm-1 col-form-label text-right font-weight-bold">Estado:</label>
@@ -102,13 +102,39 @@
     @endif
 
     <script>
-        let cliente = document.getElementById('cliente_id');
+        $(document).ready(function() {
+            $('#cliente_id').click(function(e){
+                e.preventDefault();
 
-        cliente.addEventListener('click', function (event) {
-            let cli = event.srcElement.value;
-            console.log(cli);
-            // document.getElementById('name').value = price;
-        });
+                //cliente id
+                let cliId = $(this).val();
+
+                //AJAX
+                $.ajax({
+                    type: "GET",
+                    url: `{!! URL::to('getUsuario/${cliId}') !!}`,
+                    dataType: "json",
+                    data: cliId,
+                    success: function(response){
+                        
+                        $("#responsavel").val(response.responsavel);
+                        $("#email").val(response.email);
+                        $("#telefone").val(response.telefone);
+                        $("#cidade").val(response.cidade);
+                        $("#endereco").val(response.endereco);
+                        $("#numero").val(response.numero);
+                        $("#complemento").val(response.complemento);
+                        
+                        if(cliId > 0){ // if para não dar erro de encontro de uf
+                            $("#estado").val(response.estado.uf);
+                        } else {
+                            $("#estado").val("");
+                        }
+                        console.log(cliId);
+                    }
+                })
+            })
+        })
     </script>
 
 @endsection

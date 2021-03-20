@@ -42,6 +42,7 @@ Route::resources([
 
 //criar uma HQ pelo software cadastrado
 Route::get('hq/create/{softwareId}', 'HqController@create')->name('criarHq');
+Route::get('getUsuario/{id}', 'SoftwareController@getCliente')->name('getUsuario');
 
 Route::view('quadrinhos', 'quadrinhos/index')->name('quadrinhos'); //view de quadrinho
 Route::view('personagem1', 'hq/modal/personagem')->name('personagem1');
@@ -49,8 +50,8 @@ Route::view('personagem1', 'hq/modal/personagem')->name('personagem1');
 Route::get('mostrarQuadrinho/{hqId}/{quadrinhoId}', 'Quadrinho\QuadrinhoController@edit')->name('mostrarQuadrinho');
 Route::get('info/{userId}', 'Gerencia\InformationController@index')->name('info.index');
 
-Route::post('problematizar/store', 'ProblematizarController@store');
-Route::post('solucionar/store', 'SolucionarController@store');
+Route::post('problematizar/store', 'Quadrinho\ProblematizarController@store');
+Route::post('solucionar/store', 'Quadrinho\SolucionarController@store');
 
 Auth::routes();
 Route::resource('usuario', 'Auth\AuthController');
