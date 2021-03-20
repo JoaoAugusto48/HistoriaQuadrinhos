@@ -40,9 +40,11 @@ Route::resources([
     'cliente'       => 'Gerencia\ClienteController',
 ]);
 
+//Recuperar usuário de forma dinamica
+Route::get('getUsuario/{id}', 'SoftwareController@getCliente')->name('getUsuario');
+
 //criar uma HQ pelo software cadastrado
 Route::get('hq/create/{softwareId}', 'HqController@create')->name('criarHq');
-Route::get('getUsuario/{id}', 'SoftwareController@getCliente')->name('getUsuario');
 
 Route::view('quadrinhos', 'quadrinhos/index')->name('quadrinhos'); //view de quadrinho
 Route::view('personagem1', 'hq/modal/personagem')->name('personagem1');

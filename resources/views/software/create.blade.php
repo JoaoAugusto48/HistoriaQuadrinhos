@@ -123,7 +123,11 @@
                         $("#cidade").val(response.cidade);
                         $("#endereco").val(response.endereco);
                         $("#numero").val(response.numero);
+                        
                         $("#complemento").val(response.complemento);
+                        if(!response.complemento){
+                            $("#complemento").val(' ');
+                        }
                         
                         if(cliId > 0){ // if para não dar erro de encontro de uf
                             $("#estado").val(response.estado.uf);

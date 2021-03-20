@@ -194,6 +194,9 @@ class SoftwareController extends Controller
 
     public function getCliente($clienteId){
         $softCli = Cliente::where('id', $clienteId)->with('estado')->get()->first();
+
+        $softCli->telefone = MascaraController::telefone($softCli->telefone);
+        // dd($softCli);
         return response()->json($softCli);
     }
 }
