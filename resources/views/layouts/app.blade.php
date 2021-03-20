@@ -135,7 +135,7 @@
     <script src="{{ asset('js/bootstrap/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
 
-    <script src="{{ asset('js/baixarHq.js') }}"></script>
+    <script src="{{ asset('js/hq/baixarHq.js') }}"></script>
 
     <script>
         $(document).ready(function() {
