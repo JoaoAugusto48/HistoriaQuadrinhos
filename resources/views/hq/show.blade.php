@@ -280,6 +280,7 @@
         @endif
     </div>
 
-    @include('javascript.tabelaHq')
+    @include('javascript.hq.tabelaProblematizar')
+    @include('javascript.hq.tabelaSolucionar')
 
 @endsection
