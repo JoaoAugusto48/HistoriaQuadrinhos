@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('js')
-    <script src="{{ asset('js/hq/showHq.js') }}"></script>
+    {{-- <script src="{{ asset('js/hq/showHq.js') }}"></script> --}}
 @endsection
 
 @section('content')
@@ -117,7 +117,7 @@
                                 <form class="ml-1" action="{{ route('solucionar.destroy', $solucionar->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('{{ $msgExclusao->excluirItemTabela('página '.$solucionar->quadrinho->pagina, 'quadrinho', 'o') }}')">
+                                    <button type="submit" class="btn btn-sm btn-danger" id="pagina" onclick="return confirm('{{ $msgExclusao->excluirItemTabela('página '.$solucionar->quadrinho->pagina, 'quadrinho', 'o') }}')">
                                         <i class="fas fa-trash"></i> Remover</button>
                                 </form>
                             </div>
@@ -280,7 +280,6 @@
         @endif
     </div>
 
-    @include('javascript.hq.tabelaProblematizar')
-    @include('javascript.hq.tabelaSolucionar')
+    @include('javascript.hq.inserirLinhaTabela')
 
 @endsection
