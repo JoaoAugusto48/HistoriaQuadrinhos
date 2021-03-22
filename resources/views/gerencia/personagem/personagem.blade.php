@@ -1,18 +1,11 @@
 @extends('layouts.app')
 
+@section('js')
+    <script src="{{ asset('js/gerencia/trocarExibicao.js') }}"></script>
+@endsection
+
 @section('content')
 
-<script>
-
-    function trocarExibicao(){
-        setTimeout(function(){
-            $('#col-img').fadeIn(100);
-            $('#col-descricao').fadeIn(100);
-            $('#col-enviar').fadeIn(100);
-            $('#col-formImg').show(100);
-        }, 50)
-    }
-</script>
     <div class="row">
         <h1>
             Personagem
