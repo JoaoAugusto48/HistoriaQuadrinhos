@@ -55,11 +55,9 @@
                             <form action="{{ route('cliente.destroy', $cliente->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                @php
-                                    $mensagem = '"'.$cliente->descricao.'"';
-                                @endphp
-                                <button type="submit" class="btn btn-outline-danger btn-sm border border-dark" onclick="return confirm('Deseja realmente excluir a Empresa - {{ $mensagem }}?')">
-                                    <i class="fas fa-trash"></i> <em>Excluir</em></button>
+                                <button type="submit" class="btn btn-outline-danger btn-sm border border-dark" onclick="return confirm('{{ $msgExclusao->excluirItemTabela($cliente->nome, 'cliente', 'o')}}')">
+                                    <i class="fas fa-trash"></i> <em>Excluir</em>
+                                </button>
                             </form>
                         </div>
                     </td>

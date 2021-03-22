@@ -27,4 +27,8 @@ class MascaraController extends Controller
             default: {return $telefone;}
         }
     }
+
+    public static function removerCaracterEspecial($texto){
+        return preg_replace('/[^A-Za-z0-9]/', '', $texto);
+    }
 }

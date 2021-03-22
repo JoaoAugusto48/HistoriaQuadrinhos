@@ -30,7 +30,9 @@ class ClienteController extends Controller
             $cliente->telefone = MascaraController::telefone($cliente->telefone);
         }
 
-        return view('cliente.index', compact('clientes'));
+        $msgExclusao = new MensagemController();
+
+        return view('cliente.index', compact('clientes', 'msgExclusao'));
     }
 
     /**
@@ -107,7 +109,12 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        $estados = Estado::get();
+        $listaEmpresas = Cliente::where('user_id','=',Auth::user()->id)->get('nome');
+
+        $cliente->telefone = MascaraController::telefone($cliente->telefone);
+
+        return view('cliente.edit', compact('cliente', 'estados', 'listaEmpresas'));
     }
 
     /**
@@ -117,9 +124,36 @@ class ClienteController extends Controller
      * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'nome' => 'required|max:100',
+            'responsavel' => 'required|max:100',
+            'email' => 'required|max:255',
+            'telefone' => 'required|max:14',
+            'cidade' => 'required|max:50',
+            'endereco' => 'required|max:50',
+            'numero' => 'required',
+            'complemento' => 'max:30',
+            'estado_id' => 'required',
+        ]);
+            
+        $cliente = Cliente::findOrFail($request->cliente);
+        $cliente->nome = trim($request->get('nome'));
+        $cliente->responsavel = trim($request->get('responsavel'));
+        $cliente->email = trim($request->get('email'));
+        $cliente->telefone = trim($request->get('telefone'));
+        $cliente->cidade = trim($request->get('cidade'));
+        $cliente->endereco = trim($request->get('endereco'));
+        $cliente->numero = $request->get('numero');
+        $cliente->complemento = trim($request->get('complemento'));
+        $cliente->estado_id = $request->get('estado_id');
+
+        $this->formatarCliente($cliente);
+
+        $cliente->update();
+
+        return redirect()->route('cliente.index');
     }
 
     /**
@@ -128,16 +162,20 @@ class ClienteController extends Controller
      * @param  \App\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cliente $cliente)
+    public function destroy(Request $request)
     {
-        //
+        $cliente = Cliente::findOrFail($request->cliente);
+
+        Cliente::where('id','=',$cliente->id)->update(['status' => false]);
+
+        return redirect()->route('cliente.index');
     }
 
     private function formatarCliente(Cliente $cliente){
         $cliente->nome = $cliente->nome;
         $cliente->responsavel = $cliente->responsavel;
         $cliente->email = $cliente->email;
-        $cliente->telefone = preg_replace('/\s+/', '', $cliente->telefone);
+        $cliente->telefone = MascaraController::removerCaracterEspecial($cliente->telefone);
         $cliente->cidade = $cliente->cidade;
         $cliente->endereco = $cliente->endereco;
         $cliente->numero = $cliente->numero;
