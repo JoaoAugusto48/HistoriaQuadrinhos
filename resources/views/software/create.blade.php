@@ -33,7 +33,7 @@
                     <select class="custom-select" id="cliente_id" name="cliente_id" required>
                         <option selected>&nbsp;</option>
                         @foreach ($clientes as $cliente)
-                            <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
+                            <option value="{{$cliente->id}}">{{$cliente->nome}} - {{$cliente->responsavel}}</option>
                         @endforeach
                     </select>
                 </div>

@@ -45,7 +45,7 @@ class ClienteController extends Controller
         $estados = Estado::get();
         $saoPaulo = Estado::where('uf','=','sp')->first();
 
-        $listaEmpresas = Cliente::where('user_id','=',Auth::user()->id)->get('nome');
+        $listaEmpresas = Cliente::where('user_id','=',Auth::user()->id)->distinct()->get('nome');
 
         return view('cliente.create', compact('estados', 'saoPaulo', 'listaEmpresas'));
     }
@@ -110,7 +110,7 @@ class ClienteController extends Controller
     public function edit(Cliente $cliente)
     {
         $estados = Estado::get();
-        $listaEmpresas = Cliente::where('user_id','=',Auth::user()->id)->get('nome');
+        $listaEmpresas = Cliente::where('user_id','=',Auth::user()->id)->distinct()->get('nome');
 
         $cliente->telefone = MascaraController::telefone($cliente->telefone);
 

@@ -60,7 +60,8 @@ class SoftwareController extends Controller
      */
     public function create()
     {
-        $clientes = Cliente::where('user_id','=',Auth::user()->id)->get();
+        $clientes = Cliente::where('user_id','=',Auth::user()->id)->where('status','=',true)->distinct()->get();
+        // dd($clientes);
 
         return view('software.create', compact('clientes'));
     }
