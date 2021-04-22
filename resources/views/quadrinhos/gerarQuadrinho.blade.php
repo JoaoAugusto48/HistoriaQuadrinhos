@@ -46,6 +46,9 @@
                 <button id="btn-utensilio" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#utensilio">
                     Objetos
                 </button>
+                <button id="btn-personagem" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#personagem">
+                    Personagens
+                </button>
             </div>
             @php
                 // para verificar se imagem repete ou não
@@ -94,6 +97,7 @@
 
     @include('quadrinhos.modal.balaoFala')
     @include('quadrinhos.modal.utensilio')
+    @include('quadrinhos.modal.personagem')
     @include('javascript.modal.selecionarItem')
 
 

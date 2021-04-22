@@ -7,6 +7,7 @@ use App\Models\Balao;
 use App\Models\Hq;
 use App\Http\Controllers\Gerencia\ArquivoController;
 use App\Http\Controllers\Gerencia\ValidarController;
+use App\Models\Personagem;
 use App\Models\Problematizar;
 use App\Models\Quadrinho;
 use App\Models\Situar;
@@ -43,11 +44,14 @@ class QuadrinhoController extends Controller
 
         $balaos = Balao::where('status','=', true)->get();
         $utensilios = Utensilio::where('status','=', true)->get();
+        $personagems = Personagem::where('status','=', true)
+            ->where('id','<>',$hq->personagem1_id)
+            ->where('id','<>',$hq->personagem2_id)->get();
 
         $caminho_imagem = ArquivoController::caminho_storage();
 
         return view('quadrinhos.gerarQuadrinho',
-            compact('hq', 'quadrinho', 'balaos', 'utensilios', 'caminho_imagem', 'faseQuadrinho'));
+            compact('hq', 'quadrinho', 'balaos', 'utensilios', 'personagems', 'caminho_imagem', 'faseQuadrinho'));
     }
 
     /**
