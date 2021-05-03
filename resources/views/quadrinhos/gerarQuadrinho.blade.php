@@ -10,6 +10,7 @@
         window.addEventListener("scroll", (event) => {
             let scroll = this.scrollY;
         });
+
     </script>
 
     <div class="container pt-1">
@@ -19,52 +20,80 @@
         <a class="btn btn-outline-dark" href="{{ route('hq.show', $hq->id) }}">
             <i class="fa fa-reply" aria-hidden="true"></i> Voltar
         </a>
-        <button class="btn btn-outline-dark ml-2" onclick="javascript:location.reload()"><i class="fa fa-undo" aria-hidden="true"></i> Recarregar</button>
+        <button class="btn btn-outline-dark ml-2" onclick="javascript:location.reload()"><i class="fa fa-undo"
+                aria-hidden="true"></i> Recarregar</button>
     </div>
-    <hr class="bg-dark"/>
+    <hr class="bg-dark" />
 
 
     <div class="p-3">
 
         <div class="form-group row">
-            <label for="nome" class="col-sm-12 col-form-label text-center"><span class="font-weight-bold">{{ $faseQuadrinho['fase'] }}</span> - {{ $faseQuadrinho['mensagem'] }}</label>
+            <label for="nome" class="col-sm-12 col-form-label text-center"><span
+                    class="font-weight-bold">{{ $faseQuadrinho['fase'] }}</span> -
+                {{ $faseQuadrinho['mensagem'] }}</label>
         </div>
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Fala do autor:</label>
             <div class="col-sm-8">
-                <input id="txt-titulo" type="text" class="form-control" name="titulo" maxlength="255" value="{{ $quadrinho->titulo }}" placeholder="Se o autor houver fala. Adicione-a aqui.">
+                <input id="txt-titulo" type="text" class="form-control" name="titulo" maxlength="255"
+                    value="{{ $quadrinho->titulo }}" placeholder="Se o autor houver fala. Adicione-a aqui.">
             </div>
         </div>
 
         <h3 class="text-center">Arraste os itens abaixo!</h3>
+
+        <div class="container mt-2 mb-2">
+            <div class="card">
+                <div class="card-header font-weight-bold">
+                    Status
+                </div>
+                <div class="card-body">
+                    <p class="card-text m-0 text-success">Conteúdo Correto</p>
+                    <p class="card-text m-0 text-warning">Conteúdo Relativamente Correto</p>
+                    <p class="card-text m-0 text-danger">Conteúdo Irregular</p>
+                </div>
+                <div class="card-footer text-muted p-3"></div>
+            </div>
+        </div>
+
 
         <div class="container">
             <div class="btn-group w-100 mb-0">
                 <button id="btn-balao" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#balao">
                     Balão de fala
                 </button>
-                <button id="btn-utensilio" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#utensilio">
+                <button id="btn-utensilio" type="button" class="btn btn-secondary" data-toggle="modal"
+                    data-target="#utensilio">
                     Objetos
                 </button>
-                <button id="btn-personagem" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#personagem">
+                <button id="btn-personagem" type="button" class="btn btn-secondary" data-toggle="modal"
+                    data-target="#personagem">
                     Personagens
                 </button>
             </div>
             @php
                 // para verificar se imagem repete ou não
-                $repeteX = ($hq->ambiente->repeteFundo) ? 'background-repeat: repeat-x' : '';
+                $repeteX = $hq->ambiente->repeteFundo ? 'background-repeat: repeat-x' : '';
             @endphp
-            <div class="container containerCustomizado" id="fundo" style="background-color: white; background-image: url('{{ $caminho_imagem.$hq->ambiente->fundo }}'); {{ $repeteX }}">
-                <div class="row" >
+            <div class="container containerCustomizado" id="fundo"
+                style="background-color: white; background-image: url('{{ $caminho_imagem . $hq->ambiente->fundo }}'); {{ $repeteX }}">
+                <div class="row">
                     <div class="col-12">
-                        <div class="col-9 acopla-imagens" id="acopla-imagens" style="display: flex; align-items: stretch; z-index:2">
+                        <div class="col-9 acopla-imagens" id="acopla-imagens"
+                            style="display: flex; align-items: stretch; z-index:2">
                             {{-- <div id="personagem1" class="arrastavel personagem personagem1" ondblclick="espelharImagem(event)" oncontextmenu="mostraBotoes(event)" style="z-index: 101; background-image: url('{{ $caminho_imagem.$hq->personagem1->personagem }}')">
                                 <button id="btnRotate" type="button" class="btn btn-dark operacoesPersonagem" style="display: none"><i class="fas fa-adjust"></i></button>
                             </div> --}}
-                            <div id="personagem1" class="arrastavel personagem personagem1" style="z-index: 101; background-image: url('{{ $caminho_imagem.$hq->personagem1->personagem }}')">
-                                <button type="button" class="btn btn-dark operacoesPersonagem" style="display: none"><i class="fas fa-adjust"></i></button>
+                            <div id="personagemImg" class="arrastavel personagem personagem1"
+                                style="z-index: 101; background-image: url('{{ $caminho_imagem . $hq->personagem1->personagem }}')">
+                                <button type="button" class="btn btn-dark operacoesPersonagem" style="display: none"><i
+                                        class="fas fa-adjust"></i></button>
                             </div>
-                            <div class="arrastavel personagem personagem2" ondblclick="espelharImagem(event)" style="z-index: 100; background-image: url('{{ $caminho_imagem.$hq->personagem2->personagem }}')"></div>
+                            <div id="personagemImg" class="arrastavel personagem personagem2"
+                                ondblclick="espelharImagem(event)"
+                                style="z-index: 100; background-image: url('{{ $caminho_imagem . $hq->personagem2->personagem }}')">
+                            </div>
                         </div>
 
                     </div>
@@ -75,7 +104,9 @@
         <div class="container" id="semEstilo">
             <div class="row">
                 <div class="col-12 mb-3">
-                    <button class="btn btn-success" onclick="baixaQuadrinho({{ $hq->id }}, {{ $quadrinho->id }})"><i class="fa fa-eye" aria-hidden="true"></i> Visualizar Quadrinho</button>
+                    <button class="btn btn-success"
+                        onclick="baixaQuadrinho({{ $hq->id }}, {{ $quadrinho->id }})"><i class="fa fa-eye"
+                            aria-hidden="true"></i> Visualizar Quadrinho</button>
                 </div>
             </div>
         </div>
@@ -83,10 +114,11 @@
         <div class="container" id="semEstilo">
             <div class="row">
                 <div class="col-12">
-                    <form action="{{ route('quadrinho.update', $quadrinho->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('quadrinho.update', $quadrinho->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        
+
                         <div id="output-quadrinho"></div>
                         <div id="titulo-escondido"></div>
                     </form>
@@ -100,5 +132,37 @@
     @include('quadrinhos.modal.personagem')
     @include('javascript.modal.selecionarItem')
 
+    <script>
+        let personagem = $("div[id^=personagemImg]").length;
+        let balao = $("div[id^=balaoMsg]").length;
+        let utensilio = $("div[id^=utensilioImg]").length;
+        let fundo = $("div[id^=fundo]").length;
+        
+        utensilio += fundo;
+        console.log("Personagem: "+personagem);
+        console.log("Balão: "+balao);
+        console.log("Utensilio: "+utensilio);
+        
+        document.getElementById("personagem").addEventListener("click",function(e) {
+            personagem = $("div[id^=personagemImg]").length;
+            console.log("Personagem: "+personagem);
+        });
+        // document.getElementById("personagemImg").addEventListener("contextmenu",function(e) {
+        //     personagem = $("div[id^=personagemImg]").length;
+        //     console.log(personagem);
+        // });
+        
+        document.getElementById("balao").addEventListener("click",function(e) {
+            balao = $("div[id^=balaoMsg]").length;
+            console.log("Balão: "+balao);
+        });
+
+        document.getElementById("utensilio").addEventListener("click",function(e) {
+            utensilio = $("div[id^=utensilioImg]").length;
+            utensilio += fundo;
+            console.log("Utensilio: "+utensilio);
+        });
+
+    </script>
 
 @endsection

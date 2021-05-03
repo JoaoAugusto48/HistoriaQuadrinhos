@@ -27,16 +27,16 @@
     //     // }
     // }
 
-    var teste = true;
+    let virarItem = true;
     function espelharImagem(e){
-        var imagem = e.target;
-        var transform;
-        if(teste){
+        let imagem = e.target;
+        let transform;
+        if(virarItem){
             transform = "scaleX(-1)";
-            teste = false;
+            virarItem = false;
         }else {
             transform = "scaleX(1)";
-            teste = true;
+            virarItem = true;
         }
 
         imagem.style.webkitTransform = transform;
