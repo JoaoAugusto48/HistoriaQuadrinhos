@@ -53,7 +53,7 @@
         for (let i = 0; i < radio_utensilio.length; i++) {
             const el = radio_utensilio[i];
             if(el.checked){
-                console.log(el);
+                // console.log(el);
                 let descricao = el.getAttribute("data-descricao");
                 let img = el.getAttribute("data-img");
                 utensilio.textContent = "Objeto Selecionado: ";

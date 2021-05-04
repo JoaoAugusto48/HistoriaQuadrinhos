@@ -138,7 +138,7 @@
         let utensilio = $("div[id^=utensilioImg]").length;
         let fundo = $("div[id^=fundo]").length;
         
-        utensilio += fundo;
+        // utensilio += fundo;
         console.log("Personagem: "+personagem);
         console.log("Balão: "+balao);
         console.log("Utensilio: "+utensilio);
@@ -159,7 +159,7 @@
 
         document.getElementById("utensilio").addEventListener("click",function(e) {
             utensilio = $("div[id^=utensilioImg]").length;
-            utensilio += fundo;
+            // utensilio += fundo;
             console.log("Utensilio: "+utensilio);
         });
 
