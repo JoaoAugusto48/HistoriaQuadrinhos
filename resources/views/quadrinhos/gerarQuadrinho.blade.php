@@ -137,32 +137,106 @@
         let balao = $("div[id^=balaoMsg]").length;
         let utensilio = $("div[id^=utensilioImg]").length;
         let fundo = $("div[id^=fundo]").length;
-        
+
         // utensilio += fundo;
-        console.log("Personagem: "+personagem);
-        console.log("Balão: "+balao);
-        console.log("Utensilio: "+utensilio);
-        
-        document.getElementById("personagem").addEventListener("click",function(e) {
+        console.log("Personagem: " + personagem);
+        console.log("Balão: " + balao);
+        console.log("Utensilio: " + utensilio);
+
+        document.getElementById("personagem").addEventListener("click", function(e) {
             personagem = $("div[id^=personagemImg]").length;
-            console.log("Personagem: "+personagem);
+            console.log("Personagem: " + personagem);
         });
         // document.getElementById("personagemImg").addEventListener("contextmenu",function(e) {
         //     personagem = $("div[id^=personagemImg]").length;
         //     console.log(personagem);
         // });
-        
-        document.getElementById("balao").addEventListener("click",function(e) {
+
+        document.getElementById("balao").addEventListener("click", function(e) {
             balao = $("div[id^=balaoMsg]").length;
-            console.log("Balão: "+balao);
+            console.log("Balão: " + balao);
         });
 
-        document.getElementById("utensilio").addEventListener("click",function(e) {
+        document.getElementById("utensilio").addEventListener("click", function(e) {
             utensilio = $("div[id^=utensilioImg]").length;
             // utensilio += fundo;
-            console.log("Utensilio: "+utensilio);
+            console.log("Utensilio: " + utensilio);
         });
 
+
+
+        function reconheceObjetosLuis() {
+            adicionaEventListenersLuis();
+            let objetosQuadrinho = document.getElementsByClassName('arrastavel');
+            let retorno = []; //analise de todos os objetos na tela
+            /*
+                tipoObjeto
+                1 = personagem
+                2 = objeto
+                3 = balao de fala
+            */
+
+            for (let i = 0; i < objetosQuadrinho.length; i++) {
+                let objeto = {
+                    posicaoCima: 0,
+                    posicaoBaixo: 0,
+                    posicaoDireita: 0,
+                    posicaoEsquerda: 0,
+                    posicaoX: 0,
+                    posicaoY: 0,
+                    imagemUrl: '',
+                    larguraProprioObjeto: 0,
+                    alturaProprioObjeto: 0,
+                    tipoObjeto: 0
+                }
+
+                let bounding = objetosQuadrinho[i].getBoundingClientRect();
+
+                objeto.posicaoCima = parseInt(bounding.top);
+                objeto.posicaoBaixo = parseInt(bounding.bottom);
+                objeto.posicaoDireita = parseInt(bounding.right);
+                objeto.posicaoEsquerda = parseInt(bounding.left);
+                objeto.posicaoX = parseInt(bounding.x);
+                objeto.posicaoY = parseInt(bounding.y);
+                objeto.larguraProprioObjeto = objetosQuadrinho[i].offsetWidth;
+                objeto.alturaProprioObjeto = objetosQuadrinho[i].offsetHeight;
+                objeto.imagemUrl = objetosQuadrinho[i].style.backgroundImage;
+
+                if (objetosQuadrinho[i].id == 'personagemImg') {
+                    objeto.tipoObjeto = 1;
+                }
+
+                if (objetosQuadrinho[i].id == 'utensilioImg') {
+                    objeto.tipoObjeto = 2;
+                }
+
+                if (objetosQuadrinho[i].id == 'balaoMsg') {
+                    objeto.tipoObjeto = 3;
+                }
+
+                retorno.push(objeto);
+
+            }
+
+
+            console.log(retorno);
+        }
+
+        //deve ser chamada na criação do objeto e ao inicializar a página
+        function adicionaEventListenersLuis() {
+
+            let objetosQuadrinho = document.getElementsByClassName('arrastavel');
+
+            for (let i = 0; i < objetosQuadrinho.length; i++) {
+                // objetosQuadrinho[i].removeEventListener('blur', function(){}, false);
+                objetosQuadrinho[i].addEventListener('click', reconheceObjetosLuis);
+            }
+        }
+
+        adicionaEventListenersLuis();
+        // setInterval(function(){ reconheceObjetosLuis() }, 3000);
+
     </script>
+
 
 @endsection
