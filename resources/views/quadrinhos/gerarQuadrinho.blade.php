@@ -43,20 +43,7 @@
 
         <h3 class="text-center">Arraste os itens abaixo!</h3>
 
-        <div class="container mt-2 mb-2">
-            <div class="card">
-                <div class="card-header font-weight-bold">
-                    Status
-                </div>
-                <div class="card-body">
-                    <p class="card-text m-0 text-success">Conteúdo Correto</p>
-                    <p class="card-text m-0 text-warning">Conteúdo Relativamente Correto</p>
-                    <p class="card-text m-0 text-danger">Conteúdo Irregular</p>
-                </div>
-                <div class="card-footer text-muted p-3"></div>
-            </div>
-        </div>
-
+        @include('quadrinhos.cardStatus')
 
         <div class="container">
             <div class="btn-group w-100 mb-0">
@@ -105,7 +92,7 @@
             <div class="row">
                 <div class="col-12 mb-3">
                     <button class="btn btn-success"
-                        onclick="baixaQuadrinho({{ $hq->id }}, {{ $quadrinho->id }})"><i class="fa fa-eye"
+                        onclick="baixaQuadrinho({{ $hq->id }}, {{ $quadrinho->id }})" id="baixar"><i class="fa fa-eye"
                             aria-hidden="true"></i> Visualizar Quadrinho</button>
                 </div>
             </div>
@@ -235,7 +222,22 @@
 
         adicionaEventListenersLuis();
         // setInterval(function(){ reconheceObjetosLuis() }, 3000);
+        
+        // para mostrar a mensagem
+        let mensagem = document.getElementById("resposta");
+        let texto = document.createElement("p");
+        texto.classList.add("card-text");
+        texto.classList.add("m-0");
+        texto.classList.add("text-success");
+        console.log(mensagem);
+        mensagem.appendChild(texto);
+        texto.innerHTML = "Isso é um teste de Sucesso";
 
+        // para não permitir o uso do botão
+        if(personagem > utensilio){
+        let baixarQuadrinho = document.getElementById("baixar");
+            baixarQuadrinho.disabled = true;
+        }
     </script>
 
 
