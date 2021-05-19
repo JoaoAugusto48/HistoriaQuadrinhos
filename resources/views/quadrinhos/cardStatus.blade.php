@@ -4,7 +4,9 @@
             Status
         </div>
         <div class="card-body">
-            <div id="resposta"></div>
+            <div id="resposta">
+                Aguardando alterações
+            </div>
         </div>
         <div class="card-footer text-muted p-3"></div>
     </div>

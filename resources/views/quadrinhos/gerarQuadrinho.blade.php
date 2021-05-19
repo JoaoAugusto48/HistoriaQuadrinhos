@@ -20,8 +20,9 @@
         <a class="btn btn-outline-dark" href="{{ route('hq.show', $hq->id) }}">
             <i class="fa fa-reply" aria-hidden="true"></i> Voltar
         </a>
-        <button class="btn btn-outline-dark ml-2" onclick="javascript:location.reload()"><i class="fa fa-undo"
-                aria-hidden="true"></i> Recarregar</button>
+        <button class="btn btn-outline-dark ml-2" onclick="javascript:location.reload()">
+            <i class="fa fa-undo" aria-hidden="true"></i> Recarregar
+        </button>
     </div>
     <hr class="bg-dark" />
 
@@ -152,8 +153,8 @@
 
 
 
-        function reconheceObjetosLuis() {
-            adicionaEventListenersLuis();
+        function reconheceObjetos() {
+            adicionaEventListeners();
             let objetosQuadrinho = document.getElementsByClassName('arrastavel');
             let retorno = []; //analise de todos os objetos na tela
             /*
@@ -204,39 +205,56 @@
                 retorno.push(objeto);
 
             }
-
+            
+            mensagemRetorno();
 
             console.log(retorno);
         }
 
         //deve ser chamada na criação do objeto e ao inicializar a página
-        function adicionaEventListenersLuis() {
+        function adicionaEventListeners() {
 
             let objetosQuadrinho = document.getElementsByClassName('arrastavel');
 
             for (let i = 0; i < objetosQuadrinho.length; i++) {
                 // objetosQuadrinho[i].removeEventListener('blur', function(){}, false);
-                objetosQuadrinho[i].addEventListener('click', reconheceObjetosLuis);
+                objetosQuadrinho[i].addEventListener('click', reconheceObjetos);
             }
+
+            // evento para verificar texto do narrador
+            let narrador = document.getElementById('txt-titulo');
+            narrador.addEventListener('input', function(){
+                let textoNarrador = false;
+                if(narrador.value.length > 0){
+                    textoNarrador = true;
+                }
+                // console.log(textoNarrador);
+            });
+            
         }
 
-        adicionaEventListenersLuis();
-        // setInterval(function(){ reconheceObjetosLuis() }, 3000);
+        adicionaEventListeners();
+        // setInterval(function(){ reconheceObjetos() }, 3000);
         
-        // para mostrar a mensagem
-        let mensagem = document.getElementById("resposta");
-        let texto = document.createElement("p");
-        texto.classList.add("card-text");
-        texto.classList.add("m-0");
-        texto.classList.add("text-success");
-        console.log(mensagem);
-        mensagem.appendChild(texto);
-        texto.innerHTML = "Isso é um teste de Sucesso";
+        function mensagemRetorno(){
+            // para retornar a mensagem ao usuário
 
-        // para não permitir o uso do botão
-        if(personagem > utensilio){
-        let baixarQuadrinho = document.getElementById("baixar");
-            baixarQuadrinho.disabled = true;
+            // para mostrar a mensagem
+            let mensagem = document.getElementById("resposta");
+            mensagem.innerHTML = null;
+            let texto = document.createElement("p");
+            texto.classList.add("card-text");
+            texto.classList.add("m-0");
+            texto.classList.add("text-success");
+            console.log(mensagem);
+            mensagem.appendChild(texto);
+            texto.innerHTML = "Isso é um teste de Sucesso";
+
+            // para não permitir o uso do botão
+            if(personagem > utensilio){
+                let baixarQuadrinho = document.getElementById("baixar");
+                baixarQuadrinho.disabled = true;
+            }
         }
     </script>
 
