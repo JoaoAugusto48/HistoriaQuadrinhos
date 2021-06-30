@@ -19,8 +19,6 @@ $(document).ready(() => {
 // Estado inicial da página
 function inicializarAplicacao() {
 
-    let acopladorImagens = document.querySelector('.acopla-imagens');
-
     $(".arrastavel").draggable({
         containment: "#fundo",
         scroll: false
@@ -45,8 +43,6 @@ function inicializarAplicacao() {
 
 function colocarBalao() {
 
-    let acopladorImagens = document.querySelector('.acopla-imagens');
-
     $(".arrastavel").draggable({
         containment: "#fundo",
         scroll: false
@@ -63,8 +59,6 @@ function colocarBalao() {
 
 function colocarPersonagem() {
 
-    let acopladorImagens = document.querySelector('.acopla-imagens');
-
     $(".arrastavel").draggable({
         containment: "#fundo",
         scroll: false
@@ -80,8 +74,6 @@ function colocarPersonagem() {
 }
 
 function colocarUtensilio() {
-
-    let acopladorImagens = document.querySelector('.acopla-imagens');
 
     $(".arrastavel").draggable({
         containment: "#fundo",
@@ -154,7 +146,6 @@ function imprimeDiv(div, hqId, quadrinhoId) {
 
             // ("#output-quadrinho").append('<form action=""></form>');$
             $("#output-quadrinho").append('<button type="submit" class="btn btn-success m-3"><i class="fa fa-download" aria-hidden="true"></i> Salvar</button>');
-
 
         }
     });

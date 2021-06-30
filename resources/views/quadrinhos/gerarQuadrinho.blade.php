@@ -10,7 +10,6 @@
         window.addEventListener("scroll", (event) => {
             let scroll = this.scrollY;
         });
-
     </script>
 
     <div class="container pt-1">
@@ -26,13 +25,13 @@
     </div>
     <hr class="bg-dark" />
 
-
     <div class="p-3">
-
         <div class="form-group row">
-            <label for="nome" class="col-sm-12 col-form-label text-center"><span
-                    class="font-weight-bold">{{ $faseQuadrinho['fase'] }}</span> -
-                {{ $faseQuadrinho['mensagem'] }}</label>
+            <label for="nome" class="col-sm-12 col-form-label text-center">
+                <span class="font-weight-bold">{{ $faseQuadrinho['fase'] }}</span>
+                -
+                {{ $faseQuadrinho['mensagem'] }}
+            </label>
         </div>
         <div class="form-group row">
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Fala do autor:</label>
@@ -60,15 +59,17 @@
                     Personagens
                 </button>
             </div>
+
             @php
                 // para verificar se imagem repete ou não
                 $repeteX = $hq->ambiente->repeteFundo ? 'background-repeat: repeat-x' : '';
             @endphp
-            <div class="container containerCustomizado" id="fundo"
+
+            <div class="container containerCustomizado p-0" id="fundo"
                 style="background-color: white; background-image: url('{{ $caminho_imagem . $hq->ambiente->fundo }}'); {{ $repeteX }}">
                 <div class="row">
                     <div class="col-12">
-                        <div class="col-9 acopla-imagens" id="acopla-imagens"
+                        <div class="acopla-imagens" id="acopla-imagens"
                             style="display: flex; align-items: stretch; z-index:2">
                             {{-- <div id="personagem1" class="arrastavel personagem personagem1" ondblclick="espelharImagem(event)" oncontextmenu="mostraBotoes(event)" style="z-index: 101; background-image: url('{{ $caminho_imagem.$hq->personagem1->personagem }}')">
                                 <button id="btnRotate" type="button" class="btn btn-dark operacoesPersonagem" style="display: none"><i class="fas fa-adjust"></i></button>
@@ -76,7 +77,8 @@
                             <div id="personagemImg" class="arrastavel personagem personagem1"
                                 style="z-index: 101; background-image: url('{{ $caminho_imagem . $hq->personagem1->personagem }}')">
                                 <button type="button" class="btn btn-dark operacoesPersonagem" style="display: none"><i
-                                        class="fas fa-adjust"></i></button>
+                                        class="fas fa-adjust"></i>
+                                </button>
                             </div>
                             <div id="personagemImg" class="arrastavel personagem personagem2"
                                 ondblclick="espelharImagem(event)"
@@ -88,13 +90,17 @@
                 </div>
             </div>
         </div>
-        <br>
-        <div class="container" id="semEstilo">
+
+        @include('quadrinhos.cardMensagens')
+
+        <div class="container mt-2" id="semEstilo">
             <div class="row">
                 <div class="col-12 mb-3">
-                    <button class="btn btn-success"
-                        onclick="baixaQuadrinho({{ $hq->id }}, {{ $quadrinho->id }})" id="baixar"><i class="fa fa-eye"
-                            aria-hidden="true"></i> Visualizar Quadrinho</button>
+                    <button class="btn btn-success" onclick="baixaQuadrinho({{ $hq->id }}, {{ $quadrinho->id }})"
+                        id="baixar">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        Visualizar Quadrinho
+                    </button>
                 </div>
             </div>
         </div>
@@ -135,10 +141,6 @@
             personagem = $("div[id^=personagemImg]").length;
             console.log("Personagem: " + personagem);
         });
-        // document.getElementById("personagemImg").addEventListener("contextmenu",function(e) {
-        //     personagem = $("div[id^=personagemImg]").length;
-        //     console.log(personagem);
-        // });
 
         document.getElementById("balao").addEventListener("click", function(e) {
             balao = $("div[id^=balaoMsg]").length;
@@ -165,6 +167,7 @@
             */
 
             for (let i = 0; i < objetosQuadrinho.length; i++) {
+
                 let objeto = {
                     posicaoCima: 0,
                     posicaoBaixo: 0,
@@ -205,10 +208,10 @@
                 retorno.push(objeto);
 
             }
-            
-            mensagemRetorno();
 
-            console.log(retorno);
+            mensagemRetorno(retorno);
+
+            // console.log(retorno);
         }
 
         //deve ser chamada na criação do objeto e ao inicializar a página
@@ -223,21 +226,46 @@
 
             // evento para verificar texto do narrador
             let narrador = document.getElementById('txt-titulo');
-            narrador.addEventListener('input', function(){
+            narrador.addEventListener('input', function() {
                 let textoNarrador = false;
-                if(narrador.value.length > 0){
+                if (narrador.value.length > 0) {
                     textoNarrador = true;
                 }
                 // console.log(textoNarrador);
             });
-            
+
         }
 
         adicionaEventListeners();
         // setInterval(function(){ reconheceObjetos() }, 3000);
-        
-        function mensagemRetorno(){
+
+
+        // observações
+        // Não pode ter 'comunicação' sem personagems
+        // objetos são aceitos em todos os casos, a menos que não tenha nada, deve ter título no quadrinho
+        // personagens são aceitos em todos os casos, caso não tenha balão de fala, deve ter ao menos fala do narrador
+        // balões, é necessário que tenha ao menos um personagem para que possa ser aceito
+        function mensagemRetorno(items) {
+            // let canvasHeight = 500;
+
+            // console.log(canvasHeight)
+
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].posicaoY < 75 && items[i].tipoObjeto == 1) {
+                    console.log("Lançar Warning")
+                }
+            }
+
             // para retornar a mensagem ao usuário
+            console.log(items);
+
+            estadoQuadrinho();
+        }
+
+
+        // para mostrar o atual estado da HQ, responsável pela validação do botão de salvar
+        function estadoQuadrinho() {
+            // Para retornar os estados dos items ao usuário
 
             // para mostrar a mensagem
             let mensagem = document.getElementById("resposta");
@@ -246,15 +274,16 @@
             texto.classList.add("card-text");
             texto.classList.add("m-0");
             texto.classList.add("text-success");
-            console.log(mensagem);
+            // console.log(mensagem); //retirar
             mensagem.appendChild(texto);
             texto.innerHTML = "Isso é um teste de Sucesso";
 
             // para não permitir o uso do botão
-            if(personagem > utensilio){
+            if (personagem > utensilio) {
                 let baixarQuadrinho = document.getElementById("baixar");
                 baixarQuadrinho.disabled = true;
             }
+
         }
     </script>
 
