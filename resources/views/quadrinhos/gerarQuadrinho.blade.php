@@ -181,6 +181,7 @@
                     posicaoDireita: 0,
                     posicaoEsquerda: 0,
                     posicaoX: 0,
+                    // posicaoY = verifica em relação ao meio da tela   
                     posicaoY: 0,
                     imagemUrl: '',
                     larguraProprioObjeto: 0,
@@ -188,6 +189,7 @@
                     tipoObjeto: 0
                 }
 
+                // erro com o bounding, ele está considerando a altura da tela
                 let bounding = objetosQuadrinho[i].getBoundingClientRect();
 
                 objeto.posicaoCima = parseInt(bounding.top);
@@ -228,7 +230,7 @@
 
             for (let i = 0; i < objetosQuadrinho.length; i++) {
                 // objetosQuadrinho[i].removeEventListener('blur', function(){}, false);
-                objetosQuadrinho[i].addEventListener('mousedown', reconheceObjetos);
+                objetosQuadrinho[i].addEventListener('mouseup', reconheceObjetos);
             }
 
             // evento para verificar texto do narrador
@@ -253,11 +255,12 @@
         // personagens são aceitos em todos os casos, caso não tenha balão de fala, deve ter ao menos fala do narrador
         // balões, é necessário que tenha ao menos um personagem para que possa ser aceito
         function mensagemRetorno(items) {
-            // let canvasHeight = 500;
+            let canvasHeight = 500;
 
             // console.log(canvasHeight)
 
             for (let i = 0; i < items.length; i++) {
+                console.log(items[i].posicaoCima);
                 if (items[i].posicaoY < 75 && items[i].tipoObjeto == 1) {
                     console.log("Lançar Warning")
                 }
