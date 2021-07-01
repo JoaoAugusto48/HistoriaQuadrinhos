@@ -127,12 +127,17 @@
     @include('javascript.modal.selecionarItem')
 
     <script>
+        // botão de visualização do quadrinho
+        let btnVisualizarQuadrinho = document.getElementById("baixar");
+
+
+        // variáveis para selecionar os items que possuem esses atributos
         let personagem = $("div[id^=personagemImg]").length;
         let balao = $("div[id^=balaoMsg]").length;
         let utensilio = $("div[id^=utensilioImg]").length;
         let fundo = $("div[id^=fundo]").length;
 
-        // utensilio += fundo;
+        // console para mostrar os valores
         console.log("Personagem: " + personagem);
         console.log("Balão: " + balao);
         console.log("Utensilio: " + utensilio);
@@ -140,24 +145,26 @@
         document.getElementById("personagem").addEventListener("click", function(e) {
             personagem = $("div[id^=personagemImg]").length;
             console.log("Personagem: " + personagem);
+            adicionaEventListeners();
         });
 
         document.getElementById("balao").addEventListener("click", function(e) {
             balao = $("div[id^=balaoMsg]").length;
             console.log("Balão: " + balao);
+            adicionaEventListeners();
         });
 
         document.getElementById("utensilio").addEventListener("click", function(e) {
             utensilio = $("div[id^=utensilioImg]").length;
-            // utensilio += fundo;
             console.log("Utensilio: " + utensilio);
+            adicionaEventListeners();
         });
-
-
 
         function reconheceObjetos() {
             adicionaEventListeners();
+            // objeto para colocar os items no array
             let objetosQuadrinho = document.getElementsByClassName('arrastavel');
+            
             let retorno = []; //analise de todos os objetos na tela
             /*
                 tipoObjeto
@@ -204,14 +211,14 @@
                 if (objetosQuadrinho[i].id == 'balaoMsg') {
                     objeto.tipoObjeto = 3;
                 }
-
+                
                 retorno.push(objeto);
 
             }
 
             mensagemRetorno(retorno);
 
-            // console.log(retorno);
+            console.log(retorno);
         }
 
         //deve ser chamada na criação do objeto e ao inicializar a página
@@ -221,7 +228,7 @@
 
             for (let i = 0; i < objetosQuadrinho.length; i++) {
                 // objetosQuadrinho[i].removeEventListener('blur', function(){}, false);
-                objetosQuadrinho[i].addEventListener('click', reconheceObjetos);
+                objetosQuadrinho[i].addEventListener('mousedown', reconheceObjetos);
             }
 
             // evento para verificar texto do narrador
@@ -257,7 +264,7 @@
             }
 
             // para retornar a mensagem ao usuário
-            console.log(items);
+            // console.log(items);
 
             estadoQuadrinho();
         }
@@ -280,10 +287,19 @@
 
             // para não permitir o uso do botão
             if (personagem > utensilio) {
-                let baixarQuadrinho = document.getElementById("baixar");
-                baixarQuadrinho.disabled = true;
+                desabilitaBotao()
             }
 
+        }
+
+        // para desabilitar o botão de visualização do quadrinho
+        function desabilitaBotao() {
+            btnVisualizarQuadrinho.disabled = true;
+        }
+
+        // para habilitar o botão de visualização do quadrinho
+        function habilitaBotao() {
+            btnVisualizarQuadrinho.disabled = false;
         }
     </script>
 
