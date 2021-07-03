@@ -129,6 +129,7 @@
     <script>
         // botão de visualização do quadrinho
         let btnVisualizarQuadrinho = document.getElementById("baixar");
+        // pegar a posição da tela 
 
 
         // variáveis para selecionar os items que possuem esses atributos
@@ -160,11 +161,14 @@
             adicionaEventListeners();
         });
 
+        var elementTop = document.getElementById('fundo').offsetTop;
+        console.log(elementTop);
+
         function reconheceObjetos() {
             adicionaEventListeners();
             // objeto para colocar os items no array
             let objetosQuadrinho = document.getElementsByClassName('arrastavel');
-            
+
             let retorno = []; //analise de todos os objetos na tela
             /*
                 tipoObjeto
@@ -190,10 +194,13 @@
                 }
 
                 // erro com o bounding, ele está considerando a altura da tela
+                // let bounding = objetosQuadrinho[i].getBoundingClientRect();
                 let bounding = objetosQuadrinho[i].getBoundingClientRect();
+                console.log('item dentro canvas: ' +objetosQuadrinho[i].offsetTop);
 
-                objeto.posicaoCima = parseInt(bounding.top);
-                objeto.posicaoBaixo = parseInt(bounding.bottom);
+                // objeto.posicaoCima = parseInt(bounding.top);
+                objeto.posicaoCima = parseInt(objetosQuadrinho[i].offsetTop);
+                objeto.posicaoBaixo = parseInt(objetosQuadrinho[i].offsetTop + objetosQuadrinho[i].offsetWidth);
                 objeto.posicaoDireita = parseInt(bounding.right);
                 objeto.posicaoEsquerda = parseInt(bounding.left);
                 objeto.posicaoX = parseInt(bounding.x);
@@ -213,7 +220,7 @@
                 if (objetosQuadrinho[i].id == 'balaoMsg') {
                     objeto.tipoObjeto = 3;
                 }
-                
+
                 retorno.push(objeto);
 
             }
