@@ -37,7 +37,8 @@
             <label for="nome" class="col-sm-2 col-form-label text-right font-weight-bold">Fala do autor:</label>
             <div class="col-sm-8">
                 <input id="txt-titulo" type="text" class="form-control" name="titulo" maxlength="255"
-                    value="{{ $quadrinho->titulo }}" placeholder="Se o autor houver fala. Adicione-a aqui.">
+                    value="{{ $quadrinho->titulo }}" placeholder="Se o autor houver fala. Adicione-a aqui."
+                    onkeyup="inputNarrador(this)">
             </div>
         </div>
 
@@ -129,14 +130,28 @@
     <script>
         // botão de visualização do quadrinho
         let btnVisualizarQuadrinho = document.getElementById("baixar");
+        // altura do canvas -> usado em "mensagemRetorno"
+        let canvasHeight = document.getElementById('fundo').offsetHeight;
         // pegar a posição da tela 
+
+        // evento para verificar texto do narrador
+        let narrador = document.getElementById('txt-titulo');
+        // narrador.addEventListener('input', inputNarrador());
+
+        function inputNarrador(narrador) {
+            let textoNarrador = false;
+            if (narrador.value.length > 0) {
+                textoNarrador = true;
+            }
+            return textoNarrador;
+        }
 
 
         // variáveis para selecionar os items que possuem esses atributos
         let personagem = $("div[id^=personagemImg]").length;
         let balao = $("div[id^=balaoMsg]").length;
-        let utensilio = $("div[id^=utensilioImg]").length;
-        let fundo = $("div[id^=fundo]").length;
+        let fundo = $("div[id^=fundo]").length; // fundo é um utensilio
+        let utensilio = $("div[id^=utensilioImg]").length + fundo;
 
         // console para mostrar os valores
         console.log("Personagem: " + personagem);
@@ -161,8 +176,8 @@
             adicionaEventListeners();
         });
 
-        var elementTop = document.getElementById('fundo').offsetTop;
-        console.log(elementTop);
+        // var elementTop = document.getElementById('fundo').offsetTop;
+        // console.log(elementTop);
 
         function reconheceObjetos() {
             adicionaEventListeners();
@@ -196,11 +211,11 @@
                 // erro com o bounding, ele está considerando a altura da tela
                 // let bounding = objetosQuadrinho[i].getBoundingClientRect();
                 let bounding = objetosQuadrinho[i].getBoundingClientRect();
-                console.log('item dentro canvas: ' +objetosQuadrinho[i].offsetTop);
+                // console.log('item dentro canvas: ' +objetosQuadrinho[i].offsetTop);
 
                 // objeto.posicaoCima = parseInt(bounding.top);
                 objeto.posicaoCima = parseInt(objetosQuadrinho[i].offsetTop);
-                objeto.posicaoBaixo = parseInt(objetosQuadrinho[i].offsetTop + objetosQuadrinho[i].offsetWidth);
+                objeto.posicaoBaixo = parseInt(objetosQuadrinho[i].offsetTop + objetosQuadrinho[i].offsetHeight);
                 objeto.posicaoDireita = parseInt(bounding.right);
                 objeto.posicaoEsquerda = parseInt(bounding.left);
                 objeto.posicaoX = parseInt(bounding.x);
@@ -240,16 +255,6 @@
                 objetosQuadrinho[i].addEventListener('mouseup', reconheceObjetos);
             }
 
-            // evento para verificar texto do narrador
-            let narrador = document.getElementById('txt-titulo');
-            narrador.addEventListener('input', function() {
-                let textoNarrador = false;
-                if (narrador.value.length > 0) {
-                    textoNarrador = true;
-                }
-                // console.log(textoNarrador);
-            });
-
         }
 
         adicionaEventListeners();
@@ -262,13 +267,52 @@
         // personagens são aceitos em todos os casos, caso não tenha balão de fala, deve ter ao menos fala do narrador
         // balões, é necessário que tenha ao menos um personagem para que possa ser aceito
         function mensagemRetorno(items) {
-            let canvasHeight = 500;
+            // console.log(canvasHeight); // Altura do Canvas
 
-            // console.log(canvasHeight)
+            let personagems = [];
+            let objetos = [];
+            let balao = [];
 
             for (let i = 0; i < items.length; i++) {
-                console.log(items[i].posicaoCima);
-                if (items[i].posicaoY < 75 && items[i].tipoObjeto == 1) {
+                if (items[i].tipoObjeto == 1) {
+                    personagems.push(items[i]);
+                } else
+                if (items[i].tipoObjeto == 2) {
+                    objetos.push(items[i])
+                } else {
+                    balao.push(items[i]);
+                }
+            }
+
+            console.log(personagems.length);
+            console.log(objetos.length + fundo);
+            console.log(balao.length);
+
+
+            // para testar se o narrador tem valor
+            let narrador = inputNarrador(document.getElementById('txt-titulo'));
+
+            let warning = false;
+            let danger = false;
+
+            if (!narrador && (personagems.length == 0)) {
+                console.log('não pode');
+                // precisa ter o narrador ou personagens
+            }
+            
+            if (!narrador && (balao.length == 0)) {
+                console.log('não pode');
+                // é preciso que tenha algum tipo de comunicação com o leitor
+            }
+
+            if((personagem.length == 0) && (balao.length > 1)){
+                console.log('não pode');
+                // se não tiver personagem não pode ter balão
+            }
+
+            for (let i = 0; i < items.length; i++) {
+                // console.log(items[i].posicaoCima);
+                if (items[i].posicaoBaixo < (canvasHeight - 150) && items[i].tipoObjeto == 1) {
                     console.log("Lançar Warning")
                 }
             }
