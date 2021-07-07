@@ -1,149 +1,157 @@
 .color-background {
-  background-color: #dcdcdc;
+    background-color: #dcdcdc;
 }
 
 .cor-azul-escuro {
-  background-color: #212052;
+    background-color: #212052;
 }
 
+
 /* HIDE RADIO */
+
 .card-img-top {
-  width: 100%;
-  height: 15vw;
-  object-fit: scale-down;
+    width: 100%;
+    height: 15vw;
+    object-fit: scale-down;
 }
 
 .hiddenradio [type=radio] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
+
 /* IMAGE STYLES */
-.hiddenradio [type=radio] + img {
-  cursor: pointer;
+
+.hiddenradio [type=radio]+img {
+    cursor: pointer;
 }
 
 .img-btn {
-  border: 2px solid white;
-  width: auto;
-  height: 50px;
-  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    border: 2px solid white;
+    width: auto;
+    height: 50px;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .img-tooltip {
-  width: auto;
-  height: 100px;
-  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    width: auto;
+    height: 100px;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .card-checked {
-  border: 4px solid rgba(41, 142, 167, 1);
-  -webkit-transition: border-color .8s linear; /* Saf3.2+, Chrome */
-  -moz-transition: border-color .8s linear; /* FF3.7+ */
-  -o-transition: border-color .8s linear; /* Opera 10.5 */
-  transition: border-color .8s linear;
-  -webkit-transition: transform 0.3s 0s ease;
-  -moz-transition: transform 0.3s 0s ease;
-  -o-transition: transform 0.3s 0s ease;
-  transition: transform 0.3s 0s ease;
-  box-shadow: 1px 1px 1px grey;
+    border: 4px solid rgba(41, 142, 167, 1);
+    -webkit-transition: border-color .8s linear;
+    /* Saf3.2+, Chrome */
+    -moz-transition: border-color .8s linear;
+    /* FF3.7+ */
+    -o-transition: border-color .8s linear;
+    /* Opera 10.5 */
+    transition: border-color .8s linear;
+    -webkit-transition: transform 0.3s 0s ease;
+    -moz-transition: transform 0.3s 0s ease;
+    -o-transition: transform 0.3s 0s ease;
+    transition: transform 0.3s 0s ease;
+    box-shadow: 1px 1px 1px grey;
 }
 
 .card-img-personagens {
-  width: auto;
-  height: 212px;
+    width: auto;
+    height: 212px;
 }
 
 .card-img-ambiente {
-  width: 425px;
-  height: auto !important;
+    width: 425px;
+    height: auto !important;
 }
 
 .numeroPagina {
-  -webkit-text-stroke: 1px #cecece; /* width and color */
-  font-weight: bold;
-  color: black;
-  font-size: 20px;
+    -webkit-text-stroke: 1px #cecece;
+    /* width and color */
+    font-weight: bold;
+    color: black;
+    font-size: 20px;
 }
 
 .marginDoTopo {
-  position: absolute;
-  margin-top: -20px !important;
+    position: absolute;
+    margin-top: -20px !important;
 }
 
 .balaoContent {
-  border: none !important;
-  padding: 10px !important;
+    border: none !important;
+    padding: 10px !important;
 }
 
 .balaoContent:focus {
-  outline: none !important;
+    outline: none !important;
 }
 
 .balaoQuadrinho {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .textareaQuadrinho {
-  background:transparent;
-  height:50px;
-  border:none;
-  outline:none;
-  padding:5px;
-  margin: 0px 0px 0px 0px;
-  resize: none;
-  width:80%;
-  height:50%;
-  overflow-y: hidden;
-  line-height:15px;
-  font-size:14px;
+    background: transparent;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    margin: 0px 0px 0px 0px;
+    resize: none;
+    width: 80%;
+    height: 50%;
+    overflow-y: hidden;
+    line-height: 15px;
+    font-size: 14px;
 }
 
 .rounded-top-0 {
-  border-top-left-radius: 0!important;
-  border-top-right-radius: 0!important;
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
 }
-
 
 .scrolltop {
-	display:none;
-	width:100%;
-	margin:0 auto;
-	position:fixed;
-	bottom:20px;
-	right:10px;
+    display: none;
+    width: 100%;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
 }
+
 .scroll {
-	position:absolute;
-	right:10px;
-	bottom:0px;
-	background: #343a40;
-    color:white;
+    position: absolute;
+    right: 10px;
+    bottom: 0px;
+    background: #343a40;
+    color: white;
     padding: 15px 20px 15px 20px;
-	text-align: center;
-	margin: 0 0 0 0;
-	cursor:pointer;
-	transition: 0.5s;
-	-moz-transition: 0.5s;
-	-webkit-transition: 0.5s;
+    text-align: center;
+    margin: 0 0 0 0;
+    cursor: pointer;
+    transition: 0.5s;
+    -moz-transition: 0.5s;
+    -webkit-transition: 0.5s;
     -o-transition: 0.5s;
     border-radius: 100%;
     border: 1px solid #17a2b8;
-
 }
+
 .scroll:hover {
     background: #000000;
-	transition: 0.5s;
-	-moz-transition: 0.5s;
-	-webkit-transition: 0.5s;
+    transition: 0.5s;
+    -moz-transition: 0.5s;
+    -webkit-transition: 0.5s;
     -o-transition: 0.5s;
     color: #17a2b8;
     transform: scale(1.1);

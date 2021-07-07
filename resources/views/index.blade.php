@@ -13,37 +13,35 @@
     <hr class="bg-dark mt-0"/>
 
     @if ($softwares->count() > 0)
-        <table class="table table-sm table-striped text-center" style="border: 3px solid black;">
+        {{-- <table class="table table-sm table-striped text-center " style="border: 3px solid black;"> --}}
+        <table class="table table-sm table-borderless table-hover table-striped text-center border border-dark">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col" title="Título do Software">Título</th>
-                    <th scope="col" title="Estimativa de Entrega">Est. Entrega</th>
-                    <th scope="col" title="Informações de contato">Inf. Contato</th>
-                    <th scope="col" title="Manipulações possíveis">Operações</th>
+                    <th scope="col" class="col-2" title="Título do Software">Título</th>
+                    <th scope="col" class="col-3" title="Estimativa de Entrega">Est. Entrega</th>
+                    <th scope="col" class="col-3" title="Informações de contato">Inf. Contato</th>
+                    <th scope="col" class="col-4" title="Manipulações possíveis">Operações</th>
                 </tr>
             </thead>
             <tbody>
             @foreach ($softwares as $software)
-                <tr style="border-bottom: 2px solid #555;">
+                <tr class="border border-dark">
                     <th class="align-middle" scope="row" style="max-width: 35ch;">
-                        <span class="font-weight-bold">{{ $software->descricao }}</span>
-                        <br>
-                        <span class="font-italic">
+                        <p class="m-0 font-weight-bold">{{ $software->descricao }}</p>
+                        <p class="m-0 font-weight-bold font-italic text-muted">
                             {{$software->cliente->nome}}
-                        </span>
+                        </p>
                     </th>
                     <td class="align-middle">
-                        {{ $software->prazo }}
-                        <br>
-                        <span class="font-italic">
+                        <p class="m-0">{{ $software->prazo }}</p>
+                        <p class="m-0 font-italic text-muted">
                             {{-- ( dias que faltam / finalizado ) --}}
                             {{$software->difPrazo}} dias
-                        </span>
+                        </p>
                     </td>
                     <td class="align-middle">
-                        {{$software->cliente->email}}
-                        <br>
-                        {{$software->cliente->telefone}}
+                        <p class="m-0">{{$software->cliente->email}}</p>
+                        <p class="m-0">{{$software->cliente->telefone}}</p>
                     </td>
                     <td class="align-middle">
                         <div class="btn-group" role="group">
