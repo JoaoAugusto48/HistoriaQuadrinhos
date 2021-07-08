@@ -6,19 +6,10 @@
         </div>
         <div class="card-body bg-dark text-white pt-2 pb-2 pl-3">
             <div id="resultados">
-                Aguardando alterações
-                <p class="mb-0 text-success">
-                    <i class="fas fa-check"></i>
-                    Personagens
-                </p>
-                <p class="mb-0 text-success">
-                    <i class="fas fa-check"></i>
-                    Balões
-                </p>
-                <p class="mb-0 text-success">
-                    <i class="fas fa-check"></i>
-                    Objetos
-                </p>
+                <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                Carregando...
             </div>
         </div>
         <div class="card-footer bg-secondary p-2"></div>

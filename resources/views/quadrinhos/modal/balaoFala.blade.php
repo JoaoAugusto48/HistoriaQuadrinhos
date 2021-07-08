@@ -63,6 +63,7 @@
                 
                 balao.appendChild(imagem);
 
+                // criando o Balão
                 let balaoMsg = document.createElement("div");
                 balaoMsg.id = "balaoMsg";
                 balaoMsg.classList.add("arrastavel");

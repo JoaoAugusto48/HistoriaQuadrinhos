@@ -38,7 +38,7 @@
             <div class="col-sm-8">
                 <input id="txt-titulo" type="text" class="form-control" name="titulo" maxlength="255"
                     value="{{ $quadrinho->titulo }}" placeholder="Se o autor houver fala. Adicione-a aqui."
-                    onkeyup="inputNarrador(this)">
+                    onblur="reconheceObjetos()">
             </div>
         </div>
 
@@ -131,21 +131,23 @@
         // botão de visualização do quadrinho
         let btnVisualizarQuadrinho = document.getElementById("baixar");
         // altura do canvas -> usado em "mensagemRetorno"
-        let canvasHeight = document.getElementById('fundo').offsetHeight;
+        let itemFundo = document.getElementById('fundo');
+        let canvasHeight = itemFundo.offsetHeight;
+        // para recuperar os eventos quando tiver algo sendo inserido no DOM
+        itemFundo.addEventListener("DOMNodeInserted", function(ev) {
+            reconheceObjetos();
+        })
+
+        // icons
+        let dangerIcon = '<i class="fas fa-times"></i>';
+        let warningIcon = '<i class="fas fa-exclamation-triangle"></i>';
+        let successIcon = '<i class="fas fa-check"></i>';
+
         // pegar a posição da tela 
 
         // evento para verificar texto do narrador
-        let narrador = document.getElementById('txt-titulo');
         // narrador.addEventListener('input', inputNarrador());
-
-        function inputNarrador(narrador) {
-            let textoNarrador = false;
-            if (narrador.value.length > 0) {
-                textoNarrador = true;
-            }
-            return textoNarrador;
-        }
-
+        
 
         // variáveis para selecionar os items que possuem esses atributos
         let personagem = $("div[id^=personagemImg]").length;
@@ -208,8 +210,6 @@
                     tipoObjeto: 0
                 }
 
-                // erro com o bounding, ele está considerando a altura da tela
-                // let bounding = objetosQuadrinho[i].getBoundingClientRect();
                 let bounding = objetosQuadrinho[i].getBoundingClientRect();
                 // console.log('item dentro canvas: ' +objetosQuadrinho[i].offsetTop);
 
@@ -237,11 +237,9 @@
                 }
 
                 retorno.push(objeto);
-
             }
 
             mensagemRetorno(retorno);
-
             console.log(retorno);
         }
 
@@ -253,13 +251,12 @@
             for (let i = 0; i < objetosQuadrinho.length; i++) {
                 // objetosQuadrinho[i].removeEventListener('blur', function(){}, false);
                 objetosQuadrinho[i].addEventListener('mouseup', reconheceObjetos);
+                objetosQuadrinho[i].addEventListener('contextmenu', reconheceObjetos);
             }
-
         }
 
         adicionaEventListeners();
         // setInterval(function(){ reconheceObjetos() }, 3000);
-
 
         // observações
         // Não pode ter 'comunicação' sem personagems
@@ -268,6 +265,9 @@
         // balões, é necessário que tenha ao menos um personagem para que possa ser aceito
         function mensagemRetorno(items) {
             // console.log(canvasHeight); // Altura do Canvas
+
+            let resultados = document.getElementById('resultados');
+            // resultados.innerHTML = null;
 
             let personagems = [];
             let objetos = [];
@@ -290,60 +290,103 @@
 
 
             // para testar se o narrador tem valor
-            let narrador = inputNarrador(document.getElementById('txt-titulo'));
+            let narrador = inputNarrador();
+
+            console.log('Fala narrador: ' + narrador);
 
             let warning = false;
             let danger = false;
 
             if (!narrador && (personagems.length == 0)) {
+                // Se não tiver Narrador e Personagens 
                 console.log('não pode');
-                // precisa ter o narrador ou personagens
-            }
-            
-            if (!narrador && (balao.length == 0)) {
-                console.log('não pode');
-                // é preciso que tenha algum tipo de comunicação com o leitor
+                mensagemResultados();
+                danger = true;
             }
 
-            if((personagem.length == 0) && (balao.length > 1)){
+            if (!narrador && (balao.length == 0)) {
+                // Se não tiver Narrador e Comunicação
                 console.log('não pode');
-                // se não tiver personagem não pode ter balão
+                mensagemResultados();
+                danger = true;
+            }
+
+            if ((personagem.length == 0) && (balao.length > 1)) {
+                // Se não tiver Personagem mas tiver Comunicação 
+                console.log('não pode');
+                mensagemResultados();
+                danger = true;
             }
 
             for (let i = 0; i < items.length; i++) {
                 // console.log(items[i].posicaoCima);
                 if (items[i].posicaoBaixo < (canvasHeight - 150) && items[i].tipoObjeto == 1) {
                     console.log("Lançar Warning")
+                    warning = true;
                 }
             }
 
             // para retornar a mensagem ao usuário
             // console.log(items);
 
-            estadoQuadrinho();
+            console.log(danger, warning);
+
+            estadoQuadrinho(warning, danger);
         }
 
 
         // para mostrar o atual estado da HQ, responsável pela validação do botão de salvar
-        function estadoQuadrinho() {
+        function estadoQuadrinho(warning, danger) {
             // Para retornar os estados dos items ao usuário
 
-            // para mostrar a mensagem
-            let mensagem = document.getElementById("resposta");
-            mensagem.innerHTML = null;
+            if (danger) {
+                desabilitaBotao();
+                mensagemEstado('text-danger', dangerIcon, 'Erro');
+            } else if (warning) {
+                habilitaBotao();
+                mensagemEstado('text-warning', warningIcon, 'Atenção');
+            } else {
+                habilitaBotao();
+                mensagemEstado('text-success', successIcon, 'Sucesso');
+            }
+        }
+
+        function mensagemResultados(message = 'É só um teste man'){
+            let mensagem = document.getElementById("resultados");
+
             let texto = document.createElement("p");
             texto.classList.add("card-text");
             texto.classList.add("m-0");
-            texto.classList.add("text-success");
+            // texto.classList.add(textColor);
             // console.log(mensagem); //retirar
             mensagem.appendChild(texto);
-            texto.innerHTML = "Isso é um teste de Sucesso";
+            // texto.innerHTML = `${icone} ${message}`;
+            texto.innerHTML += message;
+            console.log('mensagem: ' + texto.innerHTML);
+        }
 
-            // para não permitir o uso do botão
-            if (personagem > utensilio) {
-                desabilitaBotao()
+        function mensagemEstado(textColor, icone, message) {
+            // para mostrar a mensagem
+            let mensagem = document.getElementById("resposta");
+            mensagem.innerHTML = null;
+
+            let texto = document.createElement("p");
+            texto.classList.add("card-text");
+            texto.classList.add("m-0");
+            texto.classList.add(textColor);
+            // console.log(mensagem); //retirar
+            mensagem.appendChild(texto);
+            texto.innerHTML = `${icone} ${message}`;
+
+        }
+
+        function inputNarrador() {
+            let narrador = document.getElementById('txt-titulo');
+            let textoNarrador = false;
+            if (narrador.value.length > 0) {
+                textoNarrador = true;
             }
-
+            return textoNarrador;
         }
 
         // para desabilitar o botão de visualização do quadrinho
