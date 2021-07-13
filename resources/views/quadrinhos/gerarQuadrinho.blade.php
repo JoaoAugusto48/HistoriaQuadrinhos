@@ -134,9 +134,15 @@
         let itemFundo = document.getElementById('fundo');
         let canvasHeight = itemFundo.offsetHeight;
         // para recuperar os eventos quando tiver algo sendo inserido no DOM
-        itemFundo.addEventListener("DOMNodeInserted", function(ev) {
+        // itemFundo.addEventListener("DOMNodeInserted", function(ev) {
+        //     reconheceObjetos();
+        // })
+        window.addEventListener("load", function() {
             reconheceObjetos();
-        })
+            // itemFundo.addEventListener("DOMNodeInserted", function(ev) {
+            //     reconheceObjetos();
+            // })
+        });
 
         // icons
         let dangerIcon = '<i class="fas fa-times"></i>';
@@ -147,7 +153,7 @@
 
         // evento para verificar texto do narrador
         // narrador.addEventListener('input', inputNarrador());
-        
+
 
         // variáveis para selecionar os items que possuem esses atributos
         let personagem = $("div[id^=personagemImg]").length;
@@ -163,19 +169,19 @@
         document.getElementById("personagem").addEventListener("click", function(e) {
             personagem = $("div[id^=personagemImg]").length;
             console.log("Personagem: " + personagem);
-            adicionaEventListeners();
+            // reconheceObjetos();
         });
 
         document.getElementById("balao").addEventListener("click", function(e) {
             balao = $("div[id^=balaoMsg]").length;
             console.log("Balão: " + balao);
-            adicionaEventListeners();
+            // reconheceObjetos();
         });
 
         document.getElementById("utensilio").addEventListener("click", function(e) {
             utensilio = $("div[id^=utensilioImg]").length;
             console.log("Utensilio: " + utensilio);
-            adicionaEventListeners();
+            // reconheceObjetos();
         });
 
         // var elementTop = document.getElementById('fundo').offsetTop;
@@ -240,7 +246,7 @@
             }
 
             mensagemRetorno(retorno);
-            console.log(retorno);
+            // console.log(retorno);
         }
 
         //deve ser chamada na criação do objeto e ao inicializar a página
@@ -255,9 +261,6 @@
             }
         }
 
-        adicionaEventListeners();
-        // setInterval(function(){ reconheceObjetos() }, 3000);
-
         // observações
         // Não pode ter 'comunicação' sem personagems
         // objetos são aceitos em todos os casos, a menos que não tenha nada, deve ter título no quadrinho
@@ -267,11 +270,11 @@
             // console.log(canvasHeight); // Altura do Canvas
 
             let resultados = document.getElementById('resultados');
-            // resultados.innerHTML = null;
+            resultados.innerHTML = null;
 
             let personagems = [];
             let objetos = [];
-            let balao = [];
+            let balaos = [];
 
             for (let i = 0; i < items.length; i++) {
                 if (items[i].tipoObjeto == 1) {
@@ -280,58 +283,80 @@
                 if (items[i].tipoObjeto == 2) {
                     objetos.push(items[i])
                 } else {
-                    balao.push(items[i]);
+                    balaos.push(items[i]);
                 }
             }
 
-            console.log(personagems.length);
-            console.log(objetos.length + fundo);
-            console.log(balao.length);
-
+            // console.log(personagems.length);
+            // console.log(objetos.length + fundo);
+            // console.log(balaos.length);
 
             // para testar se o narrador tem valor
             let narrador = inputNarrador();
-
-            console.log('Fala narrador: ' + narrador);
+            // console.log('Fala narrador: ' + narrador);
 
             let warning = false;
             let danger = false;
 
+            // Validações que não precisam se looping
             if (!narrador && (personagems.length == 0)) {
                 // Se não tiver Narrador e Personagens 
-                console.log('não pode');
-                mensagemResultados();
+                // console.log('não pode');
+                mensagemResultados('text-danger', dangerIcon,
+                    'É necessária a presença de Fala do narrador ou de algum Personagem');
                 danger = true;
             }
 
-            if (!narrador && (balao.length == 0)) {
+            if (!narrador && (balaos.length == 0)) {
                 // Se não tiver Narrador e Comunicação
-                console.log('não pode');
-                mensagemResultados();
+                // console.log('não pode');
+                mensagemResultados('text-danger', dangerIcon,
+                    'É necessário a presença de Fala do narrador ou Balão de Fala');
                 danger = true;
             }
 
-            if ((personagem.length == 0) && (balao.length > 1)) {
+            if ((personagems.length == 0) && (balaos.length > 1)) {
                 // Se não tiver Personagem mas tiver Comunicação 
-                console.log('não pode');
-                mensagemResultados();
+                // console.log('não pode');
+                mensagemResultados('text-danger', dangerIcon,
+                    'É necessário que adicione algum Personagem, ou remova o Balão de Fala');
                 danger = true;
             }
 
-            for (let i = 0; i < items.length; i++) {
-                // console.log(items[i].posicaoCima);
-                if (items[i].posicaoBaixo < (canvasHeight - 150) && items[i].tipoObjeto == 1) {
-                    console.log("Lançar Warning")
-                    warning = true;
-                }
-            }
+            validarPersonagem(personagems);
+            validarBalao(balaos,personagems);
+            validarObjetos(objetos);
 
             // para retornar a mensagem ao usuário
             // console.log(items);
-
-            console.log(danger, warning);
+            // console.log(danger, warning);
 
             estadoQuadrinho(warning, danger);
+        }
+
+        function validarPersonagem(personagems){
+            for (let i = 0; i < personagems.length; i++) {
+                // console.log(items[i].posicaoCima);
+                if (personagems[i].posicaoBaixo < (canvasHeight - 150) && personagems[i].tipoObjeto == 1) {
+                    // console.log("Lançar Warning");
+                    warning = true;
+                    mensagemResultados('text-warning', warningIcon,
+                        'Talvez o personagem esteja um pouco a cima do esperado');
+                }
+            }
+        }
+
+        function validarBalao(balaos,personagems){
+            console.log('Ainda não implementado');
+            for (let i = 0; i < balaos.length; i++) {
+                // para testar o balão com a proximidade com os personagens 
+                for (let i = 0; i < personagems.length; i++) {
+                }
+            }
+        }
+
+        function validarObjetos(objetos){
+            console.log('Ainda não implementado');
         }
 
 
@@ -348,21 +373,22 @@
             } else {
                 habilitaBotao();
                 mensagemEstado('text-success', successIcon, 'Sucesso');
+                mensagemResultados('text-success', successIcon, 'Todos os items estão de acordo');
             }
         }
 
-        function mensagemResultados(message = 'É só um teste man'){
+        function mensagemResultados(textColor, icone, message = 'Não há mensagem, contatar equipe de suporte') {
             let mensagem = document.getElementById("resultados");
+            // console.log(mensagem);
 
             let texto = document.createElement("p");
             texto.classList.add("card-text");
             texto.classList.add("m-0");
-            // texto.classList.add(textColor);
+            texto.classList.add(textColor);
             // console.log(mensagem); //retirar
             mensagem.appendChild(texto);
-            // texto.innerHTML = `${icone} ${message}`;
-            texto.innerHTML += message;
-            console.log('mensagem: ' + texto.innerHTML);
+            texto.innerHTML += `${icone} ${message}`;
+            // texto.innerHTML += message;
         }
 
         function mensagemEstado(textColor, icone, message) {
@@ -377,7 +403,6 @@
             // console.log(mensagem); //retirar
             mensagem.appendChild(texto);
             texto.innerHTML = `${icone} ${message}`;
-
         }
 
         function inputNarrador() {
