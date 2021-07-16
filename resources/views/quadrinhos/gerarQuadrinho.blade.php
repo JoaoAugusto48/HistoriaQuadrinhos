@@ -350,13 +350,13 @@
         function validarBalao(danger, balaos, personagems) {
             // console.log('Ainda não implementado');
             let balaoNoPersonagem = false;
-            let balaoNoBalaoPersonagem = false;
+            let balaoNoBalao = false;
             let balaoFora = false;
             // let condicaoFinal = false;
 
             for (let i = 0; i < balaos.length; i++) {
                 balaoNoPersonagem = false;
-                balaoNoBalaoPersonagem = false
+                balaoNoBalao = false
                 balaoFora = true;
                 // para testar o balão com a proximidade com os personagens 
                 for (let j = 0; j < personagems.length; j++) {
@@ -369,9 +369,9 @@
 
                         console.log('O balão está dentro da área permitida');
                         balaoNoPersonagem = true;
-                        balaoFora = false;
                     } else {
                         console.log('Balão: erro');
+                        balaoFora = true;
                     }
                 }
 
@@ -385,8 +385,7 @@
                             (balaos[i].posicaoBaixo > balaos[j].posicaoCima)) {
 
                             console.log('O balão está dentro da área de outro balão');
-                            balaoNoBalaoPersonagem = true;
-                            balaoFora = false;
+                            balaoNoBalao = true;
                         } else {
                             console.log('Balão: está errado');
                         }
@@ -394,15 +393,12 @@
                     }
                 }
 
-                // if (balaoNoPersonagem || balaoNoBalaoPersonagem) {
-                //     mensagemResultados('text-success', successIcon, 'Balão está OK');
-                //     if(balaoNoBalaoPersonagem){
-                //         mensagemResultados('text-success', successIcon, 'Balão está dentro de outro Balão');
-                //     }
-                if ((balaoNoPersonagem || balaoNoBalaoPersonagem) && !balaoFora) {
-                    if (balaoNoPersonagem) {
+                if ((balaoNoPersonagem || balaoNoBalao) && balaoFora) {
+                    if (balaoNoPersonagem && balaoNoBalao) {
+                        mensagemResultados('text-success', successIcon, 'Balão está no pesonagem e ligado a outro balão');
+                    } else if (balaoNoPersonagem) {
                         mensagemResultados('text-success', successIcon, 'Balão está no pesonagem');
-                    } else if (balaoNoBalaoPersonagem) {
+                    } else if (balaoNoBalao) {
                         mensagemResultados('text-success', successIcon, 'Balão está no balão');
                     } else{
                         mensagemResultados('text-success', successIcon, 'Balão está OK');
