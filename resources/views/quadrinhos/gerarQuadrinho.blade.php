@@ -323,8 +323,8 @@
                 danger = true;
             }
 
-            validarPersonagem(personagems);
-            validarBalao(balaos,personagems);
+            warning = validarPersonagem(warning, personagems);
+            danger = validarBalao(danger, balaos, personagems);
             validarObjetos(objetos);
 
             // para retornar a mensagem ao usuário
@@ -334,7 +334,7 @@
             estadoQuadrinho(warning, danger);
         }
 
-        function validarPersonagem(personagems){
+        function validarPersonagem(warning, personagems) {
             for (let i = 0; i < personagems.length; i++) {
                 // console.log(items[i].posicaoCima);
                 if (personagems[i].posicaoBaixo < (canvasHeight - 150) && personagems[i].tipoObjeto == 1) {
@@ -344,18 +344,80 @@
                         'Talvez o personagem esteja um pouco a cima do esperado');
                 }
             }
+            return warning;
         }
 
-        function validarBalao(balaos,personagems){
-            console.log('Ainda não implementado');
+        function validarBalao(danger, balaos, personagems) {
+            // console.log('Ainda não implementado');
+            let balaoNoPersonagem = false;
+            let balaoNoBalaoPersonagem = false;
+            let balaoFora = false;
+            // let condicaoFinal = false;
+
             for (let i = 0; i < balaos.length; i++) {
+                balaoNoPersonagem = false;
+                balaoNoBalaoPersonagem = false
+                balaoFora = true;
                 // para testar o balão com a proximidade com os personagens 
-                for (let i = 0; i < personagems.length; i++) {
+                for (let j = 0; j < personagems.length; j++) {
+                    // teste para comparar a posição do quadrinho com a posição dos personagens
+                    // console.log('Balão: ' +(balaos[i].posicaoEsquerda+ ' Personagem: ' + personagems[j].posicaoDireita));
+                    if ((balaos[i].posicaoEsquerda < personagems[j].posicaoDireita) &&
+                        (balaos[i].posicaoDireita > personagems[j].posicaoEsquerda) &&
+                        (balaos[i].posicaoCima < personagems[j].posicaoBaixo) &&
+                        (balaos[i].posicaoBaixo > personagems[j].posicaoCima)) {
+
+                        console.log('O balão está dentro da área permitida');
+                        balaoNoPersonagem = true;
+                        balaoFora = false;
+                    } else {
+                        console.log('Balão: erro');
+                    }
+                }
+
+                for (let j = 0; j < balaos.length; j++) {
+                    if (i != j) {
+                        // teste para comparar a posição do quadrinho com a posição de outro balões
+                        // console.log('Balão: ' +(balaos[i].posicaoEsquerda+ ' Personagem: ' + personagems[j].posicaoDireita));
+                        if ((balaos[i].posicaoEsquerda < balaos[j].posicaoDireita) &&
+                            (balaos[i].posicaoDireita > balaos[j].posicaoEsquerda) &&
+                            (balaos[i].posicaoCima < balaos[j].posicaoBaixo) &&
+                            (balaos[i].posicaoBaixo > balaos[j].posicaoCima)) {
+
+                            console.log('O balão está dentro da área de outro balão');
+                            balaoNoBalaoPersonagem = true;
+                            balaoFora = false;
+                        } else {
+                            console.log('Balão: está errado');
+                        }
+
+                    }
+                }
+
+                // if (balaoNoPersonagem || balaoNoBalaoPersonagem) {
+                //     mensagemResultados('text-success', successIcon, 'Balão está OK');
+                //     if(balaoNoBalaoPersonagem){
+                //         mensagemResultados('text-success', successIcon, 'Balão está dentro de outro Balão');
+                //     }
+                if ((balaoNoPersonagem || balaoNoBalaoPersonagem) && !balaoFora) {
+                    if (balaoNoPersonagem) {
+                        mensagemResultados('text-success', successIcon, 'Balão está no pesonagem');
+                    } else if (balaoNoBalaoPersonagem) {
+                        mensagemResultados('text-success', successIcon, 'Balão está no balão');
+                    } else{
+                        mensagemResultados('text-success', successIcon, 'Balão está OK');
+                    }
+                } else {
+                    mensagemResultados('text-danger', dangerIcon,
+                        'O balão está errado');
+                    danger = true;
                 }
             }
+
+            return danger;
         }
 
-        function validarObjetos(objetos){
+        function validarObjetos(objetos) {
             console.log('Ainda não implementado');
         }
 
