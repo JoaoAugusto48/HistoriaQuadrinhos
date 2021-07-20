@@ -81,7 +81,7 @@
                 // balaoMsg.classList.add("ui-resizable");
                 balaoMsg.style.backgroundImage = "url("+ caminho_imagem +img+")";
 
-                let txtBalao = "<textarea rows='3' cols='13' class='text-center balaoContent txtBalao'></textarea>";
+                let txtBalao = "<textarea id='texto' rows='3' cols='13' class='text-center balaoContent txtBalao' onblur='reconheceObjetos()'></textarea></textarea>";
                 balaoMsg.innerHTML = txtBalao;
                 
                 let outputQuadrinho = document.getElementById("acopla-imagens");

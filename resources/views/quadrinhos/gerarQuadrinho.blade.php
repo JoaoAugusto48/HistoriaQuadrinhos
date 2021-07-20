@@ -134,14 +134,8 @@
         let itemFundo = document.getElementById('fundo');
         let canvasHeight = itemFundo.offsetHeight;
         // para recuperar os eventos quando tiver algo sendo inserido no DOM
-        // itemFundo.addEventListener("DOMNodeInserted", function(ev) {
-        //     reconheceObjetos();
-        // })
         window.addEventListener("load", function() {
             reconheceObjetos();
-            // itemFundo.addEventListener("DOMNodeInserted", function(ev) {
-            //     reconheceObjetos();
-            // })
         });
 
         // icons
@@ -246,7 +240,6 @@
             }
 
             mensagemRetorno(retorno);
-            // console.log(retorno);
         }
 
         //deve ser chamada na criação do objeto e ao inicializar a página
@@ -267,7 +260,6 @@
         // personagens são aceitos em todos os casos, caso não tenha balão de fala, deve ter ao menos fala do narrador
         // balões, é necessário que tenha ao menos um personagem para que possa ser aceito
         function mensagemRetorno(items) {
-            // console.log(canvasHeight); // Altura do Canvas
 
             let resultados = document.getElementById('resultados');
             resultados.innerHTML = null;
@@ -276,6 +268,7 @@
             let objetos = [];
             let balaos = [];
 
+            // para passar cada item para seu respectivo lugar
             for (let i = 0; i < items.length; i++) {
                 if (items[i].tipoObjeto == 1) {
                     personagems.push(items[i]);
@@ -287,9 +280,6 @@
                 }
             }
 
-            // console.log(personagems.length);
-            // console.log(objetos.length + fundo);
-            // console.log(balaos.length);
 
             // para testar se o narrador tem valor
             let narrador = inputNarrador();
@@ -303,7 +293,7 @@
                 // Se não tiver Narrador e Personagens 
                 // console.log('não pode');
                 mensagemResultados('text-danger', dangerIcon,
-                    'É necessária a presença de Fala do narrador ou de algum Personagem');
+                    'É necessário que tenha Fala do narrador ou algum Personagem.');
                 danger = true;
             }
 
@@ -311,7 +301,7 @@
                 // Se não tiver Narrador e Comunicação
                 // console.log('não pode');
                 mensagemResultados('text-danger', dangerIcon,
-                    'É necessário a presença de Fala do narrador ou Balão de Fala');
+                    'É necessário que tenha a Fala do narrador ou um Balão de Fala.');
                 danger = true;
             }
 
@@ -319,18 +309,18 @@
                 // Se não tiver Personagem mas tiver Comunicação 
                 // console.log('não pode');
                 mensagemResultados('text-danger', dangerIcon,
-                    'É necessário que adicione algum Personagem, ou remova o Balão de Fala');
+                    'É necessário que tenha algum Personagem, ou remova o Balão de Fala.');
                 danger = true;
             }
 
+            // para validar as coias referente aos personagens
             warning = validarPersonagem(warning, personagems);
+            // para validar as coisas reretente aos balões de fala
             danger = validarBalao(danger, balaos, personagems);
-            validarObjetos(objetos);
+            // para validar os objetos
+            warning = validarObjetos(warning, objetos);
 
-            // para retornar a mensagem ao usuário
-            // console.log(items);
-            // console.log(danger, warning);
-
+            // para gerar a mensagem final
             estadoQuadrinho(warning, danger);
         }
 
@@ -341,7 +331,10 @@
                     // console.log("Lançar Warning");
                     warning = true;
                     mensagemResultados('text-warning', warningIcon,
-                        'Talvez o personagem esteja um pouco a cima do esperado');
+                        'Possivelmente o Personagem esteja um pouco à cima do esperado.');
+                } else {
+                    mensagemResultados('text-success', successIcon,
+                        'O Personagem está em uma boa posição.');
                 }
             }
             return warning;
@@ -354,69 +347,103 @@
             let balaoFora = false;
             // let condicaoFinal = false;
 
-            for (let i = 0; i < balaos.length; i++) {
-                balaoNoPersonagem = false;
-                balaoNoBalao = false
-                balaoFora = true;
-                // para testar o balão com a proximidade com os personagens 
-                for (let j = 0; j < personagems.length; j++) {
-                    // teste para comparar a posição do quadrinho com a posição dos personagens
-                    // console.log('Balão: ' +(balaos[i].posicaoEsquerda+ ' Personagem: ' + personagems[j].posicaoDireita));
-                    if ((balaos[i].posicaoEsquerda < personagems[j].posicaoDireita) &&
-                        (balaos[i].posicaoDireita > personagems[j].posicaoEsquerda) &&
-                        (balaos[i].posicaoCima < personagems[j].posicaoBaixo) &&
-                        (balaos[i].posicaoBaixo > personagems[j].posicaoCima)) {
-
-                        console.log('O balão está dentro da área permitida');
-                        balaoNoPersonagem = true;
-                    } else {
-                        console.log('Balão: erro');
-                        balaoFora = true;
-                    }
+            // para testar ser o texto tem algo em value
+            let texto = $("textarea[id^=texto]");
+            // se o quadrinho tiver fala, então é verdadeiro
+            let textoValido = true;
+            console.log('Quantidade de texto na hq: ' + texto);
+            for (let i = 0; i < texto.length; i++) {
+                if (texto[i].value.length == 0) {
+                    // caso um quadrinho não tenha texto
+                    textoValido = false;
                 }
+            }
 
-                for (let j = 0; j < balaos.length; j++) {
-                    if (i != j) {
-                        // teste para comparar a posição do quadrinho com a posição de outro balões
+            // se um quadrinho não tiver texto, logo não poderá ser validado
+            if (textoValido) {
+                for (let i = 0; i < balaos.length; i++) {
+                    balaoNoPersonagem = false;
+                    balaoNoBalao = false
+                    balaoFora = true;
+                    // para testar o balão com a proximidade com os personagens 
+                    for (let j = 0; j < personagems.length; j++) {
+                        // teste para comparar a posição do quadrinho com a posição dos personagens
                         // console.log('Balão: ' +(balaos[i].posicaoEsquerda+ ' Personagem: ' + personagems[j].posicaoDireita));
-                        if ((balaos[i].posicaoEsquerda < balaos[j].posicaoDireita) &&
-                            (balaos[i].posicaoDireita > balaos[j].posicaoEsquerda) &&
-                            (balaos[i].posicaoCima < balaos[j].posicaoBaixo) &&
-                            (balaos[i].posicaoBaixo > balaos[j].posicaoCima)) {
-
-                            console.log('O balão está dentro da área de outro balão');
-                            balaoNoBalao = true;
+                        if ((balaos[i].posicaoEsquerda < personagems[j].posicaoDireita) &&
+                            (balaos[i].posicaoDireita > personagems[j].posicaoEsquerda) &&
+                            (balaos[i].posicaoCima < personagems[j].posicaoBaixo) &&
+                            (balaos[i].posicaoBaixo > personagems[j].posicaoCima) &&
+                            (balaos[i].posicaoBaixo < (personagems[j].posicaoCima + (personagems[j]
+                                .alturaProprioObjeto * 2 / 5)))) {
+                            // Caso o quadrinho esteja dentro da área do personagem 
+                            balaoNoPersonagem = true;
                         } else {
-                            console.log('Balão: está errado');
+                            // caso em algum teste o balão apareça fora
+                            balaoFora = true;
                         }
+                    }
 
+                    for (let j = 0; j < balaos.length; j++) {
+                        // Para não testar o mesmo quadrinho
+                        if (i != j) {
+                            // teste para comparar a posição do quadrinho com a posição de outro balões
+                            // console.log('Balão: ' +(balaos[i].posicaoEsquerda+ ' Personagem: ' + personagems[j].posicaoDireita));
+                            if ((balaos[i].posicaoEsquerda < balaos[j].posicaoDireita) &&
+                                (balaos[i].posicaoDireita > balaos[j].posicaoEsquerda) &&
+                                (balaos[i].posicaoCima < balaos[j].posicaoBaixo) &&
+                                (balaos[i].posicaoBaixo > balaos[j].posicaoCima) &&
+                                (balaos[i].posicaoBaixo < (balaos[j].posicaoCima + (balaos[j].alturaProprioObjeto * 2 / 5)))
+                            ) {
+
+                                // Se a condição for verdadeira, será lançado que 
+                                // o balão está dentro de outro balão
+                                balaoNoBalao = true;
+                            }
+                        }
+                    }
+
+                    // só vai entrar aqui caso tenha 2 balãos
+                    if ((balaoNoPersonagem || balaoNoBalao) && balaoFora) {
+                        if (balaoNoPersonagem && balaoNoBalao) {
+                            // Se balão está ligado a personagem e outro balão
+                            mensagemResultados('text-success', successIcon,
+                                'O Balão está relacionado a outro Balão e a um Personagem.');
+                        } else if (balaoNoPersonagem) {
+                            // Caso o balão esteja ligado apenas ao personagem
+                            mensagemResultados('text-success', successIcon, 'O Balão está ligado ao Personagem.');
+                        } else {
+                            // Caso o balão esteja ligado apenas a outro balão
+                            mensagemResultados('text-success', successIcon, 'O Balão está ligado a outro Balão.');
+                        }
+                    } else {
+                        // Se o balão não estiver ligado a ninguém
+                        mensagemResultados('text-danger', dangerIcon,
+                            'O Balão não está relacionado a nenhum Personagem.');
+                        danger = true;
                     }
                 }
-
-                if ((balaoNoPersonagem || balaoNoBalao) && balaoFora) {
-                    if (balaoNoPersonagem && balaoNoBalao) {
-                        mensagemResultados('text-success', successIcon, 'Balão está no pesonagem e ligado a outro balão');
-                    } else if (balaoNoPersonagem) {
-                        mensagemResultados('text-success', successIcon, 'Balão está no pesonagem');
-                    } else if (balaoNoBalao) {
-                        mensagemResultados('text-success', successIcon, 'Balão está no balão');
-                    } else{
-                        mensagemResultados('text-success', successIcon, 'Balão está OK');
-                    }
-                } else {
-                    mensagemResultados('text-danger', dangerIcon,
-                        'O balão está errado');
-                    danger = true;
-                }
+            } else {
+                // Caso o balão não tenha texto escrito nele
+                mensagemResultados('text-danger', dangerIcon,
+                    'É necessário adicionar texto no Balão de Fala.');
+                danger = true;
             }
 
             return danger;
         }
 
-        function validarObjetos(objetos) {
-            console.log('Ainda não implementado');
-        }
+        function validarObjetos(warning, objetos) {
+            // já estou considerando o fundo como 1 objeto, pois
+            // na gramática formal são necessários 2 objetos
+            if (objetos.length < 1) {
+                // Caso tenha número insuficiente de objetos no quadrinho
+                mensagemResultados('text-warning', warningIcon,
+                    'É recomendado que coloque ao menos um Objeto.');
+                warning = true;
+            }
 
+            return warning;
+        }
 
         // para mostrar o atual estado da HQ, responsável pela validação do botão de salvar
         function estadoQuadrinho(warning, danger) {
@@ -424,33 +451,34 @@
 
             if (danger) {
                 desabilitaBotao();
-                mensagemEstado('text-danger', dangerIcon, 'Erro');
+                mensagemEstado('text-danger', dangerIcon, 'É necessária alguma alteração, confira abaixo!');
             } else if (warning) {
                 habilitaBotao();
-                mensagemEstado('text-warning', warningIcon, 'Atenção');
+                mensagemEstado('text-warning', warningIcon,
+                    'Algum item pode não estar em boa posição, porém não é necessário alterar!');
             } else {
                 habilitaBotao();
-                mensagemEstado('text-success', successIcon, 'Sucesso');
-                mensagemResultados('text-success', successIcon, 'Todos os items estão de acordo');
+                mensagemEstado('text-success', successIcon, 'Os itens estão em boa posição!');
+                mensagemResultados('text-success', successIcon, 'Aparentemente, não há o que alterar. Parabéns!');
             }
         }
 
-        function mensagemResultados(textColor, icone, message = 'Não há mensagem, contatar equipe de suporte') {
+        function mensagemResultados(textColor, icone, message =
+            'Não há uma mensagem predefinida, por favor, entre em contato com a equipe') {
+            // para mostrar a mensagem do estado geral das demais mensagens
             let mensagem = document.getElementById("resultados");
-            // console.log(mensagem);
 
             let texto = document.createElement("p");
             texto.classList.add("card-text");
             texto.classList.add("m-0");
             texto.classList.add(textColor);
-            // console.log(mensagem); //retirar
             mensagem.appendChild(texto);
+
             texto.innerHTML += `${icone} ${message}`;
-            // texto.innerHTML += message;
         }
 
         function mensagemEstado(textColor, icone, message) {
-            // para mostrar a mensagem
+            // para mostrar a mensagem sobre cada item
             let mensagem = document.getElementById("resposta");
             mensagem.innerHTML = null;
 
@@ -458,11 +486,12 @@
             texto.classList.add("card-text");
             texto.classList.add("m-0");
             texto.classList.add(textColor);
-            // console.log(mensagem); //retirar
             mensagem.appendChild(texto);
+
             texto.innerHTML = `${icone} ${message}`;
         }
 
+        // verificando se o narrador tem fala
         function inputNarrador() {
             let narrador = document.getElementById('txt-titulo');
             let textoNarrador = false;

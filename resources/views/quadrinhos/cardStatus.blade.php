@@ -5,12 +5,14 @@
             Estado do Quadrinho
         </div>
         <div class="card-body bg-dark text-white pt-2 pb-2 pl-3">
-            <div id="resposta">
-                <div class="spinner-border spinner-border-sm" role="status">
-                    <span class="sr-only">Loading...</span>
+            <a class="text-white" href="#resultados">
+                <div id="resposta">
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    Carregando...
                 </div>
-                Carregando...
-            </div>
+            </a>
         </div>
         <div class="card-footer bg-secondary p-2"></div>
     </div>
