@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Gerencia;
 
 use App\Models\Cliente;
 use App\Http\Controllers\Controller;
+use App\Models\Hq;
+use App\Models\Quadrinho;
+use App\Models\Situar;
 use App\Models\Software;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,11 +30,32 @@ class InformationController extends Controller
             return $validaURL;
         }
 
-        $nClientes = count(Cliente::where('user_id','=',Auth::user()->id)->get('nome'));
-        $nEmpresas = count(Cliente::where('user_id','=',Auth::user()->id)->distinct()->get('nome'));
-        $nSoftwares = count(Software::where('user_id','=', Auth::user()->id)->get());
+        // recupera o número total de parcerias
+        $nParceiros = Cliente::where('user_id','=',Auth::user()->id)->get('nome')->count();
+        // recupera o número de parcerias em Contrato
+        $nEmContrato = Cliente::where('user_id','=',Auth::user()->id)->where('status',true)->get('nome')->count();
+        // recupera a parceria com mais contratos
+        $maisProjeto = Software::where('user_id','=',Auth::user()->id)->get('cliente_id');
+        if(!isset($maisProjeto[0])){
+            $maisProjeto = false;
+        }
+        // recupera o número de contratos tem com a maior parceria
+        $nMaisProjeto = Cliente::where('user_id','=',Auth::user()->id)->get('nome')->count();
+        
+        // recupera o número total de softwares criados
+        $nSoftwares = Software::where('user_id','=', Auth::user()->id)->get()->count();
+        // recupera o presente número de softwares
+        $hqAtuais = Software::where('user_id','=', Auth::user()->id)->where('status',true)->get()->count();
+        // recupera o software com mais Hqs
+        $maisHqs = Hq::where('user_id','=', Auth::user()->id)->get()->count();
 
-        return view('information.index', compact('nClientes', 'nEmpresas', 'nSoftwares'));
+        // recupera o quadrinho com mais páginas
+        // recupera o ambiente mais usado
+        // recupera o total de quadrinhos
+        // $totalQuadrinho = Situar::where('');
+
+        return view('information.index', compact('nParceiros', 'nEmContrato', 'maisProjeto',
+                'nSoftwares', 'hqAtuais'));
     }
 
     /**

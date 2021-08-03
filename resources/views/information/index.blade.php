@@ -10,12 +10,68 @@
             </a>
         </h1>
     </div>
-    <hr class="bg-dark mt-0"/>
+    <hr class="bg-dark mt-0" />
 
-    <form>
+    <div class="container">
+        <div class="form-group">
+            <div class="row">
+                <h3 class="col-sm-12 p-0">Clientes</h3>
+
+                <div class="col-sm-4 form-group">
+                    <label>Parcerias:</label>
+                    <input type="text" class="form-control" value="{{ $nParceiros }}" disabled>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>Em Contrato:</label>
+                    <input type="text" class="form-control" value="{{ $nEmContrato }}" disabled>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>Mais Projetos:</label>
+                    <input type="text" class="form-control" value="{{ $maisProjeto }}" disabled>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <h3 class="col-sm-12 p-0">Software</h3>
+
+                <div class="col-sm-4 form-group">
+                    <label>Total HQs:</label>
+                    <input type="text" class="form-control" value="{{ $nSoftwares }}" disabled>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>HQs atuais:</label>
+                    <input type="text" class="form-control" value="{{ $hqAtuais }}" disabled>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>Com mais HQs:</label>
+                    <input type="text" class="form-control" value="{{ $nParceiros }}" disabled>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <h3 class="col-sm-12 p-0">Quadrinhos</h3>
+
+                <div class="col-sm-4 form-group">
+                    <label>Mais páginas:</label>
+                    <input type="text" class="form-control" value="{{ $nSoftwares }}" disabled>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>Ambiente mais usado:</label>
+                    <input type="text" class="form-control" value="{{ $hqAtuais }}" disabled>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>Total:</label>
+                    <input type="text" class="form-control" value="{{ $hqAtuais }}" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- <form>
         <div class="form-group row">
             <h3 class="col-sm-12">Clientes - {{ $nClientes }}</h3>
 
+            <label class="col-sm-2 col-form-label text-right font-weight-bold">
+                Empresas: {{ $nEmpresas }}
+            </label>
             <label class="col-sm-2 col-form-label text-right font-weight-bold">
                 Empresas: {{ $nEmpresas }}
             </label>
@@ -28,6 +84,6 @@
                 HQs: {{ $nEmpresas }}
             </label>
         </div>
-    </form>
+    </form> --}}
 
 @endsection
