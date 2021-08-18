@@ -17,8 +17,8 @@
         <table class="table table-sm table-borderless table-hover table-striped text-center border border-dark">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col" class="col-2" title="Título do Software">Título</th>
-                    <th scope="col" class="col-3" title="Estimativa de Entrega">Est. Entrega</th>
+                    <th scope="col" class="col-3" title="Título do Software">Título</th>
+                    <th scope="col" class="col-2" title="Estimativa de Entrega">Est. Entrega</th>
                     <th scope="col" class="col-3" title="Informações de contato">Inf. Contato</th>
                     <th scope="col" class="col-4" title="Manipulações possíveis">Operações</th>
                 </tr>

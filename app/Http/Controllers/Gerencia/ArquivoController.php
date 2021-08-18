@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Storage;
 
 class ArquivoController extends Controller
 {
+    // link para imagem public no storage digitar = php artisan storage:link
+    // 
     // Classe responsável pelo gerenciamento de arquivos que o sistema usará
 
     public static function caminho_storage(){

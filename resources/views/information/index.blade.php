@@ -34,15 +34,31 @@
                 <h3 class="col-sm-12 p-0">Software</h3>
 
                 <div class="col-sm-4 form-group">
-                    <label>Total HQs:</label>
+                    <label>Total:</label>
                     <input type="text" class="form-control" value="{{ $nSoftwares }}" disabled>
                 </div>
                 <div class="col-sm-4 form-group">
-                    <label>HQs atuais:</label>
+                    <label>Em Atividade:</label>
                     <input type="text" class="form-control" value="{{ $hqAtuais }}" disabled>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label>Com mais HQs:</label>
+                    <input type="text" class="form-control" value="{{ $nParceiros }}" disabled>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <h3 class="col-sm-12 p-0">Histórias em Quadrinhos</h3>
+
+                <div class="col-sm-4 form-group">
+                    <label>Total HQs:</label>
+                    <input type="text" class="form-control" value="{{ $nSoftwares }}" disabled>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>Total atual:</label>
+                    <input type="text" class="form-control" value="{{ $hqAtuais }}" disabled>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label>Com mais Quadrinhos:</label>
                     <input type="text" class="form-control" value="{{ $nParceiros }}" disabled>
                 </div>
             </div>

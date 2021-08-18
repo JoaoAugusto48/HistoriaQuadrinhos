@@ -30,6 +30,7 @@ class InformationController extends Controller
             return $validaURL;
         }
 
+        // clientes
         // recupera o número total de parcerias
         $nParceiros = Cliente::where('user_id','=',Auth::user()->id)->get('nome')->count();
         // recupera o número de parcerias em Contrato
@@ -42,13 +43,20 @@ class InformationController extends Controller
         // recupera o número de contratos tem com a maior parceria
         $nMaisProjeto = Cliente::where('user_id','=',Auth::user()->id)->get('nome')->count();
         
+        // softwares
         // recupera o número total de softwares criados
         $nSoftwares = Software::where('user_id','=', Auth::user()->id)->get()->count();
-        // recupera o presente número de softwares
-        $hqAtuais = Software::where('user_id','=', Auth::user()->id)->where('status',true)->get()->count();
         // recupera o software com mais Hqs
         $maisHqs = Hq::where('user_id','=', Auth::user()->id)->get()->count();
+        
+        // HQs
+        // recupera o presente número de softwares
+        $hqAtuais = Hq::where('user_id','=', Auth::user()->id)->where('status',true)->get()->count();
+        
 
+        // Quadrinhos
+
+        
         // recupera o quadrinho com mais páginas
         // recupera o ambiente mais usado
         // recupera o total de quadrinhos
