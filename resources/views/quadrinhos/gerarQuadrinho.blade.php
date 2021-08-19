@@ -76,14 +76,14 @@
                                 <button id="btnRotate" type="button" class="btn btn-dark operacoesPersonagem" style="display: none"><i class="fas fa-adjust"></i></button>
                             </div> --}}
                             <div id="personagemImg" class="arrastavel personagem personagem1"
-                                style="z-index: 101; background-image: url('{{ $caminho_imagem . $hq->personagem1->personagem }}')">
+                                style="z-index: 101; background-image: url('{{ $caminho_imagem . $hq->personagem1->personagem }}')" oncontextmenu="event.preventDefault();this.remove()">
                                 <button type="button" class="btn btn-dark operacoesPersonagem" style="display: none"><i
                                         class="fas fa-adjust"></i>
                                 </button>
                             </div>
                             <div id="personagemImg" class="arrastavel personagem personagem2"
                                 ondblclick="espelharImagem(event)"
-                                style="z-index: 100; background-image: url('{{ $caminho_imagem . $hq->personagem2->personagem }}')">
+                                style="z-index: 100; background-image: url('{{ $caminho_imagem . $hq->personagem2->personagem }}')" oncontextmenu="event.preventDefault();this.remove()">
                             </div>
                         </div>
 
