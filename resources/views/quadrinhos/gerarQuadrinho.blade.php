@@ -280,18 +280,15 @@
                 }
             }
 
-
             // para testar se o narrador tem valor
             let narrador = inputNarrador();
-            // console.log('Fala narrador: ' + narrador);
-
+            
             let warning = false;
             let danger = false;
 
             // Validações que não precisam se looping
             if (!narrador && (personagems.length == 0)) {
                 // Se não tiver Narrador e Personagens 
-                // console.log('não pode');
                 mensagemResultados('text-danger', dangerIcon,
                     'É necessário que tenha Fala do narrador ou algum Personagem.');
                 danger = true;
@@ -299,7 +296,6 @@
 
             if (!narrador && (balaos.length == 0)) {
                 // Se não tiver Narrador e Comunicação
-                // console.log('não pode');
                 mensagemResultados('text-danger', dangerIcon,
                     'É necessário que tenha a Fala do narrador ou um Balão de Fala.');
                 danger = true;
@@ -307,7 +303,6 @@
 
             if ((personagems.length == 0) && (balaos.length > 1)) {
                 // Se não tiver Personagem mas tiver Comunicação 
-                // console.log('não pode');
                 mensagemResultados('text-danger', dangerIcon,
                     'É necessário que tenha algum Personagem, ou remova o Balão de Fala.');
                 danger = true;
@@ -341,12 +336,10 @@
         }
 
         function validarBalao(danger, balaos, personagems) {
-            // console.log('Ainda não implementado');
             let balaoNoPersonagem = false;
             let balaoNoBalao = false;
             let balaoFora = false;
-            // let condicaoFinal = false;
-
+            
             // para testar ser o texto tem algo em value
             let texto = $("textarea[id^=texto]");
             // se o quadrinho tiver fala, então é verdadeiro
@@ -387,7 +380,6 @@
                         // Para não testar o mesmo quadrinho
                         if (i != j) {
                             // teste para comparar a posição do quadrinho com a posição de outro balões
-                            // console.log('Balão: ' +(balaos[i].posicaoEsquerda+ ' Personagem: ' + personagems[j].posicaoDireita));
                             if ((balaos[i].posicaoEsquerda < balaos[j].posicaoDireita) &&
                                 (balaos[i].posicaoDireita > balaos[j].posicaoEsquerda) &&
                                 (balaos[i].posicaoCima < balaos[j].posicaoBaixo) &&
