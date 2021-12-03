@@ -32,38 +32,47 @@ class InformationController extends Controller
 
         // clientes
         // recupera o número total de parcerias
-        $nParceiros = Cliente::where('user_id','=',Auth::user()->id)->get('nome')->count();
+        $clientesParceiros = Cliente::where('user_id','=',Auth::user()->id)->get('nome')->count();
         // recupera o número de parcerias em Contrato
-        $nEmContrato = Cliente::where('user_id','=',Auth::user()->id)->where('status',true)->get('nome')->count();
+        $clientesEmContrato = Cliente::where('user_id','=',Auth::user()->id)->where('status',true)->get('nome')->count();
         // recupera a parceria com mais contratos
-        $maisProjeto = Software::where('user_id','=',Auth::user()->id)->get('cliente_id');
+        $clientesMaisProjeto = Software::where('user_id','=',Auth::user()->id)->get('cliente_id')->count();
         if(!isset($maisProjeto[0])){
-            $maisProjeto = false;
+            $clientesMaisProjeto = false;
         }
         // recupera o número de contratos tem com a maior parceria
-        $nMaisProjeto = Cliente::where('user_id','=',Auth::user()->id)->get('nome')->count();
+        // $clientesMaisProjeto = Cliente::where('user_id','=',Auth::user()->id)->get('nome')->count();
         
         // softwares
         // recupera o número total de softwares criados
-        $nSoftwares = Software::where('user_id','=', Auth::user()->id)->get()->count();
+        $softwareTotal = Software::where('user_id','=', Auth::user()->id)->get()->count();
+        // recupera os software que ainda estão em atividade
+        $softwareEmAtividade = Software::where('user_id','=', Auth::user()->id)->where('status',true)->get()->count();;
         // recupera o software com mais Hqs
-        $maisHqs = Hq::where('user_id','=', Auth::user()->id)->get()->count();
+        $softwareMaisHqs = 0;
         
         // HQs
+        // recupera o número de HQs que o usuário possui
+        $hqsTotal = Hq::where('user_id','=', Auth::user()->id)->get()->count();
         // recupera o presente número de softwares
-        $hqAtuais = Hq::where('user_id','=', Auth::user()->id)->where('status',true)->get()->count();
-        
+        $hqTotalAtual = Hq::where('user_id','=', Auth::user()->id)->where('status',true)->get()->count();
+        // recupera as hqs com mais quadrinhos
+        $hqsComMaisQuadrinhos=0;
 
         // Quadrinhos
-
-        
         // recupera o quadrinho com mais páginas
+        $quadrinhosMaisPaginas=0;
         // recupera o ambiente mais usado
+        $quadrinhosAmbienteMaisUsado=0;
         // recupera o total de quadrinhos
-        // $totalQuadrinho = Situar::where('');
+        $quadrinhosTotal=0;
 
-        return view('information.index', compact('nParceiros', 'nEmContrato', 'maisProjeto',
-                'nSoftwares', 'hqAtuais'));
+        return view('information.index', compact(
+            'clientesParceiros', 'clientesEmContrato', 'clientesMaisProjeto',
+            'softwareTotal', 'softwareEmAtividade', 'softwareMaisHqs',
+            'hqsTotal', 'hqTotalAtual', 'hqsComMaisQuadrinhos',
+            'quadrinhosMaisPaginas', 'quadrinhosAmbienteMaisUsado', 'quadrinhosTotal',
+            ));
     }
 
     /**

@@ -19,15 +19,15 @@
 
                 <div class="col-sm-4 form-group">
                     <label>Parcerias:</label>
-                    <input type="text" class="form-control" value="{{ $nParceiros }}" disabled>
+                    <input type="text" class="form-control" value="{{ $clientesParceiros }}" disabled>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label>Em Contrato:</label>
-                    <input type="text" class="form-control" value="{{ $nEmContrato }}" disabled>
+                    <input type="text" class="form-control" value="{{ $clientesEmContrato }}" disabled>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label>Mais Projetos:</label>
-                    <input type="text" class="form-control" value="{{ $maisProjeto }}" disabled>
+                    <input type="text" class="form-control" value="{{ $clientesMaisProjeto }}" disabled>
                 </div>
             </div>
             <div class="row mt-3">
@@ -35,15 +35,15 @@
 
                 <div class="col-sm-4 form-group">
                     <label>Total:</label>
-                    <input type="text" class="form-control" value="{{ $nSoftwares }}" disabled>
+                    <input type="text" class="form-control" value="{{ $softwareTotal }}" disabled>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label>Em Atividade:</label>
-                    <input type="text" class="form-control" value="{{ $hqAtuais }}" disabled>
+                    <input type="text" class="form-control" value="{{ $softwareEmAtividade }}" disabled>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label>Com mais HQs:</label>
-                    <input type="text" class="form-control" value="{{ $nParceiros }}" disabled>
+                    <input type="text" class="form-control" value="{{ $softwareMaisHqs }}" disabled>
                 </div>
             </div>
             <div class="row mt-3">
@@ -51,15 +51,15 @@
 
                 <div class="col-sm-4 form-group">
                     <label>Total HQs:</label>
-                    <input type="text" class="form-control" value="{{ $nSoftwares }}" disabled>
+                    <input type="text" class="form-control" value="{{ $hqsTotal }}" disabled>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label>Total atual:</label>
-                    <input type="text" class="form-control" value="{{ $hqAtuais }}" disabled>
+                    <input type="text" class="form-control" value="{{ $hqTotalAtual }}" disabled>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label>Com mais Quadrinhos:</label>
-                    <input type="text" class="form-control" value="{{ $nParceiros }}" disabled>
+                    <input type="text" class="form-control" value="{{ $hqsComMaisQuadrinhos }}" disabled>
                 </div>
             </div>
             <div class="row mt-3">
@@ -67,15 +67,15 @@
 
                 <div class="col-sm-4 form-group">
                     <label>Mais páginas:</label>
-                    <input type="text" class="form-control" value="{{ $nSoftwares }}" disabled>
+                    <input type="text" class="form-control" value="{{ $quadrinhosMaisPaginas }}" disabled>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label>Ambiente mais usado:</label>
-                    <input type="text" class="form-control" value="{{ $hqAtuais }}" disabled>
+                    <input type="text" class="form-control" value="{{ $quadrinhosAmbienteMaisUsado }}" disabled>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label>Total:</label>
-                    <input type="text" class="form-control" value="{{ $hqAtuais }}" disabled>
+                    <input type="text" class="form-control" value="{{ $quadrinhosTotal }}" disabled>
                 </div>
             </div>
         </div>
